@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function Header() {
+export default function Tracker() {
 
   return (
     <div>
-      <p>Header</p>
+      <p>Tracker</p>
     </div>
   );
 }

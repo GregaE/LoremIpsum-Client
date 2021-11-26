@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function Header() {
+export default function BuilderSettings() {
 
   return (
     <div>
-      <p>Header</p>
+
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function Header() {
+export default function PersonalData() {
 
   return (
     <div>
-      <p>Header</p>
+
     </div>
   );
 }

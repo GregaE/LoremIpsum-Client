@@ -1,11 +1,11 @@
 import React from 'react';
 
 
-export default function Header() {
+export default function Calendar() {
 
   return (
     <div>
-      <p>Header</p>
+      <p>Calendar</p>
     </div>
   );
 }
