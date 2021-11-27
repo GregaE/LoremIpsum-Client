@@ -24,9 +24,9 @@ export default function Dashboard() {
             <Route path="/" element={<Home/>} />
             <Route path="/CVBuilder" element={<CVBuilder/>} />
             <Route path="/MyCVs" element={<MyCVs/>} />
-            <Route path="/Profile" element={<Profile/>} />
             <Route path="/Test" element={<Certificate/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
             <Route path="/Login" element={<Login/>} />
+            <Route path="/Profile" element={<Profile/>} />
         </Routes>
       </div>
       <Outlet/>

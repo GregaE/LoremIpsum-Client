@@ -10,6 +10,7 @@ module.exports = {
       secondary: "#FFED4A",
       danger: "#FF4949",
       light: "#FFFFFF",
+      dark: "#000000",
     },
   },
   variants: {
