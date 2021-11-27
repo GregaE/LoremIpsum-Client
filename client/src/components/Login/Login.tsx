@@ -3,8 +3,12 @@ import Button from '../Forms/Elements/Buttons/Button';
 
 export default function Login() {
 
+/*
+  Here we just basically have a form and get user and pwd
+*/
+
   return (
-    <div className="flex flex-col w-screen h-screen bg-pink-400 m-auto justify-center items-center text-accent bg-primary-bg">
+    <div className="flex flex-col w-screen h-screen m-auto justify-center items-center text-accent bg-primary-bg">
       <div className="flex flex-col w-1/2 h-1/2 m-auto justify-center items-center align-center border-solid border-4">
       <TextInput  type="text" value="" placeholder="Please, insert your e-mail" label="E-mail"/>
       <TextInput type="password" value="" placeholder="Please, insert your password" label="Password"/>

@@ -16,3 +16,15 @@
 .nav-link {
   @apply border-t border-b border-solid flex justify-center items-center w-full h-14;
 }
+
+.rounded-container {
+  @apply rounded-xl shadow-lg;
+}
+
+.category-container {
+  @apply rounded-container bg-light;
+}
+
+.item-container {
+  @apply flex flex-wrap;
+}

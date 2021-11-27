@@ -5,8 +5,13 @@ import Tracker from './Tracker/Tracker';
 
 export default function Home() {
 
+  /*
+  Here (in the future) we should show data from calendar/tracker and whatever we want to display in welcome component.
+  In the meantime we just use the name for the welcome (not pass but get from state in Welcome)
+  */
+
   return (
-    <div id="home-container" className="w-full h-9/10 bg-primary-bg flex flex-row">
+    <div id="home-container" className="w-full h-9/10 bg-primary-bg flex flex-row overflow-scroll">
       <div id="main-section" className="w-4/6 h-full bg-primary-bg flex flex-col justify-start">
         <Welcome/>
         <Tracker/>
