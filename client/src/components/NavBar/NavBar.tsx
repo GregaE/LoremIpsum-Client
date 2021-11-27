@@ -4,7 +4,7 @@ import {  Link } from "react-router-dom";
 export default function NavBar() {
 
   return (
-    <div className="bg-red-100">
+    <div className="bg-primary-bg">
       <ul>
       <li>
         <Link to="/">Home</Link>
