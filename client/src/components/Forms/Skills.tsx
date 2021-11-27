@@ -1,5 +1,5 @@
 import React from 'react';
-import Buttons from './Elements/Buttons/Buttons';
+import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 
 export default function Skills() {

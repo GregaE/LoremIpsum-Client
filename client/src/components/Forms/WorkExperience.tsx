@@ -1,5 +1,5 @@
 import React from 'react';
-import Buttons from './Elements/Buttons/Buttons';
+import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
 // import { Link } from 'react-router-dom';
