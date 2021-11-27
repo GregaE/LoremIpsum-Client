@@ -4,7 +4,8 @@ import {  Link } from "react-router-dom";
 export default function NavBar() {
 
   return (
-    <div>
+    <div className="bg-red-100">
+      <ul>
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -17,6 +18,7 @@ export default function NavBar() {
       <li>
         <Link to="/Profile">Profile</Link>
       </li>
+      </ul>
     </div>
   );
 }
