@@ -4,7 +4,7 @@ export default function Profile() {
 
   return (
     <div className="p-2">
-      <h2 className="underline text-3xl">Your personal data</h2>
+      <h2 className="underline text-3xl p-2">Your personal data</h2>
       <div className="flex flex-row justify-center items-center p-4 ml-5">
         <div className="w-1/6 h-1/6 m-5">
         <img src="https://i.graphicmama.com/uploads/2019/3/5c948ff89ffbc-Cute%20Banana%20Cartoon%20Vector%20Character.png" alt="profile-img"/>

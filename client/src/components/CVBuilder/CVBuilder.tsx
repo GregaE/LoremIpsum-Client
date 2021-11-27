@@ -7,12 +7,12 @@ import Modal from './Modal/Modal';
 export default function CVBuilder() {
 
   //Display sth based on array index
-  const displayer:any = [<Selector/>,<Builder/>]
+  const displayer: React.ReactElement[] = [<Selector/>,<Builder/>]
   //Display modal by switch
   const modal:any = true ? <Modal/> : null
 
   return (
-    <div>
+    <div className="h-full">
       {displayer}
       {modal}
     </div>

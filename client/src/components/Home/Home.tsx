@@ -6,8 +6,8 @@ import Tracker from './Tracker/Tracker';
 export default function Home() {
 
   return (
-    <div id="home-container" className="w-full bg-primary-bg flex flex-row">
-      <div id="main-section" className="w-5/6 h-full bg-primary-bg flex flex-col justify-start">
+    <div id="home-container" className="w-full h-9/10 bg-primary-bg flex flex-row">
+      <div id="main-section" className="w-4/6 h-full bg-primary-bg flex flex-col justify-start">
         <Welcome/>
         <Tracker/>
       </div>
