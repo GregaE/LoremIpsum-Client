@@ -13,3 +13,6 @@
 /* Stop purging. */
 
 /* Your own custom utilities */
+.nav-link {
+  @apply border-t border-b border-solid flex justify-center items-center w-full h-14;
+}

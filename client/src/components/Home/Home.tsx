@@ -6,10 +6,14 @@ import Tracker from './Tracker/Tracker';
 export default function Home() {
 
   return (
-    <div>
-      <Welcome/>
-      <Tracker/>
-      <Calendar/>
+    <div id="home-container" className="w-full h-9/10 bg-primary-bg flex flex-row">
+      <div id="main-section" className="w-4/6 h-full bg-primary-bg flex flex-col justify-start">
+        <Welcome/>
+        <Tracker/>
+      </div>
+      <div id="right-section" className="w-2/6 h-full">
+        <Calendar/>
+      </div>
     </div>
   );
 }

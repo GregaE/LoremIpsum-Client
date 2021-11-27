@@ -9,22 +9,26 @@ import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
 
-import Certificate from '../Forms/Certificate';
+import Login from '../Login/Login';
+import Builder from '../CVBuilder/Builder/Builder';
 
 
 export default function Dashboard() {
 
   return (
-    <div>
+    <div className="flex w-screen h-screen bg-primary-bg">
       <NavBar/>
-      <Header/>
-      <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/CVBuilder" element={<CVBuilder/>} />
-          <Route path="/MyCVs" element={<MyCVs/>} />
-          <Route path="/Profile" element={<Profile/>} />
-          <Route path="/Test" element={<Certificate/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-      </Routes>
+      <div className="flex flex-col w-5/6 h-full">
+        <Header/>
+        <Routes>
+            <Route path="/" element={<Home/>} />
+            <Route path="/CVBuilder" element={<CVBuilder/>} />
+            <Route path="/MyCVs" element={<MyCVs/>} />
+            <Route path="/Test" element={<Builder/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+            <Route path="/Login" element={<Login/>} />
+            <Route path="/Profile" element={<Profile/>} />
+        </Routes>
+      </div>
       <Outlet/>
     </div>
   );
