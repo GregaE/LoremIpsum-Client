@@ -4,7 +4,7 @@ import {TextInputProps} from '../../../../interfaces/InputTextProps'
 export default function TextInput(props: TextInputProps ) {
 
   return (
-    <div>
+    <div className="flex flex-col p-2">
       <label>{props.label}</label>
       <input 
         onChange={props.callback}
