@@ -10,8 +10,8 @@ function App() {
   useEffect(()=>{
     getUser("/mock").then((res:User) => {
       setMockData({...res})
-      console.log(mockData)
-    })
+    }).catch(e => console.log(e))
+    console.log(mockData)
   },[])
   const isLoggedIn = true
 
