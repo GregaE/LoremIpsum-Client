@@ -3,27 +3,9 @@ module.exports = {
   // https://tailwindcss.com/docs/just-in-time-mode
   // mode: "jit",
   theme: {
-    colors: {
-      testcolor: '#F7DEFF'
+    extends: {
     },
-    extend: {
-      colors: {
-        testcolor: '#F7DEFF'
-      },
-      backgroundColor: theme => ({
-        ...theme('colors'),
-        'primary': '#6263D5',
-        'primary-bg' : '#EFF1FF',
-        'accent': 'ED960B',
-        'accent-bg' : 'F7DEFF',
-        'secondary': '#FFED4A',
-        'danger': '#FF4949',
-      })
-    }
   },
-  // theme: {
-  //   extend: {},
-  // },
   variants: {},
   plugins: [],
   purge: {
