@@ -9,6 +9,8 @@ import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
+import Builder from '../CVBuilder/Builder/Builder';
+import PDFRender from '../CVBuilder/Modal/ItemEditor/PDF-Render/PDF-Render';
 
 import { AnimatePresence } from 'framer-motion';
 
