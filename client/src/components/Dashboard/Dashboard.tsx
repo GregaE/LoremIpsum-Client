@@ -28,6 +28,7 @@ export default function Dashboard() {
     <div className="flex w-screen h-screen bg-primary-bg">
       <NavBar/>
       <div className="flex flex-col w-5/6 h-full">
+        <Header/>
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>
               <Route path="/" element={<Home/>} />

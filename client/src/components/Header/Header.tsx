@@ -1,18 +1,19 @@
 import React, {useState} from 'react';
 import {  Link } from "react-router-dom";
+import { useTypedSelector } from '../../hooks/useTypeSelector'
 
 export default function Header() {
 
   /*
   Get name from state and display it here
-  Get name of selectedComponent¿¿
   */
 
   const [username, setUsername] = useState("Lorem Ipsum")
+  const {headerName} = useTypedSelector((state) => state.headerName);
 
   return (
     <div className="w-full h-1/10 py-4 bg-primary-bg flex flex-row justify-between items-center px-8">
-      <h2>Header Name</h2>
+      <h2>{headerName}</h2>
       <Link to="/Profile">
       <div id="profile" className="flex flex-row justify-around items-center">
         <h2>{username}</h2>
