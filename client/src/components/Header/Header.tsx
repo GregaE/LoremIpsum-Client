@@ -3,6 +3,7 @@ import {  Link } from "react-router-dom";
 import { useTypedSelector } from '../../hooks/useTypeSelector'
 import { useDispatch } from 'react-redux';
 import { headerName } from '../../redux/AppState/actionCreators/headerName'
+import { showCvBuilder } from '../../redux/AppState/actionCreators/showBuilder';
 
 export default function Header() {
 
@@ -15,12 +16,17 @@ export default function Header() {
   const header = useTypedSelector((state) => state.headerName);
   const headerValue = header.headerName //Have to do this cause headerName is doubled for reducer and action..
 
+  const navigateAround = (name:string) => {
+    dispatch(headerName(name));
+    dispatch(showCvBuilder(false));
+  }
+
   return (
     <div className="w-full h-1/10 py-4 bg-primary-bg flex flex-row justify-between items-center px-8">
       <h2>{headerValue}</h2>
       <Link to="/Profile">
       <div id="profile" className="flex flex-row justify-around items-center" 
-        onClick={() => dispatch(headerName('Profile'))}>
+        onClick={() => navigateAround('Profile')}>
         <h2>{username}</h2>
           <img
             className="w-10 h-10 rounded-full mx-8"
