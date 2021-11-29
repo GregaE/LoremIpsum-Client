@@ -1,4 +1,6 @@
 import React from 'react';
+import {useDispatch} from 'react-redux'
+import { showCvBuilder } from '../../../redux/AppState/actionCreators/showBuilder'
 
 /*
 TO DO:
@@ -8,15 +10,17 @@ TO DO:
 
 export default function Selector() {
 
+  const dispatch = useDispatch()
+
   return (
     <div className="h-5/6 my-auto flex flex-wrap gap-10 p-8 bg-primary-bg justify-center content-center">
       <div className="bg-light w-80 h-96 flex flex-col justify-center items-center item-container cursor-pointer"
-        >
-        <i className="fas fa-plus-circle fa-6x" onClick={()=>console.log('here goes a dispatch')}></i>
+        onClick={() => dispatch(showCvBuilder(true))}>
+        <i className="fas fa-plus-circle fa-6x"></i>
       </div>
       <div className="bg-light w-80 h-96 flex justify-center items-center item-container cursor-pointer"
         >
-        <i className="far fa-file fa-6x" onClick={()=>console.log('here goes a dispatch')}></i>
+        <i className="far fa-file fa-6x"></i>
       </div>
     </div>
   );

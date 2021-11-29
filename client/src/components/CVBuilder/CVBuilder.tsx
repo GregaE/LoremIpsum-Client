@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTypedSelector } from '../../hooks/useTypeSelector'
 
 import Selector from './Selector/Selector'
 import Builder from './Builder/Builder'
@@ -8,6 +9,7 @@ import { motion } from 'framer-motion';
 
 export default function CVBuilder() {
 
+  const {builder} = useTypedSelector((state) => state.showCvBuilder)
   /*
   Once you click here:
     We fetch data of user cvs (in case he click from CVs)
@@ -28,13 +30,13 @@ export default function CVBuilder() {
       like category id, to know which form should open...
   */
 
-  const cvBuilder = false
-  const displayer = cvBuilder ? <Builder/> : <Selector/>
-  //Display sth based on array index
-  // const displayer: React.ReactElement[] = [<Selector changeSelector={displayerChange} toggleModal={displayModal}/>,<Builder toggleModal={displayModal}/>]
+
   //Display modal by switch
-  const modalToggle = false
-  const modal = modalToggle ? <Modal/> :null
+  // const modal = modalToggle ? <Modal/> :null
+
+  const selectorOrBuilder: React.ReactElement = builder 
+    ? <Builder/>
+    : <Selector/>
 
   const containerVariants = {
     hidden: {
@@ -57,8 +59,8 @@ export default function CVBuilder() {
       exit="hidden"
       variants={containerVariants}>
 
-      {displayer}
-      {modal}
+      {selectorOrBuilder}
+      {/* {modal} */}
 
     </motion.div>
   );

@@ -16,7 +16,7 @@ export default function Builder() {
         <PersonalData/>
         <Categories />
         <AnimatePresence exitBeforeEnter>
-          <i className="fas fa-plus-circle fa-3x"/>
+          <i className="fas fa-plus-circle fa-3x" />
         </AnimatePresence>
       </div>
 
