@@ -5,6 +5,8 @@ import Categories from './Categories/Categories';
 import Preview from './Preview/Preview';
 import BuilderSettings from './BuilderSettings/BuilderSettings';
 
+import { AnimatePresence } from 'framer-motion';
+
 interface builderProps {
   toggleModal: (v:number)=>void,
 }
@@ -16,7 +18,9 @@ export default function Builder(props: builderProps) {
       <div className="column1 w-2/6 border border-solid border-black overflow-scroll">
         <PersonalData/>
         <Categories />
-        <i className="fas fa-plus-circle fa-3x" onClick={()=>props.toggleModal(1)}/>
+        <AnimatePresence exitBeforeEnter>
+          <i className="fas fa-plus-circle fa-3x" onClick={()=>props.toggleModal(1)}/>
+        </AnimatePresence>
       </div>
 
       <div className="column2 w-3/6">

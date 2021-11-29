@@ -13,6 +13,8 @@
     "autoprefixer": "10.x",
     "cross-env": "7.x",
     "delay-cli": "^1.1.0",
+    "firebase": "^8.0.0",
+    "framer-motion": "^4.1.17",
     "npm-run-all": "4.x",
     "postcss": "8.x",
     "postcss-cli": "8.x",

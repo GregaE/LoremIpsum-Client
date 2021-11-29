@@ -1,9 +1,28 @@
 import React from 'react';
 
+import { motion } from 'framer-motion';
+
 export default function Profile() {
 
+  const containerVariants = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {delay: 0.1, duration: 0.1}
+    },
+    exit: {
+      opacity: 0,
+    },
+  }
+
   return (
-    <div className="p-2">
+    <motion.div className="p-2"
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={containerVariants}>
       <h2 className="underline text-3xl p-2">Your personal data</h2>
       <div className="flex flex-row justify-center items-center p-4 ml-5">
         <div className="w-1/6 h-1/6 m-5">
@@ -26,6 +45,6 @@ export default function Profile() {
           <p className="w-full bg-light m-2 p-1 rounded-lg">WORK EXPERIENCE</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
