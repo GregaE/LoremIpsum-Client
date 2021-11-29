@@ -3,6 +3,8 @@ import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 // import SelectInput from './Elements/Inputs/SelectInput';
 
+import { useTypedSelector } from '../../hooks/useTypeSelector'
+
 export default function PersonalInfo() {
 
   return (

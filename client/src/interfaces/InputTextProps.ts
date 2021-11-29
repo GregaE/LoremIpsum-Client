@@ -3,5 +3,5 @@ export interface TextInputProps {
   type?: string;
   value?: string;
   placeholder?: string;
-  callback?: ()=>void;
+  callback?: (e: Event)=>void;
 }
