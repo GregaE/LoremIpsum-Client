@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch} from 'react-redux'
 import { showCvBuilder } from '../../../redux/AppState/actionCreators/showBuilder'
+import { toggleModal } from '../../../redux/AppState/actionCreators/toggleModal'
 
 /*
 TO DO:
@@ -19,7 +20,7 @@ export default function Selector() {
         <i className="fas fa-plus-circle fa-6x"></i>
       </div>
       <div className="bg-light w-80 h-96 flex justify-center items-center item-container cursor-pointer"
-        >
+        onClick={() => dispatch(toggleModal(true))}>
         <i className="far fa-file fa-6x"></i>
       </div>
     </div>

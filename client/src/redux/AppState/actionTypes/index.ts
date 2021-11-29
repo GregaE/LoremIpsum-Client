@@ -2,6 +2,7 @@ export enum ActionType {
     TOGGLE_LOGIN = 'TOGGLE_LOGIN',
     HEADER_NAME = 'HEADER_NAME',
     SHOW_CVBUILDER = 'SHOW_CVBUILDER',
+    TOGGLE_MODAL = 'TOGGLE_MODAL',
 }
 
 interface headerName {
@@ -13,6 +14,12 @@ interface toggleLogin {
   type: ActionType.TOGGLE_LOGIN;
 }
 
+interface toggleModal {
+  type: ActionType.TOGGLE_MODAL;
+  payload: boolean;
+}
+
+
 interface showCvBuilder {
   type: ActionType.SHOW_CVBUILDER
   payload: boolean;
@@ -21,4 +28,5 @@ interface showCvBuilder {
 export type Action = 
   toggleLogin 
   | headerName
-  | showCvBuilder;
+  | showCvBuilder
+  | toggleModal;
