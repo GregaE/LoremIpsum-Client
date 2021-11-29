@@ -12,6 +12,7 @@ import Profile from '../Profile/Profile';
 import Modal from '../CVBuilder/Modal/Modal';
 import Login from '../Login/Login';
 import Builder from '../CVBuilder/Builder/Builder';
+import PDFRender from '../CVBuilder/Modal/ItemEditor/PDF-Render/PDF-Render';
 
 
 export default function Dashboard() {
@@ -31,7 +32,7 @@ export default function Dashboard() {
             <Route path="/" element={<Home/>} />
             <Route path="/cvbuilder" element={<CVBuilder/>} />
             <Route path="/mycvs" element={<MyCVs/>} />
-            <Route path="/test" element={<Builder/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+             <Route path="/test" element={<PDFRender/>} /> {/*Test complete components render (TODO: Replace Profile with Component Test) */}
             <Route path="/login" element={<Login/>} /> {/* Temporal route */}
             <Route path="/profile" element={<Profile/>} /> {/* Temporal route */}
         </Routes>
