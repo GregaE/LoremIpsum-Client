@@ -7,7 +7,7 @@ export default function BuilderSettings() {
   return (
     <div onClick={() => <PDFRender/>} >
       <div className="flex justify-center bg-primary text-light rounded-lg p-1 m-5">
-        <Button name="Download"/>
+        <Button name="Check PDF"/>
       </div>
     </div>
   );

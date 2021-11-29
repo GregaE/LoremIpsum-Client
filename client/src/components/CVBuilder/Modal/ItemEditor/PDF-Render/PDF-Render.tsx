@@ -1,7 +1,6 @@
 import ReactDOM from "react-dom";
 import Preview from "../../../Builder/Preview/Preview";
-import { PDFViewer } from "@react-pdf/renderer";
-import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { PDFViewer, Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
 
 // Create styles
 const styles = StyleSheet.create({
