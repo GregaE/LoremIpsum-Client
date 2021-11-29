@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from 'react';
-// import { Routes, Route, useNavigate } from "react-router-dom";
+import { useSelector} from "react-redux";
+
 import Login from './components/Login/Login';
-// import NavBar from './components/NavBar/NavBar';
 import Dashboard from './components/Dashboard/Dashboard';
+
 import {getUser} from "./utils/ApiService"
 import {User} from "./interfaces/UserInterface"
+
 function App() {
   const [mockData, setMockData] = useState({})
   useEffect(()=>{
     getUser("/mock").then((res:User) => {
       setMockData({...res})
     }).catch(e => console.log(e))
-    console.log(mockData)
+    // console.log(mockData)
   },[])
-  const isLoggedIn = true
 
+  // const isLoggedIn = useSelector(state => state.toggleLogin)
+
+  const isLoggedIn = true
   return isLoggedIn ? <Dashboard /> : <Login />
 }
 

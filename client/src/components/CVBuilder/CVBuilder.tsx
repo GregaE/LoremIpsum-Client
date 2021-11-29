@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import Selector from './Selector/Selector'
 import Builder from './Builder/Builder'
@@ -28,23 +28,13 @@ export default function CVBuilder() {
       like category id, to know which form should open...
   */
 
-  const [displayerIndex, setDisplayerIndex] = useState(0)
-  const [modalToggle, setModalToggle] = useState(false)
-  const [modalIndex, setModalIndex] = useState(0)
-
-  const displayModal = (v:number) => {
-    setModalToggle(!modalToggle)
-    setModalIndex(v)
-  }
-
-  const displayerChange = () => {
-    displayerIndex === 0 ? setDisplayerIndex(1) : setDisplayerIndex(0)
-  }
-
+  const cvBuilder = false
+  const displayer = cvBuilder ? <Builder/> : <Selector/>
   //Display sth based on array index
-  const displayer: React.ReactElement[] = [<Selector changeSelector={displayerChange} toggleModal={displayModal}/>,<Builder toggleModal={displayModal}/>]
+  // const displayer: React.ReactElement[] = [<Selector changeSelector={displayerChange} toggleModal={displayModal}/>,<Builder toggleModal={displayModal}/>]
   //Display modal by switch
-  const modal = modalToggle ? <Modal modalIndex={modalIndex} toggleModal={displayModal}/> :null
+  const modalToggle = false
+  const modal = modalToggle ? <Modal/> :null
 
   const containerVariants = {
     hidden: {
@@ -66,8 +56,10 @@ export default function CVBuilder() {
       animate="visible"
       exit="hidden"
       variants={containerVariants}>
-      {displayer[displayerIndex]}
+
+      {displayer}
       {modal}
+
     </motion.div>
   );
 }

@@ -9,11 +9,10 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, Store } from 'redux';
 import thunk from "redux-thunk";
 
-
 ReactDOM.render(
     <Router>
       <App />
-    </Router>, 
+    </Router>,
   document.getElementById('root')
 );
 

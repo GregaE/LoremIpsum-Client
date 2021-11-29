@@ -28,12 +28,14 @@ export default function Dashboard() {
     <div className="flex w-screen h-screen bg-primary-bg">
       <NavBar/>
       <div className="flex flex-col w-5/6 h-full">
+        <Header/>
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>
               <Route path="/" element={<Home/>} />
               <Route path="/cvbuilder" element={<CVBuilder/>} />
               <Route path="/mycvs" element={<MyCVs/>} />
               <Route path="/test" element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+              <Route path="/anothertest" element={<PDFRender/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
               <Route path="/login" element={<Login/>} /> {/* Temporal route */}
               <Route path="/profile" element={<Profile/>} /> {/* Temporal route */}
           </Routes>

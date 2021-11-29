@@ -7,11 +7,8 @@ import BuilderSettings from './BuilderSettings/BuilderSettings';
 
 import { AnimatePresence } from 'framer-motion';
 
-interface builderProps {
-  toggleModal: (v:number)=>void,
-}
 
-export default function Builder(props: builderProps) {
+export default function Builder() {
 
   return (
     <div className="h-full flex flex-wrap overflow-scroll">
@@ -19,7 +16,7 @@ export default function Builder(props: builderProps) {
         <PersonalData/>
         <Categories />
         <AnimatePresence exitBeforeEnter>
-          <i className="fas fa-plus-circle fa-3x" onClick={()=>props.toggleModal(1)}/>
+          <i className="fas fa-plus-circle fa-3x"/>
         </AnimatePresence>
       </div>
 

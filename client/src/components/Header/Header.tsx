@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {  Link } from "react-router-dom";
+import {useSelector} from 'react-redux'
 
 export default function Header() {
 
@@ -12,7 +13,7 @@ export default function Header() {
 
   return (
     <div className="w-full h-1/10 py-4 bg-primary-bg flex flex-row justify-between items-center px-8">
-      <h2>Header Name</h2>
+      <h2>FML</h2>
       <Link to="/Profile">
       <div id="profile" className="flex flex-row justify-around items-center">
         <h2>{username}</h2>
