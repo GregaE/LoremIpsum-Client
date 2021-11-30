@@ -7,6 +7,7 @@ import experienceReducer from './reducers/experienceReducer';
 import languageReducer from './reducers/languageReducer';
 import educationReducer from './reducers/educationReducer';
 import cvsReducer from './reducers/cvReducer';
+import personalDetailsReducer from './reducers/personalDetailsReducer';
 
 const reducers = combineReducers({
   skills: skillReducer,
@@ -14,7 +15,8 @@ const reducers = combineReducers({
   experience: experienceReducer,
   languages: languageReducer,
   education: educationReducer,
-  cvs: cvsReducer
+  cvs: cvsReducer,
+  personal_details: personalDetailsReducer
 });
 
 export default createStore(reducers, applyMiddleware(middleware));
