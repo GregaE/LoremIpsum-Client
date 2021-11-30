@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux'
-import { useTypedSelector } from '../../hooks/useTypeSelector';
+import { useTypedSelector } from '../../utils/useTypeSelector';
 import { toggleModal } from '../../redux/AppState/actionCreators/toggleModal'
 import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 
