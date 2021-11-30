@@ -3,15 +3,6 @@ import { connect } from 'react-redux';
 
 function App(props: any) {
 
-  React.useEffect(() => {
-    console.log(props.skills);
-    props.fetchData();
-  }, [])
-
-  React.useEffect(() => {
-    console.log(props.skills);
-  }, [props.skills]);
-
   return (
     <div className="flex flex-col h-full items-center justify-center text-white bg-gradient-to-br from-gray-600 via-teal-700 to-gray-800">
       <div className="flex items-center animate-bounce">

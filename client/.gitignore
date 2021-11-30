@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+/.yarn
 
 # testing
 /coverage
@@ -22,5 +23,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Tailwind processed CSS 
+# Tailwind processed CSS
 index.css
