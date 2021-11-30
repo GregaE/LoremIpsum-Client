@@ -1,4 +1,5 @@
-import { ModalInterface } from '../../../interfaces/ModalInterface';
+import { ModalInterface } from "../../interfaces/ModalInterface";
+
 
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',

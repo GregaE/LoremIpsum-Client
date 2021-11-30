@@ -1,7 +1,7 @@
 import React from 'react';
 import {TextInputProps} from '../../../../interfaces/InputTextProps'
 
-export default function TextInput(props: TextInputProps ) {
+export default function TextAreaInput(props: TextInputProps ) {
 
   return (
     <div className="w-full flex flex-col">

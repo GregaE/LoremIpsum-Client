@@ -9,7 +9,7 @@ export default function BuilderSettings() {
   const dispatch = useDispatch();
 
   function handleClick () {
-    dispatch(toggleModal(true));
+    // dispatch(toggleModal());
   }
 
   return (

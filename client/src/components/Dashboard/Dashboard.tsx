@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux'
 import { useTypedSelector } from '../../utils/useTypeSelector';
-import { toggleModal } from '../../redux/AppState/actionCreators/toggleModal'
+
 import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 
 import NavBar from '../NavBar/NavBar';
@@ -15,15 +15,16 @@ import Login from '../Login/Login';
 
 import Certificate from '../Forms/Certificate';
 import Builder from '../CVBuilder/Builder/Builder';
-import PDFRender from '../CVBuilder/Modal/ItemEditor/PDF-Render/PDF-Render';
+import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
+import { toggleModal } from '../../store/actions/toggleModal';
 
 export default function Dashboard() {
 
   const location = useLocation();
   const dispatch = useDispatch();
-  const { showModal } = useTypedSelector((state) => state.toggleModal);
+  const { flag } = useTypedSelector((state) => state.toggleModal);
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
@@ -35,7 +36,7 @@ export default function Dashboard() {
     while(e.target.id !== 'modal-content') {
       if(e.target.id === 'modal-content') return
       if(e.target.parentNode.localName === 'body') {
-        if (showModal) dispatch(toggleModal(false))
+        if (flag) dispatch({type: 'TOGGLE_MODAL', payload:{flag: false, identifier:''}})
         return;
       }
       e.target = e.target.parentNode;
@@ -53,7 +54,7 @@ export default function Dashboard() {
               <Route path="/cvbuilder" element={<CVBuilder/>} />
               <Route path="/mycvs" element={<MyCVs/>} />
               <Route path="/test" element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path="/cvbuilder/pdf" element={<PDFRender/>} /> 
+              <Route path="/anothertest" element={<Education/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
               <Route path="/login" element={<Login/>} /> {/* Temporal route */}
               <Route path="/form" element={<Certificate/>} /> {/* Temporal route */}
               <Route path="/profile" element={<Profile/>} /> {/* Temporal route */}

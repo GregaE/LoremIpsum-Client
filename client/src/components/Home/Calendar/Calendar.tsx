@@ -12,6 +12,7 @@ export default function CalendarComp() {
     <div id="" className="w-full h-1/2 p-4 flex justify-center content-center">
       <div className="w-96 h-96 my-auto justify-center">
       <Calendar
+        className="rounded-3xl p-4"
         onChange={onChange}
         value={value}
       />

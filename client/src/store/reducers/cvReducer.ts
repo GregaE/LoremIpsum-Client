@@ -1,18 +1,14 @@
-import {
-  WorkExperienceState,
-  WorkExperienceAction,
-} from '../state_interfaces/experiences';
+import { CVState, CVAction } from '../state_interfaces/cv';
 
-const initState: WorkExperienceState = {
-  experience: [],
+const initState: CVState = {
+  cvs: [],
   loading: false,
   error: null,
 };
 
-const experienceReducer = (
-  state = initState,
-  { type, payload, id }: WorkExperienceAction
-) => {
+const cvsReducer = (state = initState, { type, payload, id }: CVAction) => {
+  //TODO - move Loading and failed into a separate reducer and revome them
+  //from the other reducers
   switch (type) {
     case 'LOADING':
       return {
@@ -26,37 +22,36 @@ const experienceReducer = (
         loading: false,
         error: payload,
       };
-    case 'ALL_EXPERIENCES':
+    case 'ALL_CVS':
       return {
         ...state,
         loading: false,
         error: null,
-        certificates: payload,
+        cvs: payload,
       };
-    case 'UPDATE_EXPERIENCE':
+    case 'UPDATE_CV':
       return {
         ...state,
         loading: false,
         error: null,
-        experience: state.experience.map(exp => {
-          if (exp.id === id)
+        cvs: state.cvs.map(cv => {
+          if (cv.id === id)
             return {
-              ...exp,
               ...payload,
             };
-          return exp;
+          return cv;
         }),
       };
-    case 'DELETE_EXPERIENCE':
+    case 'DELETE_CV':
       return {
         ...state,
         loading: false,
         error: null,
-        experience: state.experience.filter(exp => exp.id !== id),
+        cvs: state.cvs.filter(cv => cv.id !== id),
       };
     default:
       return state;
   }
 };
 
-export default experienceReducer;
+export default cvsReducer;

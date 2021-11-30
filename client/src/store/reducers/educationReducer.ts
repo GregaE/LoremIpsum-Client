@@ -1,14 +1,14 @@
-import { SkillState, SkillAction } from '../state_interfaces/skills';
+import { EducationAction, EducationState } from '../state_interfaces/education';
 
-const initState: SkillState = {
-  skills: [],
+const initState: EducationState = {
+  education: [],
   loading: false,
   error: null,
 };
 
-const skillReducer = (
+const educationReducer = (
   state = initState,
-  { type, payload, id }: SkillAction
+  { type, payload, id }: EducationAction
 ) => {
   switch (type) {
     case 'LOADING':
@@ -23,43 +23,37 @@ const skillReducer = (
         loading: false,
         error: payload,
       };
-    case 'ALL_SKILLS':
+    case 'ALL_EDUCATION':
       return {
         ...state,
         loading: false,
         error: null,
-        skills: payload,
+        education: payload,
       };
-    case 'GET_SKILL':
-      state = {
-        ...state,
-        loading: false,
-        error: null,
-      };
-      return state.skills.filter(skill => skill.id === id);
-    case 'UPDATE_SKILL':
+    case 'UPDATE_EDUCATION':
       return {
         ...state,
         loading: false,
         error: null,
-        skills: state.skills.map(skill => {
-          if (skill.id === id)
+        education: state.education.map(edu => {
+          if (edu.id === id)
             return {
+              ...edu,
               ...payload,
             };
-          return skill;
+          return edu;
         }),
       };
-    case 'DELETE_SKILL':
+    case 'DELETE_EDUCATION':
       return {
         ...state,
         loading: false,
         error: null,
-        skills: state.skills.filter(skill => skill.id !== id),
+        education: state.education.filter(edu => edu.id !== id),
       };
     default:
       return state;
   }
 };
 
-export default skillReducer;
+export default educationReducer;

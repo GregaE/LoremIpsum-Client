@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { ActionType, Action } from '../actionTypes';
+import { ActionType, Action } from './index';
 
 export const showCvBuilder = (flag:boolean) => {
   return (dispatch: Dispatch<Action>) => {
