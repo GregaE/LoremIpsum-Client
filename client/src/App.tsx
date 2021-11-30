@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {useTypedSelector} from './hooks/useTypeSelector'
+import {useTypedSelector} from './utils/useTypeSelector'
 
 import Login from './components/Login/Login';
 

@@ -25,6 +25,7 @@ export default function Modal() {
       exit={{ transform: 'scale(0)'}}
       >
       <div id="modal-content" className="h-5/6 w-5/6 bg-primary rounded-xl">
+        <CVSelector/>
         {/* {modalInstance} */}
       </div>
     </motion.div>

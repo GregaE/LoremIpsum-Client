@@ -2,7 +2,7 @@ import React from 'react';
 import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 
-import { useTypedSelector } from '../../hooks/useTypeSelector'
+import { useTypedSelector } from '../../utils/useTypeSelector'
 import { useDispatch } from 'react-redux';
 import { formCertificate, formCertificateAditional} from '../../redux/AppState/actionCreators/formCertificate'
 
