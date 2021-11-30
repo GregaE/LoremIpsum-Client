@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux'
 import { useTypedSelector } from '../../utils/useTypeSelector';
-import { toggleModal } from '../../redux/AppState/actionCreators/toggleModal'
+
 import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 
 import NavBar from '../NavBar/NavBar';
@@ -18,6 +18,7 @@ import Builder from '../CVBuilder/Builder/Builder';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
+import { toggleModal } from '../../store/actions/toggleModal';
 
 export default function Dashboard() {
 
@@ -35,7 +36,7 @@ export default function Dashboard() {
     while(e.target.id !== 'modal-content') {
       if(e.target.id === 'modal-content') return
       if(e.target.parentNode.localName === 'body') {
-        if (flag) dispatch(toggleModal({flag: false, identifier:''}))
+        if (flag) dispatch({type: 'TOGGLE_MODAL', payload:{flag: false, identifier:''}})
         return;
       }
       e.target = e.target.parentNode;

@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import {  Link } from "react-router-dom";
 import { useTypedSelector } from '../../utils/useTypeSelector'
 import { useDispatch } from 'react-redux';
-import { headerName } from '../../redux/AppState/actionCreators/headerName'
-import { showCvBuilder } from '../../redux/AppState/actionCreators/showBuilder';
+import { headerName } from '../../store/actions/headerName';
+import { showCvBuilder } from '../../store/actions/showBuilder';
+
 
 export default function Header() {
 
@@ -17,8 +18,8 @@ export default function Header() {
   const headerValue = header.headerName //Have to do this cause headerName is doubled for reducer and action..
 
   const navigateAround = (name:string) => {
-    dispatch(headerName(name));
-    dispatch(showCvBuilder(false));
+    dispatch({type:'HEADER_NAME', payload: name});
+    dispatch({type:'SHOW_CVBUILDER', payload: false});
   }
 
   return (

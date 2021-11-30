@@ -1,5 +1,5 @@
-import { ModalInterface } from '../../../interfaces/ModalInterface';
-import { Action, ActionType } from '../actionTypes/index';
+import { ModalInterface } from '../../interfaces/ModalInterface';
+import { Action, ActionType } from '../actions/index';
 
 const initialState = {
   flag: false,

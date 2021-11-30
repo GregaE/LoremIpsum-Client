@@ -7,7 +7,8 @@ import Preview from './Preview/Preview';
 import BuilderSettings from './BuilderSettings/BuilderSettings';
 
 import { AnimatePresence } from 'framer-motion';
-import { toggleModal } from '../../../redux/AppState/actionCreators/toggleModal';
+import { toggleModal } from '../../../store/actions/toggleModal';
+
 
 
 export default function Builder() {
@@ -21,7 +22,7 @@ export default function Builder() {
         <Categories />
         <AnimatePresence exitBeforeEnter>
           <i className="fas fa-plus-circle fa-3x" 
-          onClick={() => dispatch(toggleModal({flag: true, identifier:'Categories'}))}/>
+          onClick={() => dispatch({type: 'TOGGLE_MODAL', payload:{flag: true, identifier:'Categories'}})}/>
         </AnimatePresence>
       </div>
 

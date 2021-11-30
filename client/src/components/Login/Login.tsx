@@ -2,7 +2,6 @@ import TextInput from '../Forms/Elements/Inputs/TextInput';
 import Button from '../Forms/Elements/Buttons/Button';
 
 import { useDispatch } from 'react-redux';
-import { toggleLogin } from '../../redux/AppState/actionCreators/toggleLogin';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
 
@@ -15,16 +14,6 @@ export default function Login() {
   const dispatch = useDispatch()
 
   return (
-    // <div className="flex flex-col w-screen h-screen m-auto justify-center items-center text-accent bg-primary-bg">
-    //   <div className="flex flex-col w-1/2 h-1/2 m-auto justify-center items-center align-center border-solid border-4">
-    //   <TextInput  type="text" value="" placeholder="Please, insert your e-mail" label="E-mail"/>
-    //   <TextInput type="password" value="" placeholder="Please, insert your password" label="Password"/>
-    //   <div className="flex w-20 justify-center border-solid border-2"
-    //   onClick={() => dispatch(toggleLogin())}>
-    //   <Button name="Log In"/>
-    //   </div>
-    //   </div>
-    // </div>
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-primary">
         <div className="max-w-md w-full space-y-8 bg-light rounded-container p-10">
           <div>
@@ -80,7 +69,7 @@ export default function Login() {
             </div>
             <div>
               <button
-                onClick={() => dispatch(toggleLogin())}
+                onClick={() => dispatch({type: 'TOGGLE_LOGIN'})}
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-light bg-primary hover:bg-primary-x focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >

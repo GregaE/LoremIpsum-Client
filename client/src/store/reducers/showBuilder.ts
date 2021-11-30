@@ -1,4 +1,4 @@
-import { Action, ActionType } from '../actionTypes/index';
+import { Action, ActionType } from '../actions/index';
 
 interface State {
   builder: boolean,
