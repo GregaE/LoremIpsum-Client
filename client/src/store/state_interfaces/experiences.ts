@@ -1,13 +1,4 @@
-export interface WorkExperience {
-  id: string;
-  job_title: string;
-  company?: string;
-  city?: string;
-  country?: string;
-  start_date?: string | Date;
-  end_date?: string | Date;
-  description?: string;
-}
+import { WorkExperience } from '../../interfaces/CategoriesInterface';
 
 export interface WorkExperienceState {
   experience: WorkExperience[];

@@ -1,8 +1,4 @@
-export interface Skill {
-  id: string;
-  name: string;
-  description?: string;
-}
+import { Skill } from '../../interfaces/CategoriesInterface';
 
 export interface SkillState {
   skills: Skill[];

@@ -1,5 +1,5 @@
 import {ReactElement} from 'react';
-import {useSelector} from 'react-redux'
+import { useTypedSelector } from '../../../utils/useTypeSelector';
 
 import CategorySelector from './CategorySelector/CategorySelector';
 import CVSelector from './CVSelector/CVSelector';
@@ -7,15 +7,27 @@ import ItemEditor from './ItemEditor/ItemEditor';
 
 import { motion } from 'framer-motion';
 
-/*
-TO DO:
-  If you click outside modal-content div then should toggle modal state
-*/
-
 export default function Modal() {
 
-  //Display sth based on array index
-  // const modalInstance:ReactElement[] = [<CVSelector/>, <CategorySelector/>, <ItemEditor/>]
+  //TODO: Display the <ItemEditor> Based on a form that will come from the key
+  // of the item when click on it
+
+  /* Strings:
+    CVs
+    Categories
+  */
+  const {identifier} = useTypedSelector((state)=> state.toggleModal)
+
+  const modalInstance = () => {
+    switch (identifier) {
+      case 'CVs':
+        return <CVSelector/>
+      case 'Categories':
+        return <CategorySelector/>
+      default:
+        return null;
+    }
+  }
 
   return (
     <motion.div
@@ -25,8 +37,7 @@ export default function Modal() {
       exit={{ transform: 'scale(0)'}}
       >
       <div id="modal-content" className="h-5/6 w-5/6 bg-primary rounded-xl">
-        <CVSelector/>
-        {/* {modalInstance} */}
+        {modalInstance()}
       </div>
     </motion.div>
   );

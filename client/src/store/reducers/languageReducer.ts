@@ -1,14 +1,14 @@
-import { SkillState, SkillAction } from '../state_interfaces/skills';
+import { LanguageAction, LanguageState } from '../state_interfaces/languages';
 
-const initState: SkillState = {
-  skills: [],
+const initState: LanguageState = {
+  languages: [],
   loading: false,
   error: null,
 };
 
-const skillReducer = (
+const languageReducer = (
   state = initState,
-  { type, payload, id }: SkillAction
+  { type, payload, id }: LanguageAction
 ) => {
   switch (type) {
     case 'LOADING':
@@ -23,43 +23,37 @@ const skillReducer = (
         loading: false,
         error: payload,
       };
-    case 'ALL_SKILLS':
+    case 'ALL_LANGUAGES':
       return {
         ...state,
         loading: false,
         error: null,
-        skills: payload,
+        languages: payload,
       };
-    case 'GET_SKILL':
-      state = {
-        ...state,
-        loading: false,
-        error: null,
-      };
-      return state.skills.filter(skill => skill.id === id);
-    case 'UPDATE_SKILL':
+    case 'UPDATE_LANGUAGE':
       return {
         ...state,
         loading: false,
         error: null,
-        skills: state.skills.map(skill => {
-          if (skill.id === id)
+        languages: state.languages.map(language => {
+          if (language.id === id)
             return {
+              ...language,
               ...payload,
             };
-          return skill;
+          return language;
         }),
       };
-    case 'DELETE_SKILL':
+    case 'DELETE_LANGUAGE':
       return {
         ...state,
         loading: false,
         error: null,
-        skills: state.skills.filter(skill => skill.id !== id),
+        languages: state.languages.filter(language => language.id !== id),
       };
     default:
       return state;
   }
 };
 
-export default skillReducer;
+export default languageReducer;

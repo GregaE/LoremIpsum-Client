@@ -1,6 +1,7 @@
 export interface SelectInputProps {
-    name?: string;
-    className?: string;
-    options:number[] | string[]
-    callback?: ()=>void;
-  }
+  name?: string;
+  className?: string;
+  value?: string;
+  options: number[] | string[];
+  callback?: (e: React.ChangeEvent) => void;
+}

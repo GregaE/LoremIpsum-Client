@@ -1,4 +1,4 @@
-import { Action, ActionType } from '../actionTypes/index';
+import { ActionType } from '../actions/index';
 
 interface State {
   isLogin: boolean,
@@ -6,6 +6,11 @@ interface State {
 
 const initialState = {
   isLogin: false,
+}
+
+type Action = {
+  type: string,
+  payload: string
 }
 
 const isLogin = (state: State = initialState, action: Action):State => {
