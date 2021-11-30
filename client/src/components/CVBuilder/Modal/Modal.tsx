@@ -1,10 +1,9 @@
-import {ReactElement} from 'react';
 import { useTypedSelector } from '../../../utils/useTypeSelector';
 
 import CategorySelector from './CategorySelector/CategorySelector';
 import CVSelector from './CVSelector/CVSelector';
 import ItemEditor from './ItemEditor/ItemEditor';
-// import PDFRender from './ItemEditor/PDF-Render/PDF-Render';
+import PDFRender from './ItemEditor/PDF-Render/PDF-Render';
 
 import { motion } from 'framer-motion';
 
@@ -25,6 +24,8 @@ export default function Modal() {
         return <CVSelector/>
       case 'Categories':
         return <CategorySelector/>
+      case 'pdf':
+        return <PDFRender/>
       default:
         return null;
     }
@@ -37,7 +38,7 @@ export default function Modal() {
       animate={{ transform: 'scale(1)'}}
       exit={{ transform: 'scale(0)'}}
       >
-      <div id="modal-content" className="h-5/6 w-5/6 bg-primary rounded-xl">
+      <div id="modal-content" className="flex justify-center h-5/6 w-5/6 bg-primary rounded-xl">
         {modalInstance()}
       </div>
     </motion.div>
