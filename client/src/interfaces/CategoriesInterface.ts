@@ -1,52 +1,59 @@
 export interface Skill {
-  id: number;
+  id: string;
   name: string;
-  description: string;
+  description?: string;
+  userId?: string;
 }
 
 export interface Certificates {
-  user_id: number;
+  id: string;
   name: string;
-  description: string;
+  description?: string;
+  userId?: string;
 }
 
 export interface WorkExperience {
-  user_id: number;
+  id: string;
   job_title: string;
-  company: string;
-  city: string;
-  country: string;
-  start_date: Date;
-  end_date: Date;
-  description: string;
+  company?: string;
+  city?: string;
+  country?: string;
+  start_date?: Date;
+  end_date?: Date;
+  description?: string;
+  userId?: string;
 }
 
 export interface Languages {
-  user_id: number;
-  name: string;
-  level: string;
+  id: string;
+  language_name: string;
+  level?: string;
+  userId?: string;
 }
 
 export interface Education {
-  user_id: number;
+  id: string;
   degree: string;
-  city: string;
-  country: string;
-  start_date: Date;
-  end_date: Date;
-  description: string;
+  school: string;
+  city?: string;
+  country?: string;
+  start_date?: Date;
+  end_date?: Date;
+  description?: string;
+  userId?: string;
 }
 
 export interface PersonalDetails {
-  user_id: number;
-  email: string;
-  phone_number: string;
-  image: string;
+  id: string;
+  email?: string;
+  phone_number?: string;
+  image?: string;
   first_name: string;
-  last_name: string;
-  street: string;
-  postcode: string;
-  city: string;
-  country: string;
-  headline: string;
+  last_name?: string;
+  street?: string;
+  postcode?: string;
+  city?: string;
+  country?: string;
+  headline?: string;
+  userId?: string;
 }
