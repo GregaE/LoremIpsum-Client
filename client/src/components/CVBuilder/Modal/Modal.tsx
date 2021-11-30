@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux'
 import CategorySelector from './CategorySelector/CategorySelector';
 import CVSelector from './CVSelector/CVSelector';
 import ItemEditor from './ItemEditor/ItemEditor';
+import PDFRender from './ItemEditor/PDF-Render/PDF-Render';
 
 import { motion } from 'framer-motion';
 
@@ -24,8 +25,8 @@ export default function Modal() {
       animate={{ transform: 'scale(1)'}}
       exit={{ transform: 'scale(0)'}}
       >
-      <div id="modal-content" className="h-5/6 w-5/6 bg-primary rounded-xl">
-        <CVSelector/>
+      <div id="modal-content" className="flex justify-center h-5/6 w-5/6 bg-primary rounded-xl">
+        <PDFRender/>
         {/* {modalInstance} */}
       </div>
     </motion.div>

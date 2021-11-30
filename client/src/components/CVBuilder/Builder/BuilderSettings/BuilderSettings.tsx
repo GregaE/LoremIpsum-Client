@@ -1,13 +1,15 @@
 import React from 'react';
 import Button from '../../../Forms/Elements/Buttons/Button';
-// import PDFRender from '../../Modal/ItemEditor/PDF-Render/PDF-Render';
+import { toggleModal } from '../../../../redux/AppState/actionCreators/toggleModal';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 export default function BuilderSettings() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   function handleClick () {
-    navigate('/cvbuilder/pdf');
+    dispatch(toggleModal(true));
   }
 
   return (
