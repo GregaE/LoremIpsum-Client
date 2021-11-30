@@ -9,7 +9,7 @@ export default function BuilderSettings() {
   const dispatch = useDispatch();
 
   function handleClick () {
-    // dispatch(toggleModal());
+    dispatch({type: 'TOGGLE_MODAL', payload: {flag: true, identifier: 'pdf'}});
   }
 
   return (

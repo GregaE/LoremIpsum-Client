@@ -1,4 +1,3 @@
-import {ReactElement} from 'react';
 import { useTypedSelector } from '../../../utils/useTypeSelector';
 
 import CategorySelector from './CategorySelector/CategorySelector';
@@ -25,6 +24,8 @@ export default function Modal() {
         return <CVSelector/>
       case 'Categories':
         return <CategorySelector/>
+      case 'pdf':
+        return <PDFRender/>
       default:
         return null;
     }
