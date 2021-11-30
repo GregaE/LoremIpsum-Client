@@ -22,6 +22,7 @@
     "postcss-cli": "8.x",
     "postcss-preset-env": "6.x",
     "react": "^17.0.2",
+    "react-calendar": "^3.5.0",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
@@ -57,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-calendar": "^3.4.3",
     "@types/react-redux": "^7.1.20",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
