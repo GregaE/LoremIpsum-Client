@@ -1,12 +1,12 @@
-import { WorkExperienceState, WorkExperienceAction } from "../interfaces/experiences"
+import { LanguageAction, LanguageState } from "../interfaces/languages";
 
-const initState: WorkExperienceState = {
-  experience: [],
+const initState: LanguageState = {
+  languages: [],
   loading: false,
   error: null
 }
 
-const experienceReducer = (state = initState, {type, payload, id}: WorkExperienceAction) => {
+const languageReducer = (state = initState, {type, payload, id}: LanguageAction) => {
 
   switch (type) {
     case 'LOADING':
@@ -21,43 +21,43 @@ const experienceReducer = (state = initState, {type, payload, id}: WorkExperienc
         loading: false,
         error: payload
       }
-    case 'ALL_EXPERIENCES':
+    case 'ALL_LANGUAGES':
       return {
         ...state,
         loading: false,
         error: null,
-        certificates: payload
+        languages: payload
       }
-    case 'GET_EXPERIENCE':
+    case 'GET_LANGUAGE':
       state = {
         ...state,
         loading: false,
         error: null
       }
-      return state.experience.filter(exp => exp.id === id);
-    case 'UPDATE_EXPERIENCE':
+      return state.languages.filter(language => language.id === id);
+    case 'UPDATE_LANGUAGE':
       return {
         ...state,
         loading: false,
         error: null,
-        experience: state.experience.map(exp => {
-          if (exp.id === id) return {
-            ...exp,
+        languages: state.languages.map(language => {
+          if (language.id === id) return {
+            ...language,
             ...payload
           }
-          return exp;
+          return language;
         })
       }
-    case 'DELETE_EXPERIENCE':
+    case 'DELETE_LANGUAGE':
       return {
         ...state,
         loading: false,
         error: null,
-        experience: state.experience.filter(exp => exp.id !== id)
+        languages: state.languages.filter(language => language.id !== id)
       }
     default:
       return state;
   }
 }
 
-export default experienceReducer;
+export default languageReducer;

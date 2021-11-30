@@ -1,12 +1,12 @@
-import { WorkExperienceState, WorkExperienceAction } from "../interfaces/experiences"
+import { EducationAction, EducationState } from "../interfaces/education";
 
-const initState: WorkExperienceState = {
-  experience: [],
+const initState: EducationState = {
+  education: [],
   loading: false,
   error: null
 }
 
-const experienceReducer = (state = initState, {type, payload, id}: WorkExperienceAction) => {
+const educationReducer = (state = initState, {type, payload, id}: EducationAction) => {
 
   switch (type) {
     case 'LOADING':
@@ -21,43 +21,43 @@ const experienceReducer = (state = initState, {type, payload, id}: WorkExperienc
         loading: false,
         error: payload
       }
-    case 'ALL_EXPERIENCES':
+    case 'ALL_EDUCATION':
       return {
         ...state,
         loading: false,
         error: null,
-        certificates: payload
+        education: payload
       }
-    case 'GET_EXPERIENCE':
+    case 'GET_EDUCATION':
       state = {
         ...state,
         loading: false,
         error: null
       }
-      return state.experience.filter(exp => exp.id === id);
-    case 'UPDATE_EXPERIENCE':
+      return state.education.filter(edu => edu.id === id);
+    case 'UPDATE_EDUCATION':
       return {
         ...state,
         loading: false,
         error: null,
-        experience: state.experience.map(exp => {
-          if (exp.id === id) return {
-            ...exp,
+        education: state.education.map(edu => {
+          if (edu.id === id) return {
+            ...edu,
             ...payload
           }
-          return exp;
+          return edu;
         })
       }
-    case 'DELETE_EXPERIENCE':
+    case 'DELETE_EDUCATION':
       return {
         ...state,
         loading: false,
         error: null,
-        experience: state.experience.filter(exp => exp.id !== id)
+        education: state.education.filter(edu => edu.id !== id)
       }
     default:
       return state;
   }
 }
 
-export default experienceReducer;
+export default educationReducer;

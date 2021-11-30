@@ -15,8 +15,13 @@ const skillReducer = (
       return {
         ...state,
         loading: true,
+<<<<<<< HEAD
         error: null,
       };
+=======
+        error: null
+      }
+>>>>>>> yevhen
     case 'FAILED':
       return {
         ...state,
