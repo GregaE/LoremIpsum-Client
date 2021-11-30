@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTypedSelector } from '../../hooks/useTypeSelector'
+import { useTypedSelector } from '../../utils/useTypeSelector'
 
 import Selector from './Selector/Selector'
 import Builder from './Builder/Builder'
