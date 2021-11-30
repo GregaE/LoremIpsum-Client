@@ -16,23 +16,27 @@ export default function NavBar() {
   return (
     <div className="bg-primary text-light w-1/6 h-screen flex flex-col items-center gap-6">
       <div className="w-4/6 h-1/6 m-5">
-      <Link to="/">
-        <img onClick={() => navigateAround('Home')}
-          className="rounded-full" src="https://www.lovemysalad.com/sites/default/files/styles/image_530x397/public/banaan-large.jpg?itok=dZxH6D_w" alt="logo"/>
-      </Link>
-      </div>
-      <ul className="flex flex-col flex-wrap justify-around items-center h-3/6 w-full">
-        <li className="nav-link" onClick={() => navigateAround('Home')}>
-          <Link to="/">
-            Home
+        <Link to="/" >
+          <img onClick={() => navigateAround('Home')}
+            className="rounded-full" src="https://www.lovemysalad.com/sites/default/files/styles/image_530x397/public/banaan-large.jpg?itok=dZxH6D_w" alt="logo"/>
+        </Link>
+        </div>
+        <ul className="flex flex-col flex-wrap justify-around items-center h-3/6 w-full">
+          <Link to="/" className="w-full">
+            <li className="nav-link" onClick={() => navigateAround('Home')}>
+                Home
+            </li>
           </Link>
-        </li>
-        <li className="nav-link" onClick={() => navigateAround('CVBuilder')}>
-          <Link to="/CVBuilder">CVBuilder</Link>
-        </li>
-        <li className="nav-link" onClick={() => navigateAround('MyCVs')}>
-          <Link to="/MyCVs">MyCVs</Link>
-        </li>
+          <Link to="/CVBuilder" className="w-full">
+            <li className="nav-link" onClick={() => navigateAround('CVBuilder')}>
+              CVBuilder
+            </li>
+          </Link>
+          <Link to="/MyCVs" className="w-full">
+          <li className="nav-link" onClick={() => navigateAround('MyCVs')}>
+            MyCVs
+          </li>
+        </Link>
       </ul>
     </div>
   );

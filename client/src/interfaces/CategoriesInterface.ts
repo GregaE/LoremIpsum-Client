@@ -57,3 +57,10 @@ export interface PersonalDetails {
   headline?: string;
   userId?: string;
 }
+
+export interface CV {
+  id: string;
+  userId: string;
+  saved_cv: string;
+  date_created: Date;
+}

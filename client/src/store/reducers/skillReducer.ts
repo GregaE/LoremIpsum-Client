@@ -1,4 +1,4 @@
-import { SkillState, SkillAction } from '../interfaces/skills';
+import { SkillState, SkillAction } from '../state_interfaces/skills';
 
 const initState: SkillState = {
   skills: [],
@@ -45,7 +45,6 @@ const skillReducer = (
         skills: state.skills.map(skill => {
           if (skill.id === id)
             return {
-              ...skill,
               ...payload,
             };
           return skill;

@@ -21,6 +21,7 @@
     "delay-cli": "^1.1.0",
     "firebase": "^8.0.0",
     "framer-motion": "^4.1.17",
+    "moment": "^2.29.1",
     "npm-run-all": "4.x",
     "postcss": "8.x",
     "postcss-cli": "8.x",

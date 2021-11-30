@@ -1,37 +1,42 @@
-import { PersonalDetailsState, PersonalDetailsAction, PersonalDetails } from "../interfaces/personalDetails"
+import {
+  PersonalDetailsState,
+  PersonalDetailsAction,
+} from '../state_interfaces/personalDetails';
+import { PersonalDetails } from '../../interfaces/CategoriesInterface';
 
 const initState: PersonalDetailsState = {
   personal_details: <PersonalDetails>{},
   loading: false,
-  error: null
-}
+  error: null,
+};
 
-const personalDetailsReducer = (state = initState, {type, payload, id}: PersonalDetailsAction) => {
-
+const personalDetailsReducer = (
+  state = initState,
+  { type, payload, id }: PersonalDetailsAction
+) => {
   switch (type) {
     case 'LOADING':
       return {
         ...state,
         loading: true,
-        error: null
-      }
+        error: null,
+      };
     case 'FAILED':
       return {
         ...state,
         loading: false,
-        error: payload
-      }
-    //only single thing needed as get will get the whole object and update recieves the whole object
+        error: payload,
+      };
     case 'PERSONAL_DETAILS':
       return {
         ...state,
         loading: false,
         error: null,
-        personal_details: payload
-      }
+        personal_details: payload,
+      };
     default:
       return state;
   }
-}
+};
 
 export default personalDetailsReducer;

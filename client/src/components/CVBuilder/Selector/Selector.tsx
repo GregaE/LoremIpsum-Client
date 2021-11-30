@@ -20,7 +20,7 @@ export default function Selector() {
         <i className="fas fa-plus-circle fa-6x"></i>
       </div>
       <div className="bg-light w-80 h-96 flex justify-center items-center item-container cursor-pointer shadow-lg"
-        onClick={() => dispatch(toggleModal(true))}>
+        onClick={() => dispatch(toggleModal({flag: true, identifier:'CVs'}))}>
         <i className="far fa-file fa-6x"></i>
       </div>
     </div>

@@ -1,13 +1,12 @@
-import { CVState, CVAction } from "../interfaces/cv"
+import { CVState, CVAction } from '../state_interfaces/cv';
 
 const initState: CVState = {
   cvs: [],
   loading: false,
-  error: null
-}
+  error: null,
+};
 
-const cvsReducer = (state = initState, {type, payload, id}: CVAction) => {
-
+const cvsReducer = (state = initState, { type, payload, id }: CVAction) => {
   //TODO - move Loading and failed into a separate reducer and revome them
   //from the other reducers
   switch (type) {
@@ -15,51 +14,44 @@ const cvsReducer = (state = initState, {type, payload, id}: CVAction) => {
       return {
         ...state,
         loading: true,
-        error: null
-      }
+        error: null,
+      };
     case 'FAILED':
       return {
         ...state,
         loading: false,
-        error: payload
-      }
+        error: payload,
+      };
     case 'ALL_CVS':
       return {
         ...state,
         loading: false,
         error: null,
-        cvs: payload
-      }
-    case 'GET_CV':
-      state = {
-        ...state,
-        loading: false,
-        error: null
-      }
-      return state.cvs.filter(cv => cv.id === id);
+        cvs: payload,
+      };
     case 'UPDATE_CV':
       return {
         ...state,
         loading: false,
         error: null,
         cvs: state.cvs.map(cv => {
-          if (cv.id === id) return {
-            ...cv,
-            ...payload
-          }
+          if (cv.id === id)
+            return {
+              ...payload,
+            };
           return cv;
-        })
-      }
+        }),
+      };
     case 'DELETE_CV':
       return {
         ...state,
         loading: false,
         error: null,
-        cvs: state.cvs.filter(cv => cv.id !== id)
-      }
+        cvs: state.cvs.filter(cv => cv.id !== id),
+      };
     default:
       return state;
   }
-}
+};
 
 export default cvsReducer;

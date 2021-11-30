@@ -5,8 +5,8 @@ import Login from './components/Login/Login';
 
 import Dashboard from './components/Dashboard/Dashboard';
 
-import {getUser} from "./utils/ApiService"
-import {User} from "./interfaces/UserInterface"
+import { getUser } from "./utils/ApiService"
+import { User } from "./interfaces/UserInterface"
 import { connect } from 'react-redux';
 
 function App() {

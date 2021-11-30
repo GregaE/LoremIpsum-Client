@@ -1,37 +1,36 @@
-import React from 'react';
-import Buttons from './Elements/Buttons/Button';
+import React, { useState } from 'react';
+import Button from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 
-import { useTypedSelector } from '../../utils/useTypeSelector'
-import { useDispatch } from 'react-redux';
-import { formCertificate, formCertificateAditional} from '../../redux/AppState/actionCreators/formCertificate'
+import { Certificates } from '../../interfaces/CategoriesInterface';
 
 export default function Certificate() {
 
-  const dispatch = useDispatch();
-  const {name, aditional} = useTypedSelector((state) => state.formCertificate)
-  //  onChange={(e: { target: { value: string; }; }) => dispatch(formCertificate(e.target.value))} Should adapt the onChange to the react component...
-  // onChange={(e: { target: { value: string; }; }) => dispatch(formCertificateAditional(e.target.value))}
-
-  const myFunction1 = (e: React.ChangeEvent) => {
+  const initialState: Certificates = {
+    id: '',
+    name: '',
+    description: '',
+    userId: ""
+  };
+  const [certificate, setCertificate] = useState(initialState)
+  
+  const handleForm = (e: React.ChangeEvent):void => {
     const target = e.target as HTMLInputElement;
-    dispatch(formCertificate(target.value))
+    setCertificate({...certificate, [target.name]: target.value})
   }
-
-  const myFunction2 = (e: React.ChangeEvent) => {
-    const target = e.target as HTMLInputElement;
-    dispatch(formCertificateAditional(target.value))
-  }
+  // On submit do the below
+  ///dispatch ADD_CERTIICATE => middleware >> API CALL > RETURNS DB RECORD > CHANGES THE STATE
 
   return (
-    <div className="object-center w-1/2 h-auto bg-primary">
+    <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+      <p className="text-light my-8">Add new certificate</p>
       <form>
-        <TextInput callback={myFunction1}
-          type="text" value={name} placeholder="HelloInput" label="HelloInput"/>
-        <TextInput callback={myFunction2}
-          type="text" value={aditional} placeholder="WorldInput" label="WorldInput"/>
+        <TextInput callback={handleForm}
+          type="text" name="name" value={certificate.name} placeholder="HelloInput" label="Title of the certificate"/>
+        <TextInput callback={handleForm}
+          type="text" name="description" value={certificate.description ? certificate.description : ""} placeholder="WorldInput" label="Description..."/>
       </form>
-      <Buttons/>
+      <Button/>
     </div>
   );
 }
