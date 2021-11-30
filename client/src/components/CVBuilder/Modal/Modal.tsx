@@ -4,6 +4,7 @@ import { useTypedSelector } from '../../../utils/useTypeSelector';
 import CategorySelector from './CategorySelector/CategorySelector';
 import CVSelector from './CVSelector/CVSelector';
 import ItemEditor from './ItemEditor/ItemEditor';
+// import PDFRender from './ItemEditor/PDF-Render/PDF-Render';
 
 import { motion } from 'framer-motion';
 
