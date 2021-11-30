@@ -7,7 +7,7 @@ export default function TextInput(props: TextInputProps ) {
     <div className="flex flex-col p-2">
       <label>{props.label}</label>
       <input 
-        onChange={props.callback}
+        onChange={(e) => props.callback && props.callback(e)}
         {...props}></input>
     </div>
   );

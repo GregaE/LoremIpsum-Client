@@ -1,7 +1,7 @@
 export interface TextInputProps {
   label?: string;
   type?: string;
-  value?: string;
+  value: string;
   placeholder?: string;
-  callback?: ()=>void;
+  callback?: (e: React.ChangeEvent)=>void;
 }

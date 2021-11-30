@@ -2,6 +2,8 @@ import React from 'react';
 import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
+
+import { useTypedSelector } from '../../hooks/useTypeSelector'
 // import { Link } from 'react-router-dom';
 
 export default function WorkExperience() {

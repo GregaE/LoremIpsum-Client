@@ -9,6 +9,8 @@ import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
 import Login from '../Login/Login';
+
+import Certificate from '../Forms/Certificate';
 import Builder from '../CVBuilder/Builder/Builder';
 import PDFRender from '../CVBuilder/Modal/ItemEditor/PDF-Render/PDF-Render';
 
@@ -37,6 +39,7 @@ export default function Dashboard() {
               <Route path="/test" element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
               <Route path="/anothertest" element={<PDFRender/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
               <Route path="/login" element={<Login/>} /> {/* Temporal route */}
+              <Route path="/form" element={<Certificate/>} /> {/* Temporal route */}
               <Route path="/profile" element={<Profile/>} /> {/* Temporal route */}
           </Routes>
         </AnimatePresence>
