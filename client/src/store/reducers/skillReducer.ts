@@ -59,3 +59,5 @@ const skillReducer = (state = initState, {type, payload, id}: SkillAction) => {
       return state;
   }
 }
+
+export default skillReducer;
