@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
   },
   text: {
-    display: "flex",
     flexDirection: "column",
     marginBottom: 20,
   }
@@ -33,9 +32,12 @@ export default function PDFRender() {
               <Text style={styles.text}>
                 <Preview/>
               </Text>
-              <Text style={styles.text}>
+              {/* <Text style={styles.text}>
                 <p>SKILLS</p>
               </Text>
+              <Text>
+                  <p>first skill</p>
+                </Text>
               <Text style={styles.text}>
                 <p>EDUCATION</p>
               </Text>
@@ -44,7 +46,7 @@ export default function PDFRender() {
               </Text>
               <Text style={styles.text}>
                 <p>WORK EXPERIENCE</p>
-              </Text>
+              </Text> */}
             </View>
           </Page>
         </Document>

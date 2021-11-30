@@ -24,7 +24,8 @@ export default function Certificate() {
   }
 
   return (
-    <div className="object-center w-1/2 h-auto bg-primary">
+    <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+      <p className="text-light my-8">Add new certificate</p>
       <form>
         <TextInput callback={myFunction1}
           type="text" value={name} placeholder="HelloInput" label="HelloInput"/>
