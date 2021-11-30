@@ -2,6 +2,8 @@ import React from 'react';
 import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 
+import { useTypedSelector } from '../../hooks/useTypeSelector'
+
 export default function Skills() {
 
   return (

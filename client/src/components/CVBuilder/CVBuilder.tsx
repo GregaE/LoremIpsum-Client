@@ -9,7 +9,8 @@ import { motion } from 'framer-motion';
 
 export default function CVBuilder() {
 
-  const {builder} = useTypedSelector((state) => state.showCvBuilder)
+  const { builder } = useTypedSelector((state) => state.showCvBuilder)
+  const { showModal } = useTypedSelector((state) => state.toggleModal)
   /*
   Once you click here:
     We fetch data of user cvs (in case he click from CVs)
@@ -32,7 +33,7 @@ export default function CVBuilder() {
 
 
   //Display modal by switch
-  // const modal = modalToggle ? <Modal/> :null
+  const modal = showModal ? <Modal/> :null
 
   const selectorOrBuilder: React.ReactElement = builder 
     ? <Builder/>
@@ -60,7 +61,7 @@ export default function CVBuilder() {
       variants={containerVariants}>
 
       {selectorOrBuilder}
-      {/* {modal} */}
+      {modal}
 
     </motion.div>
   );
