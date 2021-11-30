@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../../Forms/Elements/Buttons/Button';
-import PDFRender from '../../Modal/ItemEditor/PDF-Render/PDF-Render';
+// import PDFRender from '../../Modal/ItemEditor/PDF-Render/PDF-Render';
 
 export default function BuilderSettings() {
 
