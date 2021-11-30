@@ -6,7 +6,7 @@ export interface Certificate {
 
 export interface CertificateState {
   certificates: Certificate[];
-  loading: true;
+  loading: boolean;
   error: string | null;
 }
 

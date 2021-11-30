@@ -12,7 +12,7 @@ const experienceReducer = (state = initState, {type, payload, id}: WorkExperienc
     case 'LOADING':
       return {
         ...state,
-        laoding: true,
+        loading: true,
         error: null
       }
     case 'FAILED':
