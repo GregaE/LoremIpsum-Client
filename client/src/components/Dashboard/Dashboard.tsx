@@ -37,6 +37,7 @@ export default function Dashboard() {
               <Route path="/cvbuilder" element={<CVBuilder/>} />
               <Route path="/mycvs" element={<MyCVs/>} />
               <Route path="/test" element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+              <Route path="/anothertest" element={<PDFRender/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
               <Route path="/login" element={<Login/>} /> {/* Temporal route */}
               <Route path="/form" element={<Certificate/>} /> {/* Temporal route */}
               <Route path="/profile" element={<Profile/>} /> {/* Temporal route */}

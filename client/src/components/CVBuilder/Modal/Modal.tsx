@@ -1,4 +1,5 @@
 import {ReactElement} from 'react';
+import {useSelector} from 'react-redux'
 
 import CategorySelector from './CategorySelector/CategorySelector';
 import CVSelector from './CVSelector/CVSelector';
