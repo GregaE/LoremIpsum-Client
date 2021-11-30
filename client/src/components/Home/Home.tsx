@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Welcome from './Welcome/Welcome';
-import Calendar from './Calendar/Calendar';
+import CalendarComp from './Calendar/Calendar';
 import Tracker from './Tracker/Tracker';
 
 import { motion } from 'framer-motion';
@@ -39,7 +39,7 @@ export default function Home() {
         <Tracker/>
       </div>
       <div id="right-section" className="w-2/6 h-full">
-        <Calendar/>
+        <CalendarComp/>
       </div>
     </motion.div>
   );
