@@ -7,7 +7,7 @@ export default function SelectInput(props: SelectInputProps ) {
 
   return (
     <div>
-      <select onChange={(e) => props.callback && props.callback(e)} {...props} className="bg-primary">
+      <select onChange={(e) => props.callback && props.callback(e)} {...props} className="bg-light">
         {options}
       </select>
     </div>
