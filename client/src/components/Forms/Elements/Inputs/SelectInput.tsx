@@ -7,7 +7,7 @@ export default function SelectInput(props: SelectInputProps ) {
 
   return (
     <div>
-      <select {...props}>
+      <select onChange={(e) => props.callback && props.callback(e)} {...props}>
         {options}
       </select>
     </div>

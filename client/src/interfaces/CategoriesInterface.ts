@@ -23,6 +23,13 @@ export interface WorkExperience {
   description?: string;
   userId?: string;
 }
+//this has dates that are defined as strings
+export interface Experience extends WorkExperience {
+  beginMonth: string;
+  beginYear: string;
+  endMonth: string;
+  endYear: string;
+}
 
 export interface Languages {
   id: string;

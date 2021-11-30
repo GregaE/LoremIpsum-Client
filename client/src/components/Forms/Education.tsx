@@ -31,10 +31,7 @@ export default function Education() {
 
   const [education, setEducation] = useState(initialState);
 
-  console.log(education)
-
   const handleForm = (e: React.ChangeEvent):void => {
-    console.log("here")
     const target = e.target as HTMLInputElement;
     setEducation({...education, [target.name]: target.value})
   }
@@ -57,12 +54,12 @@ export default function Education() {
         </div>
         <div id="education_form_dates" className="flex flex-row">
           <SelectInput callback={handleForm} value={education.beginMonth}
-            name="beginMonth" options={months}/>
-          <SelectInput callback={handleForm}
+            name="beginMonth" options={months} />
+          <SelectInput callback={handleForm} value={education.beginYear}
             name="beginYear" options={years}/>
-          <SelectInput callback={handleForm}
+          <SelectInput callback={handleForm} value={education.endMonth}
             name="endMonth" options={months}/>
-          <SelectInput callback={handleForm}
+          <SelectInput callback={handleForm} value={education.endYear}
             name="endYear" options={years}/>
         </div>
       </form>
