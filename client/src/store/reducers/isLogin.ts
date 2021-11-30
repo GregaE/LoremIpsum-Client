@@ -1,23 +1,21 @@
-import { ActionType } from '../actions/index';
+import { ActionType, ToggleLogin } from '../state_interfaces/appState';
 
-interface State {
-  isLogin: boolean,
+export interface LoginState {
+  isLogin: boolean;
 }
 
-const initialState = {
-  isLogin: false,
+const initialState: LoginState = {
+  isLogin: false
 }
 
-type Action = {
-  type: string,
-  payload: string
-}
-
-const isLogin = (state: State = initialState, action: Action):State => {
-  switch(action.type) {
+const isLogin = (
+  state = initialState,
+  {type}: ToggleLogin
+): LoginState => {
+  switch(type) {
     case ActionType.TOGGLE_LOGIN:
-      return {isLogin: true}; 
-    default: 
+      return {isLogin: true};
+    default:
       return state;
   }
 }
