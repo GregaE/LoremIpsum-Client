@@ -1,4 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux'
+import { useTypedSelector } from '../../hooks/useTypeSelector';
+import { toggleModal } from '../../redux/AppState/actionCreators/toggleModal'
 import { Routes, Route, Outlet, useLocation } from "react-router-dom";
 
 import NavBar from '../NavBar/NavBar';
@@ -19,6 +22,8 @@ import { AnimatePresence } from 'framer-motion';
 export default function Dashboard() {
 
   const location = useLocation();
+  const dispatch = useDispatch();
+  const { showModal } = useTypedSelector((state) => state.toggleModal);
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
@@ -26,8 +31,19 @@ export default function Dashboard() {
     Or should we fetch them from MyCVs component with a beautiful loading placeholder¿¿
   */
 
+  const closeModal = (e:any) => {
+    while(e.target.id !== 'modal-content') {
+      if(e.target.id === 'modal-content') return
+      if(e.target.parentNode.localName === 'body') {
+        if (showModal) dispatch(toggleModal(false))
+        return;
+      }
+      e.target = e.target.parentNode;
+    }
+  }
+
   return (
-    <div className="flex w-screen h-screen bg-primary-bg">
+    <div className="flex w-screen h-screen bg-primary-bg" onClick={(e)=>closeModal(e)}>
       <NavBar/>
       <div className="flex flex-col w-5/6 h-full">
         <Header/>

@@ -17,7 +17,8 @@ export default function NavBar() {
     <div className="bg-primary text-light w-1/6 h-screen flex flex-col items-center gap-6">
       <div className="w-4/6 h-1/6 m-5">
       <Link to="/">
-        <img className="rounded-full" src="https://www.lovemysalad.com/sites/default/files/styles/image_530x397/public/banaan-large.jpg?itok=dZxH6D_w" alt="logo"/>
+        <img onClick={() => navigateAround('Home')}
+          className="rounded-full" src="https://www.lovemysalad.com/sites/default/files/styles/image_530x397/public/banaan-large.jpg?itok=dZxH6D_w" alt="logo"/>
       </Link>
       </div>
       <ul className="flex flex-col flex-wrap justify-around items-center h-3/6 w-full">

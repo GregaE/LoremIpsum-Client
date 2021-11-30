@@ -13,12 +13,14 @@ export default function Certificate() {
   //  onChange={(e: { target: { value: string; }; }) => dispatch(formCertificate(e.target.value))} Should adapt the onChange to the react component...
   // onChange={(e: { target: { value: string; }; }) => dispatch(formCertificateAditional(e.target.value))}
 
-  const myFunction1 = (e: Event) => {
-    console.log(e)
+  const myFunction1 = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLInputElement;
+    dispatch(formCertificate(target.value))
   }
 
-  const myFunction2 = (e: Event) => {
-    console.log(e)
+  const myFunction2 = (e: React.ChangeEvent) => {
+    const target = e.target as HTMLInputElement;
+    dispatch(formCertificateAditional(target.value))
   }
 
   return (
