@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {  Link } from "react-router-dom";
-import { useTypedSelector } from '../../hooks/useTypeSelector'
+import { useTypedSelector } from '../../utils/useTypeSelector'
 import { useDispatch } from 'react-redux';
 import { headerName } from '../../redux/AppState/actionCreators/headerName'
 import { showCvBuilder } from '../../redux/AppState/actionCreators/showBuilder';

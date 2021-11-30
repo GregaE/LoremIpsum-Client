@@ -13,18 +13,37 @@ const styles = StyleSheet.create({
   section: {
     margin: 10,
     padding: 10,
-    flexGrow: 0,
+    flexGrow: 1,
+    textAlign: "center",
+    flexDirection: "column",
   },
+  text: {
+    display: "flex",
+    flexDirection: "column",
+    marginBottom: 20,
+  }
 });
 
 export default function PDFRender() {
   return (
-    <PDFViewer style={{ height: "70vh", display: "flex", width: "50vw" }}>
+    <PDFViewer style={{ height: "100%", display: "flex", width: "50vw" }}>
         <Document>
           <Page size="A4" style={styles.page}>
-            <View>
-              <Text>
+            <View style={styles.section}>
+              <Text style={styles.text}>
                 <Preview/>
+              </Text>
+              <Text style={styles.text}>
+                <p>SKILLS</p>
+              </Text>
+              <Text style={styles.text}>
+                <p>EDUCATION</p>
+              </Text>
+              <Text style={styles.text}>
+                <p>LANGUAGES</p>
+              </Text>
+              <Text style={styles.text}>
+                <p>WORK EXPERIENCE</p>
               </Text>
             </View>
           </Page>
@@ -32,5 +51,5 @@ export default function PDFRender() {
     </PDFViewer>
   )
 }
-  
+
 ReactDOM.render(<PDFRender/>, document.getElementById("root"));

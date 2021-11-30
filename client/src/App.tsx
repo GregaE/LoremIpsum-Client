@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {useTypedSelector} from './hooks/useTypeSelector'
+import {useTypedSelector} from './utils/useTypeSelector'
 
 import Login from './components/Login/Login';
 
 import Dashboard from './components/Dashboard/Dashboard';
+
 import {getUser} from "./utils/ApiService"
 import {User} from "./interfaces/UserInterface"
 

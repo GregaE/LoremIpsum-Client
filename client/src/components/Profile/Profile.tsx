@@ -1,5 +1,7 @@
 import React from 'react';
 
+import ProfileImg from "./ProfileImg/ProfileImg"
+
 import { motion } from 'framer-motion';
 
 export default function Profile() {
@@ -25,11 +27,9 @@ export default function Profile() {
       variants={containerVariants}>
       <h2 className="underline text-3xl p-2">Your personal data</h2>
       <div className="flex flex-row justify-center items-center p-4 ml-5">
-        <div className="w-1/6 h-1/6 m-5">
-        <img src="https://i.graphicmama.com/uploads/2019/3/5c948ff89ffbc-Cute%20Banana%20Cartoon%20Vector%20Character.png" alt="profile-img"/>
-        </div>
+        <ProfileImg/>
         <div className="w-2/3 h-1/6 flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
-          <p className="p-4 underline text-2xl">Hello, Banana Joe!</p>
+          <p className="p-4 underline text-2xl">Joder!</p>
           <div className="p-8">
             <p>Name: Banana Joe John</p>
             <p>E-mail: joe_banana@bananas.com</p>
