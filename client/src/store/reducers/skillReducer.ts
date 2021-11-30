@@ -12,7 +12,7 @@ const skillReducer = (state = initState, {type, payload, id}: SkillAction) => {
     case 'LOADING':
       return {
         ...state,
-        laoding: true,
+        loading: true,
         error: null
       }
     case 'FAILED':

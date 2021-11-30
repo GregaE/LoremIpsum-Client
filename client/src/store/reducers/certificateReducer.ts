@@ -12,7 +12,7 @@ const certificateReducer = (state = initState, {type, payload, id}: CertificateA
     case 'LOADING':
       return {
         ...state,
-        laoding: true,
+        loading: true,
         error: null
       }
     case 'FAILED':
