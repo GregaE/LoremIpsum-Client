@@ -1,6 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-function App() {
+function App(props: any) {
+
+  React.useEffect(() => {
+    console.log(props.skills);
+    props.fetchData();
+  }, [])
+
+  React.useEffect(() => {
+    console.log(props.skills);
+  }, [props.skills]);
+
   return (
     <div className="flex flex-col h-full items-center justify-center text-white bg-gradient-to-br from-gray-600 via-teal-700 to-gray-800">
       <div className="flex items-center animate-bounce">
@@ -44,4 +55,23 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state: any) => ({
+  error: state.error,
+  loading: state.loading,
+  skills: state.skills
+});
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    toggleLoading: () => dispatch({type: 'LOADING'}),
+    fetchData: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/skills',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'ALL_SKILLS'
+    }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
