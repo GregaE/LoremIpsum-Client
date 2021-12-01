@@ -2,12 +2,14 @@ import React from 'react';
 import Button from '../../../Forms/Elements/Buttons/Button';
 import { toggleModal } from '../../../../redux/AppState/actionCreators/toggleModal';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 export default function BuilderSettings() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   function handleClick () {
-    // dispatch(toggleModal(true, 'pdf'));
+    dispatch({type: 'TOGGLE_MODAL', payload: {flag: true, identifier: 'pdf'}});
   }
 
   return (

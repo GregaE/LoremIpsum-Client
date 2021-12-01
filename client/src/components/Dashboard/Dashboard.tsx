@@ -20,6 +20,8 @@ import Education from '../Forms/Education';
 import { AnimatePresence } from 'framer-motion';
 import { toggleModal } from '../../store/actions/toggleModal';
 
+import PDFRender from '../CVBuilder/Modal/ItemEditor/PDF-Render/PDF-Render';
+
 export default function Dashboard() {
 
   const location = useLocation();
@@ -53,7 +55,7 @@ export default function Dashboard() {
               <Route path="/" element={<Home/>} />
               <Route path="/cvbuilder" element={<CVBuilder/>} />
               <Route path="/mycvs" element={<MyCVs/>} />
-              <Route path="/test" element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+              <Route path="/test" element={<PDFRender/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
               <Route path="/anothertest" element={<Education/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
               <Route path="/login" element={<Login/>} /> {/* Temporal route */}
               <Route path="/form" element={<Certificate/>} /> {/* Temporal route */}
