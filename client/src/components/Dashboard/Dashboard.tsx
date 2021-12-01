@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux'
 
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
@@ -10,11 +10,6 @@ import Home from '../Home/Home';
 import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
-import Login from '../Login/Login';
-
-import Certificate from '../Forms/Certificate';
-import Builder from '../CVBuilder/Builder/Builder';
-import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
 
@@ -61,10 +56,6 @@ function Dashboard({modal,toggle, getUser,getLanguages,getCertificates,getSkills
               <Route path='/' element={<Home/>} />
               <Route path='/cvbuilder' element={<CVBuilder/>} />
               <Route path='/mycvs' element={<MyCVs/>} />
-              <Route path='/test' element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path='/anothertest' element={<Education/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path='/login' element={<Login/>} /> {/* Temporal route */}
-              <Route path='/form' element={<Certificate/>} /> {/* Temporal route */}
               <Route path='/profile' element={<Profile/>} />
           </Routes>
         </AnimatePresence>
@@ -92,7 +83,7 @@ const mapDispatchToProps = (dispatch: any) => {
         identifier: ''
       }
     }),
-    getUser: () => dispatch({
+    getUser: () => dispatch({ //CAUTION USER AND PERSONAL DETAILS ARENT THE SAME!!!
       type: 'FETCH_DATA',
       endpoint: '/user',
       method: 'GET',

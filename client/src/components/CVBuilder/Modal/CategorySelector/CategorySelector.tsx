@@ -1,10 +1,14 @@
-import React from 'react';
+import { connect } from 'react-redux'
 
-export default function CategorySelector() {
+function CategorySelector({toggle}: any) {
 
   const categories:string[] = ['certificates','education','languages','skills','work experience'];
+
   const categoryList = categories
-    .map(i => <div className="w-1/5 h-20 bg-primary-bg rounded-full m-3 py-3 text-center" >{i}</div>)
+    .map(i => <div 
+      key={i}
+      onClick={()=>toggle()}
+      className="w-1/5 h-20 bg-primary-bg rounded-full m-3 py-3 text-center" >{i}</div>)
 
 
   return (
@@ -13,3 +17,23 @@ export default function CategorySelector() {
     </div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    toggle: () => dispatch({
+      type: 'TOGGLE_MODAL',
+      payload: {
+        flag: false,
+        identifier: ''
+      }
+    }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategorySelector);

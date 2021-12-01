@@ -11,11 +11,10 @@ import { AnimatePresence } from 'framer-motion';
 //TODO types for toggle
 function Builder({toggle}: any) {
 
-  
 
   return (
     <div className="h-full flex flex-wrap overflow-scroll">
-      <div className="column1 w-2/6 border border-solid border-black overflow-scroll">
+      <div className="w-2/6 pl-10 overflow-hiden text-center">
         <PersonalData/>
         <Categories />
         <AnimatePresence exitBeforeEnter>
@@ -26,11 +25,11 @@ function Builder({toggle}: any) {
         </AnimatePresence>
       </div>
 
-      <div className="column2 w-3/6">
+      <div className="w-3/6">
         <Preview/>
       </div>
 
-      <div className="column3 w-1/6">
+      <div className="w-1/6">
         <BuilderSettings/>
       </div>
     </div>
