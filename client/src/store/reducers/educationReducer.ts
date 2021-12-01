@@ -38,8 +38,7 @@ const educationReducer = (
         education: state.education.map(edu => {
           if (edu.id === id)
             return {
-              ...edu,
-              ...payload,
+              ...payload
             };
           return edu;
         }),
