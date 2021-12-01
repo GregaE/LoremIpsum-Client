@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {useTypedSelector} from './utils/useTypeSelector'
 
-import Login from './components/Login/Login';
+import Login from './components/Auth/Login/Login';
 
 import Dashboard from './components/Dashboard/Dashboard';
 
@@ -39,7 +39,7 @@ const mapDispatchToProps = (dispatch: any) => {
       id: 'ckwkk683g00067mufbbnpb097',
       dispatch: 'ALL_SKILLS'
     }),
-  }
+  } 
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

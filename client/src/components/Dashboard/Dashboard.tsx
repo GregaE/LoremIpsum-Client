@@ -11,7 +11,7 @@ import Home from '../Home/Home';
 import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
-import Login from '../Login/Login';
+import Login from '../Auth/Login/Login';
 
 import Certificate from '../Forms/Certificate';
 import Builder from '../CVBuilder/Builder/Builder';

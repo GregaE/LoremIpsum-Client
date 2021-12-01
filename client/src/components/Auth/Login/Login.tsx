@@ -1,17 +1,54 @@
-import TextInput from '../Forms/Elements/Inputs/TextInput';
-import Button from '../Forms/Elements/Buttons/Button';
-
+// import TextInput from '../Forms/Elements/Inputs/TextInput';
+// import Button from '../Forms/Elements/Buttons/Button';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
+import { LoginService } from '../../../utils/ApiService';
+import auth from '../../../utils/auth';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
 
-export default function Login() {
+const initialState = {
+  email: '',
+  password: '',
+};
 
+export default function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [ state, setState ] = useState(initialState);
 /*
   Here we just basically have a form and get user and pwd
 */
 
-  const dispatch = useDispatch()
+  const handleChange = (e: React.FormEvent) => {
+    const target = e.target as HTMLInputElement;
+    const { name, value } = target;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    const { email, password } = state;
+    const user = { email, password };
+    const res = await LoginService(user);
+    
+    if (res.error) {
+      alert(`${res.message}`);
+      setState(initialState);
+
+    } else {
+
+      dispatch({type: 'TOGGLE_LOGIN', payload: {isLogin: true}});
+      auth.login(() => navigate('/home'));
+    }
+
+  }
 
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-primary">
@@ -27,7 +64,7 @@ export default function Login() {
               Create your CV in just a few steps
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={(e) => handleSubmit(e)}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -42,6 +79,7 @@ export default function Login() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                   placeholder="Email address"
+                  onChange={handleChange}
                 />
               </div>
               <div>
@@ -56,6 +94,7 @@ export default function Login() {
                   required
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                   placeholder="Password"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -69,7 +108,6 @@ export default function Login() {
             </div>
             <div>
               <button
-                onClick={() => dispatch({type: 'TOGGLE_LOGIN'})}
                 type="submit"
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-light bg-primary hover:bg-primary-x focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
