@@ -29,7 +29,7 @@ const mapDispatchToProps = (dispatch: any) => {
       type: 'TOGGLE_MODAL',
       payload: {
         flag: true,
-        indentifier: 'CVs'
+        identifier: 'CVs'
       }
     }),
     create: () => dispatch({
