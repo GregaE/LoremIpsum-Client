@@ -19,13 +19,21 @@ import Education from '../Forms/Education';
 import { AnimatePresence } from 'framer-motion';
 
 //TODO props type
-function Dashboard({toggle, modal, skills}: any) {
+function Dashboard({modal,toggle, getUser,getLanguages,getCertificates,getSkills,
+  getEducation, getExperience, getCVs}: any) {
 
   const location = useLocation();
 
   useEffect(() => {
-    console.log('SKILLS', skills);
-  }, [skills]);
+    getUser();
+    getLanguages();
+    getCertificates();
+    getSkills();
+    getEducation();
+    getExperience();
+    getCVs()
+  },[]);
+
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
     Should we get also my cvs here? as we could move directly to 'MyCVs'¿¿
@@ -57,7 +65,7 @@ function Dashboard({toggle, modal, skills}: any) {
               <Route path='/anothertest' element={<Education/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
               <Route path='/login' element={<Login/>} /> {/* Temporal route */}
               <Route path='/form' element={<Certificate/>} /> {/* Temporal route */}
-              <Route path='/profile' element={<Profile/>} /> {/* Temporal route */}
+              <Route path='/profile' element={<Profile/>} />
           </Routes>
         </AnimatePresence>
       </div>
@@ -70,6 +78,7 @@ function Dashboard({toggle, modal, skills}: any) {
 const mapStateToProps = (state: any) => {
   return {
     modal: state.toggleModal,
+    userDetail: state.personal_details,
     skills: state.skills
   }
 }
@@ -82,7 +91,57 @@ const mapDispatchToProps = (dispatch: any) => {
         flag: false,
         identifier: ''
       }
-    })
+    }),
+    getUser: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/user',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'PERSONAL_DETAILS'
+    }),
+    
+    getLanguages: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/languages',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'ALL_LANGUAGES'
+    }),
+    getCertificates: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/certificates',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'ALL_CERTIFICATES'
+    }),
+    getSkills: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/skills',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'ALL_SKILLS'
+    }),
+    getEducation: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/education',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'ALL_EDUCATION'
+    }),
+    getExperience: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/workExperience',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'ALL_EXPERIENCES'
+    }),
+    getCVs: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/savedCV',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'ALL_CVS'
+    }),
   }
 }
 

@@ -31,7 +31,7 @@ const experienceReducer = (
         ...state,
         loading: false,
         error: null,
-        certificates: payload,
+        experience: payload,
       };
     case 'UPDATE_EXPERIENCE':
       return {
