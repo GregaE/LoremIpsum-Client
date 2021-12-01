@@ -5,7 +5,7 @@ import {  Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 //TODO props types
-export default function Header({navigate, header}: any) {
+function Header({navigate, header}: any) {
 
   /*
   Get name from state and display it here
@@ -56,4 +56,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

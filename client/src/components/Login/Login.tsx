@@ -4,7 +4,7 @@ import Button from '../Forms/Elements/Buttons/Button';
 import { connect } from 'react-redux';
 
 //TODO - deal with prop type
-export default function Login({toggle}: any) {
+function Login({toggle}: any) {
 
 /*
   Here we just basically have a form and get user and pwd
@@ -71,7 +71,7 @@ export default function Login({toggle}: any) {
                 className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-light bg-primary hover:bg-primary-x focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               >
                 <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
-                  <LockClosedIcon className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400' aria-hidden='true' />
+                  {/* <LockClosedIcon className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400' aria-hidden='true' /> */}
                 </span>
                 Sign in
               </button>
@@ -89,4 +89,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-connect(mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);

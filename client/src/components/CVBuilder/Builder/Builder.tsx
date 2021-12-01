@@ -9,7 +9,7 @@ import BuilderSettings from './BuilderSettings/BuilderSettings';
 import { AnimatePresence } from 'framer-motion';
 
 //TODO types for toggle
-export default function Builder({toggle}: any) {
+function Builder({toggle}: any) {
 
   return (
     <div className="h-full flex flex-wrap overflow-scroll">
@@ -48,4 +48,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-connect(mapDispatchToProps)(Builder)
+export default connect(null, mapDispatchToProps)(Builder)

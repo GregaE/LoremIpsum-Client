@@ -21,7 +21,7 @@ import Education from '../Forms/Education';
 import { AnimatePresence } from 'framer-motion';
 
 //TODO props type
-export default function Dashboard({toggle, modal}: any) {
+function Dashboard({toggle, modal}: any) {
 
   const location = useLocation();
 
@@ -84,4 +84,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

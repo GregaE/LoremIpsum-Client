@@ -7,7 +7,7 @@ TO DO:
   Click on second div toggle the modal state and shows the CVSSelector component
 */
 
-export default function Selector({create, toggle}: any) {
+function Selector({create, toggle}: any) {
 
   return (
     <div className="h-5/6 my-auto flex flex-wrap gap-10 p-8 bg-primary-bg justify-center content-center">
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-connect(mapDispatchToProps)(Selector);
+export default connect(null, mapDispatchToProps)(Selector);

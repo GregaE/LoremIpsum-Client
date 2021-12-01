@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 //TODO - props type
-export default function NavBar({navigate}: any) {
+function NavBar({navigate}: any) {
 
   return (
     <div className='bg-primary text-light w-1/6 h-screen flex flex-col items-center gap-6'>
@@ -50,4 +50,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-connect(mapDispatchToProps)(NavBar);
+export default connect(null, mapDispatchToProps)(NavBar);
