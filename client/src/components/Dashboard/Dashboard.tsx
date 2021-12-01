@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
-//if works - remove
-// import { useTypedSelector } from '../../utils/useTypeSelector';
 
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 
@@ -21,10 +19,13 @@ import Education from '../Forms/Education';
 import { AnimatePresence } from 'framer-motion';
 
 //TODO props type
-function Dashboard({toggle, modal}: any) {
+function Dashboard({toggle, modal, skills}: any) {
 
   const location = useLocation();
 
+  useEffect(() => {
+    console.log('SKILLS', skills);
+  }, [skills]);
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
     Should we get also my cvs here? as we could move directly to 'MyCVs'¿¿
@@ -68,7 +69,8 @@ function Dashboard({toggle, modal}: any) {
 //TODO - state & dispatch types
 const mapStateToProps = (state: any) => {
   return {
-    modal: state.toggleModal
+    modal: state.toggleModal,
+    skills: state.skills
   }
 }
 

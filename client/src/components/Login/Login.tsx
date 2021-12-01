@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 //TODO - deal with prop type
-function Login({toggle, getCat, skills}: any) {
+function Login({toggle, getCat}: any) {
 
 /*
   Here we just basically have a form and get user and pwd
@@ -13,10 +13,6 @@ function Login({toggle, getCat, skills}: any) {
 useEffect(() => {
   getCat();
 }, []);
-
-useEffect(() => {
-  console.log('SKILLS', skills);
-}, [skills]);
 
   return (
     <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-primary'>
@@ -91,11 +87,11 @@ useEffect(() => {
 }
 
 //TODO - deal with dispatch typing
-const mapStateToProps = (state: any) => {
-  return {
-    skills: state.skills
-  }
-}
+// const mapStateToProps = (state: any) => {
+//   return {
+//     skills: state.skills
+//   }
+// }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
@@ -110,4 +106,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);
