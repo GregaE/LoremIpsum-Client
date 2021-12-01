@@ -57,12 +57,13 @@ export const middleware =
   (store: any) => (next: any) => (action: FetchAction) => {
     if (action.type !== 'FETCH_DATA') return next(action);
     store.dispatch({ type: 'LOADING' });
-    fetchData(action.endpoint, action.method, action?.id, action?.payload)
+    fetchData(action.endpoint, action.method, action.id && action.id, action.payload && action.payload)
       .then(data =>
-        store.dispatch({
+        {
+          store.dispatch({
           type: action.dispatch,
           payload: data,
-        })
+        })}
       )
       .catch(error =>
         store.dispatch({

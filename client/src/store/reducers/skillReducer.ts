@@ -30,13 +30,6 @@ const skillReducer = (
         error: null,
         skills: payload,
       };
-    case 'GET_SKILL':
-      state = {
-        ...state,
-        loading: false,
-        error: null,
-      };
-      return state.skills.filter(skill => skill.id === id);
     case 'UPDATE_SKILL':
       return {
         ...state,

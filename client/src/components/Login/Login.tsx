@@ -1,14 +1,22 @@
 import TextInput from '../Forms/Elements/Inputs/TextInput';
 import Button from '../Forms/Elements/Buttons/Button';
 
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 //TODO - deal with prop type
-function Login({toggle}: any) {
+function Login({toggle, getCat, skills}: any) {
 
 /*
   Here we just basically have a form and get user and pwd
 */
+useEffect(() => {
+  getCat();
+}, []);
+
+useEffect(() => {
+  console.log('SKILLS', skills);
+}, [skills]);
 
   return (
     <div className='min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-primary'>
@@ -83,10 +91,23 @@ function Login({toggle}: any) {
 }
 
 //TODO - deal with dispatch typing
-const mapDispatchToProps = (dispatch: any) => {
+const mapStateToProps = (state: any) => {
   return {
-    toggle: () => dispatch({type: 'TOGGLE_LOGIN'})
+    skills: state.skills
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    toggle: () => dispatch({type: 'TOGGLE_LOGIN'}),
+    getCat: () => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/skills',
+      method: 'GET',
+      id: 'ckwkk683g00067mufbbnpb097',
+      dispatch: 'ALL_SKILLS'
+    })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
