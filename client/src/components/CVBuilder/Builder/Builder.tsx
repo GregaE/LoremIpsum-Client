@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux'
+import { connect } from 'react-redux'
 
 import PersonalData from './PersonalData/PersonalData';
 import Categories from './Categories/Categories';
@@ -7,13 +7,9 @@ import Preview from './Preview/Preview';
 import BuilderSettings from './BuilderSettings/BuilderSettings';
 
 import { AnimatePresence } from 'framer-motion';
-import { toggleModal } from '../../../store/actions/toggleModal';
 
-
-
-export default function Builder() {
-
-  const dispatch = useDispatch()
+//TODO types for toggle
+function Builder({toggle}: any) {
 
   
 
@@ -23,8 +19,10 @@ export default function Builder() {
         <PersonalData/>
         <Categories />
         <AnimatePresence exitBeforeEnter>
-          <i className="fas fa-plus-circle fa-3x" 
-          onClick={() => dispatch({type: 'TOGGLE_MODAL', payload:{flag: true, identifier:'Categories'}})}/>
+          <i
+          className="fas fa-plus-circle fa-3x"
+          onClick={toggle}
+          />
         </AnimatePresence>
       </div>
 
@@ -38,3 +36,18 @@ export default function Builder() {
     </div>
   );
 }
+
+//TODO type for dispatch
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    toggle: () => dispatch({
+      type: 'TOGGLE_MODAL',
+      payload: {
+        flag: true,
+        identifier: 'Categories'
+      }
+    })
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Builder)

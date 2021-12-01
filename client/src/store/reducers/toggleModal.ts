@@ -1,21 +1,21 @@
 import { ModalInterface } from '../../interfaces/ModalInterface';
-import { Action, ActionType } from '../actions/index';
+import { ActionType, ToggleModal } from '../state_interfaces/appState';
 
-const initialState = {
+const initialState: ModalInterface = {
   flag: false,
   identifier: '',
 };
 
 const toggleModal = (
-  state: ModalInterface = initialState,
-  action: Action
+  state = initialState,
+  {type, payload}: ToggleModal
 ): ModalInterface => {
-  switch (action.type) {
+  switch (type) {
     case ActionType.TOGGLE_MODAL:
       return {
         ...state,
-        flag: action.payload.flag,
-        identifier: action.payload.identifier,
+        flag: payload.flag,
+        identifier: payload.identifier,
       };
     default:
       return state;

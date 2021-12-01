@@ -1,8 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux'
-import { useTypedSelector } from '../../utils/useTypeSelector';
+import { connect } from 'react-redux'
+//if works - remove
+// import { useTypedSelector } from '../../utils/useTypeSelector';
 
-import { Routes, Route, Outlet, useLocation } from "react-router-dom";
+import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 
 import NavBar from '../NavBar/NavBar';
 import Header from '../Header/Header';
@@ -18,19 +19,15 @@ import Builder from '../CVBuilder/Builder/Builder';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
-import { toggleModal } from '../../store/actions/toggleModal';
 
-import PDFRender from '../CVBuilder/Modal/ItemEditor/PDF-Render/PDF-Render';
-
-export default function Dashboard() {
+//TODO props type
+function Dashboard({toggle, modal}: any) {
 
   const location = useLocation();
-  const dispatch = useDispatch();
-  const { flag } = useTypedSelector((state) => state.toggleModal);
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
-    Should we get also my cvs here? as we could move directly to "MyCVs"¿¿
+    Should we get also my cvs here? as we could move directly to 'MyCVs'¿¿
     Or should we fetch them from MyCVs component with a beautiful loading placeholder¿¿
   */
 
@@ -38,7 +35,7 @@ export default function Dashboard() {
     while(e.target.id !== 'modal-content') {
       if(e.target.id === 'modal-content') return
       if(e.target.parentNode.localName === 'body') {
-        if (flag) dispatch({type: 'TOGGLE_MODAL', payload:{flag: false, identifier:''}})
+        if (modal.flag) toggle();
         return;
       }
       e.target = e.target.parentNode;
@@ -46,20 +43,20 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex w-screen h-screen bg-primary-bg" onClick={(e)=>closeModal(e)}>
+    <div className='flex w-screen h-screen bg-primary-bg' onClick={(e)=>closeModal(e)}>
       <NavBar/>
-      <div className="flex flex-col w-5/6 h-full">
+      <div className='flex flex-col w-5/6 h-full'>
         <Header/>
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>
-              <Route path="/" element={<Home/>} />
-              <Route path="/cvbuilder" element={<CVBuilder/>} />
-              <Route path="/mycvs" element={<MyCVs/>} />
-              <Route path="/test" element={<PDFRender/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path="/anothertest" element={<Education/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path="/login" element={<Login/>} /> {/* Temporal route */}
-              <Route path="/form" element={<Certificate/>} /> {/* Temporal route */}
-              <Route path="/profile" element={<Profile/>} /> {/* Temporal route */}
+              <Route path='/' element={<Home/>} />
+              <Route path='/cvbuilder' element={<CVBuilder/>} />
+              <Route path='/mycvs' element={<MyCVs/>} />
+              <Route path='/test' element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+              <Route path='/anothertest' element={<Education/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+              <Route path='/login' element={<Login/>} /> {/* Temporal route */}
+              <Route path='/form' element={<Certificate/>} /> {/* Temporal route */}
+              <Route path='/profile' element={<Profile/>} /> {/* Temporal route */}
           </Routes>
         </AnimatePresence>
       </div>
@@ -67,3 +64,24 @@ export default function Dashboard() {
     </div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+    modal: state.toggleModal
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    toggle: () => dispatch({
+      type: 'TOGGLE_MODAL',
+      payload: {
+        flag: false,
+        identifier: ''
+      }
+    })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

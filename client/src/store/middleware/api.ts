@@ -18,13 +18,16 @@ const fetchData = async (
   id?: string,
   data?: any
 ) => {
-  return await fetch(baseUrl + endpoint + (id && `/${id}`), {
-    method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: data ? JSON.stringify(data) : undefined,
-  })
+  return await fetch(
+    baseUrl + endpoint + (id && `/${id}`),
+    {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: data ? JSON.stringify(data) : undefined
+    }
+  )
     .then(
       response => {
         if (response.ok) {

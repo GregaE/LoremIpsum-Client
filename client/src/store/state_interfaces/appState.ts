@@ -1,4 +1,4 @@
-import { ModalInterface } from '../../../interfaces/ModalInterface';
+import { ModalInterface } from "../../interfaces/ModalInterface";
 
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',
@@ -10,20 +10,21 @@ export enum ActionType {
 ///////////////////////////////
 /////// APP NAVIGATION ////////
 ///////////////////////////////
-interface headerName {
+export interface HeaderName {
   type: ActionType.HEADER_NAME;
   payload: string;
 }
-interface toggleLogin {
+
+export interface ToggleLogin {
   type: ActionType.TOGGLE_LOGIN;
 }
-interface toggleModal {
+
+export interface ToggleModal {
   type: ActionType.TOGGLE_MODAL;
   payload: ModalInterface;
 }
-interface showCvBuilder {
+
+export interface ShowCvBuilder {
   type: ActionType.SHOW_CVBUILDER;
   payload: boolean;
 }
-
-export type Action = toggleLogin | headerName | showCvBuilder | toggleModal;
