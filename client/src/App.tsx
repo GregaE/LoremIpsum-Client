@@ -2,27 +2,24 @@ import React, { useEffect, useState } from 'react';
 import {useTypedSelector} from './utils/useTypeSelector'
 
 import Login from './components/Auth/Login/Login';
-
+import { withCookies, Cookies } from 'react-cookie';
 import Dashboard from './components/Dashboard/Dashboard';
+import { useDispatch } from 'react-redux';
 
 import { getUser } from "./utils/ApiService"
 import { User } from "./interfaces/UserInterface"
 import { connect } from 'react-redux';
 
 function App() {
+const cookies = new Cookies();
 
-  // const [mockData, setMockData] = useState({})
-  // useEffect(()=>{
-  //   getUser("/mock").then((res:User) => {
-  //     setMockData({...res})
-  //   }).catch(e => console.log(e))
-  // },[])
+  // const { isLoggedIn } = useTypedSelector((state) => state.login);
 
-  const { isLogin } = useTypedSelector((state) => state.login);
-
-  console.log(isLogin)
-
-  return isLogin ? <Dashboard /> : <Login />
+  if (cookies.get('sid')) {
+    return <Dashboard/>
+  } else {
+    return <Login />;
+  }
 }
 
 const mapStateToProps = (state: any) => ({
@@ -44,4 +41,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withCookies(App));

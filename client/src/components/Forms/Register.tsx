@@ -3,8 +3,8 @@ import Auth from '../../utils/Auth';
 import { RegisterService } from '../../utils/ApiService';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import Button from './Elements/Buttons/Button';
-import TextInput from './Elements/Inputs/TextInput';
+// import Button from './Elements/Buttons/Button';
+// import TextInput from './Elements/Inputs/TextInput';
 
 const initialState = {
     email: '',
@@ -40,7 +40,7 @@ const initialState = {
       } else {
         // REMOVE-END
         // This sets isAuthenticated = true and redirects to profile
-        dispatch({type: 'TOGGLE_LOGIN', payload: {isLogin: true}});
+        dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true}});
         Auth.login(() => navigate('/home'));
         // REMOVE-START
       }

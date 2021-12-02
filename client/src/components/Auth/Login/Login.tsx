@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LoginService } from '../../../utils/ApiService';
-import auth from '../../../utils/Auth';
+import Auth from '../../../utils/Auth';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
 
@@ -43,9 +43,8 @@ export default function Login() {
       setState(initialState);
 
     } else {
-      console.log("here")
       dispatch({type: 'TOGGLE_LOGIN', payload: true });
-      auth.login(() => navigate('/'));
+      Auth.login(() => navigate('/'));
     }
 
   }

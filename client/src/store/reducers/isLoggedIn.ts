@@ -1,11 +1,11 @@
 import { ActionType } from '../actions/index';
 
 interface State {
-  isLogin: boolean,
+  isLoggedIn: boolean,
 }
 
 const initialState = {
-  isLogin: false,
+  isLoggedIn: false,
 }
 
 type Action = {
@@ -13,10 +13,10 @@ type Action = {
   payload: boolean
 }
 
-const isLogin = (state: State = initialState, action: Action):State => {
+const isLoggedIn = (state: State = initialState, action: Action):State => {
   switch(action.type) {
     case ActionType.TOGGLE_LOGIN: {
-      return { isLogin: action.payload };
+      return { isLoggedIn: action.payload };
     }
     default: {
       return state;
@@ -24,4 +24,4 @@ const isLogin = (state: State = initialState, action: Action):State => {
   }
 }
 
-export default isLogin;
+export default isLoggedIn;
