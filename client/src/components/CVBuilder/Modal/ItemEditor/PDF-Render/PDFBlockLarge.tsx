@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet } from '@react-pdf/renderer';
+import { View, Text } from '@react-pdf/renderer';
+import { style } from './PDFStyles';
 
 export function PDFBLockLarge({
   category,
@@ -7,22 +8,6 @@ export function PDFBLockLarge({
   category: string;
   dataList: any[]; //keep it as any for now and then refactor
 }) {
-  const style = StyleSheet.create({
-    header: {
-      fontSize: '14px',
-      fontWeight: 'bold',
-      textDecoration: 'underline',
-      marginBottom: '5px',
-    },
-    subHeader: {
-      fontSize: '11px',
-      fontWeight: 'medium',
-    },
-    text: {
-      fontSize: '11px',
-      fontWeight: 'light',
-    },
-  });
   const data =
     dataList &&
     dataList.map(data => {
@@ -31,26 +16,28 @@ export function PDFBLockLarge({
           key={data.id}
           style={{ flexDirection: 'row', marginBottom: '10px' }}
         >
-          <View style={{ width: '25%' }}>
-            <Text style={style.text}>
-              {data.beginMonth}, {data.beginYear} - {data.endMonth},{' '}
-              {data.endYear}
+          <View style={style.largeCtn}>
+            <Text style={style.textLargeCtn}>
+              {data.beginMonth && data.beginMonth + ', '}
+              {data.beginYear && data.beginYear + ' - '}
+              {data.endMonth ? data.endMonth + ',' : 'present'} {data.endYear}
             </Text>
-            <Text style={style.text}>
+            <Text style={style.textLargeCtn}>
               {data.country}, {data.city}
             </Text>
           </View>
           <View>
             <Text style={style.subHeader}>
-              {data.job_title}, {data.company}
+              {category === 'Education' ? data.degree : data.job_title},{' '}
+              {category === 'Education' ? data.school : data.company}
             </Text>
-            <Text style={style.text}>{data.description}</Text>
+            <Text style={style.textLargeCtn}>{data.description}</Text>
           </View>
         </li>
       );
     });
   return (
-    <View style={{ width: '100%' }}>
+    <View style={{ width: '100%' }} wrap={false}>
       <Text style={style.header}>{category}</Text>
       <View>
         <ul>{data}</ul>

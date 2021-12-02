@@ -8,6 +8,7 @@ import {
   Font,
 } from '@react-pdf/renderer';
 import { PDFBLockLarge } from './PDFBlockLarge';
+import { PDFProfile } from './PDFBlockProfile';
 import { PDFBlockSmall } from './PDFBlockSmall';
 
 Font.register({
@@ -34,7 +35,8 @@ Font.register({
 const styles = StyleSheet.create({
   page: {
     fontFamily: 'Roboto',
-    justifyContent: 'center',
+    padding: 25,
+
     alignItems: 'flex-start',
     flexDirection: 'column',
     backgroundColor: '#FFF',
@@ -64,6 +66,7 @@ export default function PDFRender() {
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
+            <PDFProfile personalDetails={PDFMock.personalDetails} />
             <PDFBlockSmall
               category={PDFMock.skills.name}
               dataList={PDFMock.skills.skills_list}
@@ -71,6 +74,22 @@ export default function PDFRender() {
             <PDFBlockSmall
               category="Certificates"
               dataList={PDFMock.certificates}
+            />
+            <PDFBLockLarge
+              category={PDFMock.work_experience.name}
+              dataList={PDFMock.work_experience.experience_list}
+            />
+            <PDFBLockLarge
+              category={PDFMock.education.name}
+              dataList={PDFMock.education.list}
+            />
+            <PDFBlockSmall
+              category={PDFMock.languages.name}
+              dataList={PDFMock.languages.list}
+            />
+            <PDFBLockLarge
+              category={PDFMock.education.name}
+              dataList={PDFMock.education.list}
             />
             <PDFBLockLarge
               category={PDFMock.work_experience.name}
@@ -84,16 +103,18 @@ export default function PDFRender() {
 }
 
 const PDFMock = {
-  first_name: 'Eugen',
-  last_name: 'Nikolajev',
-  phone_number: '123456789',
-  email: 'carl.marx@gmail.com',
-  street: 'Rambla',
-  postcode: '65326',
-  city: 'Barcelona',
-  country: 'Spain',
-  headline:
-    'I have a clear, logical mind with a practical approach to problem-solving and a drive to see things through to completion. I have more than 2 years of experience in managing and leading teams across multiple sectors. I am eager to learn, I enjoy overcoming challenges, and I have a genuine interest in Business Management and making organisations successful.',
+  personalDetails: {
+    first_name: 'Eugen',
+    last_name: 'Nikolajev',
+    phone_number: '123456789',
+    email: 'carl.marx@gmail.com',
+    street: 'Rambla',
+    postcode: '65326',
+    city: 'Barcelona',
+    country: 'Spain',
+    headline:
+      'I have a clear, logical mind with a practical approach to problem-solving and a drive to see things through to completion. I have more than 2 years of experience in managing and leading teams across multiple sectors. I am eager to learn, I enjoy overcoming challenges, and I have a genuine interest in Business Management and making organisations successful.',
+  },
   skills: {
     name: 'Skills',
     skills_list: [
@@ -111,6 +132,55 @@ const PDFMock = {
         id: 'ckwkxcfeq0013l5uf5ers8zz7',
         name: 'Time management and digital time',
         description: 'I can tell the digital time and also on the analog watch',
+      },
+    ],
+  },
+  languages: {
+    name: 'Languages',
+    list: [
+      {
+        id: 'ckwkxcfeq0013l5uf5ehs8zz7',
+        language_name: 'Inglese',
+        level: 'A2',
+      },
+      {
+        id: 'ckwkxcfeq0013l5uf5ashs8zz7',
+        language_name: 'Spanish',
+        level: 'C2',
+      },
+      {
+        id: 'ckwkxcfeq0013l5uf5ers8zz7',
+        language_name: 'Russian - suka',
+        level: 'B2',
+      },
+    ],
+  },
+  education: {
+    name: 'Education',
+    list: [
+      {
+        id: 'ckwnnorez0224ueuf4t8ug0jn',
+        degree: 'Electric Engineer',
+        school: 'University of Electric Engineering',
+        city: 'City of the eletric engineers',
+        country: 'Germany',
+        description: 'I am an eletric engineer',
+        beginMonth: '',
+        beginYear: '',
+        endMonth: '',
+        endYear: '',
+      },
+      {
+        id: 'ckwnnplcd0231ueufvoag12ny',
+        degree: 'Mechanic Engineer',
+        school: 'University of Mechanic Engineering',
+        city: 'City of the mechanic engineers',
+        country: 'Germany',
+        description: 'I am an mechanic engineer',
+        beginMonth: '',
+        beginYear: '',
+        endMonth: '',
+        endYear: '',
       },
     ],
   },
@@ -147,7 +217,7 @@ const PDFMock = {
         company: 'Endesa',
         city: 'Barcelona',
         country: 'Espain',
-        description: "It's a hard job but someone's gotta do it",
+        description: "It's a hard job but \nsomeone's gotta do it",
         beginMonth: 'Jun',
         beginYear: '1997',
         endMonth: 'Jun',
