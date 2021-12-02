@@ -3,6 +3,7 @@ import {  Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { headerName } from '../../store/actions/headerName';
 import { showCvBuilder } from '../../store/actions/showBuilder';
+import Logout from '../Auth/Logout/Logout';
 
 export default function NavBar() {
 
@@ -37,6 +38,9 @@ export default function NavBar() {
             MyCVs
           </li>
         </Link>
+        <li className="nav-link">
+          <Logout/>
+        </li>
       </ul>
     </div>
   );
