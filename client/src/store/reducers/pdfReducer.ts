@@ -84,7 +84,6 @@ const pdfReducer = (
       const unselectItemState = state.map(cat => {
         if(cat.name === payload.name) {
           const newPdf = cat.pdf.filter((item:Categories) => item.id !== payload.itemID)
-          console.log('newPdf: ', newPdf)
           return {...cat, pdf: [...newPdf]}
         }
         return cat;
