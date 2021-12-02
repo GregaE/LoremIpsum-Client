@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
 
 import { Languages } from '../../interfaces/CategoriesInterface';
 import { useTypedSelector } from '../../utils/useTypeSelector'
+import Button from './Elements/Buttons/Button';
 
 export default function Language() {
 
@@ -29,7 +29,11 @@ export default function Language() {
       <form>
         <TextInput callback={handleForm} label="Language" type="text" value={language.language_name} placeholder="Enter language"/>
         <SelectInput options={languages} value={language.level ? language.level : ''}/>
-        <Buttons/>
+        <div className="flex flex-row">
+          <Button name="Delete" formObject={language}/>
+          <Button name="Edit" formObject={language}/>
+          <Button name="Create" formObject={language}/>
+        </div>
       </form>
     </div>
   );

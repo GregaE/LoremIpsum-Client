@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
 import { WorkExperience } from '../../interfaces/CategoriesInterface';
+import Button from './Elements/Buttons/Button';
 
 export default function WorkExperienceForm() {
 
@@ -46,7 +46,11 @@ export default function WorkExperienceForm() {
           <SelectInput options={years} callback={handleForm} name='endMonth' value={workExperience.endYear? workExperience.endYear: ''}/>
         </div>
       </form>
-      <Buttons/>
+      <div className="flex flex-row">
+        <Button name="Delete" formObject={workExperience}/>
+        <Button name="Edit" formObject={workExperience}/>
+        <Button name="Create" formObject={workExperience}/>
+      </div>
     </div>
   );
 }

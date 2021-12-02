@@ -14,15 +14,15 @@ export default function ItemEditor() {
 
   const modalForm = () => {
     switch (identifier) {
-      case 'CERTIFICATES':
+      case 'Certificates':
         return <Certificate/>
-      case 'EDUCATION':
+      case 'Education':
         return <Education/>
-      case 'LANGUAGES':
+      case 'Languages':
         return <Language/>
-      case 'SKILLS':
+      case 'Skills':
         return <Skills/>
-      case 'WORK EXPERIENCE':
+      case 'Work Experience':
         return <WorkExperience/>
       default:
         return null;

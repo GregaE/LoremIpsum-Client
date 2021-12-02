@@ -7,7 +7,7 @@ function CategorySelector({toggle, addCategory}: any) {
     toggle()
   }
 
-  const categories:string[] = ['CERTIFICATES','EDUCATION','LANGUAGES','SKILLS','WORK EXPERIENCE'];
+  const categories:string[] = ['Certificates','Education','Languages','Skills','Work Experience'];
 
   const categoryList = categories
     .map(i => <div 

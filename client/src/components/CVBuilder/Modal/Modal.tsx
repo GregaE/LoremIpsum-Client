@@ -26,11 +26,11 @@ export default function Modal() {
         return <CVSelector/>
       case 'Categories':
         return <CategorySelector/>
-      case 'CERTIFICATES':
-      case 'EDUCATION':
-      case 'LANGUAGES':
-      case 'SKILLS':
-      case 'WORK EXPERIENCE':
+      case 'Certificates':
+      case 'Education':
+      case 'Languages':
+      case 'Skills':
+      case 'Work Experience':
         return <ItemEditor/>
       default:
         return null;

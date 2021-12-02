@@ -63,7 +63,11 @@ export default function Education() {
             name="endYear" options={years}/>
         </div>
       </form>
-      <Button/>
+      <div className="flex flex-row">
+        <Button name="Delete" formObject={education}/>
+        <Button name="Edit" formObject={education}/>
+        <Button name="Create" formObject={education}/>
+      </div>
     </div>
   );
 }

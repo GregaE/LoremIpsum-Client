@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import Button from './Elements/Buttons/Button';
+
 import TextInput from './Elements/Inputs/TextInput';
+import Button from './Elements/Buttons/Button';
 
 import { Certificates } from '../../interfaces/CategoriesInterface';
 
@@ -19,7 +20,7 @@ export default function Certificate() {
     setCertificate({...certificate, [target.name]: target.value})
   }
   // On submit do the below
-  ///dispatch ADD_CERTIICATE => middleware >> API CALL > RETURNS DB RECORD > CHANGES THE STATE
+  ///dispatch ADD_CERTIFICATE => middleware >> API CALL > RETURNS DB RECORD > CHANGES THE STATE
 
   return (
     <div className='object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg'>
@@ -30,7 +31,11 @@ export default function Certificate() {
         <TextInput callback={handleForm}
           type='text' name='description' value={certificate.description ? certificate.description : ''} placeholder='WorldInput' label='Description...'/>
       </form>
-      <Button/>
+      <div className="flex flex-row">
+        <Button name="Delete" formObject={certificate}/>
+        <Button name="Edit" formObject={certificate}/>
+        <Button name="Create" formObject={certificate}/>
+      </div>
     </div>
   );
 }
