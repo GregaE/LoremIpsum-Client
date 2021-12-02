@@ -6,7 +6,10 @@ import Button from './Elements/Buttons/Button';
 
 import { Certificates } from '../../interfaces/CategoriesInterface';
 
-function Certificate({toggle, postForm, updateForm}:any) {
+function Certificate({userDetail, toggle, postForm, updateForm}:any) {
+
+  const {personal_details} = userDetail;
+  const {user_id} = personal_details
 
   const initialState: Certificates = {
     name: '',
@@ -27,13 +30,13 @@ function Certificate({toggle, postForm, updateForm}:any) {
     
     let res;
     if(type==="NEW") {
-      res = await postForm("POST_CERTIFICATE",certificate)
+      const data = {...certificate, userId:user_id}
+      res = await postForm("POST_CERTIFICATE",data)
     }
     if(type==="UPDATE") {
-      res = await updateForm(certificate.id,"UPDATE_CERTIFICATE",certificate)
+      res = await updateForm(user_id,"UPDATE_CERTIFICATE",certificate)
     }
-      console.log(res)
-    setCertificate(res)
+    setCertificate(initialState)
     toggle()
   }
 
@@ -49,9 +52,9 @@ function Certificate({toggle, postForm, updateForm}:any) {
           type='text' name='description' value={certificate.description ? certificate.description : ''} placeholder='WorldInput' label='Description...'/>
       </form>
       <div className="flex flex-row">
-        <Button name="Cancel" onClick={()=>toggle()}/>
-        <Button name="Edit" onClick={()=>handleSubmit('UPDATE')}/>
-        <Button name="Create" onClick={()=>handleSubmit('NEW')}/>
+        <Button name="Cancel" callback={toggle}/>
+        <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE"/>
+        <Button name="Create" callback={handleSubmit} handleSubmitType="NEW"/>
       </div>
     </div>
   );
@@ -77,15 +80,15 @@ const mapDispatchToProps = (dispatch: any) => {
       type: 'FETCH_DATA',
       endpoint: '/certificates',
       method: 'POST',
-      id: "",
+      id:'',
       dispatch: action,
       payload: data
     }),
-    updateForm: (id:string, action: any, data: any) => dispatch({
+    updateForm: ( id: any,action: any, data: any) => dispatch({
       type: 'FETCH_DATA',
       endpoint: '/certificates',
       method: 'PUT',
-      id: id,
+      id,
       dispatch: action,
       payload: data
     }),

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux'
 import Button from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
 
 import { useTypedSelector } from '../../utils/useTypeSelector'
 
-export default function Education() {
+function Education({userDetail, toggle, postForm, updateForm}:any) {
 
+  const {personal_details} = userDetail;
+  const {user_id} = personal_details
   interface formState {
     degree: string;
     school: string;
@@ -34,6 +37,21 @@ export default function Education() {
   const handleForm = (e: React.ChangeEvent):void => {
     const target = e.target as HTMLInputElement;
     setEducation({...education, [target.name]: target.value})
+  }
+
+  const handleSubmit = async (type:string)=> {
+    //We have to add some input controller before sending anything
+    
+    let res;
+    if(type==="NEW") {
+      const data = {...education, userId:user_id}
+      res = await postForm("POST_EDUCATION",data)
+    }
+    if(type==="UPDATE") {
+      res = await updateForm(user_id,"UPDATE_EDUCATION",education)
+    }
+    setEducation(initialState)
+    toggle()
   }
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -64,10 +82,47 @@ export default function Education() {
         </div>
       </form>
       <div className="flex flex-row">
-        <Button name="Delete" formObject={education}/>
-        <Button name="Edit" formObject={education}/>
-        <Button name="Create" formObject={education}/>
+        <Button name="Cancel" callback={toggle}/>
+        <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE"/>
+        <Button name="Create" callback={handleSubmit} handleSubmitType="NEW"/>
       </div>
     </div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+    userDetail: state.personal_details,
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    toggle: () => dispatch({
+      type: 'TOGGLE_MODAL',
+      payload: {
+        flag: false,
+        identifier: ''
+      }
+    }),
+    postForm: (action: any, data: any) => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/education',
+      method: 'POST',
+      id:'',
+      dispatch: action,
+      payload: data
+    }),
+    updateForm: ( id:any ,action: any, data: any) => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/education',
+      method: 'PUT',
+      id,
+      dispatch: action,
+      payload: data
+    }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Education);

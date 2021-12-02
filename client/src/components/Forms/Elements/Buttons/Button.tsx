@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { ButtonProps } from '../../../../interfaces/ButtonProps';
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
 
-function Button({name} : any) {
+function Button({name, callback, handleSubmitType} : any) {
   
   //Name can be Download, Delete, Edit or Create
   // identifier can be ['Certificates','Education','Languages','Skills','Work Experience']
@@ -40,7 +40,7 @@ function Button({name} : any) {
 
   return (
     <div className="btn-container flex flex-row p-2">
-      <button className="btn">{name}</button>
+      <button className="btn" onClick={()=>handleSubmitType ? callback(handleSubmitType) : callback()}>{name}</button>
     </div>
   );
 }
