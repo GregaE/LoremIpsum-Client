@@ -1,13 +1,18 @@
 import { connect } from 'react-redux'
 
-function CategorySelector({toggle}: any) {
+function CategorySelector({toggle, addCategory}: any) {
 
-  const categories:string[] = ['certificates','education','languages','skills','work experience'];
+  function addCategoryName(name: string) {
+    addCategory(name)
+    toggle()
+  }
+
+  const categories:string[] = ['CERTIFICATES','EDUCATION','LANGUAGES','SKILLS','WORK EXPERIENCE'];
 
   const categoryList = categories
     .map(i => <div 
       key={i}
-      onClick={()=>toggle()}
+      onClick={()=>addCategoryName(i)}
       className="w-1/5 h-20 bg-primary-bg rounded-full m-3 py-3 text-center" >{i}</div>)
 
 
@@ -31,6 +36,13 @@ const mapDispatchToProps = (dispatch: any) => {
       payload: {
         flag: false,
         identifier: ''
+      }
+    }),
+    addCategory: (categoryName:string) => dispatch({
+      type: 'ADD_CATEGORY',
+      payload: {
+        name: categoryName,
+        items: []
       }
     }),
   }

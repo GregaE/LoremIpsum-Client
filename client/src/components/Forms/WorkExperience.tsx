@@ -3,15 +3,14 @@ import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
 import { WorkExperience } from '../../interfaces/CategoriesInterface';
-import { Experience } from '../../interfaces/CategoriesInterface';
 
-export default function WorkExperience() {
+export default function WorkExperienceForm() {
 
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const years = Array.from({length: 20}, (v, i) => i+2000); //Generate and array with values from 2000 to 2020
 
 //TODO: ADD the date formatter for the db when handling submit button to convert string to a date - possibly let the server handle that
-  const experience: Experience = {
+  const experience: WorkExperience = {
     id:'',
     job_title: '',
     company: '',

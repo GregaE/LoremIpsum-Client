@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import { useTypedSelector } from '../../utils/useTypeSelector'
 
 import Selector from './Selector/Selector'
@@ -7,10 +8,12 @@ import Modal from './Modal/Modal';
 
 import { motion } from 'framer-motion';
 
-export default function CVBuilder() {
+function CVBuilder({pdfStatus}:any) {
 
   const { builder } = useTypedSelector((state) => state.showCvBuilder)
   const { flag } = useTypedSelector((state) => state.toggleModal)
+
+  console.log('pdfStatus: in cvbuilder ', pdfStatus)
   /*
   Once you click here:
     We fetch data of user cvs (in case he click from CVs)
@@ -66,3 +69,17 @@ export default function CVBuilder() {
     </motion.div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+    pdfStatus: state.pdf,
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CVBuilder);

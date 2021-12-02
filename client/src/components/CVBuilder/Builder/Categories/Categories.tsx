@@ -1,10 +1,15 @@
-import React from 'react';
+import { connect } from 'react-redux'
+import { useTypedSelector } from '../../../../utils/useTypeSelector';
 import Category from './Category/Category';
 
-export default function Categories() {
+function Categories() {
+
+  
+  const pdfStatus = useTypedSelector((state) => state.pdf)
+  console.log('pdfStatus: ', pdfStatus)
 
   function renderCategories() {
-    return Array(0).fill(<Category />)
+    return pdfStatus.map((category:any) => <Category key={category.name} name={category.name} items={category.items}/>)
   }
 
   return (
@@ -13,3 +18,16 @@ export default function Categories() {
     </div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);
