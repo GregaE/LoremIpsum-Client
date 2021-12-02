@@ -30,6 +30,13 @@ const skillReducer = (
         error: null,
         skills: payload,
       };
+    case 'POST_SKILL':
+      return {
+        ...state, 
+        loading: false,
+        error: null,
+        skills: [...state.skills, payload]
+      };
     case 'UPDATE_SKILL':
       return {
         ...state,

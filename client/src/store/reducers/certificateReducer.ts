@@ -33,6 +33,13 @@ const certificateReducer = (
         error: null,
         certificates: payload,
       };
+    case 'POST_CERTIFICATE':
+      return {
+        ...state, 
+        loading: false,
+        error: null,
+        certificates: [...state.certificates, payload]
+      };
     case 'UPDATE_CERTIFICATE':
       return {
         ...state,
