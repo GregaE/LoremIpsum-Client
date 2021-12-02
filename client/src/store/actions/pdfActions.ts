@@ -52,20 +52,20 @@ export const RemoveItem = (id: string) => {
   };
 };
 
-export const SelectItem = (id: string) => {
+export const SelectItem = (object: any) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.SELECT_ITEM,
-      payload: id,
+      payload: object,
     });
   };
 };
 
-export const UnselectItem = (id: string) => {
+export const UnselectItem = (object: any) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.UNSELECT_ITEM,
-      payload: id,
+      payload: object,
     });
   };
 };

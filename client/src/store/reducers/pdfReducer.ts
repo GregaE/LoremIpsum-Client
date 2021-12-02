@@ -72,9 +72,9 @@ const pdfReducer = (
     case ActionType.SELECT_ITEM: 
       const selectItemState = state.map(cat => {
         if(cat.name === payload.name) {
-          const selectedItem = cat.items.filter((item:Categories) => item.id === payload.itemID)
-          const newPdf = cat.pdf.push(selectedItem)
-          return {...cat, pdf: [...newPdf]}
+          const selectedItem = cat.items.filter((item:Categories) => item.id === payload.itemID)[0]
+          cat.pdf.push(selectedItem)
+          return cat
         }
         return cat;
       })
@@ -84,6 +84,7 @@ const pdfReducer = (
       const unselectItemState = state.map(cat => {
         if(cat.name === payload.name) {
           const newPdf = cat.pdf.filter((item:Categories) => item.id !== payload.itemID)
+          console.log('newPdf: ', newPdf)
           return {...cat, pdf: [...newPdf]}
         }
         return cat;

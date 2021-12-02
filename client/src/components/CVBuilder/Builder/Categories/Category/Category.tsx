@@ -9,13 +9,12 @@ function Category({name, items, toggle, pdfItems}:any) {
 
   const [expander, toggleExpand] = useState(false);
   
-  function renderCategories() {
-    console.log(items)
+  function openCategories() {
     return items.map((item:any) => {
-      return <CategoryItem key={item.id} item={item} />
+      return <CategoryItem key={item.id} item={item} categoryName={name}/>
     })
   }
-console.log(pdfItems)
+
   return (
     <div className="category-container w-full">
       <div className="flex flex-wrap p-4 gap-10 justify-between items-center">
@@ -24,7 +23,7 @@ console.log(pdfItems)
         <i onClick={() => toggleExpand(!expander)} className="fas fa-minus cursor-pointer"></i>
       </div>
       <AnimatePresence exitBeforeEnter>
-        {expander && renderCategories()}
+        {expander && openCategories()}
       </AnimatePresence>
     </div>
   );

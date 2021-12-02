@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import { connect } from 'react-redux'
 import { motion } from 'framer-motion';
 
-function CategoryItem({item}:any) {
+function CategoryItem({item, categoryName, selectItem, unselectItem, pdfItems}:any) {
+
+  const [selected, toggleSelection] = useState(false)
+
 
   //Manipulate here
   const itemName = () => {
@@ -9,6 +13,15 @@ function CategoryItem({item}:any) {
     if(item.language_name) return item.language_name;
     if(item.job_title) return item.job_title;
     if(item.degree) return item.degree;
+  }
+
+  const handleSelection = () => {
+    selected
+      ? unselectItem(categoryName,item.id)
+      : selectItem(categoryName,item.id)
+
+    toggleSelection(!selected)
+    console.log('pdfItems: ', pdfItems)
   }
 
   return (
@@ -20,7 +33,10 @@ function CategoryItem({item}:any) {
       exit={{ opacity: 0, height: '0px' }}
       className="item-container">
       <div>
-        <i className="fas fa-check-circle"></i>
+        {selected
+          ? <i className="fas fa-check-circle" onClick={() => handleSelection()}></i>
+          : <i className="far fa-check-circle" onClick={() => handleSelection()}></i>
+          }
       </div>
       <div>
         {itemName()}
@@ -32,11 +48,26 @@ function CategoryItem({item}:any) {
 //TODO - state & dispatch types
 const mapStateToProps = (state: any) => {
   return {
+    pdfItems: state.pdf
   }
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
+    selectItem: (name:any, itemID:any) => dispatch({
+      type: 'SELECT_ITEM',
+      payload: {
+        name,
+        itemID
+      }
+    }),
+    unselectItem: (name:any, itemID:any) => dispatch({
+      type: 'UNSELECT_ITEM',
+      payload: {
+        name,
+        itemID
+      }
+    }),
   }
 }
 
