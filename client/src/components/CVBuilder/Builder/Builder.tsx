@@ -15,7 +15,7 @@ export default function Builder() {
 
   const dispatch = useDispatch()
 
-  
+
 
   return (
     <div className="h-full flex flex-wrap overflow-scroll">
@@ -23,7 +23,7 @@ export default function Builder() {
         <PersonalData/>
         <Categories />
         <AnimatePresence exitBeforeEnter>
-          <i className="fas fa-plus-circle fa-3x" 
+          <i className="fas fa-plus-circle fa-3x"
           onClick={() => dispatch({type: 'TOGGLE_MODAL', payload:{flag: true, identifier:'Categories'}})}/>
         </AnimatePresence>
       </div>
