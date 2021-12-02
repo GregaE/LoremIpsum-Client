@@ -20,5 +20,8 @@ export const style = StyleSheet.create({
     fontSize: '11px',
     fontWeight: 'light',
   },
+  sectionCtn: {
+    marginBottom: '5px',
+  },
   largeCtn: { width: '25%', marginRight: '10px' },
 });

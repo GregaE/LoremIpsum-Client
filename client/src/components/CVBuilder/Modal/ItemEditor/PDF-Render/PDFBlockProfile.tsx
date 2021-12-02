@@ -3,7 +3,7 @@ import { style } from './PDFStyles';
 import { ReactComponent as LocationIcon } from './PDFIcons/locationIcon.svg';
 export function PDFProfile({ personalDetails }: any) {
   return (
-    <View wrap={false}>
+    <View style={style.sectionCtn} wrap={false}>
       <Text style={style.profileHeader}>
         {personalDetails.first_name + ' ' + personalDetails.last_name}
       </Text>
