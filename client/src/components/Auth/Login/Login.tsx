@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LoginService } from '../../../utils/ApiService';
-import auth from '../../../utils/auth';
+import auth from '../../../utils/Auth';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
 
@@ -33,19 +33,19 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const { email, password } = state;
     const user = { email, password };
     const res = await LoginService(user);
-    
     if (res.error) {
+      console.log(res.error)
       alert(`${res.message}`);
       setState(initialState);
 
     } else {
-
-      dispatch({type: 'TOGGLE_LOGIN', payload: {isLogin: true}});
-      auth.login(() => navigate('/home'));
+      console.log("here")
+      dispatch({type: 'TOGGLE_LOGIN', payload: true });
+      auth.login(() => navigate('/'));
     }
 
   }

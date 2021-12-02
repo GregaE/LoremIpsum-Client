@@ -11,14 +11,16 @@ import { connect } from 'react-redux';
 
 function App() {
 
-  const [mockData, setMockData] = useState({})
-  useEffect(()=>{
-    getUser("/mock").then((res:User) => {
-      setMockData({...res})
-    }).catch(e => console.log(e))
-  },[])
+  // const [mockData, setMockData] = useState({})
+  // useEffect(()=>{
+  //   getUser("/mock").then((res:User) => {
+  //     setMockData({...res})
+  //   }).catch(e => console.log(e))
+  // },[])
 
   const { isLogin } = useTypedSelector((state) => state.login);
+
+  console.log(isLogin)
 
   return isLogin ? <Dashboard /> : <Login />
 }
@@ -39,7 +41,7 @@ const mapDispatchToProps = (dispatch: any) => {
       id: 'ckwkk683g00067mufbbnpb097',
       dispatch: 'ALL_SKILLS'
     }),
-  } 
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

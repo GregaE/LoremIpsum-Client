@@ -10,15 +10,17 @@ const initialState = {
 
 type Action = {
   type: string,
-  payload: string
+  payload: boolean
 }
 
 const isLogin = (state: State = initialState, action: Action):State => {
   switch(action.type) {
-    case ActionType.TOGGLE_LOGIN:
-      return {isLogin: true}; 
-    default: 
+    case ActionType.TOGGLE_LOGIN: {
+      return { isLogin: action.payload };
+    }
+    default: {
       return state;
+    }
   }
 }
 
