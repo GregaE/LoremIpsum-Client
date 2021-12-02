@@ -1,5 +1,6 @@
 // import { ModalInterface } from '../../interfaces/ModalInterface';
 import { ActionType } from '../state_interfaces/appState';
+import { Categories } from '../../interfaces/CategoriesInterface';
 // // I will have to import the interfaces for every categoy
 // // category item
 // // and the pdf itself
@@ -13,56 +14,81 @@ const pdfReducer = (
   {type, payload}: any
 ): any => {
 
-  function categoryCheck(id:string) {
-    const oldState = [...state];
-    const categoryList = []
-    for (const category of oldState) {
-      categoryList.push(category.id)
-    }
-    return categoryList.includes(id)
+  function categoryCheck(name:string) {
+    return state.some(category => category.name === name)
   }
 
   switch (type) {
     case ActionType.ADD_CATEGORY:
-      if(categoryCheck(payload.categoryID)) {
+      if(categoryCheck(payload.name)) {
         return state
       } else {
-        const category = {id: payload.categoryID, items: payload.items, pdf:[]}
+        const category = {name: payload.name, items: [...payload.items], pdf:[]}
         return [...state, category]
       }
 
     case ActionType.REMOVE_CATEGORY: 
-      if(categoryCheck(payload)) {
-        const newState = state.filter(c => c.id !== payload.categoryID)
-        return newState
-      } else {
-        return state
-      }
+      return state.filter(c => c.name !== payload.name)
 
-    case ActionType.ADD_ITEM: 
-      return {
+    case ActionType.ADD_ITEM: {
+      const newCategory = state.map(cat => {
+        if(cat.name===payload.name){
+          return {...cat, items:[...cat.items, payload.data]}
+        }
+        return cat
+      })
 
-      };
+      return newCategory
+    }
 
     case ActionType.EDIT_ITEM: 
-      return {
-          
-      };
+    {
+      const editedCategory = state.map(cat => {
+        if(cat.name===payload.name){
+          const updatedItems = cat.items.map((item:Categories) =>{
+            if(item.id === payload.itemId){
+              return {...payload.data}
+            }
+            return item
+          })
+          return {...cat, items:[...updatedItems]}
+        }
+        return cat
+      })
+      return editedCategory
+    }
 
     case ActionType.REMOVE_ITEM: 
-      return {
-          
-      };
+      const removeItemState = state.map(cat => {
+        if(cat.name === payload.name) {
+          const newItems = cat.items.filter((item:Categories) => item.id !== payload.itemID)
+          const newPdf = cat.pdf.filter((item:Categories) => item.id !== payload.itemID)
+          return {...cat, items: [...newItems], pdf: [...newPdf]}
+        }
+        return cat;
+      })
+      return removeItemState;
 
     case ActionType.SELECT_ITEM: 
-      return {
-          
-      };
+      const selectItemState = state.map(cat => {
+        if(cat.name === payload.name) {
+          const selectedItem = cat.items.filter((item:Categories) => item.id === payload.itemID)
+          const newPdf = cat.pdf.push(selectedItem)
+          return {...cat, pdf: [...newPdf]}
+        }
+        return cat;
+      })
+      return selectItemState;
 
     case ActionType.UNSELECT_ITEM: 
-      return {
-
-      };
+      const unselectItemState = state.map(cat => {
+        if(cat.name === payload.name) {
+          const newPdf = cat.pdf.filter((item:Categories) => item.id !== payload.itemID)
+          return {...cat, pdf: [...newPdf]}
+        }
+        return cat;
+      })
+      return unselectItemState;
 
     default:
       return state;
@@ -70,30 +96,3 @@ const pdfReducer = (
 };
 
 export default pdfReducer;
-
-
-/* PDF Reducer Test
-  const initialState: any = []
-
-  const finalState: any = [
-    {id: 'category_string',
-    items: [{
-      id: 'category_string + name_string',
-      name: 'name_string',
-      data: {object}
-      },
-      {
-      id: 'category_string + name_string',
-      name: 'name_string',
-      data: {object}
-    }],
-    pdf: [{
-      id: 'category_string + name_string',
-      name: 'name_string',
-      data: {object}
-    }]
-    },
-  ]
-*/
-
-export {}

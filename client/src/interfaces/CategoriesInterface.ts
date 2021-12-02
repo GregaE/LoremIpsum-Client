@@ -18,17 +18,12 @@ export interface WorkExperience {
   company?: string;
   city?: string;
   country?: string;
-  start_date?: Date;
-  end_date?: Date;
+  beginMonth?: string;
+  beginYear?: string;
+  endMonth?: string;
+  endYear?: string;
   description?: string;
   userId?: string;
-}
-//this has dates that are defined as strings
-export interface Experience extends WorkExperience {
-  beginMonth: string;
-  beginYear: string;
-  endMonth: string;
-  endYear: string;
 }
 
 export interface Languages {
@@ -44,8 +39,10 @@ export interface Education {
   school: string;
   city?: string;
   country?: string;
-  start_date?: Date;
-  end_date?: Date;
+  beginMonth?: string;
+  beginYear?: string;
+  endMonth?: string;
+  endYear?: string;
   description?: string;
   userId?: string;
 }
@@ -71,3 +68,5 @@ export interface CV {
   saved_cv: string;
   date_created: Date;
 }
+
+export type Categories = Skill | Education | WorkExperience | Languages | Certificates

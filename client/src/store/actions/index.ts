@@ -37,31 +37,31 @@ interface showCvBuilder {
 
 interface AddCategory {
   type: ActionType.ADD_CATEGORY;
-  payload: any; //Interface {categoryID: string, items: categoryInterface}
+  payload: any; //Interface {name: string, items: categoryInterface}
 }
 interface RemoveCategory {
   type: ActionType.REMOVE_CATEGORY;
-  payload: string; //categoryID
+  payload: string; //name
 }
 interface AddItem {
   type: ActionType.ADD_ITEM;
-  payload: any; //Interface {categoryID: string, data: categoryInterface}
+  payload: any; //Interface {categoryName: string, data: categoryInterface}
 }
 interface EditItem {
   type: ActionType.EDIT_ITEM;
-  payload: any; //Interface {categoryID: string, data: categoryInterface}
+  payload: any; //Interface {categoryName: string, itemId: string, data: categoryInterface}
 }
 interface RemoveItem {
   type: ActionType.REMOVE_ITEM;
-  payload: string; //itemID
+  payload: any; //Interface {categoryName: string, itemId: string}
 }
 interface SelectItem {
   type: ActionType.SELECT_ITEM;
-  payload: string; //itemID
+  payload: any; //Interface {categoryName: string, itemId: string}
 }
 interface UnselectItem {
   type: ActionType.UNSELECT_ITEM;
-  payload: string; //itemID
+  payload: any; //Interface {categoryName: string, itemId: string}
 }
 
 export type Action = toggleLogin | headerName | showCvBuilder | toggleModal
