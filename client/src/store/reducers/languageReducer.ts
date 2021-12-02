@@ -30,6 +30,13 @@ const languageReducer = (
         error: null,
         languages: payload,
       };
+    case 'POST_LANGUAGE':
+      return {
+        ...state, 
+        loading: false,
+        error: null,
+        languages: [...state.languages, payload]
+      }
     case 'UPDATE_LANGUAGE':
       return {
         ...state,

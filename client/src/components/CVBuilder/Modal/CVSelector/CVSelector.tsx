@@ -1,11 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 import CVItem from '../../../MyCVs/CVItem/CVItem';
 
-export default function CVSelector() {
+function CVSelector({curriculum}:any) {
+
+  const {cvs} = curriculum;
 
   function renderCVs() {
-    return Array(5).fill(<CVItem />)
+    if(cvs.length > 0) {
+      return Array(cvs.length).fill(<CVItem />)
+    }
+    return <p>You dont have any CV yet</p>
   }
 
   /*
@@ -19,3 +25,16 @@ export default function CVSelector() {
     </div>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    curriculum: state.cvs
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CVSelector);

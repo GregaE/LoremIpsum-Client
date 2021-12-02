@@ -1,23 +1,21 @@
-import { ActionType } from '../actions/index';
+import { ActionType, HeaderName } from '../state_interfaces/appState';
 
-interface State {
-  headerName: string,
+interface HeaderState {
+  headerName: string;
 }
 
-const initialState = {
-  headerName: 'Home',
+const initialState: HeaderState = {
+  headerName: 'Home'
 }
 
-type Action = {
-  type: string;
-  payload: string;
-}
-
-const headerName = (state: State = initialState, {type, payload}: Action):State => {
+const headerName = (
+  state = initialState,
+  {type, payload}: HeaderName
+): HeaderState => {
   switch(type) {
     case ActionType.HEADER_NAME:
-      return {headerName : payload}; 
-    default: 
+      return {headerName: payload};
+    default:
       return state;
   }
 }

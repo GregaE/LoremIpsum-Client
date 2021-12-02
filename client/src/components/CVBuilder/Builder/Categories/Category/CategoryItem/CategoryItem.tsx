@@ -1,6 +1,15 @@
+import { connect } from 'react-redux'
 import { motion } from 'framer-motion';
 
-export default function CategoryItem() {
+function CategoryItem({item}:any) {
+
+  //Manipulate here
+  const itemName = () => {
+    if(item.name) return item.name;
+    if(item.language_name) return item.language_name;
+    if(item.job_title) return item.job_title;
+    if(item.degree) return item.degree;
+  }
 
   return (
     <motion.div
@@ -14,8 +23,21 @@ export default function CategoryItem() {
         <i className="fas fa-check-circle"></i>
       </div>
       <div>
-        Item Name
+        {itemName()}
       </div>
     </motion.div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);

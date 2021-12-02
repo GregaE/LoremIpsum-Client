@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux'
+import { connect } from 'react-redux'
 
 import PersonalData from './PersonalData/PersonalData';
 import Categories from './Categories/Categories';
@@ -7,32 +7,53 @@ import Preview from './Preview/Preview';
 import BuilderSettings from './BuilderSettings/BuilderSettings';
 
 import { AnimatePresence } from 'framer-motion';
-import { toggleModal } from '../../../store/actions/toggleModal';
 
+//TODO types for toggle
+function Builder({toggle}: any) {
 
-
-export default function Builder() {
-
-  const dispatch = useDispatch()
 
   return (
     <div className="h-full flex flex-wrap overflow-scroll">
-      <div className="column1 w-2/6 border border-solid border-black overflow-scroll">
+      <div className="w-2/6 pl-10 overflow-hiden text-center">
         <PersonalData/>
         <Categories />
         <AnimatePresence exitBeforeEnter>
-          <i className="fas fa-plus-circle fa-3x" 
-          onClick={() => dispatch({type: 'TOGGLE_MODAL', payload:{flag: true, identifier:'Categories'}})}/>
+          <i
+          className="fas fa-plus-circle fa-3x"
+          onClick={toggle}
+          />
         </AnimatePresence>
       </div>
 
-      <div className="column2 w-3/6">
+      <div className="w-3/6">
         <Preview/>
       </div>
 
-      <div className="column3 w-1/6">
+      <div className="w-1/6">
         <BuilderSettings/>
       </div>
     </div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+    pdfStatus: state.pdf,
+  }
+}
+
+//TODO type for dispatch
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    toggle: () => dispatch({
+      type: 'TOGGLE_MODAL',
+      payload: {
+        flag: true,
+        identifier: 'Categories'
+      }
+    })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Builder)

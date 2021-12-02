@@ -30,6 +30,13 @@ const educationReducer = (
         error: null,
         education: payload,
       };
+    case 'POST_EDUCATION':
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        education: [...state.education, payload] 
+      };
     case 'UPDATE_EDUCATION':
       return {
         ...state,

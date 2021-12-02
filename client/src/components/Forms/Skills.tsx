@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Buttons from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 import { Skill } from '../../interfaces/CategoriesInterface';
 
 import { useTypedSelector } from '../../utils/useTypeSelector'
+import Button from './Elements/Buttons/Button';
 
 export default function Skills() {
 
@@ -29,7 +29,11 @@ export default function Skills() {
         <TextInput type="text" value={skill.name} placeholder="skills" label="" name="name" callback={handleForm}/>
         <TextInput type="text" value={skill.description ? skill.description : ""} placeholder="sub-skill" label="" name="description" callback={handleForm}/>
       </form>
-      <Buttons/>
+      <div className="flex flex-row">
+        <Button name="Delete" formObject={skill}/>
+        <Button name="Edit" formObject={skill}/>
+        <Button name="Create" formObject={skill}/>
+      </div>
     </div>
   );
 }
