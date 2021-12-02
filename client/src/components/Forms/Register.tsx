@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import auth from '../../utils/auth';
+import Auth from '../../utils/Auth';
 import { RegisterService } from '../../utils/ApiService';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -26,7 +26,7 @@ const initialState = {
         [name]: value,
       }));
     };
-  
+
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       // Add logic to send send a request to the API service /register
@@ -41,18 +41,18 @@ const initialState = {
         // REMOVE-END
         // This sets isAuthenticated = true and redirects to profile
         dispatch({type: 'TOGGLE_LOGIN', payload: {isLogin: true}});
-        auth.login(() => navigate('/home'));
+        Auth.login(() => navigate('/home'));
         // REMOVE-START
       }
       // REMOVE-END
     };
-  
+
     const validateForm = () => {
       return (
         !state.email || !state.password || !state.firstName || !state.lastName
       );
     };
-  
+
     return (
       <div>
         <h2>Register</h2>
@@ -92,5 +92,5 @@ const initialState = {
       </div>
     );
   };
-  
+
   export default Register;
