@@ -1,5 +1,6 @@
 import { View, Text } from '@react-pdf/renderer';
 import { style } from './PDFStyles';
+import { ReactComponent as LocationIcon } from './PDFIcons/locationIcon.svg';
 export function PDFProfile({ personalDetails }: any) {
   return (
     <View wrap={false}>
@@ -7,7 +8,10 @@ export function PDFProfile({ personalDetails }: any) {
         {personalDetails.first_name + ' ' + personalDetails.last_name}
       </Text>
       <Text style={style.text}>
-        <Text style={style.subHeader}>Address: </Text>
+        <Text style={style.subHeader}>
+          <LocationIcon />
+          Address:{' '}
+        </Text>
         {`${personalDetails.street && personalDetails.street + ','} ${
           personalDetails.city && personalDetails.city
         }${personalDetails.postcode && ' ' + personalDetails.postcode}, ${
