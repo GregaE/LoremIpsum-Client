@@ -16,6 +16,7 @@ interface headerName {
 }
 interface toggleLogin {
   type: ActionType.TOGGLE_LOGIN;
+  payload: boolean;
 }
 interface toggleModal {
   type: ActionType.TOGGLE_MODAL;

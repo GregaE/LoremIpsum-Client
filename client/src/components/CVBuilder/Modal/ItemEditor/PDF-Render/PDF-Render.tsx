@@ -53,5 +53,3 @@ export default function PDFRender() {
     </PDFViewer>
   )
 }
-
-ReactDOM.render(<PDFRender/>, document.getElementById("root"));
