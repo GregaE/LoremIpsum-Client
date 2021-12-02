@@ -1,19 +1,19 @@
 export interface Skill {
-  id: string;
+  id?: string;
   name: string;
   description?: string;
   userId?: string;
 }
 
 export interface Certificates {
-  id: string;
+  id?: string;
   name: string;
   description?: string;
   userId?: string;
 }
 
 export interface WorkExperience {
-  id: string;
+  id?: string;
   job_title: string;
   company?: string;
   city?: string;
@@ -27,14 +27,14 @@ export interface WorkExperience {
 }
 
 export interface Languages {
-  id: string;
+  id?: string;
   language_name: string;
   level?: string;
   userId?: string;
 }
 
 export interface Education {
-  id: string;
+  id?: string;
   degree: string;
   school: string;
   city?: string;
@@ -48,7 +48,7 @@ export interface Education {
 }
 
 export interface PersonalDetails {
-  id: string;
+  id?: string;
   email?: string;
   phone_number?: string;
   image?: string;

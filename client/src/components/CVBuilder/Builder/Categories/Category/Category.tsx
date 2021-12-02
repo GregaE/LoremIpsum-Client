@@ -5,12 +5,17 @@ import { AnimatePresence } from 'framer-motion';
 
 
 //TODO: fix the any types of the props
-function Category({name, items, toggle}:any) {
+function Category({name, items, toggle, pdfItems}:any) {
 
   const [expander, toggleExpand] = useState(false);
-  const test = items
-  console.log('test category Length: ', Object.keys(test).length)
-
+  
+  function renderCategories() {
+    console.log(items)
+    return items.map((item:any) => {
+      return <CategoryItem key={item.id} item={item} />
+    })
+  }
+console.log(pdfItems)
   return (
     <div className="category-container w-full">
       <div className="flex flex-wrap p-4 gap-10 justify-between items-center">
@@ -19,7 +24,7 @@ function Category({name, items, toggle}:any) {
         <i onClick={() => toggleExpand(!expander)} className="fas fa-minus cursor-pointer"></i>
       </div>
       <AnimatePresence exitBeforeEnter>
-        {expander && Array(Object.keys(test).length).fill(<CategoryItem key="34" />)}
+        {expander && renderCategories()}
       </AnimatePresence>
     </div>
   );
@@ -28,6 +33,7 @@ function Category({name, items, toggle}:any) {
 //TODO - state & dispatch types
 const mapStateToProps = (state: any) => {
   return {
+    pdfItems: state.pdf
   }
 }
 

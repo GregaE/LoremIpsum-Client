@@ -36,6 +36,13 @@ function Builder({toggle}: any) {
   );
 }
 
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+    pdfStatus: state.pdf,
+  }
+}
+
 //TODO type for dispatch
 const mapDispatchToProps = (dispatch: any) => {
   return {
@@ -49,4 +56,4 @@ const mapDispatchToProps = (dispatch: any) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Builder)
+export default connect(mapStateToProps, mapDispatchToProps)(Builder)
