@@ -12,6 +12,7 @@ import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
 
 import { AnimatePresence } from 'framer-motion';
+import PDFRender from '../CVBuilder/Modal/ItemEditor/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({modal,toggle, getUser,getLanguages,getCertificates,getSkills,
@@ -53,10 +54,11 @@ function Dashboard({modal,toggle, getUser,getLanguages,getCertificates,getSkills
         <Header/>
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>
-              <Route path='/' element={<Home/>} />
-              <Route path='/cvbuilder' element={<CVBuilder/>} />
-              <Route path='/mycvs' element={<MyCVs/>} />
-              <Route path='/profile' element={<Profile/>} />
+            <Route path='/' element={<Home/>} />
+            <Route path='/cvbuilder' element={<CVBuilder/>} />
+            <Route path='/mycvs' element={<MyCVs/>} />
+            <Route path='/profile' element={<Profile/>} />
+            <Route path='/pdf' element={<PDFRender/>} />
           </Routes>
         </AnimatePresence>
       </div>
