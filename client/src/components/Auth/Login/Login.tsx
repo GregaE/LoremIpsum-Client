@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LoginService } from '../../../utils/ApiService';
+import { Link } from 'react-router-dom';
 import Auth from '../../../utils/Auth';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
@@ -13,14 +14,11 @@ const initialState = {
   password: '',
 };
 
-export default function Login() {
+export default function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [ state, setState ] = useState(initialState);
-/*
-  Here we just basically have a form and get user and pwd
-*/
 
   const handleChange = (e: React.FormEvent) => {
     const target = e.target as HTMLInputElement;
@@ -99,11 +97,11 @@ export default function Login() {
             </div>
             <div className="text-sm">
               <span>Not yet registered? </span>
-              <span>
-                <a href="#" className="font-medium text-primary hover:bg-primary-bg">
+              <Link to="/" >
+              <span className="font-medium text-primary hover:text-primary-x" onClick={() => props.setRegister(true)}>
                   Click here to register now.
-                </a>
               </span>
+              </Link>
             </div>
             <div>
               <button

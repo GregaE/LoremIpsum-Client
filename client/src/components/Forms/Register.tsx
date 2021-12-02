@@ -9,11 +9,11 @@ import { useNavigate } from 'react-router';
 const initialState = {
     email: '',
     password: '',
-    firstName: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
   };
 
-  const Register = () => {
+  const Register = ( props: {setRegister: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [state, setState] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -29,27 +29,21 @@ const initialState = {
 
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      // Add logic to send send a request to the API service /register
-      // REMOVE-START
-      const { email, password, firstName, lastName } = state;
-      const user = { email, password, firstName, lastName };
+      const { email, password, first_name, last_name } = state;
+      const user = { email, password, first_name, last_name };
       const res = await RegisterService(user);
       if (res.error) {
         alert(`${res.message}`);
         setState(initialState);
       } else {
-        // REMOVE-END
-        // This sets isAuthenticated = true and redirects to profile
-        dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true}});
+        dispatch({type: 'TOGGLE_LOGIN', payload: true});
         Auth.login(() => navigate('/home'));
-        // REMOVE-START
       }
-      // REMOVE-END
     };
 
     const validateForm = () => {
       return (
-        !state.email || !state.password || !state.firstName || !state.lastName
+        !state.email || !state.password || !state.first_name || !state.last_name
       );
     };
 
@@ -75,14 +69,14 @@ const initialState = {
             type="text"
             placeholder="Name"
             name="firstName"
-            value={state.firstName}
+            value={state.first_name}
             onChange={handleChange}
           />
           <input
             type="text"
             placeholder="Nameson"
             name="lastName"
-            value={state.lastName}
+            value={state.last_name}
             onChange={handleChange}
           />
           <button className="form-submit" type="submit" disabled={validateForm()}>

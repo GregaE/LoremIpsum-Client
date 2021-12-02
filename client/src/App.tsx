@@ -5,6 +5,7 @@ import Login from './components/Auth/Login/Login';
 import { withCookies, Cookies } from 'react-cookie';
 import Dashboard from './components/Dashboard/Dashboard';
 import { useDispatch } from 'react-redux';
+import AuthLogin from './components/Auth/AuthLogin';
 
 import { getUser } from "./utils/ApiService"
 import { User } from "./interfaces/UserInterface"
@@ -18,7 +19,8 @@ const cookies = new Cookies();
   if (cookies.get('sid')) {
     return <Dashboard/>
   } else {
-    return <Login />;
+
+    return <AuthLogin />;
   }
 }
 
