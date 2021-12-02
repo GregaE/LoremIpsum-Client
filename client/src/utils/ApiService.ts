@@ -12,25 +12,46 @@ export function getUser(id: string): Promise<User> {
   return fetchApi<User>(id);
 }
 
-export function LoginService (user: loginInterface)  {
-  return fetch(`${BASE_URL}/login`, {
-    method: 'POST',
-    credentials: 'include',
-    mode: 'cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user),
-  })
-  .then((res) => res.json())
-  .catch((err) => console.error(err));
+export async function LoginService (user: loginInterface)  {
+  try {
+    const res = await fetch(`${BASE_URL}/login`, {
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    });
+    return await res.json();
+  } catch (err) {
+    return console.error(err);
+  }
 }
 
-export function LogoutService ()  {
-  return fetch(`${BASE_URL}/logout`, {
-    method: 'POST',
-    credentials: 'include',
-    mode: 'cors',
-    headers: { 'Content-Type': 'application/json' },
-  })
-  .then((res) => res.json())
-  .catch((err) => console.error(err));
+export async function LogoutService ()  {
+  try {
+    const res = await fetch(`${BASE_URL}/logout`, {
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return await res.json();
+  } catch (err) {
+    return console.error(err);
+  }
+}
+
+export async function RegisterService (user: loginInterface) {
+  try {
+    const res = await fetch(`${BASE_URL}/register`, {
+      method: 'POST',
+      credentials: 'include',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    });
+    return await res.json();
+  } catch (err) {
+    return console.error(err);
+  }
 }
