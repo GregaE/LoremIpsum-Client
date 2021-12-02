@@ -9,7 +9,7 @@ function Category({name, items, toggle}:any) {
 
   const [expander, toggleExpand] = useState(false);
   const test = items
-  console.log('test: ', Object.keys(test).length)
+  console.log('test category Length: ', Object.keys(test).length)
 
   return (
     <div className="category-container w-full">

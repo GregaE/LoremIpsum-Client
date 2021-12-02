@@ -12,8 +12,7 @@ function CVBuilder({pdfStatus}:any) {
 
   const { builder } = useTypedSelector((state) => state.showCvBuilder)
   const { flag } = useTypedSelector((state) => state.toggleModal)
-
-  console.log('pdfStatus: in cvbuilder ', pdfStatus)
+  
   /*
   Once you click here:
     We fetch data of user cvs (in case he click from CVs)

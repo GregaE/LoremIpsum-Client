@@ -1,12 +1,9 @@
 import { connect } from 'react-redux'
-import { useTypedSelector } from '../../../../utils/useTypeSelector';
 import Category from './Category/Category';
 
-function Categories() {
+function Categories({pdfStatus}:any) {
 
-  
-  const pdfStatus = useTypedSelector((state) => state.pdf)
-  console.log('pdfStatus: ', pdfStatus)
+  console.log('pdfStatus from categories: ', pdfStatus)
 
   function renderCategories() {
     return pdfStatus.map((category:any) => <Category key={category.name} name={category.name} items={category.items}/>)
@@ -22,6 +19,7 @@ function Categories() {
 //TODO - state & dispatch types
 const mapStateToProps = (state: any) => {
   return {
+    pdfStatus: state.pdf,
   }
 }
 
