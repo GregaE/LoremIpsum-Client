@@ -34,7 +34,6 @@ export default function Login(props: {setRegister:React.Dispatch<React.SetStateA
     const { email, password } = state;
     const user = { email, password };
     const res = await LoginService(user);
-    console.log(res);
     if (res.error) {
       console.log(res.error)
       alert(`${res.message}`);
