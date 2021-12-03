@@ -8,10 +8,10 @@ function NavBar({navigate}: any) {
 
   return (
     <div className='bg-primary text-light w-1/6 h-screen flex flex-col items-center gap-6'>
-      <div className='w-4/6 h-1/6 m-5'>
+      <div className='w-4/6 h-1/6 m-5 flex justify-center'>
         <Link to='/' >
           <img onClick={() => navigate('Home')}
-            className='rounded-full' src='https://www.lovemysalad.com/sites/default/files/styles/image_530x397/public/banaan-large.jpg?itok=dZxH6D_w' alt='logo'/>
+            className='rounded-full h-48' src='https://c.tenor.com/TejsD3K0S34AAAAC/peanutbutterjellytime-banana.gif' alt='logo'/>
         </Link>
         </div>
         <ul className='flex flex-col flex-wrap justify-around items-center h-3/6 w-5/6'>
