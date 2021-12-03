@@ -1,5 +1,9 @@
 import { ModalInterface } from "../../interfaces/ModalInterface";
+// I will have to import the interfaces for every categoy
+// category item
+// and the pdf itself
 
+//TODO: Replace all the any types to proper type
 
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',
@@ -7,6 +11,7 @@ export enum ActionType {
   SHOW_CVBUILDER = 'SHOW_CVBUILDER',
   TOGGLE_MODAL = 'TOGGLE_MODAL',
 
+  //PDF FORM ACTIONS
   ADD_CATEGORY = 'ADD_CATEGORY',
   REMOVE_CATEGORY = 'REMOVE_CATEGORY',
   ADD_ITEM = 'ADD_ITEM',
@@ -19,57 +24,54 @@ export enum ActionType {
 ///////////////////////////////
 /////// APP NAVIGATION ////////
 ///////////////////////////////
-interface headerName {
+export interface HeaderName {
   type: ActionType.HEADER_NAME;
   payload: string;
 }
-interface toggleLogin {
+
+export interface ToggleLogin {
   type: ActionType.TOGGLE_LOGIN;
 }
-interface toggleModal {
+
+export interface ToggleModal {
   type: ActionType.TOGGLE_MODAL;
   payload: ModalInterface;
 }
-interface showCvBuilder {
+
+export interface ShowCvBuilder {
   type: ActionType.SHOW_CVBUILDER;
   payload: boolean;
 }
 
-interface AddCategory {
-  type: ActionType.ADD_CATEGORY;
-  payload: any; //Interface {name: string, items: categoryInterface}
-}
-interface RemoveCategory {
-  type: ActionType.REMOVE_CATEGORY;
-  payload: string; //name
-}
-interface AddItem {
-  type: ActionType.ADD_ITEM;
-  payload: any; //Interface {categoryName: string, data: categoryInterface}
-}
-interface EditItem {
-  type: ActionType.EDIT_ITEM;
-  payload: any; //Interface {categoryName: string, itemId: string, data: categoryInterface}
-}
-interface RemoveItem {
-  type: ActionType.REMOVE_ITEM;
-  payload: any; //Interface {categoryName: string, itemId: string}
-}
-interface SelectItem {
-  type: ActionType.SELECT_ITEM;
-  payload: any; //Interface {categoryName: string, itemId: string}
-}
-interface UnselectItem {
-  type: ActionType.UNSELECT_ITEM;
-  payload: any; //Interface {categoryName: string, itemId: string}
-}
+////////////////////////////////
+////////// PDF STATE ///////////
+///////////////////////////////
 
-export type Action = toggleLogin | headerName | showCvBuilder | toggleModal
-  | AddCategory
-  | RemoveCategory
-  | AddItem
-  | EditItem
-  | RemoveItem
-  | SelectItem
-  | UnselectItem
-  ;
+export interface AddCategory {
+  type: ActionType.ADD_CATEGORY;
+  payload: any; //Interface {categoryID: string, items: categoryInterface}
+}
+export interface RemoveCategory {
+  type: ActionType.REMOVE_CATEGORY;
+  payload: string; //categoryID
+}
+export interface AddItem {
+  type: ActionType.ADD_ITEM;
+  payload: any; //Interface {itemID: string, data: categoryInterface}
+}
+export interface EditItem {
+  type: ActionType.EDIT_ITEM;
+  payload: any; //Interface {itemID: string, data: categoryInterface}
+}
+export interface RemoveItem {
+  type: ActionType.REMOVE_ITEM;
+  payload: string; //itemID
+}
+export interface SelectItem {
+  type: ActionType.SELECT_ITEM;
+  payload: string; //itemID
+}
+export interface UnselectItem {
+  type: ActionType.UNSELECT_ITEM;
+  payload: string; //itemID
+}

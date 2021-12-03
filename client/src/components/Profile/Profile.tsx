@@ -1,10 +1,24 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
+import { connect } from 'react-redux'
 
 import ProfileImg from "./ProfileImg/ProfileImg"
 
 import { motion } from 'framer-motion';
 
-export default function Profile() {
+function Profile({userDetail, lang,cert,skill,edu,exp}:any) {
+
+  const {personal_details} = userDetail;
+  const {username, email, password} = personal_details
+
+  // Array of objects I let it here for future implementation
+  const {languages} = lang;
+  const {certificates} = cert
+  const {skills} = skill
+  const {education} = edu
+  const {experience} = exp
+
+  console.log(languages,certificates,skills,education,experience)
 
   const containerVariants = {
     hidden: {
@@ -31,9 +45,9 @@ export default function Profile() {
         <div className="w-2/3 h-1/6 flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
           <p className="p-4 underline text-2xl">Joder!</p>
           <div className="p-8">
-            <p>Name: Banana Joe John</p>
-            <p>E-mail: joe_banana@bananas.com</p>
-            <p>Password: change your password</p>
+            <p>{`Name ${username}`}</p>
+            <p>{`E-mail ${email}`}</p>
+            <p>{`Password ${password}`}</p>
           </div>
         </div>
       </div>
@@ -48,3 +62,22 @@ export default function Profile() {
     </motion.div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+    userDetail: state.personal_details,
+    lang: state.languages,
+    cert: state.certificates,
+    skill: state.skills,
+    edu: state.education,
+    exp: state.experience
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
