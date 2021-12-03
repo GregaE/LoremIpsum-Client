@@ -3,10 +3,6 @@ import PDFRender from '../../PDF-Render/PDF-Render';
 import { connect } from 'react-redux';
 
 function Preview({ pdf }: any) {
-  //TODO checkout this tomorrow with help request
-  // const [instance, updateInstance] = usePDF({
-  //   document: PDFRender({ pdf }),
-  // });
 
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
