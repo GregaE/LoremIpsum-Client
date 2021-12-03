@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 
@@ -28,17 +28,22 @@ function Dashboard({
   getEducation,
   getExperience,
   getCVs,
+  login
 }: any) {
+
   const location = useLocation();
 
+  const { userId } = login;
+  console.log(userId)
+
   useEffect(() => {
-    getUser();
-    getLanguages();
-    getCertificates();
-    getSkills();
-    getEducation();
-    getExperience();
-    getCVs();
+    getUser(userId);
+    getLanguages(userId);
+    getCertificates(userId);
+    getSkills(userId);
+    getEducation(userId);
+    getExperience(userId);
+    getCVs(userId);
   }, []);
 
   /*
@@ -93,6 +98,7 @@ const mapStateToProps = (state: any) => {
     modal: state.toggleModal,
     userDetail: state.personal_details,
     skills: state.skills,
+    login: state.login,
   };
 };
 
@@ -106,62 +112,64 @@ const mapDispatchToProps = (dispatch: any) => {
           identifier: '',
         },
       }),
-    getUser: () =>
+
+    getUser: (userId:string) =>
+
       dispatch({
         //CAUTION USER AND PERSONAL DETAILS ARENT THE SAME!!!
         type: 'FETCH_DATA',
         endpoint: '/user',
         method: 'GET',
-        id: 'ckwqimttz0078guctorcgc4x3',
+        id: userId,
         dispatch: 'PERSONAL_DETAILS',
       }),
 
-    getLanguages: () =>
+    getLanguages: (userId:string) =>
       dispatch({
         type: 'FETCH_DATA',
         endpoint: '/languages',
         method: 'GET',
-        id: 'ckwqimttz0078guctorcgc4x3',
+        id: userId,
         dispatch: 'ALL_LANGUAGES',
       }),
-    getCertificates: () =>
+    getCertificates: (userId:string) =>
       dispatch({
         type: 'FETCH_DATA',
         endpoint: '/certificates',
         method: 'GET',
-        id: 'ckwqimttz0078guctorcgc4x3',
+        id: userId,
         dispatch: 'ALL_CERTIFICATES',
       }),
-    getSkills: () =>
+    getSkills: (userId:string) =>
       dispatch({
         type: 'FETCH_DATA',
         endpoint: '/skills',
         method: 'GET',
-        id: 'ckwqimttz0078guctorcgc4x3',
+        id: userId,
         dispatch: 'ALL_SKILLS',
       }),
-    getEducation: () =>
+    getEducation: (userId:string) =>
       dispatch({
         type: 'FETCH_DATA',
         endpoint: '/education',
         method: 'GET',
-        id: 'ckwqimttz0078guctorcgc4x3',
+        id: userId,
         dispatch: 'ALL_EDUCATION',
       }),
-    getExperience: () =>
+    getExperience: (userId:string) =>
       dispatch({
         type: 'FETCH_DATA',
         endpoint: '/workExperience',
         method: 'GET',
-        id: 'ckwqimttz0078guctorcgc4x3',
+        id: userId,
         dispatch: 'ALL_EXPERIENCES',
       }),
-    getCVs: () =>
+    getCVs: (userId:string) =>
       dispatch({
         type: 'FETCH_DATA',
         endpoint: '/savedCV',
         method: 'GET',
-        id: 'ckwqimttz0078guctorcgc4x3',
+        id: userId,
         dispatch: 'ALL_CVS',
       }),
   };

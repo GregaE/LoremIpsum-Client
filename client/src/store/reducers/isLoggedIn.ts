@@ -1,22 +1,22 @@
-import { ActionType } from '../actions/index';
+import { ProfileInterface } from '../../interfaces/ProfileInterface';
+import { ActionType, ToggleLogin } from '../state_interfaces/appState';
 
-interface State {
-  isLoggedIn: boolean,
-}
-
-const initialState = {
+const initialState: ProfileInterface = {
   isLoggedIn: false,
+  userId: '',
 }
 
-type Action = {
-  type: string,
-  payload: boolean
-}
-
-const isLoggedIn = (state: State = initialState, action: Action):State => {
-  switch(action.type) {
+const isLoggedIn = (
+  state = initialState, 
+  { type, payload }: ToggleLogin
+  ):ProfileInterface  => {
+  switch(type) {
     case ActionType.TOGGLE_LOGIN: {
-      return { isLoggedIn: action.payload };
+      return { 
+        ...state, 
+        isLoggedIn: payload.isLoggedIn,
+        userId: payload.userId,
+      };
     }
     default: {
       return state;

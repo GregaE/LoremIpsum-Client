@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTypedSelector } from './utils/useTypeSelector';
 
-import Login from './components/Auth/Login/Login';
 import { withCookies, Cookies } from 'react-cookie';
 import Dashboard from './components/Dashboard/Dashboard';
 import { useDispatch } from 'react-redux';
@@ -9,14 +8,19 @@ import AuthLogin from './components/Auth/AuthLogin';
 
 import { connect } from 'react-redux';
 
-function App() {
+function App({login}:any) {
+  const dispatch = useDispatch();
 const cookies = new Cookies();
+const { isLoggedIn } = login;
 
-  const { isLoggedIn } = useTypedSelector((state) => state.login);
-  const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
+const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
 
-  return (
-    render
+if (login.userId === '') {
+  dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id')} });
+}
+
+return (
+  render
   )
 }
 
@@ -24,6 +28,7 @@ const mapStateToProps = (state: any) => ({
   error: state.error,
   loading: state.loading,
   skills: state.skills,
+  login: state.login
 });
 
 const mapDispatchToProps = (dispatch: any) => {
