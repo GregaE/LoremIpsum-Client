@@ -15,7 +15,7 @@ export default function Logout () {
   }
 
   const handleAuth = () => {
-    dispatch({type: 'TOGGLE_LOGIN', payload: false });
+    dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: ''} });
     Auth.logout(() => navigate('/'));
   }
 

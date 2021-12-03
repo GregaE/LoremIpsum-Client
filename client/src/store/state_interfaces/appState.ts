@@ -1,4 +1,5 @@
 import { ModalInterface } from "../../interfaces/ModalInterface";
+import { ProfileInterface } from "../../interfaces/ProfileInterface";
 // I will have to import the interfaces for every categoy
 // category item
 // and the pdf itself
@@ -30,6 +31,7 @@ export interface HeaderName {
 
 export interface ToggleLogin {
   type: ActionType.TOGGLE_LOGIN;
+  payload: ProfileInterface
 }
 
 export interface ToggleModal {

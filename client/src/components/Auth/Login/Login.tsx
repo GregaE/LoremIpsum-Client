@@ -40,7 +40,8 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
       alert(`${res.message}`);
       setState(initialState);
     } else {
-      dispatch({type: 'TOGGLE_LOGIN', payload: true });
+      dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+      localStorage.setItem('user_id', res.user_id);
       Auth.login(() => navigate('/'));
     }
   }
