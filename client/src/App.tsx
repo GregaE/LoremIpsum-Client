@@ -9,10 +9,15 @@ import AuthLogin from './components/Auth/AuthLogin';
 import { connect } from 'react-redux';
 
 function App({login}:any) {
+  const dispatch = useDispatch();
 const cookies = new Cookies();
 const { isLoggedIn } = login;
 
 const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
+
+if (login.userId === '') {
+  dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id')} });
+}
 
 return (
   render

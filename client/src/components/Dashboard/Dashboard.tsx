@@ -32,11 +32,9 @@ function Dashboard({
 }: any) {
 
   const location = useLocation();
-  // const dispatch = useDispatch();
-  // dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id')} });
   
   const { userId } = login;
-
+  console.log(userId)
 
   useEffect(() => {
     getUser(userId);
