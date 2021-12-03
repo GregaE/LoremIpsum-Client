@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import { motion } from 'framer-motion';
+import { DotsVerticalIcon } from '@heroicons/react/solid';
 
 function CategoryItem({
   item,
@@ -43,20 +44,22 @@ function CategoryItem({
       exit={{ opacity: 0, height: '0px' }}
       className="item-container"
     >
-      <div>
-        {selected ? (
+      <div className="group flex flex-row w-full ">
+        <div
+          onClick={() => handleSelection()}
+          className="m-1 flex p-1 w-full cursor-pointer"
+        >
           <i
-            className="fas fa-check-circle"
-            onClick={() => handleSelection()}
+            className={`${
+              selected ? 'fas' : 'far'
+            } fa-check-circle m-1 cursor-pointer`}
           ></i>
-        ) : (
-          <i
-            className="far fa-check-circle"
-            onClick={() => handleSelection()}
-          ></i>
-        )}
+          <span className="font-normal group-hover:font-medium">
+            {itemName()}
+          </span>
+        </div>
+        <DotsVerticalIcon className="h-5 w-5 invisible group-hover:visible justify-self-end self-center cursor-pointer"></DotsVerticalIcon>
       </div>
-      <div>{itemName()}</div>
     </motion.div>
   );
 }

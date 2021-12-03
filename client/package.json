@@ -21,7 +21,6 @@
     "autoprefixer": "10.x",
     "cross-env": "7.x",
     "delay-cli": "^1.1.0",
-    "file-saver": "^2.0.5",
     "firebase": "^8.0.0",
     "framer-motion": "^4.1.17",
     "moment": "^2.29.1",
