@@ -107,7 +107,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/user',
         method: 'GET',
-        id: 'ckwnsopv90002t5ctn48e1b3y',
+        id: 'ckwqas6eo0002ibwahk7ky521',
         dispatch: 'PERSONAL_DETAILS',
       }),
 
@@ -116,7 +116,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/languages',
         method: 'GET',
-        id: 'ckwnsopv90002t5ctn48e1b3y',
+        id: 'ckwqas6eo0002ibwahk7ky521',
         dispatch: 'ALL_LANGUAGES',
       }),
     getCertificates: () =>
@@ -124,7 +124,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/certificates',
         method: 'GET',
-        id: 'ckwnsopv90002t5ctn48e1b3y',
+        id: 'ckwqas6eo0002ibwahk7ky521',
         dispatch: 'ALL_CERTIFICATES',
       }),
     getSkills: () =>
@@ -132,7 +132,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/skills',
         method: 'GET',
-        id: 'ckwnsopv90002t5ctn48e1b3y',
+        id: 'ckwqas6eo0002ibwahk7ky521',
         dispatch: 'ALL_SKILLS',
       }),
     getEducation: () =>
@@ -140,7 +140,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/education',
         method: 'GET',
-        id: 'ckwnsopv90002t5ctn48e1b3y',
+        id: 'ckwqas6eo0002ibwahk7ky521',
         dispatch: 'ALL_EDUCATION',
       }),
     getExperience: () =>
@@ -148,7 +148,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/workExperience',
         method: 'GET',
-        id: 'ckwnsopv90002t5ctn48e1b3y',
+        id: 'ckwqas6eo0002ibwahk7ky521',
         dispatch: 'ALL_EXPERIENCES',
       }),
     getCVs: () =>
@@ -156,7 +156,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/savedCV',
         method: 'GET',
-        id: 'ckwnsopv90002t5ctn48e1b3y',
+        id: 'ckwqas6eo0002ibwahk7ky521',
         dispatch: 'ALL_CVS',
       }),
   };
