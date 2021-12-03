@@ -31,14 +31,6 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => {
   return {
     toggleLoading: () => dispatch({ type: 'LOADING' }),
-    fetchData: () =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/skills',
-        method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
-        dispatch: 'ALL_SKILLS',
-      }),
   };
 };
 
