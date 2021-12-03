@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LoginService } from '../../../utils/ApiService';
-import { Link } from 'react-router-dom';
 import Auth from '../../../utils/Auth';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
@@ -35,11 +34,11 @@ export default function Login(props: {setRegister:React.Dispatch<React.SetStateA
     const { email, password } = state;
     const user = { email, password };
     const res = await LoginService(user);
+    console.log(res);
     if (res.error) {
       console.log(res.error)
       alert(`${res.message}`);
       setState(initialState);
-
     } else {
       dispatch({type: 'TOGGLE_LOGIN', payload: true });
       Auth.login(() => navigate('/'));
@@ -97,11 +96,9 @@ export default function Login(props: {setRegister:React.Dispatch<React.SetStateA
             </div>
             <div className="text-sm">
               <span>Not yet registered? </span>
-              <Link to="/" >
-              <span className="font-medium text-primary hover:text-primary-x" onClick={() => props.setRegister(true)}>
+              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => props.setRegister(true)}>
                   Click here to register now.
               </span>
-              </Link>
             </div>
             <div>
               <button

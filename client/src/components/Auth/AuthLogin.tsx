@@ -6,7 +6,7 @@ export default function AuthLogin () {
     const [ register, setRegister ] = useState(false);
 
     return (
-        <div>
+        <div className="h-screen">
         {register
         ? <Register setRegister={setRegister}/>
         : <Login setRegister={setRegister}/>}
