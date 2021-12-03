@@ -69,4 +69,13 @@ export interface CV {
   date_created: Date;
 }
 
-export type Categories = Skill | Education | WorkExperience | Languages | Certificates
+export interface PDF {
+  name: string;
+  items: Categories[];
+}
+
+export type Categories = Skill &
+  Education &
+  WorkExperience &
+  Languages &
+  Certificates;
