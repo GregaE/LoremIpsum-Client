@@ -34,12 +34,14 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
     const { email, password } = state;
     const user = { email, password };
     const res = await LoginService(user);
+    console.log(res);
     if (res.error) {
       console.log(res.error)
       alert(`${res.message}`);
       setState(initialState);
     } else {
-      dispatch({type: 'TOGGLE_LOGIN', payload: true });
+      dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+      localStorage.setItem('user_id', res.user_id);
       Auth.login(() => navigate('/'));
     }
   }

@@ -12,7 +12,7 @@ function NavBar({ navigate }: any) {
           <img
             onClick={() => navigate('Home')}
             className="rounded-full h-48"
-            src="https://c.tenor.com/TejsD3K0S34AAAAC/peanutbutterjellytime-banana.gif"
+            src=""
             alt="logo"
           />
         </Link>
