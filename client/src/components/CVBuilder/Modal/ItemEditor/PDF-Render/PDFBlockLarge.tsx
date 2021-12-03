@@ -2,7 +2,7 @@ import { View, Text } from '@react-pdf/renderer';
 import {
   Education,
   WorkExperience,
-} from '../../../../../interfaces/CategoriesInterface';
+} from '../../../interfaces/CategoriesInterface';
 import { style } from './PDFStyles';
 
 export function PDFBLockLarge({

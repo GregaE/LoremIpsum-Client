@@ -1,7 +1,7 @@
 import { View, Text, Svg } from '@react-pdf/renderer';
 import { style } from './PDFStyles';
 import { ReactComponent as LocationIcon } from './PDFIcons/locationIcon.svg';
-import { PersonalDetails } from '../../../../../interfaces/CategoriesInterface';
+import { PersonalDetails } from '../../../interfaces/CategoriesInterface';
 export function PDFProfile({
   personalDetails,
 }: {

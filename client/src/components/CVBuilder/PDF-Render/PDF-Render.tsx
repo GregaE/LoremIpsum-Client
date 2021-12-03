@@ -3,8 +3,8 @@ import { PDFBLockLarge } from './PDFBlockLarge';
 import { PDFProfile } from './PDFBlockProfile';
 import { PDFBlockSmall } from './PDFBlockSmall';
 import { pageStyle } from './PDFStyles';
-import { useTypedSelector } from '../../../../../utils/useTypeSelector';
-import { PDF } from '../../../../../interfaces/CategoriesInterface';
+import { useTypedSelector } from '../../../utils/useTypeSelector';
+import { PDF } from '../../../interfaces/CategoriesInterface';
 
 export function PDFRender() {
   const pdfItems: PDF[] = useTypedSelector(state => state.pdf);

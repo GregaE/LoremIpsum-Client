@@ -3,7 +3,7 @@ import {
   Certificates,
   Languages,
   Skill,
-} from '../../../../../interfaces/CategoriesInterface';
+} from '../../../interfaces/CategoriesInterface';
 import { style } from './PDFStyles';
 
 export function PDFBlockSmall({

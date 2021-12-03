@@ -1,5 +1,5 @@
 import { usePDF } from '@react-pdf/renderer';
-import { PDFRender } from '../../Modal/ItemEditor/PDF-Render/PDF-Render';
+import { PDFRender } from '../../PDF-Render/PDF-Render';
 
 export default function Preview() {
   //TODO checkout this tomorrow with help request
