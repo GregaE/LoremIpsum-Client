@@ -72,6 +72,7 @@ export interface CV {
 export interface PDF {
   name: string;
   items: Categories[];
+  pdf: Categories[];
 }
 
 export type Categories = Skill &
