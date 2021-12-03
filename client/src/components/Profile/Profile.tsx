@@ -5,8 +5,12 @@ import { connect } from 'react-redux'
 import ProfileImg from "./ProfileImg/ProfileImg"
 
 import { motion } from 'framer-motion';
+import { useTypedSelector } from '../../utils/useTypeSelector';
+import Modal from '../CVBuilder/Modal/Modal';
 
-function Profile({userDetail, lang,cert,skill,edu,exp}:any) {
+function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
+
+  const { flag } = useTypedSelector((state) => state.toggleModal)
 
   const {personal_details} = userDetail;
   const {username, email, password} = personal_details
@@ -18,7 +22,7 @@ function Profile({userDetail, lang,cert,skill,edu,exp}:any) {
   const {education} = edu
   const {experience} = exp
 
-  console.log(languages,certificates,skills,education,experience)
+  // console.log(languages,certificates,skills,education,experience)
 
   const containerVariants = {
     hidden: {
@@ -32,6 +36,8 @@ function Profile({userDetail, lang,cert,skill,edu,exp}:any) {
       opacity: 0,
     },
   }
+  //Display modal by switch
+  const modal = flag ? <Modal/> : null
 
   return (
     <motion.div className="p-2"
@@ -47,7 +53,7 @@ function Profile({userDetail, lang,cert,skill,edu,exp}:any) {
           <div className="p-8">
             <p>{`Name ${username}`}</p>
             <p>{`E-mail ${email}`}</p>
-            <p>{`Password ${password}`}</p>
+            <button onClick={() => toggle()}>Edit Personal Info</button>
           </div>
         </div>
       </div>
@@ -59,6 +65,7 @@ function Profile({userDetail, lang,cert,skill,edu,exp}:any) {
           <p className="w-full bg-light m-2 p-1 rounded-lg">WORK EXPERIENCE</p>
         </div>
       </div>
+      {modal}
     </motion.div>
   );
 }
@@ -77,6 +84,14 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
+    toggle: () =>
+    dispatch({
+      type: 'TOGGLE_MODAL',
+      payload: {
+        flag: true,
+        identifier: 'PersonalInfo',
+      },
+    }),
   }
 }
 

@@ -5,6 +5,7 @@ import Education from '../../../Forms/Education';
 import Language from '../../../Forms/Language';
 import Skills from '../../../Forms/Skills';
 import WorkExperience from '../../../Forms/WorkExperience';
+import PersonalInfo from '../../../Forms/PersonalInfo'
 
 export default function ItemEditor() {
 
@@ -24,6 +25,8 @@ export default function ItemEditor() {
         return <Skills/>
       case 'Work Experience':
         return <WorkExperience/>
+      case 'PersonalInfo':
+        return <PersonalInfo/>
       default:
         return null;
     }
