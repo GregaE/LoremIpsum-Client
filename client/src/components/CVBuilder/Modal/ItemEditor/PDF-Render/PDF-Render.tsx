@@ -1,16 +1,20 @@
 import { PDFViewer, Document, Page, View, usePDF } from '@react-pdf/renderer';
+
 import { PDFBLockLarge } from './PDFBlockLarge';
 import { PDFProfile } from './PDFBlockProfile';
 import { PDFBlockSmall } from './PDFBlockSmall';
 import { pageStyle } from './PDFStyles';
 import { useTypedSelector } from '../../../utils/useTypeSelector';
 import { PDF } from '../../../interfaces/CategoriesInterface';
+import { useEffect } from 'react';
 
-export function PDFRender() {
-  const pdfItems: PDF[] = useTypedSelector(state => state.pdf);
+export default function PDFRender({ pdf }: any) {
+  // const pdfItems: PDF[] = pdf;
+  console.log(pdf);
+  // console.log(pdfItems);
   const renderPdf =
-    pdfItems &&
-    pdfItems.map((category: PDF, index: number) => {
+    pdf &&
+    pdf.map((category: PDF, index: number) => {
       if (
         category.name === 'Education' ||
         category.name === 'Work Experience'
@@ -31,6 +35,9 @@ export function PDFRender() {
         />
       );
     });
+
+  // const [instance, updateInstance] = usePDF({ document: <PDFRender /> });
+  // useEffect(() => {}, [pdfItems]);
   return (
     <PDFViewer
       showToolbar={false}

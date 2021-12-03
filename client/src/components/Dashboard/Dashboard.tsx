@@ -12,7 +12,7 @@ import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
 
 import { AnimatePresence } from 'framer-motion';
-import { PDFRender } from '../CVBuilder/PDF-Render/PDF-Render';
+import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({
@@ -69,7 +69,6 @@ function Dashboard({
             <Route path="/cvbuilder" element={<CVBuilder />} />
             <Route path="/mycvs" element={<MyCVs />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/pdf" element={<PDFRender />} />
           </Routes>
         </AnimatePresence>
       </div>
