@@ -31,7 +31,14 @@ const experienceReducer = (
         ...state,
         loading: false,
         error: null,
-        certificates: payload,
+        experience: payload,
+      };
+    case 'POST_EXPERIENCE':
+      return {
+        ...state, 
+        loading: false,
+        error: null,
+        experience: [...state.experience, payload]
       };
     case 'UPDATE_EXPERIENCE':
       return {

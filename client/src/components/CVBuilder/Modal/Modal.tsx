@@ -3,7 +3,7 @@ import { useTypedSelector } from '../../../utils/useTypeSelector';
 import CategorySelector from './CategorySelector/CategorySelector';
 import CVSelector from './CVSelector/CVSelector';
 import ItemEditor from './ItemEditor/ItemEditor';
-import PDFRender from './ItemEditor/PDF-Render/PDF-Render';
+// import PDFRender from './ItemEditor/PDF-Render/PDF-Render';
 
 import { motion } from 'framer-motion';
 
@@ -15,6 +15,8 @@ export default function Modal() {
   /* Strings:
     CVs
     Categories
+
+    const categories:string[] = ['CERTIFICATES','EDUCATION','LANGUAGES','SKILLS','WORK EXPERIENCE'];
   */
   const {identifier} = useTypedSelector((state)=> state.toggleModal)
 
@@ -24,8 +26,12 @@ export default function Modal() {
         return <CVSelector/>
       case 'Categories':
         return <CategorySelector/>
-      case 'pdf':
-        return <PDFRender/>
+      case 'Certificates':
+      case 'Education':
+      case 'Languages':
+      case 'Skills':
+      case 'Work Experience':
+        return <ItemEditor/>
       default:
         return null;
     }

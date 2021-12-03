@@ -1,18 +1,21 @@
-import { Action, ActionType } from '../actions/index';
+import { ActionType, ShowCvBuilder } from '../state_interfaces/appState';
 
-interface State {
+interface BuilderState {
   builder: boolean,
 }
 
-const initialState = {
+const initialState: BuilderState = {
   builder: false,
 }
 
-const showCvBuilder = (state: State = initialState, action: Action):State => {
-  switch(action.type) {
+const showCvBuilder = (
+  state = initialState,
+  {type, payload}: ShowCvBuilder
+): BuilderState =>{
+  switch(type) {
     case ActionType.SHOW_CVBUILDER:
-      return {builder: action.payload}; 
-    default: 
+      return {builder: payload};
+    default:
       return state;
   }
 }

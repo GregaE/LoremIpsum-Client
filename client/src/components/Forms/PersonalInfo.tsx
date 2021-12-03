@@ -34,9 +34,9 @@ export default function PersonalInfo() {
       <form>
         {/* Miss Photo Input/Holder */}
         <TextInput callback={handleForm}
-         type="text" 
-         value={personalDetails.first_name + ' ' + personalDetails.last_name} 
-         placeholder="full name" label=""/>
+          type="text" 
+          value={personalDetails.first_name + ' ' + personalDetails.last_name} 
+          placeholder="full name" label=""/>
         <div id="personalInfo_form_contact" className="flex flex-row">
           <TextInput callback={handleForm}
           type="text" 
@@ -69,7 +69,11 @@ export default function PersonalInfo() {
           label=""/>
         </div>
       </form>
-      <Button/>
+      <div className="flex flex-row">
+          <Button name="Delete" formObject={personalDetails}/>
+          <Button name="Edit" formObject={personalDetails}/>
+          <Button name="Create" formObject={personalDetails}/>
+        </div>
     </div>
   );
 }

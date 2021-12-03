@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import Auth from '../../utils/Auth';
-import { RegisterService } from '../../utils/ApiService';
+import Auth from '../../../utils/Auth';
+import { RegisterService } from '../../../utils/ApiService';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { Link } from 'react-router-dom';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
 
@@ -123,7 +122,7 @@ const initialState = {
                   className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                   placeholder="Last name"
                   onChange={handleChange}
-                /> 
+                />
               </div>*/}
             </div>
             <div className="text-sm">

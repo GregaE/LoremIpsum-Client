@@ -1,12 +1,26 @@
-import React from 'react';
+import { usePDF } from '@react-pdf/renderer';
+import PDFRender from '../../PDF-Render/PDF-Render';
+import { connect } from 'react-redux';
 
-export default function Preview() {
+function Preview({ pdf }: any) {
+  //TODO checkout this tomorrow with help request
+  // const [instance, updateInstance] = usePDF({
+  //   document: PDFRender({ pdf }),
+  // });
 
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
       <div className="h-4/5 w-3/4 bg-light flex justify-center items-center p-2">
-        <p>Preview for PDF</p>
+        <PDFRender pdf={pdf} />
       </div>
     </div>
   );
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    pdf: state.pdf,
+  };
+};
+
+export default connect(mapStateToProps)(Preview);

@@ -1,10 +1,19 @@
-import React from 'react';
+import { connect } from 'react-redux'
 
-export default function CategorySelector() {
+function CategorySelector({toggle, addCategory}: any) {
 
-  const categories:string[] = ['certificates','education','languages','skills','work experience'];
+  function addCategoryName(name: string) {
+    addCategory(name)
+    toggle()
+  }
+
+  const categories:string[] = ['Certificates','Education','Languages','Skills','Work Experience'];
+
   const categoryList = categories
-    .map(i => <div className="w-1/5 h-20 bg-primary-bg rounded-full m-3 py-3 text-center" >{i}</div>)
+    .map(i => <div 
+      key={i}
+      onClick={()=>addCategoryName(i)}
+      className="w-1/5 h-20 bg-primary-bg rounded-full m-3 py-3 text-center" >{i}</div>)
 
 
   return (
@@ -13,3 +22,30 @@ export default function CategorySelector() {
     </div>
   );
 }
+
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    toggle: () => dispatch({
+      type: 'TOGGLE_MODAL',
+      payload: {
+        flag: false,
+        identifier: ''
+      }
+    }),
+    addCategory: (categoryName:string) => dispatch({
+      type: 'ADD_CATEGORY',
+      payload: {
+        name: categoryName,
+        items: []
+      }
+    }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategorySelector);
