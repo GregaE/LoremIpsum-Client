@@ -12,14 +12,12 @@ import { connect } from 'react-redux';
 function App() {
 const cookies = new Cookies();
 
-  // const { isLoggedIn } = useTypedSelector((state) => state.login);
+  const { isLoggedIn } = useTypedSelector((state) => state.login);
+  const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
 
-  if (cookies.get('sid')) {
-    return <Dashboard/>
-  } else {
-
-    return <AuthLogin />;
-  }
+  return (
+    render
+  )
 }
 
 const mapStateToProps = (state: any) => ({
