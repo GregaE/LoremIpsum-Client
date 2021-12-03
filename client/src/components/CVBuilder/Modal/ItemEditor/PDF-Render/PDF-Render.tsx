@@ -1,12 +1,11 @@
 import { PDFViewer, Document, Page, View, usePDF } from '@react-pdf/renderer';
 
-import { PDFBLockLarge } from './PDFBlockLarge';
-import { PDFProfile } from './PDFBlockProfile';
-import { PDFBlockSmall } from './PDFBlockSmall';
-import { pageStyle } from './PDFStyles';
-import { useTypedSelector } from '../../../utils/useTypeSelector';
-import { PDF } from '../../../interfaces/CategoriesInterface';
-import { useEffect } from 'react';
+import { PDFBLockLarge } from '../../../PDF-Render/PDFBlockLarge';
+import { PDFProfile } from '../../../PDF-Render/PDFBlockProfile';
+import { PDFBlockSmall } from '../../../PDF-Render/PDFBlockSmall';
+import { pageStyle } from '../../../PDF-Render/PDFStyles';
+import { useTypedSelector } from '../../../../../utils/useTypeSelector';
+import { PDF } from '../../../../../interfaces/CategoriesInterface';
 
 export default function PDFRender({ pdf }: any) {
   // const pdfItems: PDF[] = pdf;
