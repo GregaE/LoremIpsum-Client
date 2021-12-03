@@ -41,13 +41,11 @@ export default function Login() {
       console.log(res.error)
       alert(`${res.message}`);
       setState(initialState);
-
     } else {
       console.log("here")
       dispatch({type: 'TOGGLE_LOGIN', payload: true });
       auth.login(() => navigate('/'));
     }
-
   }
 
   return (
