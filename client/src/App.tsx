@@ -1,16 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useTypedSelector } from './utils/useTypeSelector';
 
-import Login from './components/Login/Login';
-
+import Login from './components/Auth/Login/Login';
+import { withCookies, Cookies } from 'react-cookie';
 import Dashboard from './components/Dashboard/Dashboard';
+import { useDispatch } from 'react-redux';
+import AuthLogin from './components/Auth/AuthLogin';
 
 import { connect } from 'react-redux';
 
 function App() {
-  const { isLogin } = useTypedSelector(state => state.login);
+const cookies = new Cookies();
 
-  return isLogin ? <Dashboard /> : <Login />;
+  // const { isLoggedIn } = useTypedSelector((state) => state.login);
+
+  if (cookies.get('sid')) {
+    return <Dashboard/>
+  } else {
+
+    return <AuthLogin />;
+  }
 }
 
 const mapStateToProps = (state: any) => ({
@@ -33,4 +42,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withCookies(App));

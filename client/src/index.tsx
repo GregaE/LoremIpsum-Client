@@ -6,7 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
-
+import { CookiesProvider } from 'react-cookie';
 import createStore from './store/store'; 
 
 const store = createStore;
@@ -14,7 +14,9 @@ const store = createStore;
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <CookiesProvider>
+        <App />
+      </CookiesProvider>
     </Router> 
   </Provider>,
   document.getElementById('root')
