@@ -15,6 +15,7 @@ import Certificate from '../Forms/Certificate';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
+import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({
@@ -67,13 +68,17 @@ function Dashboard({
         <Header />
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>
-              <Route path="/" element={<Home/>} />
-              <Route path="/cvbuilder" element={<CVBuilder/>} />
-              <Route path="/mycvs" element={<MyCVs/>} />
-              <Route path="/test" element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path="/anothertest" element={<Education/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path="/form" element={<Certificate/>} /> {/* Temporal route */}
-              <Route path="/profile" element={<Profile/>} /> {/* Temporal route */}
+            <Route path="/" element={<Home />} />
+            <Route path="/cvbuilder" element={<CVBuilder />} />
+            <Route path="/mycvs" element={<MyCVs />} />
+            <Route path="/test" element={<Profile />} />{' '}
+            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+            <Route path="/anothertest" element={<Education />} />{' '}
+            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+            <Route path="/form" element={<Certificate />} />{' '}
+            {/* Temporal route */}
+            <Route path="/profile" element={<Profile />} />{' '}
+            {/* Temporal route */}
           </Routes>
         </AnimatePresence>
       </div>
