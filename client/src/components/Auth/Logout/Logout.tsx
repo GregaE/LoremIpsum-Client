@@ -22,8 +22,8 @@ export default function Logout () {
   return (
     <div>
       <Link to="/">
-        <div onClick={() => handleClick()}>
-          <Button name="Logout" />
+        <div>
+          <Button name="Logout" callback={handleClick}>Logout</Button>
         </div>
       </Link>
     </div>
