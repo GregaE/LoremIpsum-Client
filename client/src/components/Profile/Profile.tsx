@@ -6,7 +6,7 @@ import ProfileImg from "./ProfileImg/ProfileImg"
 
 import { motion } from 'framer-motion';
 
-function Profile({userDetail, lang,cert,skill,edu,exp}:any) {
+function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
 
   const {personal_details} = userDetail;
   const {username, email, password} = personal_details

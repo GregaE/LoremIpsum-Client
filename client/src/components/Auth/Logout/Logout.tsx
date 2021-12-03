@@ -12,6 +12,7 @@ export default function Logout () {
   const handleClick = async () => {
     await LogoutService();
     handleAuth();
+    localStorage.removeItem('user_id')
   }
 
   const handleAuth = () => {

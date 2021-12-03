@@ -1,6 +1,3 @@
-import React, { useEffect, useState } from 'react';
-import { useTypedSelector } from './utils/useTypeSelector';
-
 import { withCookies, Cookies } from 'react-cookie';
 import Dashboard from './components/Dashboard/Dashboard';
 import { useDispatch } from 'react-redux';
@@ -10,17 +7,17 @@ import { connect } from 'react-redux';
 
 function App({login}:any) {
   const dispatch = useDispatch();
-const cookies = new Cookies();
-const { isLoggedIn } = login;
+  const cookies = new Cookies();
+  const { isLoggedIn } = login;
 
-const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
+  const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
 
-if (login.userId === '') {
-  dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id')} });
-}
+  if (login.userId === '') {
+    dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id')} });
+  }
 
-return (
-  render
+  return (
+    render
   )
 }
 

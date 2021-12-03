@@ -35,6 +35,7 @@ export async function LogoutService ()  {
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
     });
+    console.log(res)
     return await res.json();
   } catch (err) {
     return console.error(err);
