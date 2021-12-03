@@ -1,8 +1,6 @@
 import React from 'react';
 import {  Link } from "react-router-dom";
-import { useDispatch, connect } from 'react-redux';
-import { headerName } from '../../store/actions/headerName';
-import { showCvBuilder } from '../../store/actions/showBuilder';
+import { connect } from 'react-redux';
 import Logout from '../Auth/Logout/Logout';
 
 //TODO - props type
@@ -16,14 +14,14 @@ function NavBar({navigate}: any) {
             className='rounded-full' src='https://www.lovemysalad.com/sites/default/files/styles/image_530x397/public/banaan-large.jpg?itok=dZxH6D_w' alt='logo'/>
         </Link>
         </div>
-        <ul className='flex flex-col flex-wrap justify-around items-center h-3/6 w-full'>
+        <ul className='flex flex-col flex-wrap justify-around items-center h-3/6 w-5/6'>
           <Link to='/' className='w-full'>
-            <li className='nav-link' onClick={() => navigate('Home')}>
+            <li className='nav-link focus:bg-light' onClick={() => navigate('Home')}>
                 Home
             </li>
           </Link>
           <Link to='/CVBuilder' className='w-full'>
-            <li className='nav-link' onClick={() => navigate('CVBuilder')}>
+            <li className='nav-link focus:bg-light ' onClick={() => navigate('CVBuilder')}>
               CVBuilder
             </li>
           </Link>

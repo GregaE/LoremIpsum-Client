@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Register from "../Forms/Register";
+import Register from "./Register/Register";
 import Login from "./Login/Login";
 
 export default function AuthLogin () {
