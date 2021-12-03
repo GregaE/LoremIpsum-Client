@@ -9,7 +9,13 @@ function CategoryItem({
   unselectItem,
   pdfItems,
 }: any) {
-  const [selected, toggleSelection] = useState(false);
+  const [selected, toggleSelection] = useState(
+    pdfItems
+      .find((pdfI: any) => pdfI.name === categoryName)
+      .pdf.some((pd: any) => pd.id === item.id)
+      ? true
+      : false
+  );
 
   //Manipulate here
   const itemName = () => {

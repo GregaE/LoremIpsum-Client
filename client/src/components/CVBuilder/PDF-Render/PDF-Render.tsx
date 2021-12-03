@@ -23,7 +23,7 @@ export default function PDFRender({ pdf }: any) {
           <PDFBLockLarge
             key={index}
             category={category.name}
-            dataList={category.items}
+            dataList={category.pdf}
           />
         );
       }
@@ -31,7 +31,7 @@ export default function PDFRender({ pdf }: any) {
         <PDFBlockSmall
           key={index}
           category={category.name}
-          dataList={category.items}
+          dataList={category.pdf}
         />
       );
     });
