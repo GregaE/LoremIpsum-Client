@@ -15,6 +15,7 @@ import Certificate from '../Forms/Certificate';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
+import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({
