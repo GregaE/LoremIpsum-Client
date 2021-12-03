@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { motion } from 'framer-motion';
 import { DotsVerticalIcon } from '@heroicons/react/solid';
+import {
+  Categories,
+  PDF,
+} from '../../../../../../interfaces/CategoriesInterface';
 
 function CategoryItem({
   item,
@@ -9,11 +13,17 @@ function CategoryItem({
   selectItem,
   unselectItem,
   pdfItems,
-}: any) {
+}: {
+  item: Categories;
+  categoryName: string;
+  selectItem: (name: string, itemID: string | undefined) => {};
+  unselectItem: (name: string, itemID: string | undefined) => {};
+  pdfItems: PDF[] | any; // not sure if object possibly undefined?
+}) {
   const [selected, toggleSelection] = useState(
-    pdfItems
-      .find((pdfI: any) => pdfI.name === categoryName)
-      .pdf.some((pd: any) => pd.id === item.id)
+    pdfItems!
+      .find((pdfI: PDF) => pdfI.name === categoryName)
+      .pdf.some((pd: Categories) => pd.id === item.id)
       ? true
       : false
   );
@@ -30,9 +40,7 @@ function CategoryItem({
     selected
       ? unselectItem(categoryName, item.id)
       : selectItem(categoryName, item.id);
-
     toggleSelection(!selected);
-    console.log('pdfItems: ', pdfItems);
   };
 
   return (
@@ -73,7 +81,7 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    selectItem: (name: any, itemID: any) =>
+    selectItem: (name: string, itemID: string | undefined) =>
       dispatch({
         type: 'SELECT_ITEM',
         payload: {
@@ -81,7 +89,7 @@ const mapDispatchToProps = (dispatch: any) => {
           itemID,
         },
       }),
-    unselectItem: (name: any, itemID: any) =>
+    unselectItem: (name: string, itemID: string | undefined) =>
       dispatch({
         type: 'UNSELECT_ITEM',
         payload: {
