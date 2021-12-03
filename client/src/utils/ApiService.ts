@@ -1,7 +1,7 @@
 import { Options } from '../interfaces/ApiInterfaces';
 import { User } from '../interfaces/UserInterface';
 import { loginInterface } from '../store/state_interfaces/loginInterface';
-const BASE_URL = 'http://localhost:3001';
+const BASE_URL = 'http://localhost:3006';
 
 async function fetchApi<T>(slug: string, options?: Options): Promise<T> {
   const res = await fetch(BASE_URL + slug, options);
