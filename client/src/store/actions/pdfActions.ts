@@ -1,5 +1,4 @@
 import { Dispatch } from 'redux';
-import { ModalInterface } from '../../interfaces/ModalInterface';
 // I will have to import the interfaces for every categoy
 // category item
 // and the pdf itself
@@ -66,6 +65,14 @@ export const UnselectItem = (object: any) => {
     dispatch({
       type: ActionType.UNSELECT_ITEM,
       payload: object,
+    });
+  };
+};
+
+export const resetPDF = () => {
+  return (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.RESET_PDF,
     });
   };
 };

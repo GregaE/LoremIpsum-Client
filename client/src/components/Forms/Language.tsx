@@ -47,7 +47,7 @@ function Language({userDetail, toggle, postForm, updateForm}:any) {
     <div className="object-center w-1/2 h-auto bg-green-400">
       <form>
         <TextInput callback={handleForm} label="Language" type="text" name="language_name" value={language.language_name} placeholder="Enter language"/>
-        <SelectInput options={languages} value={language.level ? language.level : ''}/>
+        <SelectInput callback={handleForm} name="level" options={languages} value={language.level ? language.level : ''}/>
         <div className="flex flex-row">
           <Button name="Cancel" callback={toggle}/>
           <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE"/>

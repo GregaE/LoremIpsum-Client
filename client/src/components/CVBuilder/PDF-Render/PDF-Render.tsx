@@ -10,8 +10,7 @@ import { useEffect } from 'react';
 
 export default function PDFRender({ pdf }: any) {
   // const pdfItems: PDF[] = pdf;
-  console.log(pdf);
-  // console.log(pdfItems);
+
   const renderPdf =
     pdf &&
     pdf.map((category: PDF, index: number) => {

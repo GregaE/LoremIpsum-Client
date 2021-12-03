@@ -1,6 +1,8 @@
 import { ModalInterface } from "../../interfaces/ModalInterface";
 
 
+
+
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',
   HEADER_NAME = 'HEADER_NAME',
@@ -13,7 +15,8 @@ export enum ActionType {
   REMOVE_ITEM = 'REMOVE_ITEM',
   EDIT_ITEM = 'EDIT_ITEM',
   SELECT_ITEM = 'SELECT_ITEM',
-  UNSELECT_ITEM = 'UNSELECT_ITEM'
+  UNSELECT_ITEM = 'UNSELECT_ITEM',
+  RESET_PDF = "RESET_PDF"
 }
 
 ///////////////////////////////
@@ -64,6 +67,10 @@ interface UnselectItem {
   payload: any; //Interface {categoryName: string, itemId: string}
 }
 
+interface resetPDF {
+  type: ActionType.RESET_PDF;
+}
+
 export type Action = toggleLogin | headerName | showCvBuilder | toggleModal
   | AddCategory
   | RemoveCategory
@@ -72,4 +79,5 @@ export type Action = toggleLogin | headerName | showCvBuilder | toggleModal
   | RemoveItem
   | SelectItem
   | UnselectItem
+  | resetPDF
   ;
