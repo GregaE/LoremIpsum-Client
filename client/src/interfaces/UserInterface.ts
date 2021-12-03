@@ -11,7 +11,6 @@ export interface User {
   username: string;
   email: string;
   personal_details: PersonalDetails;
-  session_id: string;
   skills: Skill[];
   education: Education[];
   certificates: Certificates[];
