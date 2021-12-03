@@ -14,7 +14,7 @@
 
 /* Your own custom utilities */
 .nav-link {
-  @apply border-t border-b border-solid flex justify-center items-center w-full h-14;
+  @apply flex justify-center items-center rounded w-full h-14 text-xl hover:bg-light hover:text-primary transition;
 }
 
 .rounded-container {

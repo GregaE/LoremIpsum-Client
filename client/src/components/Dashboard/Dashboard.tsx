@@ -10,15 +10,11 @@ import Home from '../Home/Home';
 import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
-import Login from '../Auth/Login/Login';
-import Register from '../Forms/Register';
 
 import Certificate from '../Forms/Certificate';
-import Builder from '../CVBuilder/Builder/Builder';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
-import { PDFRender } from '../CVBuilder/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({
@@ -111,7 +107,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/user',
         method: 'GET',
-        id: 'ckwq5gkyr0011whwai7so69or',
+        id: 'ckwnsopv90002t5ctn48e1b3y',
         dispatch: 'PERSONAL_DETAILS',
       }),
 
@@ -120,7 +116,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/languages',
         method: 'GET',
-        id: 'ckwq5gkyr0011whwai7so69or',
+        id: 'ckwnsopv90002t5ctn48e1b3y',
         dispatch: 'ALL_LANGUAGES',
       }),
     getCertificates: () =>
@@ -128,7 +124,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/certificates',
         method: 'GET',
-        id: 'ckwq5gkyr0011whwai7so69or',
+        id: 'ckwnsopv90002t5ctn48e1b3y',
         dispatch: 'ALL_CERTIFICATES',
       }),
     getSkills: () =>
@@ -136,7 +132,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/skills',
         method: 'GET',
-        id: 'ckwq5gkyr0011whwai7so69or',
+        id: 'ckwnsopv90002t5ctn48e1b3y',
         dispatch: 'ALL_SKILLS',
       }),
     getEducation: () =>
@@ -144,7 +140,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/education',
         method: 'GET',
-        id: 'ckwq5gkyr0011whwai7so69or',
+        id: 'ckwnsopv90002t5ctn48e1b3y',
         dispatch: 'ALL_EDUCATION',
       }),
     getExperience: () =>
@@ -152,7 +148,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/workExperience',
         method: 'GET',
-        id: 'ckwq5gkyr0011whwai7so69or',
+        id: 'ckwnsopv90002t5ctn48e1b3y',
         dispatch: 'ALL_EXPERIENCES',
       }),
     getCVs: () =>
@@ -160,7 +156,7 @@ const mapDispatchToProps = (dispatch: any) => {
         type: 'FETCH_DATA',
         endpoint: '/savedCV',
         method: 'GET',
-        id: 'ckwq5gkyr0011whwai7so69or',
+        id: 'ckwnsopv90002t5ctn48e1b3y',
         dispatch: 'ALL_CVS',
       }),
   };
