@@ -28,21 +28,28 @@ function Dashboard({
   getEducation,
   getExperience,
   getCVs,
-  login
+  login,
+  userDetail
 }: any) {
 
   const location = useLocation();
   
   const { userId } = login;
+  console.log(userId);
+  console.log('userDetail: ',userDetail)
 
   useEffect(() => {
-    getUser(userId);
-    getLanguages(userId);
-    getCertificates(userId);
-    getSkills(userId);
-    getEducation(userId);
-    getExperience(userId);
-    getCVs(userId);
+    if (userId) {
+      
+      getUser(userId);
+      getLanguages(userId);
+      getCertificates(userId);
+      getSkills(userId);
+      getEducation(userId);
+      getExperience(userId);
+      getCVs(userId);
+    } 
+
   }, []);
 
   /*
@@ -113,9 +120,7 @@ const mapDispatchToProps = (dispatch: any) => {
       }),
       
     getUser: (userId:string) =>
-    
       dispatch({
-        //CAUTION USER AND PERSONAL DETAILS ARENT THE SAME!!!
         type: 'FETCH_DATA',
         endpoint: '/personalDetails',
         method: 'GET',

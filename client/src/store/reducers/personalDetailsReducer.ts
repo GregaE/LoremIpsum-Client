@@ -14,6 +14,7 @@ const personalDetailsReducer = (
   state = initState,
   { type, payload, id }: PersonalDetailsAction
 ) => {
+  console.log('from personal Detail reducer payload:', payload)
   switch (type) {
     case 'LOADING':
       return {
