@@ -27,9 +27,8 @@ const personalDetailsReducer = (
         loading: false,
         error: payload,
       };
-    case 'USER_DETAILS':
+    case 'PERSONAL_DETAILS':
       return {
-        ...state,
         loading: false,
         error: null,
         personal_details: payload,

@@ -52,7 +52,7 @@ export interface PersonalDetails {
   email?: string;
   phone_number?: string;
   image?: string;
-  first_name: string;
+  first_name?: string;
   last_name?: string;
   street?: string;
   postcode?: string;

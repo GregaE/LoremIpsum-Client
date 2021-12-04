@@ -32,13 +32,17 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
     e.preventDefault();
     const { email, password } = state;
     const user = { email, password };
-    const res = await LoginService(user);
+    const res = await LoginService(user)
     if (res.error) {
+      console.log('IF', res);
       console.log(res.error)
       alert(`${res.message}`);
     } else {
+      console.log('ELSE res', res);
       dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+      console.log(res.user_id)
       localStorage.setItem('user_id', res.user_id);
+      console.log('Loaclst', localStorage.getItem('user_id'));
       Auth.login(() => navigate('/'));
     }
   }
@@ -119,6 +123,13 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
 const mapDispatchToProps = (dispatch: any) => {
   return {
     toggle: () => dispatch({type: 'TOGGLE_LOGIN'}),
+    testfetch: () => dispatch({type: {
+      type: 'FETCH_DATA',
+      endpoint: '/personalDetails',
+      method: 'GET',
+      id: 'ckwrtzl740078o0ctrn0oo4a4',
+      dispatch: 'PERSONAL_DETAILS',
+  }}),
   }
 }
 

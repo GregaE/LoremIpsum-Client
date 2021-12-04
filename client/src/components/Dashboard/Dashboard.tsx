@@ -15,13 +15,12 @@ import Certificate from '../Forms/Certificate';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
-import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({
   modal,
   toggle,
-  getUser,
+  getPersonal,
   getLanguages,
   getCertificates,
   getSkills,
@@ -35,15 +34,18 @@ function Dashboard({
 
   const { userId } = login;
 
+  console.log(userId)
+
   useEffect(() => {
-    getUser(userId);
+    getPersonal(userId);
     getLanguages(userId);
     getCertificates(userId);
     getSkills(userId);
     getEducation(userId);
     getExperience(userId);
     getCVs(userId);
-  }, []);
+  },[]);
+
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
@@ -111,17 +113,22 @@ const mapDispatchToProps = (dispatch: any) => {
           identifier: '',
         },
       }),
-
     getUser: (userId:string) =>
       dispatch({
-        //CAUTION USER AND PERSONAL DETAILS ARENT THE SAME!!!
         type: 'FETCH_DATA',
         endpoint: '/user',
         method: 'GET',
         id: userId,
         dispatch: 'USER_DETAILS',
     }),
-
+    getPersonal: (userId:string) =>
+      dispatch({
+        type: 'FETCH_DATA',
+        endpoint: '/personalDetails',
+        method: 'GET',
+        id: userId,
+        dispatch: 'PERSONAL_DETAILS',
+    }),
     getLanguages: (userId:string) =>
       dispatch({
         type: 'FETCH_DATA',

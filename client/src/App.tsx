@@ -1,4 +1,5 @@
 import { withCookies, Cookies } from 'react-cookie';
+import React, { useEffect } from 'react';
 import Dashboard from './components/Dashboard/Dashboard';
 import { useDispatch } from 'react-redux';
 import AuthLogin from './components/Auth/AuthLogin';
@@ -12,9 +13,16 @@ function App({login}:any) {
 
   const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
 
-  if (login.userId === '') {
-    dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id')} });
-  }
+  console.log('LOGIN', login);
+
+  useEffect(() => {
+    // if (login.userId === '') {
+    //   console.log('Browser', localStorage.getItem('user_id'));
+    //   dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id'), isLoggedIn: false} });
+    // }
+    console.log('Effect', login);
+  }, []);
+  console.log('After effect', login);
 
   return (
     render

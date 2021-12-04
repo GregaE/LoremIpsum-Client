@@ -1,4 +1,5 @@
 import { ModalInterface } from "../../interfaces/ModalInterface";
+import { ProfileInterface } from "../../interfaces/ProfileInterface";
 
 
 export enum ActionType {
@@ -25,6 +26,7 @@ interface headerName {
 }
 interface toggleLogin {
   type: ActionType.TOGGLE_LOGIN;
+  payload: ProfileInterface;
 }
 interface toggleModal {
   type: ActionType.TOGGLE_MODAL;
