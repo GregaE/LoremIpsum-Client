@@ -12,7 +12,7 @@ export default function BuilderSettings() {
       >
         {({ blob, url, loading, error }) => (
           <div className="flex justify-center bg-primary text-light rounded-lg p-1 m-5">
-            {loading ? 'Loading document...' : 'Download now!'}
+            {loading ? 'Loading document...' : 'Download'}
           </div>
         )}
       </PDFDownloadLink>
