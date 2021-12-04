@@ -34,7 +34,6 @@ function Dashboard({
   const location = useLocation();
   
   const { userId } = login;
-  console.log(userId)
 
   useEffect(() => {
     getUser(userId);

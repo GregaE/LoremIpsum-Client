@@ -1,12 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { connect } from 'react-redux'
-
-import ProfileImg from "./ProfileImg/ProfileImg"
-
 import { motion } from 'framer-motion';
 import { useTypedSelector } from '../../utils/useTypeSelector';
+
+
+import ProfileImg from "./ProfileImg/ProfileImg"
 import Modal from '../CVBuilder/Modal/Modal';
+import ProfileCategory from './ProfileCategory/ProfileCategory';
+
 
 function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
 
@@ -24,6 +25,25 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
 
   // console.log(languages,certificates,skills,education,experience)
 
+  const userCategories = [
+    {name:'Certificates',
+    items: [...certificates]},
+    {name:'Education',
+    items: [...education]},
+    {name:'Languages',
+    items: [...languages]},
+    {name:'Skills',
+    items: [...skills]},
+    {name:'Work Experience',
+    items: [...experience]},
+  ]
+
+  function renderCategories() {
+    return userCategories.map((category:any) => {
+      return <ProfileCategory key={category.name} name={category.name} items={category.items}/>
+    })
+  }
+
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -40,7 +60,7 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
   const modal = flag ? <Modal/> : null
 
   return (
-    <motion.div className="p-2"
+    <motion.div className="p-2 h-screen flex flex-col justify-between"
       initial="hidden"
       animate="visible"
       exit="hidden"
@@ -57,12 +77,10 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
           </div>
         </div>
       </div>
-      <div className="p-2">
+      <div className="bg-primary p-2 flex flex-col gap-4 h-96 custom-scroll">
         <h2 className="underline text-3xl">Your categories</h2>
-        <div className="flex flex-col content-around p-4">
-          <p className="w-full bg-light m-2 p-1 rounded-lg">SKILLS</p>
-          <p className="w-full bg-light m-2 p-1 rounded-lg">EDUCATION</p>
-          <p className="w-full bg-light m-2 p-1 rounded-lg">WORK EXPERIENCE</p>
+        <div className="flex flex-col h-full gap-3 overflow-x-auto  overflow-y-hidden custom-scroll">
+          {renderCategories()}
         </div>
       </div>
       {modal}
