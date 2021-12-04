@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import TextInput from './Elements/Inputs/TextInput';
 import { Skill } from '../../interfaces/CategoriesInterface';
 
-import { useTypedSelector } from '../../utils/useTypeSelector'
 import Button from './Elements/Buttons/Button';
 
 function Skills({userDetail, toggle, postForm, updateForm}:any) {

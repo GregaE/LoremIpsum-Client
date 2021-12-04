@@ -34,7 +34,6 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
     const { email, password } = state;
     const user = { email, password };
     const res = await LoginService(user);
-    console.log(res);
     if (res.error) {
       console.log(res.error)
       alert(`${res.message}`);

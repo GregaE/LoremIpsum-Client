@@ -34,7 +34,6 @@ function Dashboard({
   const location = useLocation();
   
   const { userId } = login;
-  console.log(userId)
 
   useEffect(() => {
     getUser(userId);
@@ -118,7 +117,7 @@ const mapDispatchToProps = (dispatch: any) => {
       dispatch({
         //CAUTION USER AND PERSONAL DETAILS ARENT THE SAME!!!
         type: 'FETCH_DATA',
-        endpoint: '/user',
+        endpoint: '/personalDetails',
         method: 'GET',
         id: userId,
         dispatch: 'PERSONAL_DETAILS',

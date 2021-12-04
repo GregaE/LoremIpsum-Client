@@ -29,6 +29,13 @@ const cvsReducer = (state = initState, { type, payload, id }: CVAction) => {
         error: null,
         cvs: payload,
       };
+    case 'POST_CV':
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        cvs: [...state.cvs, payload] 
+      };
     case 'UPDATE_CV':
       return {
         ...state,

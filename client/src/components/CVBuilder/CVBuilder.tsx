@@ -35,7 +35,7 @@ function CVBuilder({pdfStatus}:any) {
 
 
   //Display modal by switch
-  const modal = flag ? <Modal/> :null
+  const modal = flag ? <Modal/> : null
 
   const selectorOrBuilder: React.ReactElement = builder 
     ? <Builder/>

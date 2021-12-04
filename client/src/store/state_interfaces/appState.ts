@@ -3,9 +3,7 @@ import { ProfileInterface } from "../../interfaces/ProfileInterface";
 // I will have to import the interfaces for every categoy
 // category item
 // and the pdf itself
-
 //TODO: Replace all the any types to proper type
-
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',
   HEADER_NAME = 'HEADER_NAME',
@@ -19,7 +17,8 @@ export enum ActionType {
   REMOVE_ITEM = 'REMOVE_ITEM',
   EDIT_ITEM = 'EDIT_ITEM',
   SELECT_ITEM = 'SELECT_ITEM',
-  UNSELECT_ITEM = 'UNSELECT_ITEM'
+  UNSELECT_ITEM = 'UNSELECT_ITEM',
+  RESET_PDF = "RESET_PDF"
 }
 
 ///////////////////////////////
@@ -76,4 +75,8 @@ export interface SelectItem {
 export interface UnselectItem {
   type: ActionType.UNSELECT_ITEM;
   payload: string; //itemID
+}
+
+export interface resetPDF {
+  type: ActionType.RESET_PDF;
 }

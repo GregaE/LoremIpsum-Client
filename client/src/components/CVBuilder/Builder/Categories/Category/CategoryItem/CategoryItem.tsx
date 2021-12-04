@@ -31,7 +31,6 @@ function CategoryItem({
       : selectItem(categoryName, item.id);
 
     toggleSelection(!selected);
-    console.log('pdfItems: ', pdfItems);
   };
 
   return (
