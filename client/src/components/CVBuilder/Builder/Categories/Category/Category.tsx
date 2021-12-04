@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import CategoryItem from './CategoryItem/CategoryItem';
 import { AnimatePresence } from 'framer-motion';
-import { Categories, PDF } from '../../../../../interfaces/CategoriesInterface';
+import { Categories } from '../../../../../interfaces/CategoriesInterface';
 
 function Category({
   name,
@@ -43,13 +43,6 @@ function Category({
   );
 }
 
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    pdfItems: state.pdf,
-  };
-};
-
 const mapDispatchToProps = (dispatch: any) => {
   return {
     toggle: (id: string) =>
@@ -63,4 +56,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Category);
+export default connect(null, mapDispatchToProps)(Category);

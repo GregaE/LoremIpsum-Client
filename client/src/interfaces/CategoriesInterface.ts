@@ -68,13 +68,6 @@ export interface CV {
   saved_cv: string;
   date_created: Date;
 }
-
-export interface PDF {
-  name: string;
-  items: Categories[];
-  pdf: Categories[];
-}
-
 export type Categories = Skill &
   Education &
   WorkExperience &

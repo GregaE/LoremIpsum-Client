@@ -1,5 +1,5 @@
-import { ModalInterface } from "../../interfaces/ModalInterface";
-
+import { ModalInterface } from '../../interfaces/ModalInterface';
+import { PDFCategory, PDFItem } from '../state_interfaces/PdfState';
 
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',
@@ -13,7 +13,7 @@ export enum ActionType {
   REMOVE_ITEM = 'REMOVE_ITEM',
   EDIT_ITEM = 'EDIT_ITEM',
   SELECT_ITEM = 'SELECT_ITEM',
-  UNSELECT_ITEM = 'UNSELECT_ITEM'
+  UNSELECT_ITEM = 'UNSELECT_ITEM',
 }
 
 ///////////////////////////////
@@ -37,39 +37,42 @@ interface showCvBuilder {
 
 interface AddCategory {
   type: ActionType.ADD_CATEGORY;
-  payload: any; //Interface {name: string, items: categoryInterface}
+  payload: PDFCategory; //Interface {name: string, items: categoryInterface}
 }
 interface RemoveCategory {
   type: ActionType.REMOVE_CATEGORY;
   payload: string; //name
 }
-interface AddItem {
-  type: ActionType.ADD_ITEM;
-  payload: any; //Interface {categoryName: string, data: categoryInterface}
-}
-interface EditItem {
-  type: ActionType.EDIT_ITEM;
-  payload: any; //Interface {categoryName: string, itemId: string, data: categoryInterface}
-}
-interface RemoveItem {
-  type: ActionType.REMOVE_ITEM;
-  payload: any; //Interface {categoryName: string, itemId: string}
-}
+// interface AddItem {
+//   type: ActionType.ADD_ITEM;
+//   payload: any; //Interface {categoryName: string, data: categoryInterface}
+// }
+// interface EditItem {
+//   type: ActionType.EDIT_ITEM;
+//   payload: any; //Interface {categoryName: string, itemId: string, data: categoryInterface}
+// }
+// interface RemoveItem {
+//   type: ActionType.REMOVE_ITEM;
+//   payload: PDFItem; //Interface {categoryName: string, itemId: string}
+// }
 interface SelectItem {
   type: ActionType.SELECT_ITEM;
-  payload: any; //Interface {categoryName: string, itemId: string}
+  payload: PDFItem; //Interface {categoryName: string, itemId: string}
 }
 interface UnselectItem {
   type: ActionType.UNSELECT_ITEM;
-  payload: any; //Interface {categoryName: string, itemId: string}
+  payload: PDFItem; //Interface {categoryName: string, itemId: string}
 }
 
-export type Action = toggleLogin | headerName | showCvBuilder | toggleModal
+export type Action =
+  | toggleLogin
+  | headerName
+  | showCvBuilder
+  | toggleModal
   | AddCategory
   | RemoveCategory
-  | AddItem
-  | EditItem
-  | RemoveItem
+  // | AddItem
+  // | EditItem
+  // | RemoveItem
   | SelectItem
-  | UnselectItem
-  ;
+  | UnselectItem;
