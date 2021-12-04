@@ -44,7 +44,7 @@ function Dashboard({
     getEducation(userId);
     getExperience(userId);
     getCVs(userId);
-  }, []);
+  }, [getUser,getLanguages,getCertificates,getSkills,getEducation,getExperience,getCVs, userId]);
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
