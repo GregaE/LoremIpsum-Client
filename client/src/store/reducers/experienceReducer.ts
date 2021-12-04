@@ -48,8 +48,7 @@ const experienceReducer = (
         experience: state.experience.map(exp => {
           if (exp.id === id)
             return {
-              ...exp,
-              ...payload,
+              ...payload
             };
           return exp;
         }),

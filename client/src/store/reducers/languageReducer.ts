@@ -45,8 +45,7 @@ const languageReducer = (
         languages: state.languages.map(language => {
           if (language.id === id)
             return {
-              ...language,
-              ...payload,
+              ...payload
             };
           return language;
         }),

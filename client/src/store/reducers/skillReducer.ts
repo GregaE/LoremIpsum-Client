@@ -45,7 +45,7 @@ const skillReducer = (
         skills: state.skills.map(skill => {
           if (skill.id === id)
             return {
-              ...payload,
+              ...payload
             };
           return skill;
         }),
