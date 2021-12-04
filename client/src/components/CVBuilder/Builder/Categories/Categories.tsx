@@ -55,21 +55,3 @@ export default function Categories() {
     </div>
   );
 }
-
-// TODO - state & dispatch types
-// const mapStateToProps = (state: RootState) => {
-//   return {
-//     pdfStatus: state.pdf,
-//     lang: state.languages,
-//     cert: state.certificates,
-//     skill: state.skills,
-//     edu: state.education,
-//     exp: state.experience,
-//   };
-// };
-
-// // const mapDispatchToProps = (dispatch: any) => {
-// //   return {};
-// // };
-
-// export default connect(mapStateToProps, null)(Categories);

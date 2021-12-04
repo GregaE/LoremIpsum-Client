@@ -1,6 +1,5 @@
-import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
-import { PDFCategory, PDFItem } from '../state_interfaces/PdfState';
+import { PDFCategory } from '../state_interfaces/PdfState';
 // I will have to import the interfaces for every categoy
 // category item
 // and the pdf itself
