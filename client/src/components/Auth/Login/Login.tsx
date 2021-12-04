@@ -42,7 +42,7 @@ function Login({changeLoginStatus, setRegister}: Props) {
       alert(`${res.message}`);
       setState(initialState);
     } else {
-      changeLoginStatus();
+      changeLoginStatus(true);
       Auth.login(() => navigate('/'));
     }
   }
@@ -138,9 +138,12 @@ function Login({changeLoginStatus, setRegister}: Props) {
   );
 }
 
-const mapDispatchToProps = (dispatch: React.Dispatch<{type: string}>) => {
+const mapDispatchToProps = (dispatch: React.Dispatch<{
+  type: string
+  payload: boolean
+}>) => {
   return {
-    changeLoginStatus: () => dispatch({type: 'TOGGLE_LOGIN'}),
+    changeLoginStatus: (payload: boolean) => dispatch({type: 'TOGGLE_LOGIN', payload: true}),
   }
 }
 
