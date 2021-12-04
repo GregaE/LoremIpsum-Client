@@ -9,12 +9,13 @@ function Welcome({userDetail}:any) {
   */
 
   const {personal_details} = userDetail
+  const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details[0]
 
   return (
     <div id="" className="w-full h-1/2 flex flex-row justify-center content-center">
       <div className="w-5/6 h-4/5 bg-primary my-auto flex flex-col p-4 rounded-lg">
-        <h1 className="text-light">Dias buenas {personal_details.username}</h1>
-        <p>What about looking for a job you lazy piece of shit¿¿¿¿¿¿¿</p>
+        <h1 className="text-light">Dias buenas {first_name} {last_name}</h1>
+        <p>{headline}</p>
       </div>
     </div>
   );

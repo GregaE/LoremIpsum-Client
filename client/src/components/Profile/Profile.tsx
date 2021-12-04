@@ -14,7 +14,7 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
   const { flag } = useTypedSelector((state) => state.toggleModal)
 
   const {personal_details} = userDetail;
-  const {username, email, password} = personal_details
+  const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details[0]
 
   // Array of objects I let it here for future implementation
   const {languages} = lang;
@@ -60,26 +60,26 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
   const modal = flag ? <Modal/> : null
 
   return (
-    <motion.div className="p-2 h-screen flex flex-col justify-between"
+    <motion.div className="p-2 h-full flex flex-col justify-start overflow-x-hidden"
       initial="hidden"
       animate="visible"
       exit="hidden"
       variants={containerVariants}>
-      <h2 className="underline text-3xl p-2">Your personal data</h2>
-      <div className="flex flex-row justify-center items-center p-4 ml-5">
-        <ProfileImg/>
-        <div className="w-2/3 h-1/6 flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
-          <p className="p-4 underline text-2xl">Joder!</p>
-          <div className="p-8">
-            <p>{`Name ${username}`}</p>
-            <p>{`E-mail ${email}`}</p>
+      <h2 className="underline text-3xl p-2 pb-10">Your personal data</h2>
+      <div className="flex flex-row justify-center items-center ml-5 h-64  pb-10">
+        <ProfileImg userPicture={image}/>
+        <div className="w-2/3 h-full flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
+          <p className="p-4 underline text-2xl">{first_name} {last_name}</p>
+          <div className="p-8 h-96">
+            <p>Name {first_name} {last_name}</p>
+            <p>E-mail {email}</p>
             <button onClick={() => toggle()}>Edit Personal Info</button>
           </div>
         </div>
       </div>
-      <div className="bg-primary p-2 flex flex-col gap-4 h-96 custom-scroll">
+      <div className="p-2 flex flex-col gap-4 h-full overflow-y-hidden overflow-x-auto">
         <h2 className="underline text-3xl">Your categories</h2>
-        <div className="flex flex-col h-full gap-3 overflow-x-auto  overflow-y-hidden custom-scroll">
+        <div className="flex flex-col h-30 gap-3 overflow-x-auto  overflow-y-hidden overflow-x-auto">
           {renderCategories()}
         </div>
       </div>

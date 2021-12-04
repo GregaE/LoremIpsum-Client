@@ -1,4 +1,5 @@
 import { PDFViewer, Document, Page, View, usePDF } from '@react-pdf/renderer';
+import { connect } from 'react-redux'
 
 import { PDFBLockLarge } from './PDFBlockLarge';
 import { PDFProfile } from './PDFBlockProfile';
@@ -8,8 +9,10 @@ import { useTypedSelector } from '../../../utils/useTypeSelector';
 import { PDF } from '../../../interfaces/CategoriesInterface';
 import { useEffect } from 'react';
 
-export default function PDFRender({ pdf }: any) {
+function PDFRender({ pdf, userDetail }: any) {
   // const pdfItems: PDF[] = pdf;
+  const {personal_details} = userDetail
+  const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details[0]
 
   const renderPdf =
     pdf &&
@@ -45,7 +48,7 @@ export default function PDFRender({ pdf }: any) {
       <Document>
         <Page size="A4" style={pageStyle.page}>
           <View style={pageStyle.section}>
-            <PDFProfile personalDetails={PDFMock.personalDetails} />
+            <PDFProfile personalDetails={personal_details[0]} />
             {renderPdf}
           </View>
         </Page>
@@ -54,17 +57,16 @@ export default function PDFRender({ pdf }: any) {
   );
 }
 
-const PDFMock = {
-  personalDetails: {
-    first_name: 'Eugen',
-    last_name: 'Nikolajev',
-    phone_number: '123456789',
-    email: 'carl.marx@gmail.com',
-    street: 'Rambla',
-    postcode: '65326',
-    city: 'Barcelona',
-    country: 'Spain',
-    headline:
-      'I have a clear, logical mind with a practical approach to problem-solving and a drive to see things through to completion. I have more than 2 years of experience in managing and leading teams across multiple sectors. I am eager to learn, I enjoy overcoming challenges, and I have a genuine interest in Business Management and making organisations successful.',
-  },
-};
+//TODO - state & dispatch types
+const mapStateToProps = (state: any) => {
+  return {
+    userDetail: state.personal_details,
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PDFRender);
