@@ -13,9 +13,16 @@ module.exports = {
       light: '#FFFFFF',
       dark: '#000000',
     },
+    fontWeight: {
+      medium: 500,
+      bold: 700,
+    },
   },
   variants: {
-    extend: {},
+    extend: {
+      visibility: ['group-hover'],
+      fontWeight: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+    },
   },
   plugins: [],
 };

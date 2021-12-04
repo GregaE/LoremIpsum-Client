@@ -12,14 +12,12 @@ import { connect } from 'react-redux';
 function App() {
 const cookies = new Cookies();
 
-  // const { isLoggedIn } = useTypedSelector((state) => state.login);
+  const { isLoggedIn } = useTypedSelector((state) => state.login);
+  const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
 
-  if (cookies.get('sid')) {
-    return <Dashboard/>
-  } else {
-
-    return <AuthLogin />;
-  }
+  return (
+    render
+  )
 }
 
 const mapStateToProps = (state: any) => ({
@@ -31,14 +29,6 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => {
   return {
     toggleLoading: () => dispatch({ type: 'LOADING' }),
-    fetchData: () =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/skills',
-        method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
-        dispatch: 'ALL_SKILLS',
-      }),
   };
 };
 

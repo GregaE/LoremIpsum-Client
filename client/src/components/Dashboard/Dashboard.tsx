@@ -10,15 +10,12 @@ import Home from '../Home/Home';
 import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
-import Login from '../Auth/Login/Login';
-import Register from '../Forms/Register';
 
 import Certificate from '../Forms/Certificate';
-import Builder from '../CVBuilder/Builder/Builder';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
-import { PDFRender } from '../CVBuilder/PDF-Render/PDF-Render';
+import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({
@@ -71,13 +68,17 @@ function Dashboard({
         <Header />
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>
-              <Route path="/" element={<Home/>} />
-              <Route path="/cvbuilder" element={<CVBuilder/>} />
-              <Route path="/mycvs" element={<MyCVs/>} />
-              <Route path="/test" element={<Profile/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path="/anothertest" element={<Education/>} /> {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-              <Route path="/form" element={<Certificate/>} /> {/* Temporal route */}
-              <Route path="/profile" element={<Profile/>} /> {/* Temporal route */}
+            <Route path="/" element={<Home />} />
+            <Route path="/cvbuilder" element={<CVBuilder />} />
+            <Route path="/mycvs" element={<MyCVs />} />
+            <Route path="/test" element={<Profile />} />{' '}
+            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+            <Route path="/anothertest" element={<Education />} />{' '}
+            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
+            <Route path="/form" element={<Certificate />} />{' '}
+            {/* Temporal route */}
+            <Route path="/profile" element={<Profile />} />{' '}
+            {/* Temporal route */}
           </Routes>
         </AnimatePresence>
       </div>

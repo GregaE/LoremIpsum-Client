@@ -1,6 +1,5 @@
 import { View, Text, Svg } from '@react-pdf/renderer';
 import { style } from './PDFStyles';
-import { ReactComponent as LocationIcon } from './PDFIcons/locationIcon.svg';
 import { PersonalDetails } from '../../../interfaces/CategoriesInterface';
 export function PDFProfile({
   personalDetails,
@@ -13,10 +12,7 @@ export function PDFProfile({
         {personalDetails.first_name + ' ' + personalDetails.last_name}
       </Text>
       <Text style={style.text}>
-        <Text style={style.subHeader}>
-          <LocationIcon />
-          Address:{' '}
-        </Text>
+        <Text style={style.subHeader}>Address: </Text>
         {`${personalDetails.street && personalDetails.street + ','} ${
           personalDetails.city && personalDetails.city
         }${personalDetails.postcode && ' ' + personalDetails.postcode}, ${
