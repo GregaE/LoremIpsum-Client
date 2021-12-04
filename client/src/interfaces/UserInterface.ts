@@ -8,7 +8,6 @@ import {
 } from './CategoriesInterface';
 export interface User {
   user_id: number;
-  username: string;
   email: string;
   personal_details: PersonalDetails;
   skills: Skill[];

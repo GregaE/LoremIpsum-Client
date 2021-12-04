@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
 
   const {personal_details} = userDetail;
-  const {username, email, password} = personal_details
+  const {email, password} = personal_details
 
   // Array of objects I let it here for future implementation
   const {languages} = lang;
@@ -45,7 +45,7 @@ function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
         <div className="w-2/3 h-1/6 flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
           <p className="p-4 underline text-2xl">Joder!</p>
           <div className="p-8">
-            <p>{`Name ${username}`}</p>
+            {/* <p>{`Name ${username}`}</p> */}
             <p>{`E-mail ${email}`}</p>
             <p>{`Password ${password}`}</p>
           </div>

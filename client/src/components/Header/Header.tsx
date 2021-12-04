@@ -13,7 +13,7 @@ function Header({navigate, header, userDetail}: any) {
       <Link to='/Profile'>
       <div id='profile' className='flex flex-row justify-around items-center'
         onClick={() => navigate('Profile')}>
-        <h2>{personal_details.username}</h2>
+        <h2>{personal_details.firstName}</h2>
           <img
             className='w-10 h-10 rounded-full mx-8'
             src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' alt=''/>
