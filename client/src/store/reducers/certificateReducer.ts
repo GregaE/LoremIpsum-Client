@@ -11,7 +11,7 @@ const initState: CertificateState = {
 
 const certificateReducer = (
   state = initState,
-  { type, payload, id }: CertificateAction
+  { type, payload, id, error }: CertificateAction
 ) => {
   switch (type) {
     case 'LOADING':
@@ -24,7 +24,7 @@ const certificateReducer = (
       return {
         ...state,
         loading: false,
-        error: payload,
+        error: error,
       };
     case 'ALL_CERTIFICATES':
       return {
@@ -35,10 +35,10 @@ const certificateReducer = (
       };
     case 'POST_CERTIFICATE':
       return {
-        ...state, 
+        ...state,
         loading: false,
         error: null,
-        certificates: [...state.certificates, payload]
+        certificates: [...state.certificates, payload],
       };
     case 'UPDATE_CERTIFICATE':
       return {

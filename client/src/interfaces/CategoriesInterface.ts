@@ -73,3 +73,10 @@ export type Categories = Skill &
   WorkExperience &
   Languages &
   Certificates;
+
+export type EnumCategories =
+  | Skill
+  | Education
+  | WorkExperience
+  | Languages
+  | Certificates;

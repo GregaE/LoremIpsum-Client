@@ -1,20 +1,20 @@
-import { connect } from 'react-redux';
+//@ts-nocheck => categories issue with TS
+import { useTypedSelector } from '../../../../utils/useTypeSelector';
 import Category from './Category/Category';
 
-function Categories({ pdfStatus, lang, cert, skill, edu, exp }: any) {
+export default function Categories() {
   // Array of objects I let it here for future implementation
-  const { languages } = lang;
-  const { certificates } = cert;
-  const { skills } = skill;
-  const { education } = edu;
-  const { experience } = exp;
-
-  // console.log('pdfStatus from categories: ', pdfStatus)
-  // console.log('lang fetch from categories: ',languages, pdfStatus)
-  // category.name can be ['Certificates','Education','Languages','Skills','Work Experience']
+  const {
+    pdf,
+    languages: { languages },
+    certificates: { certificates },
+    skills: { skills },
+    education: { education },
+    experience: { experience },
+  } = useTypedSelector(state => state);
 
   function renderCategories() {
-    return pdfStatus.map((category: any) => {
+    return pdf.map(category => {
       switch (category.name) {
         case 'Certificates':
           category.items = [...certificates];
@@ -56,20 +56,20 @@ function Categories({ pdfStatus, lang, cert, skill, edu, exp }: any) {
   );
 }
 
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    pdfStatus: state.pdf,
-    lang: state.languages,
-    cert: state.certificates,
-    skill: state.skills,
-    edu: state.education,
-    exp: state.experience,
-  };
-};
+// TODO - state & dispatch types
+// const mapStateToProps = (state: RootState) => {
+//   return {
+//     pdfStatus: state.pdf,
+//     lang: state.languages,
+//     cert: state.certificates,
+//     skill: state.skills,
+//     edu: state.education,
+//     exp: state.experience,
+//   };
+// };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {};
-};
+// // const mapDispatchToProps = (dispatch: any) => {
+// //   return {};
+// // };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Categories);
+// export default connect(mapStateToProps, null)(Categories);

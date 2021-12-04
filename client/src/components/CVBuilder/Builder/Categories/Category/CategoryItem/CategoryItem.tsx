@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { DotsVerticalIcon } from '@heroicons/react/solid';
-import { Categories } from '../../../../../../interfaces/CategoriesInterface';
+import {
+  Categories,
+  EnumCategories,
+} from '../../../../../../interfaces/CategoriesInterface';
 import {
   selectItem,
   unselectItem,
@@ -25,6 +28,7 @@ export default function CategoryItem({
         .find(pdfI => pdfI.name === categoryName)!
         .pdf.some(pd => pd.id === item.id)
   );
+  console.log(item);
 
   //Manipulate here
   const itemName = () => {

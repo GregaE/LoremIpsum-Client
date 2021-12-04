@@ -11,7 +11,7 @@ const initState: WorkExperienceState = {
 
 const experienceReducer = (
   state = initState,
-  { type, payload, id }: WorkExperienceAction
+  { type, payload, id, error }: WorkExperienceAction
 ) => {
   switch (type) {
     case 'LOADING':
@@ -24,7 +24,7 @@ const experienceReducer = (
       return {
         ...state,
         loading: false,
-        error: payload,
+        error: error,
       };
     case 'ALL_EXPERIENCES':
       return {
@@ -35,10 +35,10 @@ const experienceReducer = (
       };
     case 'POST_EXPERIENCE':
       return {
-        ...state, 
+        ...state,
         loading: false,
         error: null,
-        experience: [...state.experience, payload]
+        experience: [...state.experience, payload],
       };
     case 'UPDATE_EXPERIENCE':
       return {

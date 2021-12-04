@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { Dispatch, useState } from 'react';
 import { connect } from 'react-redux';
 import CategoryItem from './CategoryItem/CategoryItem';
 import { AnimatePresence } from 'framer-motion';
-import { Categories } from '../../../../../interfaces/CategoriesInterface';
+import {
+  Categories,
+  EnumCategories,
+} from '../../../../../interfaces/CategoriesInterface';
+import { ActionType } from '../../../../../store/state_interfaces/appState';
+import { Action } from '../../../../../store/actions';
 
 function Category({
   name,
@@ -14,7 +19,7 @@ function Category({
   toggle: (id: string) => void;
 }) {
   const [expander, toggleExpand] = useState(false);
-
+  console.log(items);
   function openCategories() {
     return items.map(item => {
       return <CategoryItem key={item.id} item={item} categoryName={name} />;
@@ -43,11 +48,11 @@ function Category({
   );
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch<Action>) => {
   return {
     toggle: (id: string) =>
       dispatch({
-        type: 'TOGGLE_MODAL',
+        type: ActionType.TOGGLE_MODAL,
         payload: {
           flag: true,
           identifier: id,
