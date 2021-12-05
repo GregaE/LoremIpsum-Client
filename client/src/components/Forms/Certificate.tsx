@@ -21,7 +21,7 @@ export default function Certificate() {
 
   return (
     <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
-      <h3>Add new certificate</h3>
+      <h3>Add Certificate</h3>
       <form>
         <TextInput
           callback={handleForm}

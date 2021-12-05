@@ -24,21 +24,29 @@ export default function Language() {
   const language: Languages = { ...state };
 
   return (
-    <div className="object-center w-1/2 h-auto bg-green-400">
+    <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+      <h3>Add Language</h3>
       <form>
-        <TextInput
-          callback={handleForm}
-          label="Language"
-          type="text"
-          name="language_name"
-          value={language.language_name}
-          placeholder="Enter language"
-        />
-        <SelectInput
-          options={languages}
-          value={language.level ? language.level : ''}
-        />
-        <div className="flex flex-row">
+        <div>
+          <TextInput
+            callback={handleForm}
+            label="Language"
+            type="text"
+            name="language_name"
+            value={language.language_name}
+            placeholder="Enter language"
+          />
+        </div>
+        <div className="flex justify-start">
+          <SelectInput
+            options={languages}
+            callback={handleForm}
+            name="level"
+            value={language.level}
+            default={'Enter Level'}
+          />
+        </div>
+        <div className="flex flex-row my-5 gap-2.5">
           <Button name="Cancel" callback={() => toggle(false, '')} />
           <Button
             name="Edit"

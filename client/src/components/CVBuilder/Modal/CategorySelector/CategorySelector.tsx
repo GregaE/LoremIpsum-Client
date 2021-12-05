@@ -22,7 +22,7 @@ function CategorySelector({ addCategory }: any) {
       <div
         key={category.name}
         onClick={() => addCategoryName(category.name)}
-        className="w-1/3 h-40 bg-light rounded m-3 py-3 text-center flex flex-col justify-center gap-5 transform transition cursor-pointer hover:scale-110"
+        className="w-56 h-40 bg-light rounded m-3 py-3 text-center flex flex-col justify-center gap-5 transform transition cursor-pointer hover:scale-105"
       >
         <i className={category.icon + ' text-4xl'}></i>
         <div className="text-2xl">{category.name}</div>
@@ -30,7 +30,7 @@ function CategorySelector({ addCategory }: any) {
     )
   );
 
-  return <div className="w-full flex flex-wrap">{categoryList}</div>;
+  return <div className="w-5/6 my-10 flex flex-wrap gap-5">{categoryList}</div>;
 }
 
 //TODO - state & dispatch types

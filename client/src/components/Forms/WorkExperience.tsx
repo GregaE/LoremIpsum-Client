@@ -44,70 +44,75 @@ export default function WorkExperienceForm() {
   const workExperience: WorkExperience = { ...state };
 
   return (
-    <div className="object-center w-1/2 h-auto bg-green-400">
+    <div className="m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+      <h3>Add Work Experience</h3>
       <form>
         <TextInput
           type="text"
           name="job_title"
           value={workExperience.job_title}
-          placeholder="job-title"
-          label=""
+          placeholder="Job Title"
+          label="Job Title"
           callback={handleForm}
         />
         <TextInput
           type="text"
           name="company"
           value={workExperience.company ? workExperience.company : ''}
-          placeholder="employer"
-          label=""
+          placeholder="Employer"
+          label="Employer"
           callback={handleForm}
         />
-        <div id="work_form_location" className="flex flex-row">
+        <div id="work_form_location" className="md:flex gap-5 items-center">
           <TextInput
             type="text"
             name="city"
             value={workExperience.city ? workExperience.city : ''}
-            placeholder="city"
-            label=""
+            placeholder="City"
+            label="City"
             callback={handleForm}
           />
           <TextInput
             type="text"
             name="country"
             value={workExperience.country ? workExperience.country : ''}
-            placeholder="country"
-            label=""
+            placeholder="Country"
+            label="Country"
             callback={handleForm}
           />
         </div>
-        <div id="work_form_dates" className="flex flex-row">
+        <div id="work_form_dates" className="flex flex-row gap-2 my-5">
           <SelectInput
             options={months}
             callback={handleForm}
             name="beginMonth"
             value={workExperience.beginMonth ? workExperience.beginMonth : ''}
+            default={'Month'}
           />
           <SelectInput
             options={years}
             callback={handleForm}
             name="beginYear"
             value={workExperience.beginYear ? workExperience.beginYear : ''}
+            default={'Year'}
           />
           <SelectInput
             options={months}
             callback={handleForm}
             name="endMonth"
             value={workExperience.endMonth ? workExperience.endMonth : ''}
+            default={'Month'}
           />
           <SelectInput
             options={years}
             callback={handleForm}
-            name="endMonth"
+            name="endYear"
             value={workExperience.endYear ? workExperience.endYear : ''}
+            default={'Year'}
           />
         </div>
       </form>
-      <div className="flex flex-row">
+      <div className="flex flex-row my-5 gap-2.5">
         <Button name="Cancel" callback={() => toggle(false, '')} />
         <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE" />
         <Button name="Create" callback={handleSubmit} handleSubmitType="NEW" />
