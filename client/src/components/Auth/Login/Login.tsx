@@ -13,7 +13,7 @@ const initialState = {
   password: '',
 };
 
-function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>}) {
+function Login(props: any) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,20 +31,25 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { email, password } = state;
-    const user = { email, password };
-    const res = await LoginService(user)
-    if (res.error) {
-      console.log('IF', res);
-      console.log(res.error)
-      alert(`${res.message}`);
-    } else {
-      console.log('ELSE res', res);
-      dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
-      console.log(res.user_id)
-      localStorage.setItem('user_id', res.user_id);
-      console.log('Loaclst', localStorage.getItem('user_id'));
-      Auth.login(() => navigate('/'));
-    }
+    // const user = { email, password };
+    // const res = await LoginService(user)
+    // if (res.error) {
+    //   console.log('IF', res);
+    //   console.log(res.error)
+    //   alert(`${res.message}`);
+    // } else {
+    //   console.log('ELSE res', res);
+    //   dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+    //   console.log(res.user_id)
+    //   localStorage.setItem('user_id', res.user_id);
+    //   console.log('Loaclst', localStorage.getItem('user_id'));
+    //   Auth.login(() => navigate('/'));
+    // }
+    props.login(email, password);
+    // setTimeout(() => {
+
+    // }, 1000);
+    // props.getDetails(props.user);
   }
 
   return (
@@ -97,7 +102,7 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
             </div>
             <div className='text-sm'>
               <span>Not yet registered? </span>
-              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => props.setRegister(true)}>
+              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => console.log(props.user)}>
                   Click here to register now.
               </span>
             </div>
@@ -119,18 +124,34 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 //TODO - deal with dispatch typing
-
-const mapDispatchToProps = (dispatch: any) => {
+const mapStateToProps = (state: any) => {
   return {
-    toggle: () => dispatch({type: 'TOGGLE_LOGIN'}),
-    testfetch: () => dispatch({type: {
-      type: 'FETCH_DATA',
-      endpoint: '/personalDetails',
-      method: 'GET',
-      id: 'ckwrtzl740078o0ctrn0oo4a4',
-      dispatch: 'PERSONAL_DETAILS',
-  }}),
+    user: state.user
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    login: (email: string, password: string) => {
+      dispatch({
+        type: 'FETCH_DATA',
+        endpoint: '/login',
+        method: 'POST',
+        id: '',
+        payload: {
+          email,
+          password
+        },
+        dispatch: 'SET_USER'
+      })
+    },
+    getDetails: (userId: string) => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/personalDetails',
+      id: userId,
+      dispatch: 'PERSONAL_DETAILS'
+    })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,6 +1,7 @@
 const baseUrl = 'http://localhost:3006';
 
 type Endpoint =
+  | '/login'
   | '/user'
   | '/certificates'
   | '/skills'
@@ -19,7 +20,7 @@ const fetchData = async (
   data?: any
 ) => {
   return await fetch(
-    baseUrl + endpoint + (id && `/${id}`),
+    baseUrl + endpoint ,
     {
       method,
       headers: {
