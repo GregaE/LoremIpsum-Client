@@ -1,28 +1,31 @@
 // import TextInput from '../Forms/Elements/Inputs/TextInput';
 // import Button from '../Forms/Elements/Buttons/Button';
-import React, { useState } from 'react';
-import { useDispatch, connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LoginService } from '../../../utils/ApiService';
 import Auth from '../../../utils/Auth';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
 
-const initialState = {
-  email: '',
-  password: '',
-};
-
-function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>}) {
-  const dispatch = useDispatch();
+function Login({userId, loading, getPersonalDetails, setRegister}: any) {
   const navigate = useNavigate();
 
-  const [ state, setState ] = useState(initialState);
+  const [ form, setForm ] = useState({
+    email: '',
+    password: ''
+  });
+  const [localUserId, setUserId] = useState('');
+
+  useEffect(() => {
+    userId && !loading && Auth.login(() => navigate('/'));
+    userId && getPersonalDetails(localUserId);
+  });
 
   const handleChange = (e: React.FormEvent) => {
     const target = e.target as HTMLInputElement;
     const { name, value } = target;
-    setState((prevState) => ({
+    setForm((prevState) => ({
       ...prevState,
       [name]: value,
     }))
@@ -31,18 +34,18 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { email, password } = state;
-    const user = { email, password };
-    const res = await LoginService(user);
-    console.log(res);
-    if (res.error) {
-      console.log(res.error)
-      alert(`${res.message}`);
-      setState(initialState);
-    } else {
-      dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
-      localStorage.setItem('user_id', res.user_id);
-      Auth.login(() => navigate('/'));
+    try {
+      setUserId(await LoginService({
+        email: form.email,
+        password: form.password
+      }));
+      localStorage.setItem('user_id', localUserId);
+    } catch (error) {
+      setForm({
+        email: '',
+        password: ''
+      });
+      alert(error);
     }
   }
 
@@ -96,7 +99,7 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
             </div>
             <div className='text-sm'>
               <span>Not yet registered? </span>
-              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => props.setRegister(true)}>
+              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => setRegister(true)}>
                   Click here to register now.
               </span>
             </div>
@@ -117,12 +120,25 @@ function Login(props: {setRegister:React.Dispatch<React.SetStateAction<boolean>>
   );
 }
 
-//TODO - deal with dispatch typing
-
-const mapDispatchToProps = (dispatch: any) => {
+const mapStateToProps = (state: any) => {
   return {
-    toggle: () => dispatch({type: 'TOGGLE_LOGIN'}),
+    userId: state.personal_details.id,
+    loading: state.personal_details.loading
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    getPersonalDetails: (userId: string) => {
+      dispatch({
+        type: 'FETCH_DATA',
+        method: 'GET',
+        endpoint: '/personalDetails',
+        id: userId,
+        dispatch: 'PERSONAL_DETAILS'
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
