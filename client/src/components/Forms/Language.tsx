@@ -1,19 +1,10 @@
-import React, { useState } from 'react';
-import { connect, useDispatch } from 'react-redux';
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
 import { Languages } from '../../interfaces/CategoriesInterface';
 import Button from './Elements/Buttons/Button';
-import { toggleModal } from '../../store/actions/toggleModal';
-import { useTypedSelector } from '../../utils/useTypeSelector';
+import { useHandleForm } from '../../utils/CustomHooks';
 
-function Language({ userDetail, postForm, updateForm }: any) {
-  const { personal_details } = userDetail;
-  const { user_id } = personal_details;
-  // const {
-  //   personal_details: { personal_details },
-  // } = useTypedSelector(state => state);
-
+export default function Language() {
   const languages = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
   const initialState: Languages = {
@@ -23,28 +14,14 @@ function Language({ userDetail, postForm, updateForm }: any) {
     userId: '',
   };
 
-  const dispatch = useDispatch();
-  const [language, setLanguage] = useState(initialState);
-
-  const handleForm = (e: React.ChangeEvent): void => {
-    const target = e.target as HTMLInputElement;
-    setLanguage({ ...language, [target.name]: target.value });
-  };
-
-  const handleSubmit = async (type: string) => {
-    //We have to add some input controller before sending anything
-
-    let res;
-    if (type === 'NEW') {
-      const data = { ...language, userId: user_id };
-      res = await postForm('POST_LANGUAGE', data);
-    }
-    if (type === 'UPDATE') {
-      res = await updateForm(user_id, 'UPDATE_LANGUAGE', language);
-    }
-    setLanguage(initialState);
-    dispatch(toggleModal(false, ''));
-  };
+  const { state, handleForm, handleSubmit, toggle } = useHandleForm(
+    '/languages',
+    initialState,
+    'POST_LANGUAGE',
+    'UPDATE_LANGUAGE'
+  );
+  //@ts-ignore
+  const language: Languages = { ...state };
 
   return (
     <div className="object-center w-1/2 h-auto bg-green-400">
@@ -62,10 +39,7 @@ function Language({ userDetail, postForm, updateForm }: any) {
           value={language.level ? language.level : ''}
         />
         <div className="flex flex-row">
-          <Button
-            name="Cancel"
-            callback={() => dispatch(toggleModal(false, ''))}
-          />
+          <Button name="Cancel" callback={() => toggle(false, '')} />
           <Button
             name="Edit"
             callback={handleSubmit}
@@ -81,35 +55,3 @@ function Language({ userDetail, postForm, updateForm }: any) {
     </div>
   );
 }
-
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    userDetail: state.personal_details,
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    postForm: (action: any, data: any) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/languages',
-        method: 'POST',
-        id: '',
-        dispatch: action,
-        payload: data,
-      }),
-    updateForm: (id: any, action: any, data: any) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/languages',
-        method: 'PUT',
-        id,
-        dispatch: action,
-        payload: data,
-      }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Language);

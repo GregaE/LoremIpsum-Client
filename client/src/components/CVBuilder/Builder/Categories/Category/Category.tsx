@@ -22,7 +22,7 @@ export default function Category({
   }
 
   return (
-    <div className="category-container w-full">
+    <div className="category-container w-full overflow-hidden">
       <div className="flex flex-wrap p-4 gap-10 justify-between items-center">
         <i
           onClick={() => dispatch(toggleModal(true, name))}

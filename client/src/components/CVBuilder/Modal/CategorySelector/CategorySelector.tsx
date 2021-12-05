@@ -9,25 +9,28 @@ function CategorySelector({ addCategory }: any) {
     dispatch(toggleModal(false, ''));
   }
 
-  const categories: string[] = [
-    'Certificates',
-    'Education',
-    'Languages',
-    'Skills',
-    'Work Experience',
+  const categories: { name: string; icon: string }[] = [
+    { name: 'Education', icon: 'fas fa-user-graduate' },
+    { name: 'Work Experience', icon: 'fas fa-suitcase' },
+    { name: 'Skills', icon: 'fas fa-toolbox' },
+    { name: 'Languages', icon: 'fas fa-globe-americas' },
+    { name: 'Certificates', icon: 'fas fa-award' },
   ];
 
-  const categoryList = categories.map(name => (
-    <div
-      key={name}
-      onClick={() => addCategoryName(name)}
-      className="w-1/5 h-20 bg-primary-bg rounded-full m-3 py-3 text-center"
-    >
-      {name}
-    </div>
-  ));
+  const categoryList = categories.map(
+    (category: { name: string; icon: string }) => (
+      <div
+        key={category.name}
+        onClick={() => addCategoryName(category.name)}
+        className="w-1/3 h-40 bg-light rounded m-3 py-3 text-center flex flex-col justify-center gap-5 transform transition cursor-pointer hover:scale-110"
+      >
+        <i className={category.icon + ' text-4xl'}></i>
+        <div className="text-2xl">{category.name}</div>
+      </div>
+    )
+  );
 
-  return <div className="flex flex-row flex-wrap">{categoryList}</div>;
+  return <div className="w-full flex flex-wrap">{categoryList}</div>;
 }
 
 //TODO - state & dispatch types

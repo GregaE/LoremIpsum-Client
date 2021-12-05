@@ -16,6 +16,7 @@ import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
 import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
+import EducationForm from '../Forms/Education';
 
 //TODO props type
 function Dashboard({
@@ -73,7 +74,7 @@ function Dashboard({
             <Route path="/mycvs" element={<MyCVs />} />
             <Route path="/test" element={<Profile />} />{' '}
             {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-            <Route path="/anothertest" element={<Education />} />{' '}
+            <Route path="/anothertest" element={<EducationForm />} />{' '}
             {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
             <Route path="/form" element={<Certificate />} />{' '}
             {/* Temporal route */}
