@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import TextInput from './Elements/Inputs/TextInput';

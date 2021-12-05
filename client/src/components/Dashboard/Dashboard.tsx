@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 
@@ -15,7 +15,6 @@ import Certificate from '../Forms/Certificate';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
-import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({
@@ -50,6 +49,7 @@ function Dashboard({
       getCVs(userId);
     } 
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   /*

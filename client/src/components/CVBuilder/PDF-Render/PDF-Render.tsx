@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PDFViewer, Document, Page, View, usePDF } from '@react-pdf/renderer';
 import { connect } from 'react-redux'
 

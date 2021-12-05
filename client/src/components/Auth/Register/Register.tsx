@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import Auth from '../../../utils/Auth';
 import { connect } from 'react-redux';
@@ -45,10 +46,10 @@ const Register = ( {setRegister, postDetails, toggleLogin, getUser}:any) => {
     //   console.log('userID before magic data',res.user_id);
     //   const magicData = {
     //     id: user_id,
-    //     email: email,
+    //     email: "email",
     //     phone_number: "",
     //     image: "",
-    //     first_name: username,
+    //     first_name: "username",
     //     last_name: "",
     //     street: "",
     //     postcode: "",

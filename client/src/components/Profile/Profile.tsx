@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { connect } from 'react-redux'
 import { motion } from 'framer-motion';

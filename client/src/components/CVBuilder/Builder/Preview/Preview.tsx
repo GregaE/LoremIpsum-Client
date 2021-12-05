@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { usePDF } from '@react-pdf/renderer';
 import PDFRender from '../../PDF-Render/PDF-Render';
 import { connect } from 'react-redux';
