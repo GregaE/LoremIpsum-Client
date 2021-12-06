@@ -41,14 +41,17 @@ export default function PDFRender({ pdf }: { pdf: PDF[] }) {
   );
 }
 
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    userDetail: state.personal_details,
-  }
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-  }
-}
+const PDFMock = {
+  personalDetails: {
+    first_name: 'Eugen',
+    last_name: 'Nikolajev',
+    phone_number: '123456789',
+    email: 'carl.marx@gmail.com',
+    street: 'Rambla',
+    postcode: '65326',
+    city: 'Barcelona',
+    country: 'Spain',
+    headline:
+      'I have a clear, logical mind with a practical approach to problem-solving and a drive to see things through to completion. I have more than 2 years of experience in managing and leading teams across multiple sectors. I am eager to learn, I enjoy overcoming challenges, and I have a genuine interest in Business Management and making organisations successful.',
+  },
+};
