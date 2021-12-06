@@ -95,7 +95,7 @@ function Login(props: any) {
             </div>
             <div className='text-sm'>
               <span>Not yet registered? </span>
-              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => console.log(props.user)}>
+              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => props.setRegister(true)}>
                   Click here to register now.
               </span>
             </div>
