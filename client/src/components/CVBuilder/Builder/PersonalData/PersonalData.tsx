@@ -8,7 +8,7 @@ function PersonalData({userDetail}:any) {
   // Personal details right now comes from /user instead from /personalDetails
   // So this one isnt the correct one, but this endpoint need some fixings so in the meantime
   // I use the use data
-  const {email, image, } = personal_details
+  const {email, image } = personal_details
 
   return (
     <div className="bg-light rounded-container p-4">
@@ -19,8 +19,6 @@ function PersonalData({userDetail}:any) {
         <div className="flex flex-col items-start">
           <p className="font-bold underline">Personal Details</p>
           <p>{email}</p>
-          <p>{phone_number}</p>
-          <p>{street} {city} {country}</p> 
         </div>
       </div>
     </div>
