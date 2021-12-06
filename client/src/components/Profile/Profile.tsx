@@ -1,17 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import { connect } from 'react-redux'
-import { motion } from 'framer-motion';
-import { useTypedSelector } from '../../utils/useTypeSelector';
-
 
 import ProfileImg from "./ProfileImg/ProfileImg"
-import Modal from '../CVBuilder/Modal/Modal';
-import ProfileCategory from './ProfileCategory/ProfileCategory';
 
+import { motion } from 'framer-motion';
 
 function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
 
-  console.log('user detail', userDetail)
   const {personal_details} = userDetail;
   const {email, password} = personal_details
 
@@ -34,11 +30,9 @@ function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
       opacity: 0,
     },
   }
-  //Display modal by switch
-  const modal = flag ? <Modal/> : null
 
   return (
-    <motion.div className="p-2 h-full flex flex-col justify-start overflow-x-hidden"
+    <motion.div className="p-2"
       initial="hidden"
       animate="visible"
       exit="hidden"
@@ -55,13 +49,14 @@ function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
           </div>
         </div>
       </div>
-      <div className="p-2 flex flex-col gap-4 h-full overflow-y-hidden overflow-x-auto">
+      <div className="p-2">
         <h2 className="underline text-3xl">Your categories</h2>
-        <div className="flex flex-col h-30 gap-3 overflow-x-auto  overflow-y-hidden overflow-x-auto">
-          {renderCategories()}
+        <div className="flex flex-col content-around p-4">
+          <p className="w-full bg-light m-2 p-1 rounded-lg">SKILLS</p>
+          <p className="w-full bg-light m-2 p-1 rounded-lg">EDUCATION</p>
+          <p className="w-full bg-light m-2 p-1 rounded-lg">WORK EXPERIENCE</p>
         </div>
       </div>
-      {modal}
     </motion.div>
   );
 }
@@ -80,14 +75,6 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    toggle: () =>
-    dispatch({
-      type: 'TOGGLE_MODAL',
-      payload: {
-        flag: true,
-        identifier: 'PersonalInfo',
-      },
-    }),
   }
 }
 
