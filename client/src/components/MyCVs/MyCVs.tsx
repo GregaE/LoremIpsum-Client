@@ -22,11 +22,6 @@ function MyCVs({curriculum}:any) {
   }
 
   /*
-  We should fetch CVs from user from here
-  At the same time we could let option to remove them... for "nice to have"
-  */
-
-  /*
   In the meantime it just shows as many items as cvs we have in the list, but should be just
   a picture / thumbnail of the cv item
   */

@@ -18,9 +18,9 @@ export enum ActionType {
   EDIT_ITEM = 'EDIT_ITEM',
   SELECT_ITEM = 'SELECT_ITEM',
   UNSELECT_ITEM = 'UNSELECT_ITEM',
+  //Interface {itemID: string, data: categoryInterface}
   RESET_PDF = "RESET_PDF"
 }
-
 ///////////////////////////////
 /////// APP NAVIGATION ////////
 ///////////////////////////////
