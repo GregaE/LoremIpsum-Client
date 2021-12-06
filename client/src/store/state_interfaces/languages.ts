@@ -8,6 +8,7 @@ export interface LanguageState {
 
 export interface LanguageAction {
   type: string;
-  payload?: Languages[];
+  payload: Languages & Languages[];
   id?: string;
+  error: string | null;
 }

@@ -8,7 +8,7 @@ const initState: LanguageState = {
 
 const languageReducer = (
   state = initState,
-  { type, payload, id }: LanguageAction
+  { type, payload, id, error }: LanguageAction
 ) => {
   switch (type) {
     case 'LOADING':
@@ -21,7 +21,7 @@ const languageReducer = (
       return {
         ...state,
         loading: false,
-        error: payload,
+        error: error,
       };
     case 'ALL_LANGUAGES':
       return {
@@ -32,11 +32,11 @@ const languageReducer = (
       };
     case 'POST_LANGUAGE':
       return {
-        ...state, 
+        ...state,
         loading: false,
         error: null,
-        languages: [...state.languages, payload]
-      }
+        languages: [...state.languages, payload],
+      };
     case 'UPDATE_LANGUAGE':
       return {
         ...state,

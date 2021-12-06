@@ -30,7 +30,7 @@ const reducers = combineReducers({
   headerName,
   showCvBuilder,
   toggleModal,
-  pdf: pdfReducer
+  pdf: pdfReducer,
 });
 
 export default createStore(reducers, applyMiddleware(middleware));

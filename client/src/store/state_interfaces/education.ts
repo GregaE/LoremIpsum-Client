@@ -3,11 +3,12 @@ import { Education } from '../../interfaces/CategoriesInterface';
 export interface EducationState {
   education: Education[];
   loading: boolean;
-  error: null;
+  error: string | null;
 }
 
 export interface EducationAction {
   type: string;
-  payload?: Education;
+  payload: Education & Education[];
   id?: string;
+  error: string | null;
 }

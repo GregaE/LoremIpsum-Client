@@ -1,12 +1,11 @@
-import { Dispatch } from 'redux';
-import { ModalInterface } from '../../interfaces/ModalInterface';
-import { ActionType, Action } from './index';
+import { ActionType } from './index';
 
-export const toggleModal = (object: ModalInterface) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.TOGGLE_MODAL,
-      payload: object,
-    });
+export const toggleModal = (flag: boolean, id: string) => {
+  return {
+    type: ActionType.TOGGLE_MODAL,
+    payload: {
+      flag,
+      identifier: id,
+    },
   };
 };

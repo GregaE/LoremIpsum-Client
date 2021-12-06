@@ -1,26 +1,39 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import CategoryItem from './CategoryItem/CategoryItem';
 import { AnimatePresence } from 'framer-motion';
+import { Categories } from '../../../../../interfaces/CategoriesInterface';
+import { toggleModal } from '../../../../../store/actions/toggleModal';
 
-//TODO: fix the any types of the props
-function Category({ name, items, toggle }: any) {
+export default function Category({
+  name,
+  items,
+}: {
+  name: string;
+  items: Categories[];
+}) {
   const [expander, toggleExpand] = useState(false);
-  
+  const dispatch = useDispatch();
+
   function openCategories() {
-    return items.map((item:any) => {
-      return <CategoryItem key={item.id} item={item} categoryName={name}/>
-    })
+    return items.map(item => {
+      return <CategoryItem key={item.id} item={item} categoryName={name} />;
+    });
   }
 
   return (
-    <div className="category-container w-full">
+    <div className="category-container w-full overflow-hidden">
       <div className="flex flex-wrap p-4 gap-10 justify-between items-center">
-        <i onClick={() => toggle(`${name}`)} className="fas fa-plus-circle"></i>
-        <h2>{name}</h2>
+        <i
+          onClick={() => dispatch(toggleModal(true, name))}
+          className="fas fa-plus-circle cursor-pointer"
+        ></i>
+        <h2 className="font-medium text-lg">{name}</h2>
         <i
           onClick={() => toggleExpand(!expander)}
-          className="fas fa-minus cursor-pointer"
+          className={`fas fa-${
+            expander ? 'minus' : 'chevron-down'
+          } cursor-pointer`}
         ></i>
       </div>
       <AnimatePresence exitBeforeEnter>
@@ -29,24 +42,3 @@ function Category({ name, items, toggle }: any) {
     </div>
   );
 }
-
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    toggle: (id: any) =>
-      dispatch({
-        type: 'TOGGLE_MODAL',
-        payload: {
-          flag: true,
-          identifier: id,
-        },
-      }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Category);

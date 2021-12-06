@@ -1,21 +1,34 @@
 import { useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
-
-function CategoryItem({
-  item,
-  categoryName,
+import { DotsVerticalIcon } from '@heroicons/react/solid';
+import {
+  Categories,
+  EnumCategories,
+} from '../../../../../../interfaces/CategoriesInterface';
+import {
   selectItem,
   unselectItem,
-  pdfItems,
-}: any) {
+} from '../../../../../../store/actions/pdfActions';
+import { useTypedSelector } from '../../../../../../utils/useTypeSelector';
+
+export default function CategoryItem({
+  item,
+  categoryName,
+}: {
+  item: Categories;
+  categoryName: string;
+}) {
+  const dispatch = useDispatch();
+  const pdfItems = useTypedSelector(state => state.pdf);
+
   const [selected, toggleSelection] = useState(
-    pdfItems
-      .find((pdfI: any) => pdfI.name === categoryName)
-      .pdf.some((pd: any) => pd.id === item.id)
-      ? true
-      : false
+    pdfItems &&
+      pdfItems
+        .find(pdfI => pdfI.name === categoryName)!
+        .pdf.some(pd => pd.id === item.id)
   );
+  console.log(item);
 
   //Manipulate here
   const itemName = () => {
@@ -27,9 +40,8 @@ function CategoryItem({
 
   const handleSelection = () => {
     selected
-      ? unselectItem(categoryName, item.id)
-      : selectItem(categoryName, item.id);
-
+      ? dispatch(unselectItem(categoryName, item.id))
+      : dispatch(selectItem(categoryName, item.id));
     toggleSelection(!selected);
   };
 
@@ -42,50 +54,22 @@ function CategoryItem({
       exit={{ opacity: 0, height: '0px' }}
       className="item-container"
     >
-      <div>
-        {selected ? (
+      <div className="group flex flex-row w-full ">
+        <div
+          onClick={() => handleSelection()}
+          className="m-1 flex p-1 w-full cursor-pointer"
+        >
           <i
-            className="fas fa-check-circle"
-            onClick={() => handleSelection()}
+            className={`${
+              selected ? 'fas' : 'far'
+            } fa-check-circle m-1 cursor-pointer`}
           ></i>
-        ) : (
-          <i
-            className="far fa-check-circle"
-            onClick={() => handleSelection()}
-          ></i>
-        )}
+          <span className="font-normal group-hover:font-medium">
+            {itemName()}
+          </span>
+        </div>
+        <DotsVerticalIcon className="h-5 w-5 invisible group-hover:visible justify-self-end self-center cursor-pointer"></DotsVerticalIcon>
       </div>
-      <div>{itemName()}</div>
     </motion.div>
   );
 }
-
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    pdfItems: state.pdf,
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    selectItem: (name: any, itemID: any) =>
-      dispatch({
-        type: 'SELECT_ITEM',
-        payload: {
-          name,
-          itemID,
-        },
-      }),
-    unselectItem: (name: any, itemID: any) =>
-      dispatch({
-        type: 'UNSELECT_ITEM',
-        payload: {
-          name,
-          itemID,
-        },
-      }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryItem);
