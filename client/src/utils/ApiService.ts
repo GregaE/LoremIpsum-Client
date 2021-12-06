@@ -1,11 +1,9 @@
 import { Options } from '../interfaces/ApiInterfaces';
 import { User } from '../interfaces/UserInterface';
 import { loginInterface } from '../store/state_interfaces/loginInterface';
-import { registerInterface } from '../store/state_interfaces/registerInterface';
 const BASE_URL = 'http://localhost:3006';
 
 async function fetchApi<T>(slug: string, options?: Options): Promise<T> {
-  console.log(slug, options);
   const res = await fetch(BASE_URL + slug, options);
   return res.json();
 }
@@ -37,6 +35,7 @@ export async function LogoutService ()  {
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
     });
+    console.log(res)
     return await res.json();
   } catch (err) {
     return console.error(err);
