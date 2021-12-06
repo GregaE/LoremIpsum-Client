@@ -5,7 +5,7 @@ import {
 import { PersonalDetails } from '../../interfaces/CategoriesInterface';
 
 const initState: PersonalDetailsState = {
-  personal_details: <PersonalDetails>{},
+  personal_details: {} as PersonalDetails,
   loading: false,
   error: null,
 };
