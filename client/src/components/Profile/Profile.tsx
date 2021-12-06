@@ -13,7 +13,9 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
 
   const { flag } = useTypedSelector((state) => state.toggleModal)
 
+  console.log('user detail', userDetail)
   const {personal_details} = userDetail;
+  console.log(personal_details);
   const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details[0]
 
   // Array of objects I let it here for future implementation

@@ -6,7 +6,7 @@ import { AnimatePresence } from 'framer-motion';
 //TODO: fix the any types of the props
 function Category({ name, items, toggle }: any) {
   const [expander, toggleExpand] = useState(false);
-  
+
   function openCategories() {
     return items.map((item:any) => {
       return <CategoryItem key={item.id} item={item} categoryName={name}/>

@@ -1,8 +1,5 @@
 import { ModalInterface } from "../../interfaces/ModalInterface";
 
-
-
-
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',
   HEADER_NAME = 'HEADER_NAME',
@@ -16,7 +13,7 @@ export enum ActionType {
   EDIT_ITEM = 'EDIT_ITEM',
   SELECT_ITEM = 'SELECT_ITEM',
   UNSELECT_ITEM = 'UNSELECT_ITEM',
-  RESET_PDF = "RESET_PDF"
+  RESET_PDF = "RESET_PDF",
 }
 
 ///////////////////////////////
@@ -37,7 +34,6 @@ interface showCvBuilder {
   type: ActionType.SHOW_CVBUILDER;
   payload: boolean;
 }
-
 interface AddCategory {
   type: ActionType.ADD_CATEGORY;
   payload: any; //Interface {name: string, items: categoryInterface}

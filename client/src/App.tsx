@@ -15,9 +15,11 @@ const { isLoggedIn } = login;
 
 const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
 
-if (login.userId === '') {
-  dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id')} });
-}
+useEffect(() => {
+  if (login.userId === '') {
+    dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id')} });
+  }
+}, [dispatch, login.userId])
 
 return (
   render

@@ -33,6 +33,7 @@ const personalDetailsReducer = (
         loading: false,
         error: null,
         personal_details: payload,
+        id: id,
       };
     default:
       return state;

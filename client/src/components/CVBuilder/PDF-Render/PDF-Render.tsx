@@ -11,8 +11,8 @@ import { useEffect } from 'react';
 
 function PDFRender({ pdf, userDetail }: any) {
   // const pdfItems: PDF[] = pdf;
-  const {personal_details} = userDetail
-  const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details[0]
+  // const {personal_details} = userDetail
+  // const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details[0]
 
   const renderPdf =
     pdf &&
@@ -48,8 +48,8 @@ function PDFRender({ pdf, userDetail }: any) {
       <Document>
         <Page size="A4" style={pageStyle.page}>
           <View style={pageStyle.section}>
-            <PDFProfile personalDetails={personal_details[0]} />
-            {renderPdf}
+            {/* <PDFProfile personalDetails={personal_details[0]} />
+            {renderPdf} */}
           </View>
         </Page>
       </Document>

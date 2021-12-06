@@ -28,13 +28,12 @@ function Certificate({userDetail, toggle, postForm, updateForm}:any) {
   const handleSubmit = async (type:string)=> {
     //We have to add some input controller before sending anything
     
-    let res;
     if(type==="NEW") {
       const data = {...certificate, userId:user_id}
-      res = await postForm("POST_CERTIFICATE",data)
+      return await postForm("POST_CERTIFICATE",data)
     }
     if(type==="UPDATE") {
-      res = await updateForm(user_id,"UPDATE_CERTIFICATE",certificate)
+      return await updateForm(user_id,"UPDATE_CERTIFICATE",certificate)
     }
     setCertificate(initialState)
     toggle()
@@ -80,7 +79,7 @@ const mapDispatchToProps = (dispatch: any) => {
       type: 'FETCH_DATA',
       endpoint: '/certificates',
       method: 'POST',
-      id:'',
+      id: '',
       dispatch: action,
       payload: data
     }),
