@@ -52,5 +52,3 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(PDFRender);
