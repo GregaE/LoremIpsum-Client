@@ -10,7 +10,9 @@ function CVItem({cvId, date_created, data}:any) {
 
 
   return ( 
-    <div className="bg-light w-80 h-96 flex flex-col justify-center items-center shadow-lg" onClick={()=>{console.log(parsedData)}}>
+    <div className="bg-light w-80 h-96 flex flex-col justify-center items-center shadow-lg bg-contain	bg-center"
+      style={{ backgroundImage: `url(https://www.myesr.org/sites/default/files/media-icons/generic/application-pdf.png)` }}
+      onClick={()=>{console.log(parsedData)}}>
       <p className="p-10" >CV Item</p>
       <p>ID {cvId}</p>
       <p>date_created {date_created}</p>

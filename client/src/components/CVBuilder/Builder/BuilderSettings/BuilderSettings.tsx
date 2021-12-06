@@ -13,6 +13,7 @@ function BuilderSettings({postCV, user} :any) {
       userId,
       saved_cv: JSON.stringify(pdfItems)
     }
+    console.log('Cv posted')
     postCV(data)
   }
   return (
