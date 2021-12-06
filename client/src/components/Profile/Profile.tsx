@@ -1,22 +1,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
-import ProfileImg from "./ProfileImg/ProfileImg"
+import ProfileImg from './ProfileImg/ProfileImg';
 
 import { motion } from 'framer-motion';
 
-function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
-
-  const {personal_details} = userDetail;
-  const {email, password} = personal_details
+function Profile({ userDetail, lang, cert, skill, edu, exp }: any) {
+  const { personal_details } = userDetail;
+  const { email, password } = personal_details;
 
   // Array of objects I let it here for future implementation
-  const {languages} = lang;
-  const {certificates} = cert
-  const {skills} = skill
-  const {education} = edu
-  const {experience} = exp
+  const { languages } = lang;
+  const { certificates } = cert;
+  const { skills } = skill;
+  const { education } = edu;
+  const { experience } = exp;
 
   const containerVariants = {
     hidden: {
@@ -24,22 +22,24 @@ function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
     },
     visible: {
       opacity: 1,
-      transition: {delay: 0.1, duration: 0.1}
+      transition: { delay: 0.1, duration: 0.1 },
     },
     exit: {
       opacity: 0,
     },
-  }
+  };
 
   return (
-    <motion.div className="p-2"
+    <motion.div
+      className="p-2"
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={containerVariants}>
+      variants={containerVariants}
+    >
       <h2 className="underline text-3xl p-2">Your personal data</h2>
       <div className="flex flex-row justify-center items-center p-4 ml-5">
-        <ProfileImg/>
+        <ProfileImg />
         <div className="w-2/3 h-1/6 flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
           <p className="p-4 underline text-2xl">Joder!</p>
           <div className="p-8">
@@ -69,13 +69,12 @@ const mapStateToProps = (state: any) => {
     cert: state.certificates,
     skill: state.skills,
     edu: state.education,
-    exp: state.experience
-  }
-}
+    exp: state.experience,
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {
-  }
-}
+  return {};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -16,7 +16,7 @@ export function useHandleForm(
   const dispatch = useDispatch();
   //get the id of logged in user
   const {
-    personal_details: { user_id },
+    personal_details: { userId },
   } = useTypedSelector(state => state.personal_details);
 
   //handles the form
@@ -29,12 +29,12 @@ export function useHandleForm(
     //We have to add some input controller before sending anything
     let res;
     if (type === 'NEW') {
-      const data: EnumCategories = { ...state, userId: user_id };
+      const data: EnumCategories = { ...state, userId: userId };
       dispatch(postForm(endpoint, postAction, data));
     }
     if (type === 'UPDATE') {
       //THIS IS NOT WORKING BECAUSE IT NEEDS THE ID OF THE ITEM TO UPDATE NOT USER ID
-      res = dispatch(updateForm(endpoint, user_id, updateAction, state));
+      res = dispatch(updateForm(endpoint, userId, updateAction, state));
     }
     console.log(res); //=> just to test if res is returning the correct data to be then passed to the state as initial one
     setState(initialState);

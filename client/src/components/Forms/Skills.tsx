@@ -4,7 +4,7 @@ import { Skill } from '../../interfaces/CategoriesInterface';
 import Button from './Elements/Buttons/Button';
 import { useHandleForm } from '../../utils/CustomHooks';
 
-export default function Skills() {
+export default function Skills({ recordType }: { recordType: string }) {
   const initialState: Skill = {
     id: '',
     name: '',
@@ -46,8 +46,10 @@ export default function Skills() {
       </form>
       <div className="flex flex-row my-5 gap-2.5">
         <Button name="Cancel" callback={() => toggle(false, '')} />
-        <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE" />
-        <Button name="Create" callback={handleSubmit} handleSubmitType="NEW" />
+        <Button
+          name={recordType === 'NEW' ? 'Create' : 'Edit'}
+          callback={() => handleSubmit(recordType)}
+        />
       </div>
     </div>
   );

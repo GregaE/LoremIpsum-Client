@@ -4,7 +4,7 @@ import Button from './Elements/Buttons/Button';
 import { Certificates } from '../../interfaces/CategoriesInterface';
 import { useHandleForm } from '../../utils/CustomHooks';
 
-export default function Certificate() {
+export default function Certificate({ recordType }: { recordType: string }) {
   const initialState: Certificates = {
     name: '',
     description: '',
@@ -16,8 +16,7 @@ export default function Certificate() {
     'POST_CERTIFICATE',
     'UPDATE_CERTIFICATE'
   );
-  //@ts-ignore => handle type once solved
-  const certificate: Certificates = { ...state };
+  const certificate: Certificates = { ...(state as Certificates) };
 
   return (
     <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
@@ -45,8 +44,10 @@ export default function Certificate() {
       </form>
       <div className="flex flex-row my-5 gap-2.5">
         <Button name="Cancel" callback={() => toggle(false, '')} />
-        <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE" />
-        <Button name="Create" callback={handleSubmit} handleSubmitType="NEW" />
+        <Button
+          name={recordType === 'NEW' ? 'Create' : 'Edit'}
+          callback={() => handleSubmit(recordType)}
+        />
       </div>
     </div>
   );
