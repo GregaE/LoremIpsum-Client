@@ -1,11 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, {useState} from 'react';
 import {  Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
 //TODO props types
-function Header({navigate, header, personalDetails}: any) {
+function Header({navigate, header, userDetail}: any) {
 
-  const personal_details = personalDetails.personal_details;
+  const {personal_details} = userDetail;
+  const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details
 
   return (
     <div className='w-full h-1/10 py-4 bg-primary-bg flex flex-row justify-between items-center px-8'>
@@ -13,10 +16,12 @@ function Header({navigate, header, personalDetails}: any) {
       <Link to='/Profile'>
       <div id='profile' className='flex flex-row justify-around items-center capitalize'
         onClick={() => navigate('Profile')}>
-        <h2>{personal_details.first_name} {personal_details.last_name}</h2>
-        <img
-          className='w-10 h-10 rounded-full mx-8'
-          src='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' alt=''/>
+        <h2>{first_name} {last_name}</h2>
+          <img
+            className='w-10 h-10 rounded-full mx-8'
+            src={image 
+              ? image
+              :'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'} alt=''/>
       </div>
       </Link>
     </div>
@@ -26,7 +31,7 @@ function Header({navigate, header, personalDetails}: any) {
 //TODO state & dispatch types
 const mapStateToProps = (state: any) => {
   return {
-    personalDetails: state.personal_details,
+    userDetail: state.personal_details,
     header: state.headerName
   }
 }

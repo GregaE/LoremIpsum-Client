@@ -51,6 +51,9 @@ const pdfReducer = (
       });
       return unselectItemState;
 
+    case ActionType.RESET_PDF:
+      return initialState;
+
     default:
       return state;
   }

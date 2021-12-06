@@ -11,16 +11,16 @@ import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
 
-import Certificate from '../Forms/Certificate';
-import Education from '../Forms/Education';
-
 import { AnimatePresence } from 'framer-motion';
+import { toggleModal } from '../../store/actions/toggleModal';
 
 //TODO props type
 function Dashboard({
   modal,
   toggle,
 }: any) {
+
+  const dispatch = useDispatch()
 
   const location = useLocation();
 
@@ -34,7 +34,7 @@ function Dashboard({
     while (e.target.id !== 'modal-content') {
       if (e.target.id === 'modal-content') return;
       if (e.target.parentNode.localName === 'body') {
-        if (modal.flag) toggle();
+        if (modal.flag) dispatch(toggleModal(false,''));
         return;
       }
       e.target = e.target.parentNode;
@@ -54,14 +54,7 @@ function Dashboard({
             <Route path="/" element={<Home />} />
             <Route path="/cvbuilder" element={<CVBuilder />} />
             <Route path="/mycvs" element={<MyCVs />} />
-            <Route path="/test" element={<Profile />} />{' '}
-            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-            <Route path="/anothertest" element={<Education />} />{' '}
-            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-            <Route path="/form" element={<Certificate />} />{' '}
-            {/* Temporal route */}
-            <Route path="/profile" element={<Profile />} />{' '}
-            {/* Temporal route */}
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </AnimatePresence>
       </div>

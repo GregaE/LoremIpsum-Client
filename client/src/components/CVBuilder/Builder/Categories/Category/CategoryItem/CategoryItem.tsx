@@ -2,10 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { motion } from 'framer-motion';
 import { DotsVerticalIcon } from '@heroicons/react/solid';
-import {
-  Categories,
-  EnumCategories,
-} from '../../../../../../interfaces/CategoriesInterface';
+import { Categories } from '../../../../../../interfaces/CategoriesInterface';
 import {
   selectItem,
   unselectItem,
@@ -46,7 +43,7 @@ export default function CategoryItem({
 
   return (
     <motion.div
-      key="5" /// needs to pass actual key
+      key={item.id}
       initial={{ opacity: 0, height: '0px' }}
       animate={{ opacity: 1, height: '40px' }}
       transition={{ type: 'tween' }}

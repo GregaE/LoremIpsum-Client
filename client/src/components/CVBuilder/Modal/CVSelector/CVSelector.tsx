@@ -9,15 +9,12 @@ function CVSelector({curriculum}:any) {
 
   function renderCVs() {
     if(cvs.length > 0) {
-      return Array(cvs.length).fill(<CVItem />)
+      return cvs.map((cv:any) => {
+        return <CVItem cvId={cv.id} date_created={cv.date_created} data={cv.saved_cv}/>
+      })
     }
     return <p>You dont have any CV yet</p>
   }
-
-  /*
-  TO DO:
-    Every CVItem should hold a key that identifies the CV so when you click CVItem changes selector state fetching cv data
-  */
 
   return (
     <div className="h-full flex flex-wrap items-center gap-10 p-5 overflow-scroll">

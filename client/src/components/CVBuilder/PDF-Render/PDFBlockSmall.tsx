@@ -23,10 +23,10 @@ export function PDFBlockSmall({
         >
           <View>
             <Text style={style.subHeader}>
-              {category == 'Languages' ? data.language_name : data.name}
+              {category === 'Languages' ? data.language_name : data.name}
             </Text>
             <Text style={style.text}>
-              {category == 'Languages' ? data.level : data.description}
+              {category === 'Languages' ? data.level : data.description}
             </Text>
           </View>
         </li>

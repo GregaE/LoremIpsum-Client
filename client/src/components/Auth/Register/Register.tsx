@@ -4,21 +4,17 @@ import { RegisterService } from '../../../utils/ApiService';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { loginDetails } from '../../../store/actions/toggleLogin';
-
 import { LockClosedIcon } from '@heroicons/react/solid'
-
 const initialState = {
     email: '',
     password: '',
     firstName: '',
     lastName: ''
   };
-
   const Register = ( props: {setRegister: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [state, setState] = useState(initialState);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const handleChange = (e: React.FormEvent) => {
       const target = e.target as HTMLInputElement;
       const { name, value } = target;
@@ -27,7 +23,6 @@ const initialState = {
         [name]: value,
       }));
     };
-
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
       const { email, password, firstName, lastName } = state;
@@ -43,13 +38,11 @@ const initialState = {
         Auth.login(() => navigate('/'));
       }
     };
-
     const validateForm = () => {
       return (
         !state.email || !state.password || !state.firstName || !state.lastName
       );
     };
-
     return (
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-primary">
         <div className="max-w-md w-full space-y-8 bg-light rounded-container p-10">
@@ -152,5 +145,4 @@ const initialState = {
       </div>
     );
   };
-
   export default Register;
