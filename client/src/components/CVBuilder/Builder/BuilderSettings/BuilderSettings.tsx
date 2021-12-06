@@ -4,8 +4,10 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFRender from '../../PDF-Render/PDF-Render';
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
 
-function BuilderSettings({postCV, user} :any) {
+function BuilderSettings({postCV,resetPdf,userDetail, user} :any) {
   const pdfItems = useTypedSelector(state => state.pdf);
+
+  const {personal_details} = userDetail
 
   const saveCV = () => {
     const {userId} = user
@@ -15,11 +17,12 @@ function BuilderSettings({postCV, user} :any) {
     }
     console.log('Cv posted')
     postCV(data)
+    resetPdf()
   }
   return (
     <div>
       <PDFDownloadLink
-        document={<PDFRender pdf={pdfItems} />}
+        document={<PDFRender pdf={pdfItems} personal_details={personal_details}/>}
         fileName={`CV-${new Date().toISOString()}.pdf`}
       >
         {({ blob, url, loading, error }) => (
@@ -40,7 +43,8 @@ function BuilderSettings({postCV, user} :any) {
 const mapStateToProps = (state: any) => {
   return {
     pdfStatus: state.pdf,
-    user: state.login
+    user: state.login,
+    userDetail: state.personal_details,
   }
 }
 
@@ -54,6 +58,10 @@ const mapDispatchToProps = (dispatch: any) => {
         id: '',
         dispatch: 'POST_CV',
         payload: data
+      }),
+    resetPdf: () =>
+      dispatch({
+        type: 'RESET_PDF',
       }),
   }
 }
