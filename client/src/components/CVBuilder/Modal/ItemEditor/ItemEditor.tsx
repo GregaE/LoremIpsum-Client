@@ -5,7 +5,6 @@ import EducationForm from '../../../Forms/Education';
 import Language from '../../../Forms/Language';
 import Skills from '../../../Forms/Skills';
 import WorkExperience from '../../../Forms/WorkExperience';
-import PersonalInfo from '../../../Forms/PersonalInfo'
 
 export default function ItemEditor() {
   const { identifier } = useTypedSelector(state => state.toggleModal);
