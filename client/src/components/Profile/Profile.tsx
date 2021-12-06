@@ -18,8 +18,6 @@ function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
   const {education} = edu
   const {experience} = exp
 
-  console.log(languages,certificates,skills,education,experience)
-
   const containerVariants = {
     hidden: {
       opacity: 0,

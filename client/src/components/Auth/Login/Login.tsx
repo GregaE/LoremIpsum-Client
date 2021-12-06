@@ -7,6 +7,7 @@ import { LoginService } from '../../../utils/ApiService';
 import Auth from '../../../utils/Auth';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
+import { loginDetails } from '../../../store/actions/toggleLogin';
 
 const initialState = {
   email: '',
@@ -31,6 +32,7 @@ function Login(props: any) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { email, password } = state;
+<<<<<<< HEAD
     // const user = { email, password };
     // const res = await LoginService(user)
     // if (res.error) {
@@ -50,6 +52,19 @@ function Login(props: any) {
 
     // }, 1000);
     // props.getDetails(props.user);
+=======
+    const user = { email, password };
+    const res = await LoginService(user)
+    if (res.error) {
+      console.log(res.error)
+      alert(`${res.message}`);
+    } else {
+      dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+      dispatch(loginDetails(res.personal_detail));
+      localStorage.setItem('user_id', res.user_id);
+      Auth.login(() => navigate('/'));
+    }
+>>>>>>> bca4809c2f218a25621eaf4593c86b2f1f4a2348
   }
 
   return (

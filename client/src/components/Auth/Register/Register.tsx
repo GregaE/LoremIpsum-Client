@@ -3,6 +3,7 @@ import Auth from '../../../utils/Auth';
 import { RegisterService } from '../../../utils/ApiService';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { loginDetails } from '../../../store/actions/toggleLogin';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
 
@@ -32,12 +33,12 @@ const initialState = {
       const { email, password, firstName, lastName } = state;
       const user = { email, password, firstName, lastName};
       const res = await RegisterService(user);
-      console.log(res);
       if (res.error) {
         alert(`${res.message}`);
         setState(initialState);
       } else {
-        dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id}});
+        dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+        dispatch(loginDetails(res.personal_detail));
         localStorage.setItem('user_id', res.user_id);
         Auth.login(() => navigate('/'));
       }

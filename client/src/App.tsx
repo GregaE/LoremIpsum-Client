@@ -4,25 +4,29 @@ import Dashboard from './components/Dashboard/Dashboard';
 import { useDispatch } from 'react-redux';
 import AuthLogin from './components/Auth/AuthLogin';
 
+import { FetchPersonal } from './utils/ApiService';
+import { useTypedSelector } from './utils/useTypeSelector';
+
 import { connect } from 'react-redux';
+import { loginDetails } from './store/actions/toggleLogin';
 
 function App({login}:any) {
   const dispatch = useDispatch();
   const cookies = new Cookies();
   const { isLoggedIn } = login;
-
   const render =  isLoggedIn || cookies.get('sid') ? <Dashboard/> : <AuthLogin />;
 
-  console.log('LOGIN', login);
-
   useEffect(() => {
-    // if (login.userId === '') {
-    //   console.log('Browser', localStorage.getItem('user_id'));
-    //   dispatch({type: 'TOGGLE_LOGIN', payload: {userId: localStorage.getItem('user_id'), isLoggedIn: false} });
-    // }
-    console.log('Effect', login);
+    if (login.userId === '' && !localStorage.getItem('user_id')) {
+        dispatch({type: 'TOGGLE_LOGIN', payload: {userId: "", isLoggedIn: false } })
+        return
+    }
+    const userId = localStorage.getItem('user_id');
+    FetchPersonal(userId).then(res => {
+      dispatch(loginDetails(res[0]))
+    })
+    dispatch({type: 'TOGGLE_LOGIN', payload: {userId: userId, isLoggedIn: true} });
   }, []);
-  console.log('After effect', login);
 
   return (
     render

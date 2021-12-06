@@ -3,8 +3,7 @@ import { connect } from 'react-redux'
 
 function Welcome({personalDetails}:any) {
 
-  const personal_details = personalDetails.personal_details[0];
-  console.log(personalDetails)
+  const personal_details = personalDetails.personal_details;
 
   return (
     <div id="" className="w-full h-1/2 flex flex-row justify-center content-center">

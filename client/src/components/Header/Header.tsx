@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 //TODO props types
 function Header({navigate, header, personalDetails}: any) {
 
-  const personal_details = personalDetails.personal_details[0];
+  const personal_details = personalDetails.personal_details;
 
   return (
     <div className='w-full h-1/10 py-4 bg-primary-bg flex flex-row justify-between items-center px-8'>

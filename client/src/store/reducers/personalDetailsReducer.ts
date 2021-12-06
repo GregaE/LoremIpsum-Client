@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   PersonalDetailsState,
   PersonalDetailsAction,
@@ -31,7 +32,7 @@ const personalDetailsReducer = (
       return {
         loading: false,
         error: null,
-        personal_details: payload,
+        personal_details: {...payload},
       };
     default:
       return state;

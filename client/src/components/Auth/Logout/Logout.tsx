@@ -9,15 +9,15 @@ export default function Logout () {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleClick = async () => {
-    await LogoutService();
-    handleAuth();
-    localStorage.removeItem('user_id')
+  const handleAuth = () => {
+    dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: false, userId: ''} });
+    Auth.logout(() => navigate('/'));
   }
 
-  const handleAuth = () => {
-    dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: ''} });
-    Auth.logout(() => navigate('/'));
+  const handleClick = async () => {
+    await LogoutService();
+    localStorage.removeItem('user_id')
+    handleAuth();
   }
 
   return (
