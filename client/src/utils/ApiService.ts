@@ -56,3 +56,17 @@ export async function RegisterService (user: loginInterface) {
     return console.error(err);
   }
 }
+
+export async function FetchPersonal (userId: string | null) {
+  try {
+    const res = await fetch(`${BASE_URL}/personalDetails/${userId}`, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return await res.json();
+  } catch (err) {
+    return console.error(err);
+  }
+}

@@ -34,10 +34,7 @@ function Dashboard({
 
   const { userId } = login;
 
-  console.log(userId)
-
   useEffect(() => {
-    getPersonal(userId);
     getLanguages(userId);
     getCertificates(userId);
     getSkills(userId);
