@@ -15,35 +15,14 @@ import Certificate from '../Forms/Certificate';
 import Education from '../Forms/Education';
 
 import { AnimatePresence } from 'framer-motion';
-import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
 
 //TODO props type
 function Dashboard({
   modal,
   toggle,
-  getUser,
-  getLanguages,
-  getCertificates,
-  getSkills,
-  getEducation,
-  getExperience,
-  getCVs,
-  login
 }: any) {
 
   const location = useLocation();
-  
-  const { userId } = login;
-
-  useEffect(() => {
-    getUser(userId);
-    getLanguages(userId);
-    getCertificates(userId);
-    getSkills(userId);
-    getEducation(userId);
-    getExperience(userId);
-    getCVs(userId);
-  }, [getUser,getLanguages,getCertificates,getSkills,getEducation,getExperience,getCVs, userId]);
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
@@ -110,58 +89,6 @@ const mapDispatchToProps = (dispatch: any) => {
           flag: false,
           identifier: '',
         },
-      }),
-      
-    getUser: (userId:string) =>
-    
-      dispatch({
-        //CAUTION USER AND PERSONAL DETAILS ARENT THE SAME!!!
-        type: 'FETCH_DATA',
-        endpoint: '/personalDetails',
-        method: 'GET',
-        id: userId,
-        dispatch: 'PERSONAL_DETAILS',
-      }),
-
-    getLanguages: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/languages',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_LANGUAGES',
-      }),
-    getCertificates: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/certificates',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_CERTIFICATES',
-      }),
-    getSkills: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/skills',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_SKILLS',
-      }),
-    getEducation: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/education',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_EDUCATION',
-      }),
-    getExperience: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/workExperience',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_EXPERIENCES',
       }),
     getCVs: (userId:string) =>
       dispatch({

@@ -3,5 +3,6 @@ export interface SelectInputProps {
   className?: string;
   value?: string;
   options: number[] | string[];
+  default?: string;
   callback?: (e: React.ChangeEvent) => void;
 }

@@ -1,96 +1,65 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux'
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
-
 import { Languages } from '../../interfaces/CategoriesInterface';
-import { useTypedSelector } from '../../utils/useTypeSelector'
 import Button from './Elements/Buttons/Button';
+import { useHandleForm } from '../../utils/CustomHooks';
 
-function Language({userDetail, toggle, postForm, updateForm}:any) {
-
-  const {personal_details} = userDetail;
-  const {user_id} = personal_details
-
-  const languages = ['A1', 'A2', 'B1', "B2", "C1", "C2"];
+export default function Language() {
+  const languages = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
   const initialState: Languages = {
     id: '',
     language_name: '',
     level: '',
-    userId: ''
+    userId: '',
   };
 
-  const [language, setLanguage] = useState(initialState);
-
-  const handleForm = (e: React.ChangeEvent):void => {
-    const target = e.target as HTMLInputElement;
-    setLanguage({...language, [target.name]: target.value})
-  }
-
-  const handleSubmit = async (type:string)=> {
-    //We have to add some input controller before sending anything
-    
-    let res;
-    if(type==="NEW") {
-      const data = {...language, userId:user_id}
-      res = await postForm("POST_LANGUAGE",data)
-    }
-    if(type==="UPDATE") {
-      res = await updateForm(user_id,"UPDATE_LANGUAGE",language)
-    }
-    setLanguage(initialState)
-    toggle()
-  }
+  const { state, handleForm, handleSubmit, toggle } = useHandleForm(
+    '/languages',
+    initialState,
+    'POST_LANGUAGE',
+    'UPDATE_LANGUAGE'
+  );
+  //@ts-ignore
+  const language: Languages = { ...state };
 
   return (
-    <div className="object-center w-1/2 h-auto bg-green-400">
+    <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+      <h3>Add Language</h3>
       <form>
-        <TextInput callback={handleForm} label="Language" type="text" name="language_name" value={language.language_name} placeholder="Enter language"/>
-        <SelectInput callback={handleForm} name="level" options={languages} value={language.level ? language.level : ''}/>
-        <div className="flex flex-row">
-          <Button name="Cancel" callback={toggle}/>
-          <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE"/>
-          <Button name="Create" callback={handleSubmit} handleSubmitType="NEW"/>
+        <div>
+          <TextInput
+            callback={handleForm}
+            label="Language"
+            type="text"
+            name="language_name"
+            value={language.language_name}
+            placeholder="Enter language"
+          />
+        </div>
+        <div className="flex justify-start">
+          <SelectInput
+            options={languages}
+            callback={handleForm}
+            name="level"
+            value={language.level}
+            default={'Enter Level'}
+          />
+        </div>
+        <div className="flex flex-row my-5 gap-2.5">
+          <Button name="Cancel" callback={() => toggle(false, '')} />
+          <Button
+            name="Edit"
+            callback={handleSubmit}
+            handleSubmitType="UPDATE"
+          />
+          <Button
+            name="Create"
+            callback={handleSubmit}
+            handleSubmitType="NEW"
+          />
         </div>
       </form>
     </div>
   );
 }
-
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    userDetail: state.personal_details,
-  }
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    toggle: () => dispatch({
-      type: 'TOGGLE_MODAL',
-      payload: {
-        flag: false,
-        identifier: ''
-      }
-    }),
-    postForm: (action: any, data: any) => dispatch({
-      type: 'FETCH_DATA',
-      endpoint: '/languages',
-      method: 'POST',
-      id:'',
-      dispatch: action,
-      payload: data
-    }),
-    updateForm: (id:any, action: any, data: any) => dispatch({
-      type: 'FETCH_DATA',
-      endpoint: '/languages',
-      method: 'PUT',
-      id,
-      dispatch: action,
-      payload: data
-    }),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Language);

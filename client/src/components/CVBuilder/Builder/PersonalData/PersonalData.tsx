@@ -3,8 +3,12 @@ import { connect } from 'react-redux'
 
 function PersonalData({userDetail}:any) {
 
-  // const {personal_details} = userDetail
-  // const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details[0]
+  const {personal_details} = userDetail;
+
+  // Personal details right now comes from /user instead from /personalDetails
+  // So this one isnt the correct one, but this endpoint need some fixings so in the meantime
+  // I use the use data
+  const {email} = personal_details
 
   return (
     <div className="bg-light rounded-container p-4">
@@ -14,7 +18,7 @@ function PersonalData({userDetail}:any) {
             src={image} alt=''/>
         <div className="flex flex-col items-start">
           <p className="font-bold underline">Personal Details</p>
-          <p>{first_name} {last_name}</p>
+          {/* <p>{username}</p> */}
           <p>{email}</p>
           <p>{phone_number}</p>
           <p>{street} {city} {country}</p> 

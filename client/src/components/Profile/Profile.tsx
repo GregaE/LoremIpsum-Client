@@ -9,14 +9,11 @@ import Modal from '../CVBuilder/Modal/Modal';
 import ProfileCategory from './ProfileCategory/ProfileCategory';
 
 
-function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
-
-  const { flag } = useTypedSelector((state) => state.toggleModal)
+function Profile({userDetail,lang,cert,skill,edu,exp}:any) {
 
   console.log('user detail', userDetail)
   const {personal_details} = userDetail;
-  console.log(personal_details);
-  const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details[0]
+  const {email, password} = personal_details
 
   // Array of objects I let it here for future implementation
   const {languages} = lang;
@@ -24,27 +21,6 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
   const {skills} = skill
   const {education} = edu
   const {experience} = exp
-
-  // console.log(languages,certificates,skills,education,experience)
-
-  const userCategories = [
-    {name:'Certificates',
-    items: [...certificates]},
-    {name:'Education',
-    items: [...education]},
-    {name:'Languages',
-    items: [...languages]},
-    {name:'Skills',
-    items: [...skills]},
-    {name:'Work Experience',
-    items: [...experience]},
-  ]
-
-  function renderCategories() {
-    return userCategories.map((category:any) => {
-      return <ProfileCategory key={category.name} name={category.name} items={category.items}/>
-    })
-  }
 
   const containerVariants = {
     hidden: {
@@ -67,15 +43,15 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
       animate="visible"
       exit="hidden"
       variants={containerVariants}>
-      <h2 className="underline text-3xl p-2 pb-10">Your personal data</h2>
-      <div className="flex flex-row justify-center items-center ml-5 h-64  pb-10">
-        <ProfileImg userPicture={image}/>
-        <div className="w-2/3 h-full flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
-          <p className="p-4 underline text-2xl">{first_name} {last_name}</p>
-          <div className="p-8 h-96">
-            <p>Name {first_name} {last_name}</p>
-            <p>E-mail {email}</p>
-            <button onClick={() => toggle()}>Edit Personal Info</button>
+      <h2 className="underline text-3xl p-2">Your personal data</h2>
+      <div className="flex flex-row justify-center items-center p-4 ml-5">
+        <ProfileImg/>
+        <div className="w-2/3 h-1/6 flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
+          <p className="p-4 underline text-2xl">Joder!</p>
+          <div className="p-8">
+            {/* <p>{`Name ${username}`}</p> */}
+            <p>{`E-mail ${email}`}</p>
+            <p>{`Password ${password}`}</p>
           </div>
         </div>
       </div>

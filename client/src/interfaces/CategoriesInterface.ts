@@ -52,7 +52,7 @@ export interface PersonalDetails {
   email?: string;
   phone_number?: string;
   image?: string;
-  first_name: string;
+  first_name?: string;
   last_name?: string;
   street?: string;
   postcode?: string;
@@ -68,15 +68,15 @@ export interface CV {
   saved_cv: string;
   date_created: Date;
 }
-
-export interface PDF {
-  name: string;
-  items: Categories[];
-  pdf: Categories[];
-}
-
 export type Categories = Skill &
   Education &
   WorkExperience &
   Languages &
   Certificates;
+
+export type EnumCategories =
+  | Skill
+  | Education
+  | WorkExperience
+  | Languages
+  | Certificates;

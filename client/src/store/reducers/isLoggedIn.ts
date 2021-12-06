@@ -7,13 +7,13 @@ const initialState: ProfileInterface = {
 }
 
 const isLoggedIn = (
-  state = initialState, 
+  state = initialState,
   { type, payload }: ToggleLogin
   ):ProfileInterface  => {
   switch(type) {
     case ActionType.TOGGLE_LOGIN: {
-      return { 
-        ...state, 
+      return {
+        ...state,
         isLoggedIn: payload.isLoggedIn,
         userId: payload.userId,
       };

@@ -12,7 +12,7 @@ function NavBar({ navigate }: any) {
           <img
             onClick={() => navigate('Home')}
             className="rounded-full h-48"
-            src=""
+            src="https://st.depositphotos.com/1251465/4343/v/600/depositphotos_43436705-stock-illustration-icon-design-element.jpg"
             alt="logo"
           />
         </Link>
@@ -62,5 +62,4 @@ const mapDispatchToProps = (dispatch: any) => {
     },
   };
 };
-
 export default connect(null, mapDispatchToProps)(NavBar);

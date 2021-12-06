@@ -3,13 +3,15 @@ import Auth from '../../../utils/Auth';
 import { RegisterService } from '../../../utils/ApiService';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { loginDetails } from '../../../store/actions/toggleLogin';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
 
 const initialState = {
     email: '',
     password: '',
-    username: ''
+    firstName: '',
+    lastName: ''
   };
 
   const Register = ( props: {setRegister: React.Dispatch<React.SetStateAction<boolean>>}) => {
@@ -28,15 +30,15 @@ const initialState = {
 
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      const { email, password, username } = state;
-      const user = { email, password, username};
+      const { email, password, firstName, lastName } = state;
+      const user = { email, password, firstName, lastName};
       const res = await RegisterService(user);
-      console.log(res);
       if (res.error) {
         alert(`${res.message}`);
         setState(initialState);
       } else {
-        dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id}});
+        dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+        dispatch(loginDetails(res.personal_detail));
         localStorage.setItem('user_id', res.user_id);
         Auth.login(() => navigate('/'));
       }
@@ -44,7 +46,7 @@ const initialState = {
 
     const validateForm = () => {
       return (
-        !state.email || !state.password || !state.username
+        !state.email || !state.password || !state.firstName || !state.lastName
       );
     };
 
@@ -65,6 +67,37 @@ const initialState = {
           <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={(e) => handleSubmit(e)}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+                <label htmlFor="first-name" className="sr-only">
+                  First name
+                </label>
+                 <input
+                  id="first-name"
+                  name="firstName"
+                  type="text"
+                  autoComplete="first-name"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                  placeholder="First name"
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="last-name" className="sr-only">
+                  Last name
+                </label>
+                 <input
+                  id="last-name"
+                  name="lastName"
+                  type="text"
+                  autoComplete="last-name"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                  placeholder="Last name"
+                  onChange={handleChange}
+                />
+              </div>
+              <br/>
               <div>
                 <label htmlFor="email-address" className="sr-only">
                   Email address
@@ -75,7 +108,7 @@ const initialState = {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   onChange={handleChange}
                 />
@@ -90,41 +123,11 @@ const initialState = {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                   placeholder="Password"
                   onChange={handleChange}
                 />
               </div>
-              <div>
-                <label htmlFor="username" className="sr-only">
-                  User name
-                </label>
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  autoComplete="username"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                  placeholder="Username"
-                  onChange={handleChange}
-                />
-              </div>
-              {/*<div>
-                <label htmlFor="last-name" className="sr-only">
-                  Last name
-                </label>
-                 <input
-                  id="last-name"
-                  name="last_name"
-                  type="text"
-                  autoComplete="last-name"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                  placeholder="Last name"
-                  onChange={handleChange}
-                />
-              </div>*/}
             </div>
             <div className="text-sm">
               <span>Already registered? </span>

@@ -8,10 +8,8 @@ import {
 } from './CategoriesInterface';
 export interface User {
   user_id: number;
-  username: string;
   email: string;
   personal_details: PersonalDetails;
-  session_id: string;
   skills: Skill[];
   education: Education[];
   certificates: Certificates[];
