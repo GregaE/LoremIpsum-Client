@@ -6,10 +6,16 @@ function CVSelector({ curriculum }: any) {
   const { cvs } = curriculum;
 
   function renderCVs() {
-    if(cvs.length > 0) {
-      return cvs.map((cv:any) => {
-        return <CVItem cvId={cv.id} date_created={cv.date_created} data={cv.saved_cv}/>
-      })
+    if (cvs.length > 0) {
+      return cvs.map((cv: any) => {
+        return (
+          <CVItem
+            cvId={cv.id}
+            date_created={cv.date_created}
+            data={cv.saved_cv}
+          />
+        );
+      });
     }
     return <p>You dont have any CV yet</p>;
   }

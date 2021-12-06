@@ -12,7 +12,7 @@ function NavBar({ navigate }: any) {
           <img
             onClick={() => navigate('Home')}
             className="rounded-full h-48"
-            src="https://st.depositphotos.com/1251465/4343/v/600/depositphotos_43436705-stock-illustration-icon-design-element.jpg"
+            src="https://i.ibb.co/5cQkxp1/Lorem-Big.png"
             alt="logo"
           />
         </Link>

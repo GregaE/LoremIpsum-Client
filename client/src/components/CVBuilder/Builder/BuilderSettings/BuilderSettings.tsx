@@ -1,21 +1,24 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFRender from '../../PDF-Render/PDF-Render';
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
 
-function BuilderSettings({postCV, user} :any) {
+function BuilderSettings({ postCV, user }: any) {
   const pdfItems = useTypedSelector(state => state.pdf);
 
   const saveCV = () => {
-    const {userId} = user
+    const { userId } = user;
+    const dbPDF = pdfItems.map(pdfCat => {
+      const { items, ...pdf } = pdfCat;
+      return { ...pdf };
+    });
     const data = {
       userId,
-      saved_cv: JSON.stringify(pdfItems)
-    }
-    console.log('Cv posted')
-    postCV(data)
-  }
+      saved_cv: JSON.stringify(dbPDF),
+    };
+    postCV(data);
+  };
   return (
     <div>
       <PDFDownloadLink
@@ -28,8 +31,10 @@ function BuilderSettings({postCV, user} :any) {
           </div>
         )}
       </PDFDownloadLink>
-      <div className="flex justify-center bg-primary text-light rounded-lg p-1 m-5"
-        onClick={() => saveCV()}>
+      <div
+        className="flex justify-center bg-primary text-light rounded-lg p-1 m-5 cursor-pointer"
+        onClick={() => saveCV()}
+      >
         Save CV
       </div>
     </div>
@@ -40,22 +45,22 @@ function BuilderSettings({postCV, user} :any) {
 const mapStateToProps = (state: any) => {
   return {
     pdfStatus: state.pdf,
-    user: state.login
-  }
-}
+    user: state.login,
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    postCV: (data:any) =>
+    postCV: (data: any) =>
       dispatch({
         type: 'FETCH_DATA',
         endpoint: '/savedCV',
         method: 'POST',
         id: '',
         dispatch: 'POST_CV',
-        payload: data
+        payload: data,
       }),
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuilderSettings);
