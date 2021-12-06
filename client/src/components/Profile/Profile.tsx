@@ -18,11 +18,11 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
   const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details
 
   // Array of objects I let it here for future implementation
-  const {languages} = lang;
-  const {certificates} = cert
-  const {skills} = skill
-  const {education} = edu
-  const {experience} = exp
+  const { languages } = lang;
+  const { certificates } = cert;
+  const { skills } = skill;
+  const { education } = edu;
+  const { experience } = exp;
 
   // console.log(languages,certificates,skills,education,experience)
 
@@ -51,7 +51,7 @@ function Profile({toggle, userDetail, lang, cert, skill, edu, exp}:any) {
     },
     visible: {
       opacity: 1,
-      transition: {delay: 0.1, duration: 0.1}
+      transition: { delay: 0.1, duration: 0.1 },
     },
     exit: {
       opacity: 0,
@@ -97,20 +97,20 @@ const mapStateToProps = (state: any) => {
     cert: state.certificates,
     skill: state.skills,
     edu: state.education,
-    exp: state.experience
-  }
-}
+    exp: state.experience,
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
     toggle: () =>
-    dispatch({
-      type: 'TOGGLE_MODAL',
-      payload: {
-        flag: true,
-        identifier: 'PersonalInfo',
-      },
-    }),
+      dispatch({
+        type: 'TOGGLE_MODAL',
+        payload: {
+          flag: true,
+          identifier: 'PersonalInfo',
+        },
+      }),
   }
 }
 

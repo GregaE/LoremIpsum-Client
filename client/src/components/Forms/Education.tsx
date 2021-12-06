@@ -1,10 +1,11 @@
 import Button from './Elements/Buttons/Button';
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
+import TextAreaInput from './Elements/Inputs/TextAreaInput';
 import { Education } from '../../interfaces/CategoriesInterface';
 import { useHandleForm } from '../../utils/CustomHooks';
 
-export default function EducationForm() {
+export default function EducationForm({ recordType }: { recordType: string }) {
   const initialState: Education = {
     degree: '',
     school: '',
@@ -22,7 +23,7 @@ export default function EducationForm() {
     'UPDATE_EDUCATION'
   );
   //@ts-ignore => this is annoying how can I define one of the types if its or?
-  const education: Education = { ...state };
+  const education: Education = { ...(state as Education) };
 
   const months = [
     'Jan',
@@ -111,11 +112,21 @@ export default function EducationForm() {
             default={'Year'}
           />
         </div>
+        <TextAreaInput
+          type="text"
+          name="description"
+          value={education.description ? education.description : ''}
+          placeholder=""
+          label="Description"
+          callback={handleForm}
+        />
       </form>
       <div className="flex flex-row my-5 gap-2.5">
         <Button name="Cancel" callback={() => toggle(false, '')} />
-        <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE" />
-        <Button name="Create" callback={handleSubmit} handleSubmitType="NEW" />
+        <Button
+          name={recordType === 'NEW' ? 'Create' : 'Edit'}
+          callback={() => handleSubmit(recordType)}
+        />
       </div>
     </div>
   );

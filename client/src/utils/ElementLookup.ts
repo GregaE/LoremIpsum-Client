@@ -4,7 +4,7 @@ import Language from '../components/Forms/Language';
 import Skills from '../components/Forms/Skills';
 import WorkExperience from '../components/Forms/WorkExperience';
 
-export const Forms = {
+export const Forms: FormInterface = {
   Certificates: Certificate,
   Education: EducationForm,
   Languages: Language,
@@ -12,10 +12,12 @@ export const Forms = {
   'Work Experience': WorkExperience,
 };
 
-// interface Forms {
-//   Certificates: ReactElement
-//   Education: JSX.Element
-//   Languages: JSX.Element
-//   Skills: JSX.Element
-//   "Work Experience": JSX.Element
-// }
+interface FormInterface {
+  Certificates: ({ recordType }: { recordType: string }) => JSX.Element;
+  Education: ({ recordType }: { recordType: string }) => JSX.Element;
+  Languages: ({ recordType }: { recordType: string }) => JSX.Element;
+  Skills: ({ recordType }: { recordType: string }) => JSX.Element;
+  'Work Experience': ({ recordType }: { recordType: string }) => JSX.Element;
+}
+
+export type formKey = keyof FormInterface;
