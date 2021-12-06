@@ -32,27 +32,6 @@ function Login(props: any) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { email, password } = state;
-<<<<<<< HEAD
-    // const user = { email, password };
-    // const res = await LoginService(user)
-    // if (res.error) {
-    //   console.log('IF', res);
-    //   console.log(res.error)
-    //   alert(`${res.message}`);
-    // } else {
-    //   console.log('ELSE res', res);
-    //   dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
-    //   console.log(res.user_id)
-    //   localStorage.setItem('user_id', res.user_id);
-    //   console.log('Loaclst', localStorage.getItem('user_id'));
-    //   Auth.login(() => navigate('/'));
-    // }
-    props.login(email, password);
-    // setTimeout(() => {
-
-    // }, 1000);
-    // props.getDetails(props.user);
-=======
     const user = { email, password };
     const res = await LoginService(user)
     if (res.error) {
@@ -64,7 +43,6 @@ function Login(props: any) {
       localStorage.setItem('user_id', res.user_id);
       Auth.login(() => navigate('/'));
     }
->>>>>>> bca4809c2f218a25621eaf4593c86b2f1f4a2348
   }
 
   return (

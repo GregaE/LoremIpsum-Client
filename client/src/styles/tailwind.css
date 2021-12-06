@@ -13,6 +13,18 @@
 /* Stop purging. */
 
 /* Your own custom utilities */
+/* h1 {
+  @apply;
+} */
+
+/* h2 {
+  @apply ;
+} */
+
+h3 {
+  @apply text-3xl text-light font-bold my-8;
+}
+
 .nav-link {
   @apply flex justify-center items-center rounded w-full h-14 text-xl hover:bg-light hover:text-primary transition;
 }

@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { ModalInterface } from '../../interfaces/ModalInterface';
+import { PDFCategory } from '../state_interfaces/PdfState';
 // I will have to import the interfaces for every categoy
 // category item
 // and the pdf itself
@@ -7,7 +7,7 @@ import { ModalInterface } from '../../interfaces/ModalInterface';
 //TODO: Replace all the any types to proper type
 import { ActionType, Action } from './index';
 
-export const AddCategory = (object: any) => {
+export const AddCategory = (object: PDFCategory) => {
   return (dispatch: Dispatch<Action>) => {
     dispatch({
       type: ActionType.ADD_CATEGORY,
@@ -25,47 +25,22 @@ export const RemoveCategory = (id: string) => {
   };
 };
 
-export const AddItem = (object: any) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.ADD_ITEM,
-      payload: object,
-    });
+export const selectItem = (name: string, itemID: string | undefined) => {
+  return {
+    type: ActionType.SELECT_ITEM,
+    payload: {
+      name,
+      itemID,
+    },
   };
 };
 
-export const EditItem = (object: any) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.EDIT_ITEM,
-      payload: object,
-    });
-  };
-};
-
-export const RemoveItem = (id: string) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.REMOVE_ITEM,
-      payload: id,
-    });
-  };
-};
-
-export const SelectItem = (object: any) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.SELECT_ITEM,
-      payload: object,
-    });
-  };
-};
-
-export const UnselectItem = (object: any) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionType.UNSELECT_ITEM,
-      payload: object,
-    });
+export const unselectItem = (name: string, itemID: string | undefined) => {
+  return {
+    type: ActionType.UNSELECT_ITEM,
+    payload: {
+      name,
+      itemID,
+    },
   };
 };

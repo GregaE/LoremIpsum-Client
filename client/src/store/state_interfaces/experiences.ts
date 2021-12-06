@@ -8,6 +8,7 @@ export interface WorkExperienceState {
 
 export interface WorkExperienceAction {
   type: string;
-  payload?: WorkExperience;
+  payload: WorkExperience & WorkExperience[];
+  error: string | null;
   id?: string;
 }

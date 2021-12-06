@@ -1,3 +1,5 @@
+import { EnumCategories } from '../../interfaces/CategoriesInterface';
+
 const baseUrl = 'http://localhost:3006';
 
 type Endpoint =
@@ -19,16 +21,13 @@ const fetchData = async (
   id?: string,
   data?: any
 ) => {
-  return await fetch(
-    baseUrl + endpoint ,
-    {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: data ? JSON.stringify(data) : undefined
-    }
-  )
+  return await fetch(baseUrl + endpoint + (id && `/${id}`), {
+    method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: data ? JSON.stringify(data) : undefined,
+  })
     .then(
       response => {
         if (response.ok) {
@@ -50,7 +49,7 @@ type FetchAction = {
   method: Method;
   type: string;
   id?: string;
-  payload?: any;
+  payload?: EnumCategories;
   dispatch: string;
 };
 
@@ -58,18 +57,22 @@ export const middleware =
   (store: any) => (next: any) => (action: FetchAction) => {
     if (action.type !== 'FETCH_DATA') return next(action);
     store.dispatch({ type: 'LOADING' });
-    fetchData(action.endpoint, action.method, action.id && action.id, action.payload && action.payload)
-      .then(data =>
-        {
-          store.dispatch({
+    fetchData(
+      action.endpoint,
+      action.method,
+      action.id && action.id,
+      action.payload && action.payload
+    )
+      .then(data => {
+        store.dispatch({
           type: action.dispatch,
           payload: data,
-        })}
-      )
+        });
+      })
       .catch(error =>
         store.dispatch({
           type: 'FAILED',
-          payload: error.message,
+          error: error.message,
         })
       );
   };
