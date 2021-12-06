@@ -20,29 +20,9 @@ import { AnimatePresence } from 'framer-motion';
 function Dashboard({
   modal,
   toggle,
-  getPersonal,
-  getLanguages,
-  getCertificates,
-  getSkills,
-  getEducation,
-  getExperience,
-  getCVs,
-  login
 }: any) {
 
   const location = useLocation();
-
-  const { userId } = login;
-
-  useEffect(() => {
-    getLanguages(userId);
-    getCertificates(userId);
-    getSkills(userId);
-    getEducation(userId);
-    getExperience(userId);
-    getCVs(userId);
-  },[]);
-
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
@@ -109,62 +89,6 @@ const mapDispatchToProps = (dispatch: any) => {
           flag: false,
           identifier: '',
         },
-      }),
-    getUser: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/user',
-        method: 'GET',
-        id: userId,
-        dispatch: 'USER_DETAILS',
-    }),
-    getPersonal: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/personalDetails',
-        method: 'GET',
-        id: userId,
-        dispatch: 'PERSONAL_DETAILS',
-    }),
-    getLanguages: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/languages',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_LANGUAGES',
-      }),
-    getCertificates: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/certificates',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_CERTIFICATES',
-      }),
-    getSkills: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/skills',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_SKILLS',
-      }),
-    getEducation: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/education',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_EDUCATION',
-      }),
-    getExperience: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/workExperience',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_EXPERIENCES',
       }),
     getCVs: (userId:string) =>
       dispatch({

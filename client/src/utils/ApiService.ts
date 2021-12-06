@@ -70,3 +70,17 @@ export async function FetchPersonal (userId: string | null) {
     return console.error(err);
   }
 }
+
+export async function FetchCategory (endpoint: string, userId: string | null) {
+  try {
+    const res = await fetch(`${BASE_URL}${endpoint}/${userId}`, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return await res.json();
+  } catch (err) {
+    return console.error(err);
+  }
+}

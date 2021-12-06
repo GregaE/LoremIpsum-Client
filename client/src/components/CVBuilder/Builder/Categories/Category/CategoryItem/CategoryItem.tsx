@@ -28,7 +28,6 @@ export default function CategoryItem({
         .find(pdfI => pdfI.name === categoryName)!
         .pdf.some(pd => pd.id === item.id)
   );
-  console.log(item);
 
   //Manipulate here
   const itemName = () => {
