@@ -10,23 +10,6 @@ import PersonalInfo from '../../../Forms/PersonalInfo'
 export default function ItemEditor() {
   const { identifier } = useTypedSelector(state => state.toggleModal);
 
-  // const categories:string[] = ['CERTIFICATES','EDUCATION','LANGUAGES','SKILLS','WORK EXPERIENCE'];
-
-  const modalForm = () => {
-    switch (identifier) {
-      case 'Certificates':
-        return <Certificate />;
-      case 'Education':
-        return <EducationForm />;
-      case 'Languages':
-        return <Language />;
-      case 'Skills':
-        return <Skills />;
-      case 'Work Experience':
-        return <WorkExperience />;
-      default:
-        return null;
-    }
-  }; //@ts-ignore => ignore for now need to solve types
+  //@ts-ignore => ignore for now need to solve types
   return <div className="w-full">{Forms[identifier]()}</div>;
 }
