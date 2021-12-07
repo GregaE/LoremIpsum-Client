@@ -21,3 +21,41 @@ interface FormInterface {
 }
 
 export type formKey = keyof FormInterface;
+
+export const categoriesLookup: {
+  name: string;
+  icon: string;
+  endpoint: string;
+  dispatch: string;
+}[] = [
+  {
+    name: 'Education',
+    icon: 'fas fa-user-graduate',
+    endpoint: '/education',
+    dispatch: 'ALL_EDUCATION',
+  },
+  {
+    name: 'Work Experience',
+    icon: 'fas fa-suitcase',
+    endpoint: '/workExperience',
+    dispatch: 'ALL_EXPERIENCES',
+  },
+  {
+    name: 'Skills',
+    icon: 'fas fa-toolbox',
+    endpoint: '/skills',
+    dispatch: 'ALL_SKILLS',
+  },
+  {
+    name: 'Languages',
+    icon: 'fas fa-globe-americas',
+    endpoint: '/languages',
+    dispatch: 'ALL_LANGUAGES',
+  },
+  {
+    name: 'Certificates',
+    icon: 'fas fa-award',
+    endpoint: '/certificates',
+    dispatch: 'ALL_CERTIFICATES',
+  },
+];

@@ -8,14 +8,14 @@ import Auth from '../../utils/Auth';
 
 //TODO props types
 function Header({ header, userDetails }: any) {
-  const {personal_details} = userDetails;
+  const { personal_details } = userDetails;
 
   const [expander, toggleExpand] = useState(false);
 
   function displayOptions() {
     let options = [
-      { name: 'Edit Profile', action: '' },
-      { name: 'Logout', action: 'handleClick' },
+      { name: 'Edit Profile', action: handleClick },
+      { name: 'Logout', action: handleClick },
     ];
 
     return options.map(option => {
@@ -64,9 +64,11 @@ function Header({ header, userDetails }: any) {
           <div className="flex gap-5 justify-center items-center py-2 px-4">
             <img
               className="w-10 h-10 rounded-full"
-              src={personal_details.image 
-                ? personal_details.image
-                :'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'}
+              src={
+                personal_details.image
+                  ? personal_details.image
+                  : 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+              }
               alt=""
             />
             <h2>
@@ -81,7 +83,7 @@ function Header({ header, userDetails }: any) {
         </div>
         <div className="absolute text-light h-48 top-20">
           <AnimatePresence exitBeforeEnter>
-            <Link to="/Profile">{expander && displayOptions()}</Link>
+            {expander && displayOptions()}
           </AnimatePresence>
         </div>
       </div>

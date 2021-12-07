@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import { toggleModal } from '../../../../store/actions/toggleModal';
 import { FetchCategory } from '../../../../utils/ApiService';
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
+import { categoriesLookup } from '../../../../utils/Lookups';
 
 export default function CategorySelector() {
   const dispatch = useDispatch();
@@ -31,45 +32,7 @@ export default function CategorySelector() {
       });
   }
 
-  const categories: {
-    name: string;
-    icon: string;
-    endpoint: string;
-    dispatch: string;
-  }[] = [
-    {
-      name: 'Education',
-      icon: 'fas fa-user-graduate',
-      endpoint: '/education',
-      dispatch: 'ALL_EDUCATION',
-    },
-    {
-      name: 'Work Experience',
-      icon: 'fas fa-suitcase',
-      endpoint: '/workExperience',
-      dispatch: 'ALL_EXPERIENCES',
-    },
-    {
-      name: 'Skills',
-      icon: 'fas fa-toolbox',
-      endpoint: '/skills',
-      dispatch: 'ALL_SKILLS',
-    },
-    {
-      name: 'Languages',
-      icon: 'fas fa-globe-americas',
-      endpoint: '/languages',
-      dispatch: 'ALL_LANGUAGES',
-    },
-    {
-      name: 'Certificates',
-      icon: 'fas fa-award',
-      endpoint: '/certificates',
-      dispatch: 'ALL_CERTIFICATES',
-    },
-  ];
-
-  const categoryList = categories.map(category => (
+  const categoryList = categoriesLookup.map(category => (
     <div
       key={category.name}
       onClick={() =>

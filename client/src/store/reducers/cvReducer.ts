@@ -6,7 +6,10 @@ const initState: CVState = {
   error: null,
 };
 
-const cvsReducer = (state = initState, { type, payload, id }: CVAction) => {
+const cvsReducer = (
+  state = initState,
+  { type, payload, id, error }: CVAction
+) => {
   //TODO - move Loading and failed into a separate reducer and revome them
   //from the other reducers
   switch (type) {
@@ -20,7 +23,7 @@ const cvsReducer = (state = initState, { type, payload, id }: CVAction) => {
       return {
         ...state,
         loading: false,
-        error: payload,
+        error: error,
       };
     case 'ALL_CVS':
       return {
@@ -34,7 +37,7 @@ const cvsReducer = (state = initState, { type, payload, id }: CVAction) => {
         ...state,
         loading: false,
         error: null,
-        cvs: [...state.cvs, payload] 
+        cvs: [...state.cvs, payload],
       };
     case 'UPDATE_CV':
       return {

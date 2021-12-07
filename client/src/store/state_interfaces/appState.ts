@@ -1,5 +1,5 @@
-import { ModalInterface } from "../../interfaces/ModalInterface";
-import { ProfileInterface } from "../../interfaces/ProfileInterface";
+import { ModalInterface } from '../../interfaces/ModalInterface';
+import { ProfileInterface } from '../../interfaces/ProfileInterface';
 // I will have to import the interfaces for every categoy
 // category item
 // and the pdf itself
@@ -18,8 +18,9 @@ export enum ActionType {
   EDIT_ITEM = 'EDIT_ITEM',
   SELECT_ITEM = 'SELECT_ITEM',
   UNSELECT_ITEM = 'UNSELECT_ITEM',
+  LOAD_PDF = 'LOAD_PDF',
   //Interface {itemID: string, data: categoryInterface}
-  RESET_PDF = "RESET_PDF"
+  RESET_PDF = 'RESET_PDF',
 }
 ///////////////////////////////
 /////// APP NAVIGATION ////////
@@ -31,7 +32,7 @@ export interface HeaderName {
 
 export interface ToggleLogin {
   type: ActionType.TOGGLE_LOGIN;
-  payload: ProfileInterface
+  payload: ProfileInterface;
 }
 
 export interface ToggleModal {

@@ -43,22 +43,23 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
   }
 
   const userCategories = [
-    {name:'Certificates',
-    items: [...certificates]},
-    {name:'Education',
-    items: [...education]},
-    {name:'Languages',
-    items: [...languages]},
-    {name:'Skills',
-    items: [...skills]},
-    {name:'Work Experience',
-    items: [...experience]},
-  ]
+    { name: 'Certificates', items: [...certificates] },
+    { name: 'Education', items: [...education] },
+    { name: 'Languages', items: [...languages] },
+    { name: 'Skills', items: [...skills] },
+    { name: 'Work Experience', items: [...experience] },
+  ];
 
   function renderCategories() {
-    return userCategories.map((category:any) => {
-      return <ProfileCategory key={category.name} name={category.name} items={category.items}/>
-    })
+    return userCategories.map((category: any) => {
+      return (
+        <ProfileCategory
+          key={category.name}
+          name={category.name}
+          items={category.items}
+        />
+      );
+    });
   }
 
 
@@ -77,11 +78,13 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
   }
 
   return (
-    <motion.div className="p-2 h-full flex flex-col justify-start overflow-x-hidden"
+    <motion.div
+      className="p-2 h-full flex flex-col justify-start overflow-x-hidden"
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={containerVariants}>
+      variants={containerVariants}
+    >
       <h2 className="underline text-3xl p-2 pb-10">Your personal data</h2>
       <div className="flex flex-row justify-center items-center ml-5 h-64  pb-10">
         <ProfileImg 
