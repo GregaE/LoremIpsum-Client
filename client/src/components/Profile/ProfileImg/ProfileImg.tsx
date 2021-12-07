@@ -4,7 +4,10 @@ import { storage } from "../../../utils/FirebaseConfig";
 
 export default function ProfileImg({userPicture, handleEditing, handleForm, user_details}:any) {
 
-  const [profileImage, setProfileImage] = useState("https://www.turnkeytec.com/wp-content/uploads/2020/07/placeholder-image-400x300.jpg");
+  const [profileImage, setProfileImage] = useState(userPicture 
+    ? userPicture
+    :"https://www.turnkeytec.com/wp-content/uploads/2020/07/placeholder-image-400x300.jpg");
+    
   const [url, setUrl] = useState("");
 
   //////////  FIREBASE PICTURE UPDATE  ///////////
@@ -41,7 +44,7 @@ export default function ProfileImg({userPicture, handleEditing, handleForm, user
   }
 
   return (
-    <div style={{ backgroundImage: `url(${profileImage})` }} className="w-60 h-60 m-5 rounded-full bg-cover bg-center bg-no-repeat z-10 hover:scale-100">
+    <div style={{ backgroundImage: `url(${profileImage})` }} className="w-60 h-60 m-5 rounded-full bg-cover bg-center bg-no-repeat hover:scale-100">
       <input
         type="file"
         accept="image/gif, image/png, image/jpeg, image/jpg"

@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, connect } from 'react-redux';
 import { Categories } from '../../../interfaces/CategoriesInterface';
 import { PDF } from '../../../interfaces/PdfInterface';
 import { setTemplate } from '../../../store/actions/pdfActions';
@@ -6,8 +6,9 @@ import { toggleModal } from '../../../store/actions/toggleModal';
 import { FetchCategory } from '../../../utils/ApiService';
 import { categoriesLookup } from '../../../utils/Lookups';
 import { useTypedSelector } from '../../../utils/useTypeSelector';
+import { TrashIcon } from '@heroicons/react/solid';
 
-export default function CVItem({ cvId, date_created, data, page }: any) {
+function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
   const {
     personal_details: { userId },
   } = useTypedSelector(state => state.personal_details);
@@ -55,9 +56,15 @@ export default function CVItem({ cvId, date_created, data, page }: any) {
     }
   }
 
+  function testfunction(e:any, cvId:string) {
+    e.stopPropagation();
+    deleteCV(cvId)
+  }
+
   return (
     <div
-      className="bg-light w-80 h-96 flex flex-col justify-center items-center shadow-lg bg-contain	bg-center cursor-pointer"
+      className="bg-light w-80 h-96 flex flex-col justify-center items-center shadow-lg bg-contain bg-center cursor-pointer
+      relative"
       style={{
         backgroundImage: `url(https://www.myesr.org/sites/default/files/media-icons/generic/application-pdf.png)`,
       }}
@@ -68,6 +75,31 @@ export default function CVItem({ cvId, date_created, data, page }: any) {
       <p className="p-10">CV Item</p>
       <p>ID {cvId}</p>
       <p>date_created {date_created}</p>
+      <div className="absolute right-2 bottom-2 h-12 w-12 p-2 rounded-full bg-primary-bg
+        opacity-50 hover:opacity-100"
+        onClick={(e) => testfunction(e,cvId)}>
+        <TrashIcon/>
+      </div>
     </div>
   );
 }
+
+//TODO - deal with dispatch typing
+const mapStateToProps = (state: any) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    deleteCV: (cvId: string) => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/savedCV',
+      method: 'DELETE',
+      id: cvId,
+      dispatch: 'DELETE_CV'
+    })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CVItem);

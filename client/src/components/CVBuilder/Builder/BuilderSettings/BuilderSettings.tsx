@@ -24,20 +24,20 @@ function BuilderSettings({postCV,resetPdf,userDetail, user} :any) {
     resetPdf()
   }
   return (
-    <div>
+    <div className='h-full w-full flex flex-col align-center p-2'>
       <PDFDownloadLink
         document={<PDFRender pdf={pdfItems} personal_details={personal_details}/>}
         fileName={`CV-${new Date().toISOString()}.pdf`}
       >
         {({ blob, url, loading, error }) => (
-          <div className="flex justify-center bg-primary text-light rounded-lg p-1 m-5">
+          <div className='flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5'>
             {loading ? 'Loading document...' : 'Download'}
           </div>
         )}
       </PDFDownloadLink>
       <div
-        className="flex justify-center bg-primary text-light rounded-lg p-1 m-5 cursor-pointer"
-        onClick={() => saveCV()}
+        className='flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5 cursor-pointer'
+        onClick={saveCV}
       >
         Save CV
       </div>

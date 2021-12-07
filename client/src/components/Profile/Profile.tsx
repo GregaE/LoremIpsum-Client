@@ -201,12 +201,10 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
 
 
       </div>
-      <div className="p-2">
+      <div className="p-2 flex flex-col gap-4 h-full overflow-y-hidden overflow-x-auto">
         <h2 className="underline text-3xl">Your categories</h2>
-        <div className="flex flex-col content-around p-4">
-          <p className="w-full bg-light m-2 p-1 rounded-lg">SKILLS</p>
-          <p className="w-full bg-light m-2 p-1 rounded-lg">EDUCATION</p>
-          <p className="w-full bg-light m-2 p-1 rounded-lg">WORK EXPERIENCE</p>
+        <div className="flex flex-col h-30 gap-3 overflow-x-auto  overflow-y-hidden overflow-x-auto">
+          {renderCategories()}
         </div>
       </div>
     </motion.div>

@@ -7,8 +7,7 @@ function Preview({ pdf,userDetail }: any) {
   const {personal_details} = userDetail
 
   return (
-    <div className="h-full w-full flex flex-col justify-center items-center">
-      <div className="h-4/5 w-3/4 bg-light flex justify-center items-center p-2">
+      <div className='h-a4 w-a4 bg-light'>
         <PDFViewer
           showToolbar={false}
           style={{ height: '100%', display: 'flex', width: '100%' }}
@@ -16,7 +15,6 @@ function Preview({ pdf,userDetail }: any) {
           <PDFRender pdf={pdf} personal_details={personal_details} />
         </PDFViewer>
       </div>
-    </div>
   );
 }
 
