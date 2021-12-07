@@ -2,7 +2,9 @@
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
 import Category from './Category/Category';
 
-export default function Categories() {
+import { AnimatePresence } from 'framer-motion';
+
+export default function Categories({toggle}: any) {
   // Array of objects I let it here for future implementation
   const {
     pdf,
@@ -50,8 +52,11 @@ export default function Categories() {
   }
 
   return (
-    <div className="flex flex-col items-center gap-10 p-5 max-h-screen overflow-y-auto min-h-0">
+    <div className='h-auto max-h-full flex flex-nowrap flex-col items-center gap-10 p-5'>
       {renderCategories()}
+        <AnimatePresence exitBeforeEnter>
+          <i className='fas fa-plus-circle fa-3x' onClick={toggle} />
+        </AnimatePresence>
     </div>
   );
 }

@@ -44,9 +44,6 @@ function NavBar({ navigate }: any) {
             MyCVs
           </li>
         </Link>
-        <li className="nav-link">
-          <Logout />
-        </li>
       </ul>
     </div>
   );

@@ -13,8 +13,8 @@ const initialState = {
   };
   const Register = ( props: {setRegister: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [state, setState] = useState(initialState);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const handleChange = (e: React.FormEvent) => {
       const target = e.target as HTMLInputElement;
       const { name, value } = target;
@@ -52,13 +52,24 @@ const initialState = {
               src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
               alt="Workflow"
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Register your account</h2>
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              Register your account
+            </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Create your CV in just a few steps
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={(e) => handleSubmit(e)}>
-            <input type="hidden" name="remember" defaultValue="true" />
+          <form
+            className="mt-8 space-y-6"
+            action="#"
+            method="POST"
+            onSubmit={(e) => handleSubmit(e)}
+          >
+            <input
+              type="hidden"
+              name="remember"
+              defaultValue="true"
+            />
             <div className="rounded-md shadow-sm -space-y-px">
             <div>
                 <label htmlFor="first-name" className="sr-only">
@@ -92,7 +103,10 @@ const initialState = {
               </div>
               <br/>
               <div>
-                <label htmlFor="email-address" className="sr-only">
+                <label
+                  htmlFor="email-address"
+                  className="sr-only"
+                >
                   Email address
                 </label>
                 <input
@@ -107,7 +121,10 @@ const initialState = {
                 />
               </div>
               <div>
-                <label htmlFor="password" className="sr-only">
+                <label
+                  htmlFor="password"
+                  className="sr-only"
+                >
                   Password
                 </label>
                 <input
@@ -122,20 +139,26 @@ const initialState = {
                 />
               </div>
             </div>
-            <div className="text-sm">
+            <div className="text-sm max-w-max mx-auto">
               <span>Already registered? </span>
-              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => props.setRegister(false)}>
+              <span
+                className="font-medium text-primary hover:text-primary-x cursor-pointer"
+                onClick={() => props.setRegister(false)}
+              >
                   Click here to log in.
               </span>
             </div>
             <div>
               <button
                 type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-light bg-primary hover:bg-primary-x focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent font-medium rounded-md text-light bg-primary hover:bg-primary-x focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 disabled={validateForm()}
               >
                 <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                  <LockClosedIcon className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" aria-hidden="true" />
+                  <LockClosedIcon
+                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                    aria-hidden="true"
+                  />
                 </span>
                 Register
               </button>

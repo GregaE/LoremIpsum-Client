@@ -1,7 +1,5 @@
-// import TextInput from '../Forms/Elements/Inputs/TextInput';
-// import Button from '../Forms/Elements/Buttons/Button';
 import React, { useState } from 'react';
-import { useDispatch, connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LoginService } from '../../../utils/ApiService';
 import Auth from '../../../utils/Auth';
@@ -26,7 +24,7 @@ function Login(props: any) {
     setState((prevState) => ({
       ...prevState,
       [name]: value,
-    }))
+    }));
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -59,11 +57,22 @@ function Login(props: any) {
               Create your CV in just a few steps
             </p>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST" onSubmit={(e) => handleSubmit(e)}>
-            <input type="hidden" name="remember" defaultValue="true" />
-            <div className="rounded-md shadow-sm -space-y-px">
+          <form
+            className='mt-8 space-y-6'
+            action='#' method='POST'
+            onSubmit={(e) => handleSubmit(e)}
+          >
+            <input
+              type='hidden'
+              name='remember'
+              defaultValue='true'
+            />
+            <div className='rounded-md shadow-sm -space-y-px'>
               <div>
-                <label htmlFor='email-address' className='sr-only'>
+                <label
+                  htmlFor='email-address'
+                  className='sr-only'
+                >
                   Email address
                 </label>
                 <input
@@ -72,13 +81,16 @@ function Login(props: any) {
                   type='email'
                   autoComplete='email'
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                  placeholder="Email address"
+                  className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10'
+                  placeholder='Email address'
                   onChange={handleChange}
                 />
               </div>
               <div>
-                <label htmlFor='password' className='sr-only'>
+                <label
+                  htmlFor='password'
+                  className='sr-only'
+                >
                   Password
                 </label>
                 <input
@@ -87,25 +99,31 @@ function Login(props: any) {
                   type='password'
                   autoComplete='current-password'
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                  placeholder="Password"
+                  className='appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10'
+                  placeholder='Password'
                   onChange={handleChange}
                 />
               </div>
             </div>
-            <div className='text-sm'>
+            <div className='text-sm max-w-max mx-auto'>
               <span>Not yet registered? </span>
-              <span className="font-medium text-primary hover:text-primary-x cursor-pointer" onClick={() => props.setRegister(true)}>
-                  Click here to register now.
+              <span
+                className='font-medium text-primary hover:text-primary-x cursor-pointer'
+                onClick={() => props.setRegister(true)}
+              >
+                Click here to register now.
               </span>
             </div>
             <div>
               <button
-                type="submit"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-light bg-primary hover:bg-primary-x focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                type='submit'
+                className='group relative w-full flex justify-center py-2 px-4 border border-transparent font-medium rounded-md text-light bg-primary hover:bg-primary-x focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
               >
                 <span className='absolute left-0 inset-y-0 flex items-center pl-3'>
-                  <LockClosedIcon className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400' aria-hidden='true' />
+                  <LockClosedIcon
+                  className='h-5 w-5 text-indigo-500 group-hover:text-indigo-400'
+                  aria-hidden='true'
+                  />
                 </span>
                 Sign in
               </button>
