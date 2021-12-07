@@ -1,5 +1,5 @@
 import { QualityCategoryProps } from "../../../../../../interfaces/QualityInterface";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function QualityCategory({ name, comments }:QualityCategoryProps) {
 
@@ -8,7 +8,16 @@ export default function QualityCategory({ name, comments }:QualityCategoryProps)
       return <div className="text-sm p-2">No suggestions in this area.</div>
     }
     return comments?.map(comment =>
-      <div className="text-sm p-2" key={comment.QualityCode}>{comment.Message}</div>
+      <motion.div
+        className="text-sm p-2"
+        key={comment.QualityCode}
+        initial={{ opacity: 0, transform:'translateX(300px)' }}
+        animate={{ opacity: 1, transform:'translateX(0px)' }}
+        transition={{ type: 'tween' }}
+        exit={{ opacity: 0, transform:'translateX(300px)' }}
+      >
+        {comment.Message}
+      </motion.div>
     )
   }
 
@@ -19,8 +28,10 @@ export default function QualityCategory({ name, comments }:QualityCategoryProps)
       transition={{ type: 'tween' }}
       exit={{ opacity: 0 }}
     >
-      <h4 className="p-2">{name}</h4>
-      {renderCategories()}
+      <h4 className="px-2">{name}</h4>
+      <AnimatePresence exitBeforeEnter>
+        {renderCategories()}
+      </AnimatePresence>
     </motion.div>
   );
 }

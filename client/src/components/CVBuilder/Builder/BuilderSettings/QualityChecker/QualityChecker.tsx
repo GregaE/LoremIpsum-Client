@@ -5,6 +5,7 @@ import { pdf } from '@react-pdf/renderer';
 import PDFRender from '../../../PDF-Render/PDF-Render';
 import QualityCategory from './QualityCategory/QualityCategory';
 import { AnimatePresence } from 'framer-motion';
+import { blobToBase64, parseResume } from '../../../../../utils/CVCheckerConfig';
 
 export default function QualityChecker() {
   const pdfItems = useTypedSelector(state => state.pdf);
@@ -27,8 +28,6 @@ export default function QualityChecker() {
     }>
   >([]);
 
-  /// NEEDS REFACTORING TO MINIMIZE CODE (post video creation)
-
   // Fetch the current built pdf as a pdf blob
 
   async function pdfBlob() {
@@ -38,49 +37,10 @@ export default function QualityChecker() {
     return blob;
   }
 
-  // Transform blob with Base64
-
-  async function blobToBase64() {
-    const reader = new FileReader();
-    reader.readAsDataURL(await pdfBlob());
-    return new Promise(resolve => {
-      reader.onloadend = () => {
-        resolve(reader.result);
-      };
-    });
-  };
-
-  // Call Sovren API to parse the CV
-
-  const parseResume = async function ()  {
-    const string: any = await blobToBase64();
-    const newString = string.replace('data:application/pdf;base64,', '');
-    const data = {
-      "DocumentAsBase64String": newString,
-      "DocumentLastModified": new Date(Date.now()).toISOString().substring(0, 10),
-    }
-    try {
-      const res = await fetch(`https://eu-rest.resumeparsing.com/v10/parser/resume`, {
-        method: 'POST',
-        // @ts-ignore
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "Sovren-AccountId": process.env.REACT_APP_SOVREN_ACCOUNT_KEY,
-          "Sovren-ServiceKey": process.env.REACT_APP_SOVREN_SERVICE_KEY
-        },
-        body: JSON.stringify(data),
-      });
-      return await res.json();
-    } catch (err) {
-      return console.error(err);
-    }
-  }
-
-  const logResume = async () => {
-    const res = await parseResume()
+  const fetchSuggestions = async () => {
+    const res = await parseResume(blobToBase64(await pdfBlob()))
     const cvQuality = res.Value.RedactedResumeData.ResumeMetadata.ResumeQuality;
-    console.log(cvQuality)
+    console.log(res)
     cvQuality.forEach((category: { Level: string}, index: number) => {
       if (category.Level === 'Fatal Problems Found') {
         setIssues(cvQuality[index].Findings);
@@ -101,7 +61,7 @@ export default function QualityChecker() {
 
   return (
     <div>
-      <button onClick={logResume} className="flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5">Analyze Your CV</button>
+      <button onClick={fetchSuggestions} className="flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5">Analyze Your CV</button>
       <AnimatePresence exitBeforeEnter>
         <QualityCategory name={"Issues"} comments={issues}/>
         <QualityCategory name={"Missing Data"} comments={missingData}/>

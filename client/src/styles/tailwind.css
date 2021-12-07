@@ -26,7 +26,7 @@ h3 {
 }
 
 h4 {
-  @apply text-lg text-dark font-bold;
+  @apply text-base text-dark font-bold;
 }
 
 .nav-link {
