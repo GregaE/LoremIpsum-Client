@@ -1,6 +1,5 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import Logout from '../Auth/Logout/Logout';
 
 //TODO - props type
@@ -29,7 +28,9 @@ function NavBar({ navigate }: any) {
         <Link to="/CVBuilder" className="w-full">
           <li
             className="nav-link focus:bg-light "
-            onClick={() => navigate('CVBuilder')}
+            onClick={() => {
+              navigate('CVBuilder');
+            }}
           >
             CVBuilder
           </li>

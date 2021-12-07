@@ -18,6 +18,7 @@ export default function Modal() {
   */
   const { identifier } = useTypedSelector(state => state.toggleModal);
 
+  //TODO: We dont need item editor with current Element lookup - this can be refactored
   const modalInstance = () => {
     switch (identifier) {
       case 'CVs':
