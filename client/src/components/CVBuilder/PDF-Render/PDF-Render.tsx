@@ -51,7 +51,6 @@ const PDFMock = {
     postcode: '65326',
     city: 'Barcelona',
     country: 'Spain',
-    headline:
-      'I have a clear, logical mind with a practical approach to problem-solving and a drive to see things through to completion. I have more than 2 years of experience in managing and leading teams across multiple sectors. I am eager to learn, I enjoy overcoming challenges, and I have a genuine interest in Business Management and making organisations successful.',
+    headline: 'Some text'
   },
 };
