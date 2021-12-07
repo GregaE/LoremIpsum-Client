@@ -9,7 +9,7 @@ import WorkExperience from '../../../Forms/WorkExperience';
 import PersonalInfo from '../../../Forms/PersonalInfo';
 
 export default function ItemEditor() {
-  const { identifier } = useTypedSelector(state => state.toggleModal);
+  const { identifier, id } = useTypedSelector(state => state.toggleModal);
 
   const selectForm = (formType: string) => {
     const formKey = formType as formKey;
@@ -20,7 +20,7 @@ export default function ItemEditor() {
   const FormComponent = selectForm(identifier);
   return (
     <div className="w-full">
-      <FormComponent recordType="NEW" />
+      <FormComponent recordType={id === '' ? 'NEW' : 'UPDATE'} id={id} />
     </div>
   );
 }

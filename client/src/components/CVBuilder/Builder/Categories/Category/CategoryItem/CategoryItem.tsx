@@ -47,15 +47,7 @@ export default function CategoryItem({
 
   // function to handle edit option
   const handleEdit = () => {
-    dispatch(toggleModal(true, categoryName));
-    switch (categoryName) {
-      case 'Certificates':
-        const res = certificates.find(
-          certificate => certificate.id === item.id
-          );
-        const cert: Certificates = {name :res? res.name : '', description: res?.description}
-        
-        break;
+          dispatch(toggleModal(true, categoryName, item.id));
 
     //   case 'Education':
     //     dispatch({type: 'FETCH_DATA',  endpoint:'/education', method: 'PUT',id: item.id, dispatch: 'UPDATE_EDUCATION'})
@@ -75,7 +67,6 @@ export default function CategoryItem({
 
     //   default:
     //     break;
-    }
   }
 
   // function to handle delete option

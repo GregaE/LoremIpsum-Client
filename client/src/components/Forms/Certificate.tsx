@@ -3,8 +3,26 @@ import TextAreaInput from './Elements/Inputs/TextAreaInput';
 import Button from './Elements/Buttons/Button';
 import { Certificates } from '../../interfaces/CategoriesInterface';
 import { useHandleForm } from '../../utils/CustomHooks';
+import { useTypedSelector } from '../../utils/useTypeSelector';
 
-export default function Certificate({ recordType }: { recordType: string }) {
+export default function Certificate({ recordType, id }: { recordType: string, id: string }) {
+
+  const {
+    certificates: { certificates }
+  } = useTypedSelector(state => state);
+
+  const setInitialState = ():Certificates => {
+      const certificate = certificates.find(certificate => 
+        certificate.id === id
+      )
+      const emptyCertificate = {
+        name: '',
+        description: '',
+        userId: '',
+      }
+      return certificate ? certificate : emptyCertificate
+  }
+
   const initialState: Certificates = {
     name: '',
     description: '',
@@ -12,7 +30,7 @@ export default function Certificate({ recordType }: { recordType: string }) {
   };
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/certificates',
-    initialState,
+    setInitialState(),
     'POST_CERTIFICATE',
     'UPDATE_CERTIFICATE'
   );
@@ -46,7 +64,7 @@ export default function Certificate({ recordType }: { recordType: string }) {
         <Button name="Cancel" callback={() => toggle(false, '')} />
         <Button
           name={recordType === 'NEW' ? 'Create' : 'Edit'}
-          callback={() => handleSubmit(recordType)}
+          callback={() => handleSubmit(recordType, id)}
         />
       </div>
     </div>
