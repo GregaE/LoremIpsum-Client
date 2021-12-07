@@ -1,12 +1,31 @@
 import { useTypedSelector } from '../../../../../utils/useTypeSelector';
-import { pdf, usePDF } from '@react-pdf/renderer';
+import { useState } from 'react';
+import React from 'react'
+import { pdf } from '@react-pdf/renderer';
 import PDFRender from '../../../PDF-Render/PDF-Render';
-import { PDFBLockLarge } from '../../../PDF-Render/PDFBlockLarge';
-
-const base64 = require('base-64');
+import QualityCategory from './QualityCategory/QualityCategory';
+import { AnimatePresence } from 'framer-motion';
 
 export default function QualityChecker() {
   const pdfItems = useTypedSelector(state => state.pdf);
+  const [issues, setIssues] = React.useState<
+    Array<{
+      QualityCode: number,
+      Message: string
+    }>
+  >([]);
+  const [missingData, setMissingData] = React.useState<
+    Array<{
+      QualityCode: number,
+      Message: string
+    }>
+  >([]);
+  const [suggestions, setSuggestions] = React.useState<
+    Array<{
+      QualityCode: number,
+      Message: string
+    }>
+  >([]);
 
   /// NEEDS REFACTORING TO MINIMIZE CODE (post video creation)
 
@@ -30,17 +49,12 @@ export default function QualityChecker() {
       };
     });
   };
-  console.log(process.env)
 
-  //use https://eu-rest.resumeparsing.com/v10/parser/resume if your account is in the EU data center or
-  //use https://au-rest.resumeparsing.com/v10/parser/resume if your account is in the AU data center
-  //NOTE: this is shown for demonstration purposes only, you should never embed your credentials
-  // in javascript that is going to be distributed to end users. Instead, your javascript should
-  // call a back-end service which then makes the POST to Sovren's API
+  // Call Sovren API to parse the CV
+
   const parseResume = async function ()  {
     const string: any = await blobToBase64();
     const newString = string.replace('data:application/pdf;base64,', '');
-    console.log(newString)
     const data = {
       "DocumentAsBase64String": newString,
       "DocumentLastModified": new Date(Date.now()).toISOString().substring(0, 10),
@@ -65,15 +79,34 @@ export default function QualityChecker() {
 
   const logResume = async () => {
     const res = await parseResume()
-    console.log(res)
+    const cvQuality = res.Value.RedactedResumeData.ResumeMetadata.ResumeQuality;
+    console.log(cvQuality)
+    cvQuality.forEach((category: { Level: string}, index: number) => {
+      if (category.Level === 'Fatal Problems Found') {
+        setIssues(cvQuality[index].Findings);
+      }
+      else if (category.Level === 'Major Problems Found') {
+        setIssues(cvQuality[index].Findings);
+      }
+      else if (category.Level === 'Data Missing') {
+        setMissingData(cvQuality[index].Findings);
+      }
+      else if (category.Level === 'Suggested Improvements') {
+        setSuggestions(cvQuality[index].Findings);
+      }
+    });
   }
+
+  console.log(issues)
 
   return (
     <div>
-      <h3 className="text-primary">Quality checker</h3>
-      <div>Output:</div>
-      <div></div>
-      <button onClick={logResume}>Fetch</button>
+      <button onClick={logResume} className="flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5">Analyze Your CV</button>
+      <AnimatePresence exitBeforeEnter>
+        <QualityCategory name={"Issues"} comments={issues}/>
+        <QualityCategory name={"Missing Data"} comments={missingData}/>
+        <QualityCategory name={"Suggestions"} comments={suggestions}/>
+      </AnimatePresence>
     </div>
   );
 }
