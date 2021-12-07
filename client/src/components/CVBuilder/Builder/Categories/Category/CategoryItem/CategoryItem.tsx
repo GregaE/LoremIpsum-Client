@@ -5,6 +5,11 @@ import { TrashIcon, PencilIcon } from '@heroicons/react/solid';
 import {
   Categories,
   EnumCategories,
+  Certificates,
+  Education,
+  Languages,
+  Skill,
+  WorkExperience
 } from '../../../../../../interfaces/CategoriesInterface';
 import {
   selectItem,
@@ -12,6 +17,7 @@ import {
 } from '../../../../../../store/actions/pdfActions';
 import { useTypedSelector } from '../../../../../../utils/useTypeSelector';
 import { toggleModal } from '../../../../../../store/actions/toggleModal';
+import { useHandleForm } from '../../../../../../utils/CustomHooks';
 
 export default function CategoryItem({
   item,
@@ -22,6 +28,7 @@ export default function CategoryItem({
 }) {
   const dispatch = useDispatch();
   const pdfItems = useTypedSelector(state => state.pdf);
+
   const {
     languages: { languages },
     certificates: { certificates },
@@ -29,6 +36,7 @@ export default function CategoryItem({
     education: { education },
     experience: { experience },
   } = useTypedSelector(state => state);
+
 
   const [selected, toggleSelection] = useState(
     pdfItems &&
@@ -44,9 +52,9 @@ export default function CategoryItem({
       case 'Certificates':
         const res = certificates.find(
           certificate => certificate.id === item.id
-        );
+          );
+        const cert: Certificates = {name :res? res.name : '', description: res?.description}
         
-        dispatch({type: 'FETCH_DATA',  endpoint:'/certificates', method: 'GET', id: item.id, dispatch: 'UPDATE_CERTIFICATES'});
         break;
 
     //   case 'Education':
@@ -123,7 +131,7 @@ export default function CategoryItem({
       animate={{ opacity: 1, height: '40px' }}
       transition={{ type: 'tween' }}
       exit={{ opacity: 0, height: '0px' }}
-      className="item-container"
+      className="item-container pl-6 pr-3"
       >
       <div className="group flex items-center flex-row w-full ">
         <div
@@ -143,11 +151,11 @@ export default function CategoryItem({
           <div className="flex invisible group-hover:visible">
           <button onClick={() => handleEdit()} 
             className="h-5 w-5 justify-self-end self-center cursor-pointer mr-2">
-            <PencilIcon className="opacity-10 hover:opacity-100"></PencilIcon>
+            <PencilIcon className="text-primary-x opacity-50 hover:opacity-100"></PencilIcon>
           </button>
           <button onClick={() => handleDelete()}
             className="h-7 w-7 p-1 justify-self-end self-center cursor-pointer mr-2 rounded-full">
-            <TrashIcon className="text-danger opacity-10 hover:opacity-100"></TrashIcon>
+            <TrashIcon className="text-danger opacity-50 hover:opacity-100"></TrashIcon>
           </button>
         </div>
       </div>
