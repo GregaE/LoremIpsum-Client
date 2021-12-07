@@ -21,9 +21,13 @@ module.exports = {
       height: {
         header: '10%',
         main: '90%',
+        a4: '800px'
       },
       maxHeight: {
         cat: '40rem'
+      },
+      width: {
+        a4: '565px'
       }
     }
   },
