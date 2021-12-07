@@ -57,7 +57,7 @@ function Header({ header, userDetails }: any) {
 
   return (
     <div className='w-full max-w-full h-header py-4 bg-primary-bg flex flex-row justify-between items-center px-8 z-10'>
-      <h2>{'placeholder'}</h2>
+      <h2>{header.headerName}</h2>
       <div>
         <div
           onClick={() => toggleExpand(!expander)}
