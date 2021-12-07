@@ -5,7 +5,7 @@ import { PDFProfile } from './PDFBlockProfile';
 import { PDFBlockSmall } from './PDFBlockSmall';
 import { pageStyle } from './PDFStyles';
 
-export default function PDFRender({ pdf,personal_details }: { pdf: PDF[],personal_details:any }) {
+export default function PDFRender({ pdf,personal_details }: { pdf: PDF[],personal_details?:any }) {
 
   const {first_name, last_name, phone_number,email,street, postcode, city,country, headline} = personal_details
   const data = {first_name, last_name, phone_number, email, street, postcode, city, country, headline}

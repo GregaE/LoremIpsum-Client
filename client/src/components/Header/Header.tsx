@@ -7,14 +7,20 @@ import { LogoutService } from '../../utils/ApiService';
 import Auth from '../../utils/Auth';
 
 //TODO props types
-function Header({ header, userDetails }: any) {
+function Header({ header, userDetails, navigateOptions }: any) {
   const { personal_details } = userDetails;
 
   const [expander, toggleExpand] = useState(false);
 
   function displayOptions() {
+    
+    const optionsNavigation = () => {
+      toggleExpand(!expander)
+      navigateOptions()
+      navigate('/profile')
+    }
     let options = [
-      { name: 'Edit Profile', action: handleClick },
+      { name: 'Edit Profile', action: optionsNavigation },
       { name: 'Logout', action: handleClick },
     ];
 
@@ -22,7 +28,7 @@ function Header({ header, userDetails }: any) {
       return (
         <motion.div
           key={option.name}
-          onClick={() => toggleExpand(!expander)}
+          onClick={() => option.action()}
           className={`${'true'} py-2 px-4 h-20 w-52 cursor-pointer bg-primary leading-9 hover:bg-primary-x`}
           initial={{ opacity: 0, height: '0px' }}
           animate={{ opacity: 1, height: '50px' }}
@@ -101,10 +107,10 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    navigate: (name: string) => {
+    navigateOptions: () => {
       dispatch({
         type: 'HEADER_NAME',
-        payload: name,
+        payload: 'Profile',
       });
       dispatch({
         type: 'SHOW_CVBUILDER',
