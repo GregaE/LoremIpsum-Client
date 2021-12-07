@@ -79,4 +79,5 @@ export type EnumCategories =
   | Education
   | WorkExperience
   | Languages
-  | Certificates;
+  | Certificates
+  | PersonalDetails;

@@ -22,7 +22,7 @@ function Header({ header, userDetails }: any) {
       return (
         <motion.div
           key={option.name}
-          // callback={option.action}
+          onClick={() => toggleExpand(!expander)}
           className={`${'true'} py-2 px-4 h-20 w-52 cursor-pointer bg-primary leading-9 hover:bg-primary-x`}
           initial={{ opacity: 0, height: '0px' }}
           animate={{ opacity: 1, height: '50px' }}

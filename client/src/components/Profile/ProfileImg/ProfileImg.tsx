@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { storage } from "../../../utils/FirebaseConfig";
 
-export default function ProfileImg({userPicture}:any) {
+export default function ProfileImg({userPicture, handleEditing, handleForm, user_details}:any) {
 
   const [profileImage, setProfileImage] = useState(userPicture 
     ? userPicture
@@ -31,10 +31,12 @@ export default function ProfileImg({userPicture}:any) {
             .child(chosenImage.name)
             .getDownloadURL()
             .then((url) => {
-              console.log(url)
               setUrl(url);
               setProfileImage(url);
               // UPDATE PROFILE OBJECT AND SEND IMAGE TO DB
+              target.setAttribute('newimageurl', url);
+              handleForm(e)
+              handleEditing(true);
             });
         }
       );
@@ -48,6 +50,7 @@ export default function ProfileImg({userPicture}:any) {
         accept="image/gif, image/png, image/jpeg, image/jpg"
         id="profileImgUpload"
         className="h-full w-full rounded-full opacity-0 cursor-pointer"
+        name="image"
         onChange={(e) => handleChange(e)} />
     </div>
   )
