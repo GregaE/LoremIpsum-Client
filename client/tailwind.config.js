@@ -17,6 +17,15 @@ module.exports = {
       medium: 500,
       bold: 700,
     },
+    extend: {
+      height: {
+        header: '10%',
+        main: '90%',
+      },
+      maxHeight: {
+        cat: '40rem'
+      }
+    }
   },
   variants: {
     extend: {
