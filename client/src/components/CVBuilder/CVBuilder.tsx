@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux'
 import { useTypedSelector } from '../../utils/useTypeSelector'
 
 import Selector from './Selector/Selector'
@@ -8,15 +7,15 @@ import Modal from './Modal/Modal';
 
 import { motion } from 'framer-motion';
 
-function CVBuilder({pdfStatus}:any) {
+export default function CVBuilder() {
 
   const { builder } = useTypedSelector((state) => state.showCvBuilder)
   const { flag } = useTypedSelector((state) => state.toggleModal)
-  
+
   //Display modal by switch
   const modal = flag ? <Modal/> : null
 
-  const selectorOrBuilder: React.ReactElement = builder 
+  const selectorOrBuilder: React.ReactElement = builder
     ? <Builder/>
     : <Selector/>
 
@@ -35,10 +34,10 @@ function CVBuilder({pdfStatus}:any) {
 
   return (
     <motion.div
-      className="h-full relative"
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
+      className='w-full max-w-full h-main max-h-full relative'
+      initial='hidden'
+      animate='visible'
+      exit='hidden'
       variants={containerVariants}>
 
       {selectorOrBuilder}
@@ -47,17 +46,3 @@ function CVBuilder({pdfStatus}:any) {
     </motion.div>
   );
 }
-
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    pdfStatus: state.pdf,
-  }
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(CVBuilder);

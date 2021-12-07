@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
@@ -43,18 +42,18 @@ function Dashboard({
 
   return (
     <div
-      className="flex w-screen h-screen bg-primary-bg"
+      className='flex w-full h-full bg-primary-bg'
       onClick={e => closeModal(e)}
     >
       <NavBar />
-      <div className="flex flex-col w-5/6 h-full">
+      <div className='flex flex-col w-5/6 h-full'>
         <Header />
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>
-            <Route path="/" element={<Home />} />
-            <Route path="/cvbuilder" element={<CVBuilder />} />
-            <Route path="/mycvs" element={<MyCVs />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/cvbuilder' element={<CVBuilder />} />
+            <Route path='/mycvs' element={<MyCVs />} />
+            <Route path='/profile' element={<Profile />} />
           </Routes>
         </AnimatePresence>
       </div>
