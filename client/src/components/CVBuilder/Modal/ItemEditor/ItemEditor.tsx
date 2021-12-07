@@ -10,7 +10,7 @@ import PersonalInfo from '../../../Forms/PersonalInfo';
 
 export default function ItemEditor() {
   const { identifier, id } = useTypedSelector(state => state.toggleModal);
-
+  
   const selectForm = (formType: string) => {
     const formKey = formType as formKey;
     if (formType && Object.keys(Forms).includes(formType)) {
@@ -20,7 +20,7 @@ export default function ItemEditor() {
   const FormComponent = selectForm(identifier);
   return (
     <div className="w-full">
-      <FormComponent recordType={id === '' ? 'NEW' : 'UPDATE'} id={id} />
+      <FormComponent recordType={id === undefined ? 'NEW' : 'UPDATE'} id={id} />
     </div>
   );
 }

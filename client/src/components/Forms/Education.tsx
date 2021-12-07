@@ -4,10 +4,20 @@ import SelectInput from './Elements/Inputs/SelectInput';
 import TextAreaInput from './Elements/Inputs/TextAreaInput';
 import { Education } from '../../interfaces/CategoriesInterface';
 import { useHandleForm } from '../../utils/CustomHooks';
+import { useTypedSelector } from '../../utils/useTypeSelector';
 
-export default function EducationForm({ recordType }: { recordType: string }) {
-  const initialState: Education = {
-    degree: '',
+export default function EducationForm({ recordType, id }: { recordType: string, id: string }) {
+
+  const {
+    education: { education }
+  } = useTypedSelector(state => state);
+
+  const setInitialState = ():Education => {
+    const educationFiltered = education.find(educ => 
+      educ.id === id
+    )
+    const emptyEducation = {
+      degree: '',
     school: '',
     city: '',
     country: '',
@@ -15,15 +25,18 @@ export default function EducationForm({ recordType }: { recordType: string }) {
     beginYear: '',
     endMonth: '',
     endYear: '',
-  };
+    }
+    return educationFiltered ? educationFiltered : emptyEducation
+  }
+
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/education',
-    initialState,
+    setInitialState(),
     'POST_EDUCATION',
     'UPDATE_EDUCATION'
   );
   //@ts-ignore => this is annoying how can I define one of the types if its or?
-  const education: Education = { ...(state as Education) };
+  const educ: Education = { ...(state as Education) };
 
   const months = [
     'Jan',
@@ -49,7 +62,7 @@ export default function EducationForm({ recordType }: { recordType: string }) {
           callback={handleForm}
           type="text"
           name="degree"
-          value={education.degree}
+          value={educ.degree}
           placeholder="Degree/Field Of Study"
           label="Degree"
         />
@@ -57,7 +70,7 @@ export default function EducationForm({ recordType }: { recordType: string }) {
           callback={handleForm}
           type="text"
           name="school"
-          value={education.school}
+          value={educ.school}
           placeholder="School/University"
           label="School/University"
         />
@@ -69,7 +82,7 @@ export default function EducationForm({ recordType }: { recordType: string }) {
             callback={handleForm}
             type="text"
             name="city"
-            value={education.city ? education.city : ''}
+            value={educ.city ? educ.city : ''}
             placeholder="City"
             label="City"
           />
@@ -77,7 +90,7 @@ export default function EducationForm({ recordType }: { recordType: string }) {
             callback={handleForm}
             type="text"
             name="country"
-            value={education.country ? education.country : ''}
+            value={educ.country ? educ.country : ''}
             placeholder="Country"
             label="Country"
           />
@@ -85,28 +98,28 @@ export default function EducationForm({ recordType }: { recordType: string }) {
         <div id="education_form_dates" className="flex flex-row gap-2 my-5">
           <SelectInput
             callback={handleForm}
-            value={education.beginMonth}
+            value={educ.beginMonth}
             name="beginMonth"
             options={months}
             default={'Month'}
           />
           <SelectInput
             callback={handleForm}
-            value={education.beginYear}
+            value={educ.beginYear}
             name="beginYear"
             options={years}
             default={'Year'}
           />
           <SelectInput
             callback={handleForm}
-            value={education.endMonth}
+            value={educ.endMonth}
             name="endMonth"
             options={months}
             default={'Month'}
           />
           <SelectInput
             callback={handleForm}
-            value={education.endYear}
+            value={educ.endYear}
             name="endYear"
             options={years}
             default={'Year'}
@@ -115,7 +128,7 @@ export default function EducationForm({ recordType }: { recordType: string }) {
         <TextAreaInput
           type="text"
           name="description"
-          value={education.description ? education.description : ''}
+          value={educ.description ? educ.description : ''}
           placeholder=""
           label="Description"
           callback={handleForm}
@@ -125,7 +138,7 @@ export default function EducationForm({ recordType }: { recordType: string }) {
         <Button name="Cancel" callback={() => toggle(false, '')} />
         <Button
           name={recordType === 'NEW' ? 'Create' : 'Edit'}
-          callback={() => handleSubmit(recordType)}
+          callback={() => handleSubmit(recordType, id)}
         />
       </div>
     </div>

@@ -23,11 +23,6 @@ export default function Certificate({ recordType, id }: { recordType: string, id
       return certificate ? certificate : emptyCertificate
   }
 
-  const initialState: Certificates = {
-    name: '',
-    description: '',
-    userId: '',
-  };
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/certificates',
     setInitialState(),

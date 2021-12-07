@@ -4,11 +4,14 @@ import TextAreaInput from './Elements/Inputs/TextAreaInput';
 import { WorkExperience } from '../../interfaces/CategoriesInterface';
 import Button from './Elements/Buttons/Button';
 import { useHandleForm } from '../../utils/CustomHooks';
+import { useTypedSelector } from '../../utils/useTypeSelector';
 
 export default function WorkExperienceForm({
   recordType,
+  id
 }: {
-  recordType: string;
+  recordType: string,
+  id: string
 }) {
   const months = [
     'Jan',
@@ -25,26 +28,37 @@ export default function WorkExperienceForm({
     'Dec',
   ];
   const years = Array.from({ length: 20 }, (v, i) => i + 2000); //Generate and array with values from 2000 to 2020
-  const initialState: WorkExperience = {
-    id: '',
-    job_title: '',
-    company: '',
-    city: '',
-    country: '',
-    description: '',
-    beginMonth: '',
-    beginYear: '',
-    endMonth: '',
-    endYear: '',
-  };
 
+  const {
+    experience: { experience }
+  } = useTypedSelector(state => state);
+
+
+  const setInitialState = ():WorkExperience => {
+    const experienceFiltered = experience.find(experience => 
+      experience.id === id
+    )
+    const emptyExperience = {
+      id: '',
+      job_title: '',
+      company: '',
+      city: '',
+      country: '',
+      description: '',
+      beginMonth: '',
+      beginYear: '',
+      endMonth: '',
+      endYear: '',
+    }
+    return experienceFiltered ? experienceFiltered : emptyExperience
+  }
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/workExperience',
-    initialState,
+    setInitialState(),
     'POST_EXPERIENCE',
     'UPDATE_EXPERIENCE'
   );
-  const workExperience: WorkExperience = { ...(state as WorkExperience) };
+  const workExp: WorkExperience = { ...(state as WorkExperience) };
 
   return (
     <div className="m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
@@ -53,7 +67,7 @@ export default function WorkExperienceForm({
         <TextInput
           type="text"
           name="job_title"
-          value={workExperience.job_title}
+          value={workExp.job_title}
           placeholder="Job Title"
           label="Job Title"
           callback={handleForm}
@@ -61,7 +75,7 @@ export default function WorkExperienceForm({
         <TextInput
           type="text"
           name="company"
-          value={workExperience.company ? workExperience.company : ''}
+          value={workExp.company ? workExp.company : ''}
           placeholder="Employer"
           label="Employer"
           callback={handleForm}
@@ -70,7 +84,7 @@ export default function WorkExperienceForm({
           <TextInput
             type="text"
             name="city"
-            value={workExperience.city ? workExperience.city : ''}
+            value={workExp.city ? workExp.city : ''}
             placeholder="City"
             label="City"
             callback={handleForm}
@@ -78,7 +92,7 @@ export default function WorkExperienceForm({
           <TextInput
             type="text"
             name="country"
-            value={workExperience.country ? workExperience.country : ''}
+            value={workExp.country ? workExp.country : ''}
             placeholder="Country"
             label="Country"
             callback={handleForm}
@@ -89,35 +103,35 @@ export default function WorkExperienceForm({
             options={months}
             callback={handleForm}
             name="beginMonth"
-            value={workExperience.beginMonth ? workExperience.beginMonth : ''}
+            value={workExp.beginMonth ? workExp.beginMonth : ''}
             default={'Month'}
           />
           <SelectInput
             options={years}
             callback={handleForm}
             name="beginYear"
-            value={workExperience.beginYear ? workExperience.beginYear : ''}
+            value={workExp.beginYear ? workExp.beginYear : ''}
             default={'Year'}
           />
           <SelectInput
             options={months}
             callback={handleForm}
             name="endMonth"
-            value={workExperience.endMonth ? workExperience.endMonth : ''}
+            value={workExp.endMonth ? workExp.endMonth : ''}
             default={'Month'}
           />
           <SelectInput
             options={years}
             callback={handleForm}
             name="endYear"
-            value={workExperience.endYear ? workExperience.endYear : ''}
+            value={workExp.endYear ? workExp.endYear : ''}
             default={'Year'}
           />
         </div>
         <TextAreaInput
           type="text"
           name="description"
-          value={workExperience.description ? workExperience.description : ''}
+          value={workExp.description ? workExp.description : ''}
           placeholder=""
           label="Description"
           callback={handleForm}
@@ -127,7 +141,7 @@ export default function WorkExperienceForm({
         <Button name="Cancel" callback={() => toggle(false, '')} />
         <Button
           name={recordType === 'NEW' ? 'Create' : 'Edit'}
-          callback={() => handleSubmit(recordType)}
+          callback={() => handleSubmit(recordType, id)}
         />
       </div>
     </div>

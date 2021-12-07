@@ -4,12 +4,6 @@ import { motion } from 'framer-motion';
 import { TrashIcon, PencilIcon } from '@heroicons/react/solid';
 import {
   Categories,
-  EnumCategories,
-  Certificates,
-  Education,
-  Languages,
-  Skill,
-  WorkExperience
 } from '../../../../../../interfaces/CategoriesInterface';
 import {
   selectItem,
@@ -17,7 +11,6 @@ import {
 } from '../../../../../../store/actions/pdfActions';
 import { useTypedSelector } from '../../../../../../utils/useTypeSelector';
 import { toggleModal } from '../../../../../../store/actions/toggleModal';
-import { useHandleForm } from '../../../../../../utils/CustomHooks';
 
 export default function CategoryItem({
   item,
@@ -29,15 +22,6 @@ export default function CategoryItem({
   const dispatch = useDispatch();
   const pdfItems = useTypedSelector(state => state.pdf);
 
-  const {
-    languages: { languages },
-    certificates: { certificates },
-    skills: { skills },
-    education: { education },
-    experience: { experience },
-  } = useTypedSelector(state => state);
-
-
   const [selected, toggleSelection] = useState(
     pdfItems &&
       pdfItems
@@ -47,26 +31,7 @@ export default function CategoryItem({
 
   // function to handle edit option
   const handleEdit = () => {
-          dispatch(toggleModal(true, categoryName, item.id));
-
-    //   case 'Education':
-    //     dispatch({type: 'FETCH_DATA',  endpoint:'/education', method: 'PUT',id: item.id, dispatch: 'UPDATE_EDUCATION'})
-    //     break;
-
-    //   case 'Languages':
-    //     dispatch({type: 'FETCH_DATA',  endpoint:'/languages', method: 'PUT',id: item.id, dispatch: 'UPDATE_LANGUAGES'})
-    //     break;
-
-    //   case 'Skills':
-    //     dispatch({type: 'FETCH_DATA',  endpoint:'/skills', method: 'PUT',id: item.id, dispatch: 'UPDATE_SKILLS'})
-    //     break;
-
-    //   case 'Work Experience':
-    //     dispatch({type: 'FETCH_DATA',  endpoint:'/workExperience', method: 'PUT',id: item.id, dispatch: 'UPDATE_EXPERIENCE'})
-    //     break;
-
-    //   default:
-    //     break;
+      dispatch(toggleModal(true, categoryName, item.id));
   }
 
   // function to handle delete option
