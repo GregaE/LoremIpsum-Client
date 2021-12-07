@@ -45,7 +45,7 @@ export default function CategoryItem({
         const res = certificates.find(
           certificate => certificate.id === item.id
         );
-        console.log(res);
+        
         dispatch({type: 'FETCH_DATA',  endpoint:'/certificates', method: 'GET', id: item.id, dispatch: 'UPDATE_CERTIFICATES'});
         break;
 
