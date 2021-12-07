@@ -19,6 +19,7 @@
     "@types/react-calendar": "^3.4.3",
     "@types/react-dom": "^17.0.11",
     "autoprefixer": "10.x",
+    "base-64": "^1.0.0",
     "cross-env": "7.x",
     "delay-cli": "^1.1.0",
     "firebase": "^8.0.0",

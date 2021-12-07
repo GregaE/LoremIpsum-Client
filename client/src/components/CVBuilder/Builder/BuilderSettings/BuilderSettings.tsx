@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFRender from '../../PDF-Render/PDF-Render';
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
+import QualityChecker from './QualityChecker/QualityChecker'
 
 function BuilderSettings({ postCV, user }: any) {
   const pdfItems = useTypedSelector(state => state.pdf);
@@ -37,6 +38,7 @@ function BuilderSettings({ postCV, user }: any) {
       >
         Save CV
       </div>
+      <QualityChecker/>
     </div>
   );
 }
