@@ -21,20 +21,20 @@ function BuilderSettings({ postCV, user }: any) {
     postCV(data);
   };
   return (
-    <div>
+    <div className='h-full w-full flex flex-col align-center p-2'>
       <PDFDownloadLink
         document={<PDFRender pdf={pdfItems} />}
         fileName={`CV-${new Date().toISOString()}.pdf`}
       >
         {({ blob, url, loading, error }) => (
-          <div className="flex justify-center bg-primary text-light rounded-lg p-1 m-5">
+          <div className='flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5'>
             {loading ? 'Loading document...' : 'Download'}
           </div>
         )}
       </PDFDownloadLink>
       <div
-        className="flex justify-center bg-primary text-light rounded-lg p-1 m-5 cursor-pointer"
-        onClick={() => saveCV()}
+        className='flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5 cursor-pointer'
+        onClick={saveCV}
       >
         Save CV
       </div>
@@ -44,13 +44,6 @@ function BuilderSettings({ postCV, user }: any) {
 }
 
 //TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    pdfStatus: state.pdf,
-    user: state.login,
-  };
-};
-
 const mapDispatchToProps = (dispatch: any) => {
   return {
     postCV: (data: any) =>
@@ -65,4 +58,4 @@ const mapDispatchToProps = (dispatch: any) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BuilderSettings);
+export default connect(null, mapDispatchToProps)(BuilderSettings);

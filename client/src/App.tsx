@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import AuthLogin from './components/Auth/AuthLogin';
 
 import { FetchPersonal } from './utils/ApiService';
-import { useTypedSelector } from './utils/useTypeSelector';
 
 import { connect } from 'react-redux';
 import { loginDetails } from './store/actions/toggleLogin';
@@ -18,7 +17,7 @@ function App({login}:any) {
 
   useEffect(() => {
     if (login.userId === '' && !localStorage.getItem('user_id')) {
-        dispatch({type: 'TOGGLE_LOGIN', payload: {userId: "", isLoggedIn: false } })
+        dispatch({type: 'TOGGLE_LOGIN', payload: {userId: '', isLoggedIn: false } })
         return
     }
     const userId = localStorage.getItem('user_id');
