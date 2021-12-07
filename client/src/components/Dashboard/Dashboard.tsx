@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 
@@ -11,35 +11,18 @@ import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
 
-import Certificate from '../Forms/Certificate';
-import Education from '../Forms/Education';
-
 import { AnimatePresence } from 'framer-motion';
-import PDFRender from '../CVBuilder/PDF-Render/PDF-Render';
+import { toggleModal } from '../../store/actions/toggleModal';
 
 //TODO props type
 function Dashboard({
   modal,
   toggle,
-  getUser,
-  getLanguages,
-  getCertificates,
-  getSkills,
-  getEducation,
-  getExperience,
-  getCVs,
 }: any) {
-  const location = useLocation();
 
-  useEffect(() => {
-    getUser();
-    getLanguages();
-    getCertificates();
-    getSkills();
-    getEducation();
-    getExperience();
-    getCVs();
-  }, []);
+  const dispatch = useDispatch()
+
+  const location = useLocation();
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
@@ -51,7 +34,7 @@ function Dashboard({
     while (e.target.id !== 'modal-content') {
       if (e.target.id === 'modal-content') return;
       if (e.target.parentNode.localName === 'body') {
-        if (modal.flag) toggle();
+        if (modal.flag) dispatch(toggleModal(false,''));
         return;
       }
       e.target = e.target.parentNode;
@@ -71,14 +54,7 @@ function Dashboard({
             <Route path="/" element={<Home />} />
             <Route path="/cvbuilder" element={<CVBuilder />} />
             <Route path="/mycvs" element={<MyCVs />} />
-            <Route path="/test" element={<Profile />} />{' '}
-            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-            <Route path="/anothertest" element={<Education />} />{' '}
-            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-            <Route path="/form" element={<Certificate />} />{' '}
-            {/* Temporal route */}
-            <Route path="/profile" element={<Profile />} />{' '}
-            {/* Temporal route */}
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </AnimatePresence>
       </div>
@@ -93,6 +69,7 @@ const mapStateToProps = (state: any) => {
     modal: state.toggleModal,
     userDetail: state.personal_details,
     skills: state.skills,
+    login: state.login,
   };
 };
 
@@ -106,62 +83,12 @@ const mapDispatchToProps = (dispatch: any) => {
           identifier: '',
         },
       }),
-    getUser: () =>
-      dispatch({
-        //CAUTION USER AND PERSONAL DETAILS ARENT THE SAME!!!
-        type: 'FETCH_DATA',
-        endpoint: '/user',
-        method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
-        dispatch: 'PERSONAL_DETAILS',
-      }),
-
-    getLanguages: () =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/languages',
-        method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
-        dispatch: 'ALL_LANGUAGES',
-      }),
-    getCertificates: () =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/certificates',
-        method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
-        dispatch: 'ALL_CERTIFICATES',
-      }),
-    getSkills: () =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/skills',
-        method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
-        dispatch: 'ALL_SKILLS',
-      }),
-    getEducation: () =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/education',
-        method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
-        dispatch: 'ALL_EDUCATION',
-      }),
-    getExperience: () =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/workExperience',
-        method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
-        dispatch: 'ALL_EXPERIENCES',
-      }),
-    getCVs: () =>
+    getCVs: (userId:string) =>
       dispatch({
         type: 'FETCH_DATA',
         endpoint: '/savedCV',
         method: 'GET',
-        id: 'ckwkk683g00067mufbbnpb097',
+        id: userId,
         dispatch: 'ALL_CVS',
       }),
   };

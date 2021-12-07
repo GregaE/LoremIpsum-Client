@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux'
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
+import TextAreaInput from './Elements/Inputs/TextAreaInput';
 import { WorkExperience } from '../../interfaces/CategoriesInterface';
 import Button from './Elements/Buttons/Button';
+import { useHandleForm } from '../../utils/CustomHooks';
 
-function WorkExperienceForm({userDetail, toggle, postForm, updateForm}:any) {
-
-  const {personal_details} = userDetail;
-  const {user_id} = personal_details
-
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May','Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-  const years = Array.from({length: 20}, (v, i) => i+2000); //Generate and array with values from 2000 to 2020
-
-//TODO: ADD the date formatter for the db when handling submit button to convert string to a date - possibly let the server handle that
+export default function WorkExperienceForm({
+  recordType,
+}: {
+  recordType: string;
+}) {
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+  const years = Array.from({ length: 20 }, (v, i) => i + 2000); //Generate and array with values from 2000 to 2020
   const initialState: WorkExperience = {
-    id:'',
+    id: '',
     job_title: '',
     company: '',
     city: '',
@@ -25,88 +36,100 @@ function WorkExperienceForm({userDetail, toggle, postForm, updateForm}:any) {
     beginYear: '',
     endMonth: '',
     endYear: '',
-  }
+  };
 
-  const [workExperience, setWorkExperience] = useState(initialState)
-
-  const handleForm = (e: React.ChangeEvent):void => {
-    const target = e.target as HTMLInputElement;
-    setWorkExperience({...workExperience, [target.name]: target.value})
-  }
-
-  const handleSubmit = async (type:string)=> {
-    //We have to add some input controller before sending anything
-    
-    let res;
-    if(type==="NEW") {
-      const data = {...workExperience, userId:user_id}
-      res = await postForm("POST_EXPERIENCE",data)
-    }
-    if(type==="UPDATE") {
-      res = await updateForm(user_id,"UPDATE_EXPERIENCE",workExperience)
-    }
-    setWorkExperience(initialState)
-    toggle()
-  }
+  const { state, handleForm, handleSubmit, toggle } = useHandleForm(
+    '/workExperience',
+    initialState,
+    'POST_EXPERIENCE',
+    'UPDATE_EXPERIENCE'
+  );
+  const workExperience: WorkExperience = { ...(state as WorkExperience) };
 
   return (
-    <div className='object-center w-1/2 h-auto bg-green-400'>
+    <div className="m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+      <h3>Add Work Experience</h3>
       <form>
-        <TextInput type='text' name='job_title' value={workExperience.job_title} placeholder='job-title' label='' callback={handleForm}/>
-        <TextInput type='text' name='company' value={workExperience.company? workExperience.company: ''} placeholder='employer' label='' callback={handleForm}/>
-        <div id='work_form_location' className='flex flex-row'>
-          <TextInput type='text' name='city' value={workExperience.city? workExperience.city: ''} placeholder='city' label='' callback={handleForm}/>
-          <TextInput type='text' name='country' value={workExperience.country? workExperience.country: ''} placeholder='country' label='' callback={handleForm}/>
+        <TextInput
+          type="text"
+          name="job_title"
+          value={workExperience.job_title}
+          placeholder="Job Title"
+          label="Job Title"
+          callback={handleForm}
+        />
+        <TextInput
+          type="text"
+          name="company"
+          value={workExperience.company ? workExperience.company : ''}
+          placeholder="Employer"
+          label="Employer"
+          callback={handleForm}
+        />
+        <div id="work_form_location" className="md:flex gap-5 items-center">
+          <TextInput
+            type="text"
+            name="city"
+            value={workExperience.city ? workExperience.city : ''}
+            placeholder="City"
+            label="City"
+            callback={handleForm}
+          />
+          <TextInput
+            type="text"
+            name="country"
+            value={workExperience.country ? workExperience.country : ''}
+            placeholder="Country"
+            label="Country"
+            callback={handleForm}
+          />
         </div>
-        <div id='work_form_dates' className='flex flex-row'>
-          <SelectInput options={months} callback={handleForm} name='beginMonth' value={workExperience.beginMonth? workExperience.beginMonth: ''}/>
-          <SelectInput options={years} callback={handleForm} name='beginYear' value={workExperience.beginYear? workExperience.beginYear: ''}/>
-          <SelectInput options={months} callback={handleForm} name='endMonth' value={workExperience.endMonth? workExperience.endMonth: ''}/>
-          <SelectInput options={years} callback={handleForm} name='endMonth' value={workExperience.endYear? workExperience.endYear: ''}/>
+        <div id="work_form_dates" className="flex flex-row gap-2 my-5">
+          <SelectInput
+            options={months}
+            callback={handleForm}
+            name="beginMonth"
+            value={workExperience.beginMonth ? workExperience.beginMonth : ''}
+            default={'Month'}
+          />
+          <SelectInput
+            options={years}
+            callback={handleForm}
+            name="beginYear"
+            value={workExperience.beginYear ? workExperience.beginYear : ''}
+            default={'Year'}
+          />
+          <SelectInput
+            options={months}
+            callback={handleForm}
+            name="endMonth"
+            value={workExperience.endMonth ? workExperience.endMonth : ''}
+            default={'Month'}
+          />
+          <SelectInput
+            options={years}
+            callback={handleForm}
+            name="endYear"
+            value={workExperience.endYear ? workExperience.endYear : ''}
+            default={'Year'}
+          />
         </div>
+        <TextAreaInput
+          type="text"
+          name="description"
+          value={workExperience.description ? workExperience.description : ''}
+          placeholder=""
+          label="Description"
+          callback={handleForm}
+        />
       </form>
-      <div className="flex flex-row">
-        <Button name="Cancel" callback={toggle}/>
-        <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE"/>
-        <Button name="Create" callback={handleSubmit} handleSubmitType="NEW"/>
+      <div className="flex flex-row my-5 gap-2.5">
+        <Button name="Cancel" callback={() => toggle(false, '')} />
+        <Button
+          name={recordType === 'NEW' ? 'Create' : 'Edit'}
+          callback={() => handleSubmit(recordType)}
+        />
       </div>
     </div>
   );
 }
-
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    userDetail: state.personal_details,
-  }
-}
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    toggle: () => dispatch({
-      type: 'TOGGLE_MODAL',
-      payload: {
-        flag: false,
-        identifier: ''
-      }
-    }),
-    postForm: (action: any, data: any) => dispatch({
-      type: 'FETCH_DATA',
-      endpoint: '/workExperience',
-      method: 'POST',
-      id:'',
-      dispatch: action,
-      payload: data
-    }),
-    updateForm: ( id:any,action: any, data: any) => dispatch({
-      type: 'FETCH_DATA',
-      endpoint: '/workExperience',
-      method: 'PUT',
-      id,
-      dispatch: action,
-      payload: data
-    }),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WorkExperienceForm);

@@ -1,23 +1,24 @@
-import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import CVItem from '../../../MyCVs/CVItem/CVItem';
 
-function CVSelector({curriculum}:any) {
-
-  const {cvs} = curriculum;
+function CVSelector({ curriculum }: any) {
+  const { cvs } = curriculum;
 
   function renderCVs() {
-    if(cvs.length > 0) {
-      return Array(cvs.length).fill(<CVItem />)
+    if (cvs.length > 0) {
+      return cvs.map((cv: any) => {
+        return (
+          <CVItem
+            cvId={cv.id}
+            date_created={cv.date_created}
+            data={cv.saved_cv}
+          />
+        );
+      });
     }
-    return <p>You dont have any CV yet</p>
+    return <p>You dont have any CV yet</p>;
   }
-
-  /*
-  TO DO:
-    Every CVItem should hold a key that identifies the CV so when you click CVItem changes selector state fetching cv data
-  */
 
   return (
     <div className="h-full flex flex-wrap items-center gap-10 p-5 overflow-scroll">
@@ -28,13 +29,12 @@ function CVSelector({curriculum}:any) {
 
 const mapStateToProps = (state: any) => {
   return {
-    curriculum: state.cvs
-  }
-}
+    curriculum: state.cvs,
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {
-  }
-}
+  return {};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CVSelector);

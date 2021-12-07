@@ -1,15 +1,13 @@
-// import { ModalInterface } from '../../interfaces/ModalInterface';
 import { ActionType } from '../state_interfaces/appState';
-import { Categories } from '../../interfaces/CategoriesInterface';
-// // I will have to import the interfaces for every categoy
-// // category item
-// // and the pdf itself
+import { PDF } from '../../interfaces/PdfInterface';
+import { PDFCategory, PDFItem } from '../state_interfaces/PdfState';
 
-// //TODO: Replace all the any types to proper type
+const initialState: PDF[] = [];
 
-const initialState: any[] = [];
-
-const pdfReducer = (state = initialState, { type, payload }: any): any => {
+const pdfReducer = (
+  state = initialState,
+  { type, payload }: { type: string; payload: PDFCategory & PDFItem }
+): PDF[] => {
   function categoryCheck(name: string) {
     return state.some(category => category.name === name);
   }
@@ -30,53 +28,11 @@ const pdfReducer = (state = initialState, { type, payload }: any): any => {
     case ActionType.REMOVE_CATEGORY:
       return state.filter(c => c.name !== payload.name);
 
-    case ActionType.ADD_ITEM: {
-      const newCategory = state.map(cat => {
-        if (cat.name === payload.name) {
-          return { ...cat, items: [...cat.items, payload.data] };
-        }
-        return cat;
-      });
-
-      return newCategory;
-    }
-
-    case ActionType.EDIT_ITEM: {
-      const editedCategory = state.map(cat => {
-        if (cat.name === payload.name) {
-          const updatedItems = cat.items.map((item: Categories) => {
-            if (item.id === payload.itemId) {
-              return { ...payload.data };
-            }
-            return item;
-          });
-          return { ...cat, items: [...updatedItems] };
-        }
-        return cat;
-      });
-      return editedCategory;
-    }
-
-    case ActionType.REMOVE_ITEM:
-      const removeItemState = state.map(cat => {
-        if (cat.name === payload.name) {
-          const newItems = cat.items.filter(
-            (item: Categories) => item.id !== payload.itemID
-          );
-          const newPdf = cat.pdf.filter(
-            (item: Categories) => item.id !== payload.itemID
-          );
-          return { ...cat, items: [...newItems], pdf: [...newPdf] };
-        }
-        return cat;
-      });
-      return removeItemState;
-
     case ActionType.SELECT_ITEM:
       const selectItemState = state.map(cat => {
         if (cat.name === payload.name) {
           const selectedItem = cat.items.filter(
-            (item: Categories) => item.id === payload.itemID
+            item => item.id === payload.itemID
           )[0];
           cat.pdf.push(selectedItem);
           return cat;
@@ -88,14 +44,15 @@ const pdfReducer = (state = initialState, { type, payload }: any): any => {
     case ActionType.UNSELECT_ITEM:
       const unselectItemState = state.map(cat => {
         if (cat.name === payload.name) {
-          const newPdf = cat.pdf.filter(
-            (item: Categories) => item.id !== payload.itemID
-          );
+          const newPdf = cat.pdf.filter(item => item.id !== payload.itemID);
           return { ...cat, pdf: [...newPdf] };
         }
         return cat;
       });
       return unselectItemState;
+
+    case ActionType.RESET_PDF:
+      return initialState;
 
     default:
       return state;

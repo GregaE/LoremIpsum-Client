@@ -22,6 +22,7 @@ module.exports = {
     extend: {
       visibility: ['group-hover'],
       fontWeight: ['responsive', 'hover', 'focus', 'active', 'group-hover'],
+      scale: ['hover'],
     },
   },
   plugins: [],

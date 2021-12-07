@@ -8,7 +8,7 @@ const initState: SkillState = {
 
 const skillReducer = (
   state = initState,
-  { type, payload, id }: SkillAction
+  { type, payload, id, error }: SkillAction
 ) => {
   switch (type) {
     case 'LOADING':
@@ -21,7 +21,7 @@ const skillReducer = (
       return {
         ...state,
         loading: false,
-        error: payload,
+        error: error,
       };
     case 'ALL_SKILLS':
       return {
@@ -32,10 +32,10 @@ const skillReducer = (
       };
     case 'POST_SKILL':
       return {
-        ...state, 
+        ...state,
         loading: false,
         error: null,
-        skills: [...state.skills, payload]
+        skills: [...state.skills, payload],
       };
     case 'UPDATE_SKILL':
       return {

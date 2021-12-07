@@ -35,6 +35,7 @@ export async function LogoutService ()  {
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
     });
+    console.log(res)
     return await res.json();
   } catch (err) {
     return console.error(err);
@@ -49,6 +50,34 @@ export async function RegisterService (user: loginInterface) {
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
+    });
+    return res.json();
+  } catch (err) {
+    return console.error(err);
+  }
+}
+
+export async function FetchPersonal (userId: string | null) {
+  try {
+    const res = await fetch(`${BASE_URL}/personalDetails/${userId}`, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    return await res.json();
+  } catch (err) {
+    return console.error(err);
+  }
+}
+
+export async function FetchCategory (endpoint: string, userId: string | null) {
+  try {
+    const res = await fetch(`${BASE_URL}${endpoint}/${userId}`, {
+      method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
     });
     return await res.json();
   } catch (err) {

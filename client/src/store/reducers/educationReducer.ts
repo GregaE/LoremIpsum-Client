@@ -8,7 +8,7 @@ const initState: EducationState = {
 
 const educationReducer = (
   state = initState,
-  { type, payload, id }: EducationAction
+  { type, payload, id, error }: EducationAction
 ) => {
   switch (type) {
     case 'LOADING':
@@ -21,7 +21,7 @@ const educationReducer = (
       return {
         ...state,
         loading: false,
-        error: payload,
+        error: error,
       };
     case 'ALL_EDUCATION':
       return {
@@ -35,7 +35,7 @@ const educationReducer = (
         ...state,
         loading: false,
         error: null,
-        education: [...state.education, payload] 
+        education: [...state.education, payload],
       };
     case 'UPDATE_EDUCATION':
       return {

@@ -1,29 +1,20 @@
 import React, { useState } from 'react';
 import Auth from '../../../utils/Auth';
 import { RegisterService } from '../../../utils/ApiService';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-
+import { loginDetails } from '../../../store/actions/toggleLogin';
 import { LockClosedIcon } from '@heroicons/react/solid'
-
 const initialState = {
     email: '',
     password: '',
-    username: ''
+    firstName: '',
+    lastName: ''
   };
-
-  type Props = {
-    changeLoginStatus: Function
-    setRegister: React.Dispatch<React.SetStateAction<boolean>>
-  }
-
-  const Register = ({
-    changeLoginStatus,
-    setRegister
-  }: Props) => {
+  const Register = ( props: {setRegister: React.Dispatch<React.SetStateAction<boolean>>}) => {
     const [state, setState] = useState(initialState);
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const handleChange = (e: React.FormEvent) => {
       const target = e.target as HTMLInputElement;
       const { name, value } = target;
@@ -32,28 +23,26 @@ const initialState = {
         [name]: value,
       }));
     };
-
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      const { email, password, username } = state;
-      const user = { email, password, username};
+      const { email, password, firstName, lastName } = state;
+      const user = { email, password, firstName, lastName};
       const res = await RegisterService(user);
-      console.log(res);
       if (res.error) {
         alert(`${res.message}`);
         setState(initialState);
       } else {
-        changeLoginStatus(true);
+        dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+        dispatch(loginDetails(res.personal_detail));
+        localStorage.setItem('user_id', res.user_id);
         Auth.login(() => navigate('/'));
       }
     };
-
     const validateForm = () => {
       return (
-        !state.email || !state.password || !state.username
+        !state.email || !state.password || !state.firstName || !state.lastName
       );
     };
-
     return (
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-primary">
         <div className="max-w-md w-full space-y-8 bg-light rounded-container p-10">
@@ -82,6 +71,37 @@ const initialState = {
               defaultValue="true"
             />
             <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+                <label htmlFor="first-name" className="sr-only">
+                  First name
+                </label>
+                 <input
+                  id="first-name"
+                  name="firstName"
+                  type="text"
+                  autoComplete="first-name"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                  placeholder="First name"
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="last-name" className="sr-only">
+                  Last name
+                </label>
+                 <input
+                  id="last-name"
+                  name="lastName"
+                  type="text"
+                  autoComplete="last-name"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
+                  placeholder="Last name"
+                  onChange={handleChange}
+                />
+              </div>
+              <br/>
               <div>
                 <label
                   htmlFor="email-address"
@@ -95,7 +115,7 @@ const initialState = {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                   placeholder="Email address"
                   onChange={handleChange}
                 />
@@ -113,50 +133,17 @@ const initialState = {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-primary focus:border-primary focus:z-10"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
                   placeholder="Password"
                   onChange={handleChange}
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="username"
-                  className="sr-only"
-                >
-                  User name
-                </label>
-                <input
-                  id="username"
-                  name="username"
-                  type="text"
-                  autoComplete="username"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10"
-                  placeholder="Username"
-                  onChange={handleChange}
-                />
-              </div>
-              {/*<div>
-                <label htmlFor="last-name" className="sr-only">
-                  Last name
-                </label>
-                 <input
-                  id="last-name"
-                  name="last_name"
-                  type="text"
-                  autoComplete="last-name"
-                  required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                  placeholder="Last name"
-                  onChange={handleChange}
-                />
-              </div>*/}
             </div>
             <div className="text-sm max-w-max mx-auto">
               <span>Already registered? </span>
               <span
                 className="font-medium text-primary hover:text-primary-x cursor-pointer"
-                onClick={() => setRegister(false)}
+                onClick={() => props.setRegister(false)}
               >
                   Click here to log in.
               </span>
@@ -181,14 +168,4 @@ const initialState = {
       </div>
     );
   };
-
-  const mapDispatchToProps = (dispatch: React.Dispatch<{
-    type: string
-    payload: boolean
-  }>) => {
-   return {
-     changeLoginStatus: (payload: boolean) => dispatch({type: 'TOGGLE_LOGIN', payload: payload})
-   }
-  }
-
-  export default connect(null, mapDispatchToProps)(Register);
+  export default Register;

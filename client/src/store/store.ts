@@ -17,6 +17,7 @@ import headerName from './reducers/header';
 import showCvBuilder from './reducers/showBuilder';
 import toggleModal from './reducers/toggleModal';
 import pdfReducer from './reducers/pdfReducer';
+import loginReducer from './reducers/loginReducer';
 
 const reducers = combineReducers({
   skills: skillReducer,
@@ -30,7 +31,8 @@ const reducers = combineReducers({
   headerName,
   showCvBuilder,
   toggleModal,
-  pdf: pdfReducer
+  pdf: pdfReducer,
+  user: loginReducer
 });
 
 export default createStore(reducers, applyMiddleware(middleware));

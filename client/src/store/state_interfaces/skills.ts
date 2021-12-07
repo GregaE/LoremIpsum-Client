@@ -8,6 +8,8 @@ export interface SkillState {
 
 export interface SkillAction {
   type: string;
-  payload?: Skill;
+  payload: Skill & Skill[];
+  all: Skill[];
   id?: string;
+  error: string | null;
 }

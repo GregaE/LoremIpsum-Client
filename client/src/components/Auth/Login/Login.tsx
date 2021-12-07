@@ -1,22 +1,19 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { LoginService } from '../../../utils/ApiService';
 import Auth from '../../../utils/Auth';
 
 import { LockClosedIcon } from '@heroicons/react/solid'
+import { loginDetails } from '../../../store/actions/toggleLogin';
 
 const initialState = {
   email: '',
   password: '',
 };
 
-type Props = {
-  changeLoginStatus: Function;
-  setRegister: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-function Login({changeLoginStatus, setRegister}: Props) {
+function Login(props: any) {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [ state, setState ] = useState(initialState);
@@ -32,17 +29,16 @@ function Login({changeLoginStatus, setRegister}: Props) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
     const { email, password } = state;
     const user = { email, password };
-    const res = await LoginService(user);
-    console.log(res);
+    const res = await LoginService(user)
     if (res.error) {
       console.log(res.error)
       alert(`${res.message}`);
-      setState(initialState);
     } else {
-      changeLoginStatus(true);
+      dispatch({type: 'TOGGLE_LOGIN', payload: {isLoggedIn: true, userId: res.user_id} });
+      dispatch(loginDetails(res.personal_detail));
+      localStorage.setItem('user_id', res.user_id);
       Auth.login(() => navigate('/'));
     }
   }
@@ -113,7 +109,7 @@ function Login({changeLoginStatus, setRegister}: Props) {
               <span>Not yet registered? </span>
               <span
                 className='font-medium text-primary hover:text-primary-x cursor-pointer'
-                onClick={() => setRegister(true)}
+                onClick={() => props.setRegister(true)}
               >
                 Click here to register now.
               </span>
@@ -138,13 +134,35 @@ function Login({changeLoginStatus, setRegister}: Props) {
   );
 }
 
-const mapDispatchToProps = (dispatch: React.Dispatch<{
-  type: string
-  payload: boolean
-}>) => {
+//TODO - deal with dispatch typing
+const mapStateToProps = (state: any) => {
   return {
-    changeLoginStatus: (payload: boolean) => dispatch({type: 'TOGGLE_LOGIN', payload: true}),
+    user: state.user
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    login: (email: string, password: string) => {
+      dispatch({
+        type: 'FETCH_DATA',
+        endpoint: '/login',
+        method: 'POST',
+        id: '',
+        payload: {
+          email,
+          password
+        },
+        dispatch: 'SET_USER'
+      })
+    },
+    getDetails: (userId: string) => dispatch({
+      type: 'FETCH_DATA',
+      endpoint: '/personalDetails',
+      id: userId,
+      dispatch: 'PERSONAL_DETAILS'
+    })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

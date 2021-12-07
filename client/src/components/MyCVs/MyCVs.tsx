@@ -22,18 +22,15 @@ function MyCVs({curriculum}:any) {
   }
 
   /*
-  We should fetch CVs from user from here
-  At the same time we could let option to remove them... for "nice to have"
-  */
-
-  /*
   In the meantime it just shows as many items as cvs we have in the list, but should be just
   a picture / thumbnail of the cv item
   */
 
   function renderCVs() {
     if(cvs.length > 0) {
-      return Array(cvs.length).fill(<CVItem />)
+      return cvs.map((cv:any) => {
+        return <CVItem key={cv.id} cvId={cv.id} date_created={cv.date_created} data={cv.saved_cv}/>
+      })
     }
     return <p>You dont have any CV yet</p>
   }

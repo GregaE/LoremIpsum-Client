@@ -1,9 +1,9 @@
 import { Document, Page, View } from '@react-pdf/renderer';
+import { PDF } from '../../../interfaces/PdfInterface';
 import { PDFBLockLarge } from './PDFBlockLarge';
 import { PDFProfile } from './PDFBlockProfile';
 import { PDFBlockSmall } from './PDFBlockSmall';
 import { pageStyle } from './PDFStyles';
-import { PDF } from '../../../interfaces/CategoriesInterface';
 
 export default function PDFRender({ pdf }: { pdf: PDF[] }) {
   const renderPdf =

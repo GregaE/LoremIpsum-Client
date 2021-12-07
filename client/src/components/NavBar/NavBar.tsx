@@ -12,7 +12,7 @@ function NavBar({ navigate }: any) {
           <img
             onClick={() => navigate('Home')}
             className="rounded-full h-48"
-            src="https://c.tenor.com/TejsD3K0S34AAAAC/peanutbutterjellytime-banana.gif"
+            src="https://i.ibb.co/5cQkxp1/Lorem-Big.png"
             alt="logo"
           />
         </Link>
@@ -39,9 +39,6 @@ function NavBar({ navigate }: any) {
             MyCVs
           </li>
         </Link>
-        <li className="nav-link">
-          <Logout />
-        </li>
       </ul>
     </div>
   );
