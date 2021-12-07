@@ -1,6 +1,7 @@
 import { ModalInterface } from '../../interfaces/ModalInterface';
 import { PDFCategory, PDFItem } from '../state_interfaces/PdfState';
 import { ProfileInterface } from '../../interfaces/ProfileInterface';
+import { PDF } from '../../interfaces/PdfInterface';
 
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',
@@ -15,6 +16,7 @@ export enum ActionType {
   EDIT_ITEM = 'EDIT_ITEM',
   SELECT_ITEM = 'SELECT_ITEM',
   UNSELECT_ITEM = 'UNSELECT_ITEM',
+  LOAD_PDF = 'LOAD_PDF',
 }
 
 ///////////////////////////////
@@ -44,10 +46,10 @@ interface RemoveCategory {
   type: ActionType.REMOVE_CATEGORY;
   payload: string; //name
 }
-// interface AddItem {
-//   type: ActionType.ADD_ITEM;
-//   payload: any; //Interface {categoryName: string, data: categoryInterface}
-// }
+interface LoadPdf {
+  type: ActionType.LOAD_PDF;
+  payload: Partial<PDF[]>;
+}
 // interface EditItem {
 //   type: ActionType.EDIT_ITEM;
 //   payload: any; //Interface {categoryName: string, itemId: string, data: categoryInterface}

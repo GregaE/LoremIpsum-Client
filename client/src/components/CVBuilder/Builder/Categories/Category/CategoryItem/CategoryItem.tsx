@@ -126,7 +126,7 @@ export default function CategoryItem({
   return (
     <div>
     <motion.div
-      key="5" /// needs to pass actual key
+      key={item.id}
       initial={{ opacity: 0, height: '0px' }}
       animate={{ opacity: 1, height: '40px' }}
       transition={{ type: 'tween' }}

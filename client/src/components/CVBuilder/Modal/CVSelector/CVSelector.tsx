@@ -1,37 +1,42 @@
-import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import CVItem from '../../../MyCVs/CVItem/CVItem';
 
-function CVSelector({curriculum}:any) {
-
-  const {cvs} = curriculum;
-
-  function renderCVs() {
-    if(cvs.length > 0) {
-      return cvs.map((cv:any) => {
-        return <CVItem cvId={cv.id} date_created={cv.date_created} data={cv.saved_cv}/>
-      })
+function CVSelector({ curriculum }: any) {
+  const { cvs } = curriculum;
+  //TODO: This doesnt need to repeat itself twice can be outsourced once and imported second function is in MyCV
+  function renderCVs(page: string) {
+    if (cvs.length > 0) {
+      return cvs.map((cv: any) => {
+        return (
+          <CVItem
+            key={cv.id}
+            cvId={cv.id}
+            date_created={cv.date_created}
+            data={cv.saved_cv}
+            page={page}
+          />
+        );
+      });
     }
-    return <p>You dont have any CV yet</p>
+    return <p>You dont have any CV yet</p>;
   }
 
   return (
     <div className="h-full flex flex-wrap items-center gap-10 p-5 overflow-scroll">
-      {renderCVs()}
+      {renderCVs('modal')}
     </div>
   );
 }
 
 const mapStateToProps = (state: any) => {
   return {
-    curriculum: state.cvs
-  }
-}
+    curriculum: state.cvs,
+  };
+};
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {
-  }
-}
+  return {};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CVSelector);

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { View, Text, Svg } from '@react-pdf/renderer';
 import { style } from './PDFStyles';
 import { PersonalDetails } from '../../../interfaces/CategoriesInterface';

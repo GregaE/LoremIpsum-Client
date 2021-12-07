@@ -6,7 +6,7 @@ const initialState: PDF[] = [];
 
 const pdfReducer = (
   state = initialState,
-  { type, payload }: { type: string; payload: PDFCategory & PDFItem }
+  { type, payload }: { type: string; payload: PDFCategory & PDFItem & PDF[] }
 ): PDF[] => {
   function categoryCheck(name: string) {
     return state.some(category => category.name === name);
@@ -50,7 +50,10 @@ const pdfReducer = (
         return cat;
       });
       return unselectItemState;
-
+    case ActionType.RESET_PDF:
+      return initialState;
+    case ActionType.LOAD_PDF:
+      return [...payload];
     default:
       return state;
   }

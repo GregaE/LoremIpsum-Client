@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import { PDF } from '../../interfaces/PdfInterface';
 import { PDFCategory } from '../state_interfaces/PdfState';
 // I will have to import the interfaces for every categoy
 // category item
@@ -42,5 +43,12 @@ export const unselectItem = (name: string, itemID: string | undefined) => {
       name,
       itemID,
     },
+  };
+};
+
+export const setTemplate = (pdf: PDF[]) => {
+  return {
+    type: ActionType.LOAD_PDF,
+    payload: pdf,
   };
 };

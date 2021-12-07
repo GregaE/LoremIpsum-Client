@@ -1,10 +1,15 @@
 import TextInput from './Elements/Inputs/TextInput';
 import SelectInput from './Elements/Inputs/SelectInput';
+import TextAreaInput from './Elements/Inputs/TextAreaInput';
 import { WorkExperience } from '../../interfaces/CategoriesInterface';
 import Button from './Elements/Buttons/Button';
 import { useHandleForm } from '../../utils/CustomHooks';
 
-export default function WorkExperienceForm() {
+export default function WorkExperienceForm({
+  recordType,
+}: {
+  recordType: string;
+}) {
   const months = [
     'Jan',
     'Feb',
@@ -20,7 +25,6 @@ export default function WorkExperienceForm() {
     'Dec',
   ];
   const years = Array.from({ length: 20 }, (v, i) => i + 2000); //Generate and array with values from 2000 to 2020
-
   const initialState: WorkExperience = {
     id: '',
     job_title: '',
@@ -40,8 +44,7 @@ export default function WorkExperienceForm() {
     'POST_EXPERIENCE',
     'UPDATE_EXPERIENCE'
   );
-  //@ts-ignore => this is annoying how can I define one of the types if its or?
-  const workExperience: WorkExperience = { ...state };
+  const workExperience: WorkExperience = { ...(state as WorkExperience) };
 
   return (
     <div className="m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
@@ -111,11 +114,21 @@ export default function WorkExperienceForm() {
             default={'Year'}
           />
         </div>
+        <TextAreaInput
+          type="text"
+          name="description"
+          value={workExperience.description ? workExperience.description : ''}
+          placeholder=""
+          label="Description"
+          callback={handleForm}
+        />
       </form>
       <div className="flex flex-row my-5 gap-2.5">
         <Button name="Cancel" callback={() => toggle(false, '')} />
-        <Button name="Edit" callback={handleSubmit} handleSubmitType="UPDATE" />
-        <Button name="Create" callback={handleSubmit} handleSubmitType="NEW" />
+        <Button
+          name={recordType === 'NEW' ? 'Create' : 'Edit'}
+          callback={() => handleSubmit(recordType)}
+        />
       </div>
     </div>
   );

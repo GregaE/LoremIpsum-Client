@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 
@@ -11,18 +10,17 @@ import CVBuilder from '../CVBuilder/CVBuilder';
 import MyCVs from '../MyCVs/MyCVs';
 import Profile from '../Profile/Profile';
 
-import Certificate from '../Forms/Certificate';
-import Education from '../Forms/Education';
-
 import { AnimatePresence } from 'framer-motion';
+import { toggleModal } from '../../store/actions/toggleModal';
+import { useTypedSelector } from '../../utils/useTypeSelector';
+import { useEffect } from 'react';
 
 //TODO props type
-function Dashboard({
-  modal,
-  toggle,
-}: any) {
+export default function Dashboard() {
+  const dispatch = useDispatch();
 
   const location = useLocation();
+  const { flag } = useTypedSelector(state => state.toggleModal);
 
   /*
     As you log in here we display your name in HEADER and HOME component (get it from state)
@@ -34,7 +32,7 @@ function Dashboard({
     while (e.target.id !== 'modal-content') {
       if (e.target.id === 'modal-content') return;
       if (e.target.parentNode.localName === 'body') {
-        if (modal.flag) toggle();
+        if (flag) dispatch(toggleModal(false, ''));
         return;
       }
       e.target = e.target.parentNode;
@@ -54,14 +52,7 @@ function Dashboard({
             <Route path="/" element={<Home />} />
             <Route path="/cvbuilder" element={<CVBuilder />} />
             <Route path="/mycvs" element={<MyCVs />} />
-            <Route path="/test" element={<Profile />} />{' '}
-            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-            <Route path="/anothertest" element={<Education />} />{' '}
-            {/* Test complete components render (TODO: Replace Profile with Component Test)*/}
-            <Route path="/form" element={<Certificate />} />{' '}
-            {/* Temporal route */}
-            <Route path="/profile" element={<Profile />} />{' '}
-            {/* Temporal route */}
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </AnimatePresence>
       </div>
@@ -69,36 +60,3 @@ function Dashboard({
     </div>
   );
 }
-
-//TODO - state & dispatch types
-const mapStateToProps = (state: any) => {
-  return {
-    modal: state.toggleModal,
-    userDetail: state.personal_details,
-    skills: state.skills,
-    login: state.login,
-  };
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    toggle: () =>
-      dispatch({
-        type: 'TOGGLE_MODAL',
-        payload: {
-          flag: false,
-          identifier: '',
-        },
-      }),
-    getCVs: (userId:string) =>
-      dispatch({
-        type: 'FETCH_DATA',
-        endpoint: '/savedCV',
-        method: 'GET',
-        id: userId,
-        dispatch: 'ALL_CVS',
-      }),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

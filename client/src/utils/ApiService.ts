@@ -51,7 +51,7 @@ export async function RegisterService (user: loginInterface) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
     });
-    return await res.json();
+    return res.json();
   } catch (err) {
     return console.error(err);
   }

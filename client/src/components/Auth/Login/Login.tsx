@@ -33,7 +33,7 @@ function Login(props: any) {
     e.preventDefault();
     const { email, password } = state;
     const user = { email, password };
-    const res = await LoginService(user);
+    const res = await LoginService(user)
     if (res.error) {
       console.log(res.error)
       alert(`${res.message}`);

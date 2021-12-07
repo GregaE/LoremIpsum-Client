@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { storage } from "../../../utils/FirebaseConfig";
 
-export default function ProfileImg() {
+export default function ProfileImg({userPicture, handleEditing, handleForm, user_details}:any) {
 
   const [profileImage, setProfileImage] = useState("https://www.turnkeytec.com/wp-content/uploads/2020/07/placeholder-image-400x300.jpg");
   const [url, setUrl] = useState("");
@@ -27,10 +28,12 @@ export default function ProfileImg() {
             .child(chosenImage.name)
             .getDownloadURL()
             .then((url) => {
-              console.log(url)
               setUrl(url);
               setProfileImage(url);
               // UPDATE PROFILE OBJECT AND SEND IMAGE TO DB
+              target.setAttribute('newimageurl', url);
+              handleForm(e)
+              handleEditing(true);
             });
         }
       );
@@ -44,6 +47,7 @@ export default function ProfileImg() {
         accept="image/gif, image/png, image/jpeg, image/jpg"
         id="profileImgUpload"
         className="h-full w-full rounded-full opacity-0 cursor-pointer"
+        name="image"
         onChange={(e) => handleChange(e)} />
     </div>
   )

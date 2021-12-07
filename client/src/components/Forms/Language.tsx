@@ -4,7 +4,7 @@ import { Languages } from '../../interfaces/CategoriesInterface';
 import Button from './Elements/Buttons/Button';
 import { useHandleForm } from '../../utils/CustomHooks';
 
-export default function Language() {
+export default function Language({ recordType }: { recordType: string }) {
   const languages = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
   const initialState: Languages = {
@@ -20,8 +20,8 @@ export default function Language() {
     'POST_LANGUAGE',
     'UPDATE_LANGUAGE'
   );
-  //@ts-ignore
-  const language: Languages = { ...state };
+
+  const language = { ...(state as Languages) };
 
   return (
     <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
@@ -49,14 +49,8 @@ export default function Language() {
         <div className="flex flex-row my-5 gap-2.5">
           <Button name="Cancel" callback={() => toggle(false, '')} />
           <Button
-            name="Edit"
-            callback={handleSubmit}
-            handleSubmitType="UPDATE"
-          />
-          <Button
-            name="Create"
-            callback={handleSubmit}
-            handleSubmitType="NEW"
+            name={recordType === 'NEW' ? 'Create' : 'Edit'}
+            callback={() => handleSubmit(recordType)}
           />
         </div>
       </form>

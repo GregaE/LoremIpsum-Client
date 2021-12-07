@@ -1,9 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, {useState} from 'react';
 import { connect } from 'react-redux'
 
 
 function Welcome({personalDetails}:any) {
 
-  const personal_details = personalDetails.personal_details;
+  /*
+  Get name from state and display it here
+  */
+
+  const {personal_details} = personalDetails
+  const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details
 
   return (
     <div id="" className="w-full h-1/2 flex flex-row justify-center content-center">
