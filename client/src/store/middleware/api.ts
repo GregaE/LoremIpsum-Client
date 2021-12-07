@@ -31,7 +31,7 @@ const fetchData = async (
     .then(
       response => {
         if (response.ok) {
-          return response.json();
+          return response.status !== 204 ? response.json() : null;
         }
         throw new Error(
           'Error ' + response.status + ': ' + response.statusText
@@ -67,6 +67,7 @@ export const middleware =
         store.dispatch({
           type: action.dispatch,
           payload: data,
+          id: action.id
         });
       })
       .catch(error =>

@@ -22,12 +22,6 @@ export default function Dashboard() {
   const location = useLocation();
   const { flag } = useTypedSelector(state => state.toggleModal);
 
-  /*
-    As you log in here we display your name in HEADER and HOME component (get it from state)
-    Should we get also my cvs here? as we could move directly to 'MyCVs'¿¿
-    Or should we fetch them from MyCVs component with a beautiful loading placeholder¿¿
-  */
-
   const closeModal = (e: any) => {
     while (e.target.id !== 'modal-content') {
       if (e.target.id === 'modal-content') return;
