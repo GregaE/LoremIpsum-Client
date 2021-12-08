@@ -1,5 +1,4 @@
 import { useTypedSelector } from '../../../../../utils/useTypeSelector';
-import { useState } from 'react';
 import React from 'react'
 import { pdf } from '@react-pdf/renderer';
 import PDFRender from '../../../PDF-Render/PDF-Render';
@@ -46,6 +45,7 @@ export default function QualityChecker() {
         setIssues(cvQuality[index].Findings);
       }
       else if (category.Level === 'Major Problems Found') {
+        // need to add to fatal problems not replace
         setIssues(cvQuality[index].Findings);
       }
       else if (category.Level === 'Data Missing') {
@@ -57,16 +57,16 @@ export default function QualityChecker() {
     });
   }
 
-  console.log(issues)
-
   return (
     <div>
       <button onClick={fetchSuggestions} className="flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5">Analyze Your CV</button>
-      <AnimatePresence exitBeforeEnter>
-        <QualityCategory name={"Issues"} comments={issues}/>
-        <QualityCategory name={"Missing Data"} comments={missingData}/>
-        <QualityCategory name={"Suggestions"} comments={suggestions}/>
-      </AnimatePresence>
+      <div className='h-auto max-h-cat mt-14 overflow-y-auto'>
+        <AnimatePresence exitBeforeEnter>
+          <QualityCategory name={"Issues"} key={"Issues"} comments={issues}/>
+          <QualityCategory name={"Missing Data"} key={"Missing Data"} comments={missingData}/>
+          <QualityCategory name={"Suggestions"} key={"Suggestions"} comments={suggestions}/>
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
