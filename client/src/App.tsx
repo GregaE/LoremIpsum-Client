@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { loginDetails } from './store/actions/toggleLogin';
 
 function App({ login }: any) {
+  //git switch test
   const dispatch = useDispatch();
   const cookies = new Cookies();
   const { isLoggedIn } = login;
