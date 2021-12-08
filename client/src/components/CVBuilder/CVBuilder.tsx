@@ -34,7 +34,7 @@ export default function CVBuilder() {
 
   return (
     <motion.div
-      className='w-full h-9/10 max-w-full h-main max-h-full relative bg-primary-bg rounded-tl-corner pt-2 transform transition hover:scale-120'
+      className='w-full h-9/10 max-w-full h-main max-h-full relative bg-primary-bg rounded-tl-corner pt-2'
       initial='hidden'
       animate='visible'
       exit='hidden'
