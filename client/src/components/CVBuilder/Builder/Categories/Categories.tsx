@@ -1,11 +1,9 @@
 //@ts-nocheck => categories issue with TS
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
 import Category from './Category/Category';
-
 import { AnimatePresence } from 'framer-motion';
 
 export default function Categories({toggle}: any) {
-  // Array of objects I let it here for future implementation
   const {
     pdf,
     languages: { languages },

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFRender from '../../PDF-Render/PDF-Render';
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
+import QualityChecker from './QualityChecker/QualityChecker'
 
 function BuilderSettings({postCV,resetPdf,userDetail, user} :any) {
   const pdfItems = useTypedSelector(state => state.pdf);
@@ -25,22 +26,23 @@ function BuilderSettings({postCV,resetPdf,userDetail, user} :any) {
   }
   return (
     <div className='h-full w-full flex flex-col align-center p-2'>
+      <button
+        className='flex justify-center bg-accent hover:bg-danger rounded-lg p-3 mb-5 mx-2 cursor-pointer'
+        onClick={saveCV}
+      >
+        Save CV
+      </button>
       <PDFDownloadLink
         document={<PDFRender pdf={pdfItems} personal_details={personal_details}/>}
         fileName={`CV-${new Date().toISOString()}.pdf`}
       >
         {({ blob, url, loading, error }) => (
-          <div className='flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5'>
+          <button className='flex justify-center bg-primary hover:bg-primary-x text-light rounded-lg p-3 mx-2 mb-5'>
             {loading ? 'Loading document...' : 'Download'}
-          </div>
+          </button>
         )}
       </PDFDownloadLink>
-      <div
-        className='flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5 cursor-pointer'
-        onClick={saveCV}
-      >
-        Save CV
-      </div>
+      <QualityChecker/>
     </div>
   );
 }

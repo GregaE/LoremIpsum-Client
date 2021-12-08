@@ -6,6 +6,8 @@ function Preview({ pdf,userDetail }: any) {
 
   const {personal_details} = userDetail
 
+  console.log('personal details from preview component',personal_details, pdf)
+
   return (
       <div className='h-a4 w-a4 bg-light'>
         <PDFViewer

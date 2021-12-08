@@ -25,6 +25,10 @@ h3 {
   @apply text-3xl text-light font-bold my-8;
 }
 
+h4 {
+  @apply text-base text-dark font-bold;
+}
+
 .nav-link {
   @apply flex justify-center items-center rounded w-full h-14 text-xl hover:bg-light hover:text-primary transition;
 }
