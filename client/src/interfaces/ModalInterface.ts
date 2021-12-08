@@ -1,5 +1,6 @@
 export interface ModalInterface {
   flag: boolean;
   identifier: string;
-  id?:string;
+  id?: string;
+  meta?: string | Date;
 }

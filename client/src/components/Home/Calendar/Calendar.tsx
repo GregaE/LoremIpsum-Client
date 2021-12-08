@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import { useState } from 'react';
 import Calendar from 'react-calendar';
 import moment from 'moment';
 import 'react-calendar/dist/Calendar.css';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from '../../../store/actions/toggleModal';
+import { useTypedSelector } from '../../../utils/useTypeSelector';
 
 
 export default function CalendarComp() {
-  const [value, onChange] = useState(new Date());
-  /*
-  Nothing yet but we will fetch data from user
-  */
+  const dispatch = useDispatch();
+  const interviews = useTypedSelector(state => state.interviews);
+
+  function calculateDate(date: Date) {
+    return new Date(
+      Date.parse(date.toUTCString()) - date.getTimezoneOffset() * 60000
+    );
+  }
 
   const mark = [
     '17-12-2021',
@@ -21,8 +28,6 @@ export default function CalendarComp() {
       <div className="w-96 h-96 my-auto justify-center">
       <Calendar
         className="rounded-3xl p-4"
-        onChange={onChange}
-        value={value}
         tileClassName={({ date, view }) => {
           if(mark.find(x=>x===moment(date).format("DD-MM-YYYY"))){
            return 'bg-accent';
@@ -31,7 +36,17 @@ export default function CalendarComp() {
         }}
     
         tileDisabled={({ date }) => date.getDay() === 0}
-    
+        minDate={new Date()}
+          onClickDay={selectedDate => {
+            dispatch(
+              toggleModal(
+                true,
+                'InterviewForm',
+                '',
+                calculateDate(selectedDate)
+              )
+            );
+          }}
       />
     </div>
     </div>

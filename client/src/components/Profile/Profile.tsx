@@ -5,41 +5,36 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { PencilIcon, CheckIcon } from '@heroicons/react/solid';
 
-import ProfileImg from "./ProfileImg/ProfileImg"
+import ProfileImg from './ProfileImg/ProfileImg';
 import ProfileCategory from './ProfileCategory/ProfileCategory';
 import { useHandleForm } from '../../utils/CustomHooks';
-import TextAreaInput from '../Forms/Elements/Inputs/TextAreaInput';
-import TextInput from '../Forms/Elements/Inputs/TextInput';
 import { PersonalDetails } from '../../interfaces/CategoriesInterface';
 import { ProfileForm } from './ProfileForm/ProfileForm';
 
-
-function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
-
-  const [editFlag, setEditFlag] = useState(false)
-  const {personal_details} = userDetail;
+function Profile({ userDetail, lang, cert, skill, edu, exp }: any) {
+  const [editFlag, setEditFlag] = useState(false);
+  const { personal_details } = userDetail;
   const { languages } = lang;
   const { certificates } = cert;
   const { skills } = skill;
   const { education } = edu;
   const { experience } = exp;
 
-  console.log(personal_details)
-  const initialState = {...personal_details}
+  const initialState = { ...personal_details };
   const { state, handleForm, handleSubmit } = useHandleForm(
     '/personalDetails',
     initialState,
     'PERSONAL_DETAILS',
     'PERSONAL_DETAILS'
   );
-  const user_details = {...state as PersonalDetails}
+  const user_details = { ...(state as PersonalDetails) };
 
   function handleEditing(flag: boolean) {
-    setEditFlag(!editFlag)
+    setEditFlag(!editFlag);
 
     if (!flag) {
-      const { id } = personal_details
-      handleSubmit('UPDATE',id)
+      const { id } = personal_details;
+      handleSubmit('UPDATE', id);
     }
   }
 
@@ -74,7 +69,7 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
     exit: {
       opacity: 0,
     },
-  }
+  };
 
   return (
     <motion.div
@@ -160,8 +155,7 @@ const mapStateToProps = (state: any) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {
-  }
-}
+  return {};
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

@@ -74,7 +74,7 @@ export type Action =
   | toggleModal
   | AddCategory
   | RemoveCategory
-  // | AddItem
+  | LoadPdf
   // | EditItem
   // | RemoveItem
   | SelectItem
