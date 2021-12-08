@@ -4,6 +4,7 @@ import { ActionType, ToggleModal } from '../state_interfaces/appState';
 const initialState: ModalInterface = {
   flag: false,
   identifier: '',
+  id: ''
 };
 
 const toggleModal = (
@@ -16,6 +17,7 @@ const toggleModal = (
         ...state,
         flag: payload.flag,
         identifier: payload.identifier,
+        id: payload.id
       };
     default:
       return state;

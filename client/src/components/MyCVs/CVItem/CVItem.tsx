@@ -42,7 +42,7 @@ function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
               return pdfCategory;
             });
             //also we need to udpate to global state to diplay elements of each category => TODO: if they are added from here there is no need to fetch again on click in the modal
-            dispatch({ type: category!.dispatch, payload: res });
+            dispatch({ type: category!.dispatchAll, payload: res });
           })
           .catch(e => console.log(e));
       });

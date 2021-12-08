@@ -3,18 +3,30 @@ import TextAreaInput from './Elements/Inputs/TextAreaInput';
 import { Skill } from '../../interfaces/CategoriesInterface';
 import Button from './Elements/Buttons/Button';
 import { useHandleForm } from '../../utils/CustomHooks';
+import { useTypedSelector } from '../../utils/useTypeSelector';
 
-export default function Skills({ recordType }: { recordType: string }) {
-  const initialState: Skill = {
-    id: '',
-    name: '',
-    description: '',
-    userId: '',
-  };
+export default function Skills({ recordType, id }: { recordType: string, id: string }) {
+
+  const {
+    skills: { skills }
+  } = useTypedSelector(state => state);
+
+  const setInitialState = ():Skill => {
+    const skill = skills.find(skill => 
+      skill.id === id
+    )
+    const emptySkill = {
+      id: '',
+      name: '',
+      description: '',
+      userId: '',
+    }
+    return skill ? skill : emptySkill
+  }
 
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/skills',
-    initialState,
+    setInitialState(),
     'POST_SKILL',
     'UPDATE_SKILL'
   );
@@ -48,7 +60,7 @@ export default function Skills({ recordType }: { recordType: string }) {
         <Button name="Cancel" callback={() => toggle(false, '')} />
         <Button
           name={recordType === 'NEW' ? 'Create' : 'Edit'}
-          callback={() => handleSubmit(recordType)}
+          callback={() => handleSubmit(recordType, id)}
         />
       </div>
     </div>
