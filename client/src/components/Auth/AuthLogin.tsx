@@ -7,7 +7,7 @@ export default function AuthLogin () {
 
     return (
         <div className="h-screen">
-            <div className="min-h-full flex items-center justify-evenly py-12 px-4 sm:px-6 lg:px-8
+            <div className="min-h-full flex items-center justify-center gap-24 py-12 px-4 sm:px-6 lg:px-8
                 bg-hero bg-center bg-no-repeat bg-cover shadow-darken">
                 <div>
                     {register
