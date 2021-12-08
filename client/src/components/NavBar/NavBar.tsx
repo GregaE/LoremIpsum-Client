@@ -1,16 +1,26 @@
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useState } from 'react'
 
 //TODO - props type
 function NavBar({ navigate }: any) {
+
+  const white = 'invert(100%) sepia(94%) saturate(0%) hue-rotate(193deg) brightness(105%) contrast(108%)';
+  const orange = 'invert(73%) sepia(22%) saturate(6069%) hue-rotate(355deg) brightness(94%) contrast(97%)'
+
+  const [logoColor, setColor] = useState("initialState")
+
+
   return (
     <div className="bg-primary text-light w-1/8 h-screen flex flex-col items-center gap-6">
       <div className="w-4/6 h-1/6 m-5 flex justify-center">
         <Link to="/">
           <img
+            onMouseEnter={() => setColor(orange)}
+            onMouseLeave={() => setColor(white)}
             onClick={() => navigate('Home')}
             style={{objectFit:"contain",
-            filter:"invert(100%) sepia(94%) saturate(0%) hue-rotate(193deg) brightness(105%) contrast(108%) "}}
+            filter:`${logoColor}`}}
             className="h-48"
             // src="https://loremipsumcorp.com/wp-content/uploads/2021/03/Lorem-Ipsum-Logo-Stacked-Black.png"
             // src="https://www.theloremipsumco.com/wp-content/uploads/2017/09/Lorem-Ipsum-Co-Icon-Black.png"
