@@ -7,9 +7,12 @@ export default function AuthLogin () {
 
     return (
         <div className="h-screen">
-        {register
-        ? <Register setRegister={setRegister}/>
-        : <Login setRegister={setRegister}/>}
+            <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8
+                bg-hero bg-center bg-no-repeat bg-cover shadow-darken before:absolute before:shadow-darken">
+            {register
+            ? <Register setRegister={setRegister}/>
+            : <Login setRegister={setRegister}/>}
+            </div>
         </div>
     )
 }

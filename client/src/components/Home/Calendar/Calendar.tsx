@@ -21,6 +21,10 @@ export default function CalendarComp() {
   return (
     <div id="" className="w-full h-1/2 p-4 flex justify-center content-center">
       <div className="w-96 h-96 my-auto justify-center">
+      <div id="tooltip-default" role="tooltip" className="tooltip absolute z-10 inline-block bg-gray-900 font-medium shadow-sm text-white py-2 px-3 text-sm rounded-lg opacity-0 duration-300 transition-opacity invisible dark:bg-gray-700">
+          Tooltip content
+          <div className="tooltip-arrow" data-popper-arrow></div>
+      </div>
       <Calendar
         className="rounded-3xl p-4"
         tileClassName={({ date, view }) => {
@@ -29,7 +33,7 @@ export default function CalendarComp() {
           }
           return null;
         }}
-    
+
         tileDisabled={({ date }) => date.getDay() === 0}
         minDate={new Date()}
           onClickDay={selectedDate => {
