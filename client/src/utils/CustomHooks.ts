@@ -23,7 +23,7 @@ export function useHandleForm(
   const handleForm = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     if (target.name === 'image') {
-      const url = target.getAttribute('newimageurl')
+      const url = target.getAttribute('newimageurl');
       setState({ ...state, [target.name as string]: url });
     } else {
       setState({ ...state, [target.name]: target.value });
@@ -31,7 +31,7 @@ export function useHandleForm(
   };
 
   //handles the submit
-  const handleSubmit = async (type: string, id?:string) => {
+  const handleSubmit = async (type: string, id?: string) => {
     //We have to add some input controller before sending anything
     let res;
     if (type === 'NEW') {
