@@ -8,10 +8,6 @@ import { useTypedSelector } from '../../../utils/useTypeSelector';
 export default function CalendarComp() {
   const dispatch = useDispatch();
   const interviews = useTypedSelector(state => state.interviews);
-  /*
-  Nothing yet but we will fetch data from user
-  */
-  //TODO: On click day toggle the modal with the interview form and pass date to it from the click
 
   function calculateDate(date: Date) {
     return new Date(
@@ -23,6 +19,7 @@ export default function CalendarComp() {
       <div className="w-96 h-96 my-auto justify-center">
         <Calendar
           className="rounded-3xl p-4"
+          minDate={new Date()}
           onClickDay={selectedDate => {
             dispatch(
               toggleModal(
