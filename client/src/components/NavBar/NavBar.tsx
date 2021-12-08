@@ -10,8 +10,12 @@ function NavBar({ navigate }: any) {
         <Link to="/">
           <img
             onClick={() => navigate('Home')}
-            className="rounded-full h-48"
-            src="https://i.ibb.co/5cQkxp1/Lorem-Big.png"
+            style={{objectFit:"contain",
+            filter:"invert(100%) sepia(94%) saturate(0%) hue-rotate(193deg) brightness(105%) contrast(108%) "}}
+            className="h-48"
+            // src="https://loremipsumcorp.com/wp-content/uploads/2021/03/Lorem-Ipsum-Logo-Stacked-Black.png"
+            // src="https://www.theloremipsumco.com/wp-content/uploads/2017/09/Lorem-Ipsum-Co-Icon-Black.png"
+            src="https://www.linkpicture.com/q/Lorem2-removebg-preview-black.png"
             alt="logo"
           />
         </Link>
@@ -40,9 +44,6 @@ function NavBar({ navigate }: any) {
             MyCVs
           </li>
         </Link>
-        <li className="nav-link">
-          <Logout />
-        </li>
       </ul>
     </div>
   );

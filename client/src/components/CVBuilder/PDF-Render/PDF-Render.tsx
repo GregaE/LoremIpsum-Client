@@ -5,7 +5,11 @@ import { PDFProfile } from './PDFBlockProfile';
 import { PDFBlockSmall } from './PDFBlockSmall';
 import { pageStyle } from './PDFStyles';
 
-export default function PDFRender({ pdf }: { pdf: PDF[] }) {
+export default function PDFRender({ pdf,personal_details }: { pdf: PDF[],personal_details?:any }) {
+
+  const {first_name, last_name, phone_number,email,street, postcode, city,country, headline} = personal_details
+  const data = {first_name, last_name, phone_number, email, street, postcode, city, country, headline}
+
   const renderPdf =
     pdf &&
     pdf.map((category, index: number) => {
@@ -29,29 +33,15 @@ export default function PDFRender({ pdf }: { pdf: PDF[] }) {
         />
       );
     });
+
   return (
     <Document>
       <Page size="A4" style={pageStyle.page}>
         <View style={pageStyle.section}>
-          <PDFProfile personalDetails={PDFMock.personalDetails} />
+          <PDFProfile personalDetails={data} />
           {renderPdf}
         </View>
       </Page>
     </Document>
   );
 }
-
-const PDFMock = {
-  personalDetails: {
-    first_name: 'Eugen',
-    last_name: 'Nikolajev',
-    phone_number: '123456789',
-    email: 'carl.marx@gmail.com',
-    street: 'Rambla',
-    postcode: '65326',
-    city: 'Barcelona',
-    country: 'Spain',
-    headline:
-      'I have a clear, logical mind with a practical approach to problem-solving and a drive to see things through to completion. I have more than 2 years of experience in managing and leading teams across multiple sectors. I am eager to learn, I enjoy overcoming challenges, and I have a genuine interest in Business Management and making organisations successful.',
-  },
-};

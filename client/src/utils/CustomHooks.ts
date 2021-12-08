@@ -22,10 +22,16 @@ export function useHandleForm(
   //handles the form
   const handleForm = (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
-    setState({ ...state, [target.name]: target.value });
+    if (target.name === 'image') {
+      const url = target.getAttribute('newimageurl')
+      setState({ ...state, [target.name as string]: url });
+    } else {
+      setState({ ...state, [target.name]: target.value });
+    }
   };
+
   //handles the submit
-  const handleSubmit = async (type: string) => {
+  const handleSubmit = async (type: string, id?:string) => {
     //We have to add some input controller before sending anything
     let res;
     if (type === 'NEW') {
@@ -34,9 +40,8 @@ export function useHandleForm(
     }
     if (type === 'UPDATE') {
       //THIS IS NOT WORKING BECAUSE IT NEEDS THE ID OF THE ITEM TO UPDATE NOT USER ID
-      res = dispatch(updateForm(endpoint, userId, updateAction, state));
+      res = dispatch(updateForm(endpoint, id ? id : '', updateAction, state));
     }
-    console.log(res); //=> just to test if res is returning the correct data to be then passed to the state as initial one
     setState(initialState);
     dispatch(toggleModal(false, ''));
   };

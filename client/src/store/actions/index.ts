@@ -38,7 +38,6 @@ interface showCvBuilder {
   type: ActionType.SHOW_CVBUILDER;
   payload: boolean;
 }
-
 interface AddCategory {
   type: ActionType.ADD_CATEGORY;
   payload: PDFCategory; //Interface {name: string, items: categoryInterface}

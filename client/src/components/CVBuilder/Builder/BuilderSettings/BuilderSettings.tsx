@@ -4,8 +4,10 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDFRender from '../../PDF-Render/PDF-Render';
 import { useTypedSelector } from '../../../../utils/useTypeSelector';
 
-function BuilderSettings({ postCV, user }: any) {
+function BuilderSettings({postCV,resetPdf,userDetail, user} :any) {
   const pdfItems = useTypedSelector(state => state.pdf);
+
+  const {personal_details} = userDetail
 
   const saveCV = () => {
     const { userId } = user;
@@ -15,25 +17,27 @@ function BuilderSettings({ postCV, user }: any) {
     });
     const data = {
       userId,
-      saved_cv: JSON.stringify(dbPDF),
-    };
-    postCV(data);
-  };
+      saved_cv: JSON.stringify(pdfItems)
+    }
+    console.log('Cv posted')
+    postCV(data)
+    resetPdf()
+  }
   return (
-    <div>
+    <div className='h-full w-full flex flex-col align-center p-2'>
       <PDFDownloadLink
-        document={<PDFRender pdf={pdfItems} />}
+        document={<PDFRender pdf={pdfItems} personal_details={personal_details}/>}
         fileName={`CV-${new Date().toISOString()}.pdf`}
       >
         {({ blob, url, loading, error }) => (
-          <div className="flex justify-center bg-primary text-light rounded-lg p-1 m-5">
+          <div className='flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5'>
             {loading ? 'Loading document...' : 'Download'}
           </div>
         )}
       </PDFDownloadLink>
       <div
-        className="flex justify-center bg-primary text-light rounded-lg p-1 m-5 cursor-pointer"
-        onClick={() => saveCV()}
+        className='flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5 cursor-pointer'
+        onClick={saveCV}
       >
         Save CV
       </div>
@@ -46,8 +50,9 @@ const mapStateToProps = (state: any) => {
   return {
     pdfStatus: state.pdf,
     user: state.login,
-  };
-};
+    userDetail: state.personal_details,
+  }
+}
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
@@ -60,7 +65,11 @@ const mapDispatchToProps = (dispatch: any) => {
         dispatch: 'POST_CV',
         payload: data,
       }),
-  };
-};
+    resetPdf: () =>
+      dispatch({
+        type: 'RESET_PDF',
+      }),
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(BuilderSettings);

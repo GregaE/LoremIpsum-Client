@@ -3,20 +3,31 @@ import SelectInput from './Elements/Inputs/SelectInput';
 import { Languages } from '../../interfaces/CategoriesInterface';
 import Button from './Elements/Buttons/Button';
 import { useHandleForm } from '../../utils/CustomHooks';
+import { useTypedSelector } from '../../utils/useTypeSelector';
 
-export default function Language({ recordType }: { recordType: string }) {
-  const languages = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+export default function Language({ recordType, id }: { recordType: string, id: string }) {
+  const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
-  const initialState: Languages = {
-    id: '',
-    language_name: '',
-    level: '',
-    userId: '',
-  };
+  const {
+    languages: { languages }
+  } = useTypedSelector(state => state);
+
+  const setInitialState = ():Languages => {
+    const language = languages.find(language => 
+      language.id === id
+    )
+    const emptyLanguage = {
+      id: '',
+      language_name: '',
+      level: '',
+      userId: '',
+    }
+    return language ? language : emptyLanguage
+  }
 
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/languages',
-    initialState,
+    setInitialState(),
     'POST_LANGUAGE',
     'UPDATE_LANGUAGE'
   );
@@ -39,7 +50,7 @@ export default function Language({ recordType }: { recordType: string }) {
         </div>
         <div className="flex justify-start">
           <SelectInput
-            options={languages}
+            options={levels}
             callback={handleForm}
             name="level"
             value={language.level}
@@ -50,7 +61,7 @@ export default function Language({ recordType }: { recordType: string }) {
           <Button name="Cancel" callback={() => toggle(false, '')} />
           <Button
             name={recordType === 'NEW' ? 'Create' : 'Edit'}
-            callback={() => handleSubmit(recordType)}
+            callback={() => handleSubmit(recordType, id)}
           />
         </div>
       </form>

@@ -3,7 +3,9 @@ import { ProfileInterface } from '../../interfaces/ProfileInterface';
 // I will have to import the interfaces for every categoy
 // category item
 // and the pdf itself
+
 //TODO: Replace all the any types to proper type
+
 export enum ActionType {
   TOGGLE_LOGIN = 'TOGGLE_LOGIN',
   HEADER_NAME = 'HEADER_NAME',

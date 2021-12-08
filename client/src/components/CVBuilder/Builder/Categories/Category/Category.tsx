@@ -26,7 +26,7 @@ export default function Category({
       <div className="flex flex-wrap p-4 gap-10 justify-between items-center">
         <i
           onClick={() => dispatch(toggleModal(true, name))}
-          className="fas fa-plus-circle cursor-pointer"
+          className="text-accent fa-lg fas fa-plus-circle cursor-pointer"
         ></i>
         <h2 className="font-medium text-lg">{name}</h2>
         <i

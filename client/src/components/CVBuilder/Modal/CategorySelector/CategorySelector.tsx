@@ -36,7 +36,7 @@ export default function CategorySelector() {
     <div
       key={category.name}
       onClick={() =>
-        applyCategory(category.name, category.endpoint, category.dispatch)
+        applyCategory(category.name, category.endpoint, category.dispatchAll)
       }
       className="w-56 h-40 bg-light rounded m-3 py-3 text-center flex flex-col justify-center gap-5 transform transition cursor-pointer hover:scale-105"
     >
