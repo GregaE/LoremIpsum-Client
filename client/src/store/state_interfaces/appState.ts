@@ -23,6 +23,11 @@ export enum ActionType {
   LOAD_PDF = 'LOAD_PDF',
   //Interface {itemID: string, data: categoryInterface}
   RESET_PDF = 'RESET_PDF',
+
+  ADD_INTERVIEW = 'ADD_INTERVIEW',
+  EDIT_INTERVIEW = 'EDIT_INTERVIEW',
+  DELETE_INTERVIEW = 'DELETE_INTERVIEW',
+  ALL_INTERVIEWS = 'ALL_INTERVIEWS',
 }
 ///////////////////////////////
 /////// APP NAVIGATION ////////

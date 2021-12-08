@@ -18,6 +18,7 @@ import showCvBuilder from './reducers/showBuilder';
 import toggleModal from './reducers/toggleModal';
 import pdfReducer from './reducers/pdfReducer';
 import loginReducer from './reducers/loginReducer';
+import { interviewReducer } from './reducers/InterviewReducer';
 
 const reducers = combineReducers({
   skills: skillReducer,
@@ -32,7 +33,8 @@ const reducers = combineReducers({
   showCvBuilder,
   toggleModal,
   pdf: pdfReducer,
-  user: loginReducer
+  user: loginReducer,
+  interviews: interviewReducer,
 });
 
 export default createStore(reducers, applyMiddleware(middleware));

@@ -39,15 +39,14 @@ export function useHandleForm(
       dispatch(postForm(endpoint, postAction, data));
     }
     if (type === 'UPDATE') {
-      //THIS IS NOT WORKING BECAUSE IT NEEDS THE ID OF THE ITEM TO UPDATE NOT USER ID
       res = dispatch(updateForm(endpoint, id ? id : '', updateAction, state));
     }
     setState(initialState);
     dispatch(toggleModal(false, ''));
   };
   //toggle in case needed outside in the form
-  const toggle = (flag: boolean, id: string) => {
-    dispatch(toggleModal(flag, id));
+  const toggle = (flag: boolean, id?: string, meta?: string) => {
+    dispatch(toggleModal(flag, id ? id : '', meta ? meta : ''));
   };
   return { state, handleSubmit, handleForm, toggle };
 }

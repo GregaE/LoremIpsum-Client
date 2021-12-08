@@ -39,6 +39,11 @@ function App({ login }: any) {
         dispatch({ type: 'ALL_CVS', payload: res });
       })
       .catch(e => console.log(e));
+    FetchCategory('/interview', userId)
+      .then(res => {
+        dispatch({ type: 'ALL_INTERVIEWS', payload: res });
+      })
+      .catch(e => console.log(e));
   }, []);
 
   return render;

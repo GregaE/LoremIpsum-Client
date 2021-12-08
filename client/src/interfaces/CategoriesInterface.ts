@@ -68,11 +68,22 @@ export interface CV {
   saved_cv: string;
   date_created: Date;
 }
+
+export interface Interview {
+  id: string;
+  userId?: string;
+  position: string;
+  date: Date;
+  company: string;
+  link: string;
+  notes: string;
+}
 export type Categories = Skill &
   Education &
   WorkExperience &
   Languages &
-  Certificates;
+  Certificates &
+  Interview;
 
 export type EnumCategories =
   | Skill
@@ -80,4 +91,5 @@ export type EnumCategories =
   | WorkExperience
   | Languages
   | Certificates
-  | PersonalDetails;
+  | PersonalDetails
+  | Interview;

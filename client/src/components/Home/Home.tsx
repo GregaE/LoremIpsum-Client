@@ -1,12 +1,14 @@
-import React from 'react';
-
 import Welcome from './Welcome/Welcome';
 import CalendarComp from './Calendar/Calendar';
 import Tracker from './Tracker/Tracker';
-
+import Modal from '../CVBuilder/Modal/Modal';
 import { motion } from 'framer-motion';
+import { useTypedSelector } from '../../utils/useTypeSelector';
 
 export default function Home() {
+  const { flag } = useTypedSelector(state => state.toggleModal);
+
+  const modal = flag ? <Modal /> : null;
 
   const containerVariants = {
     hidden: {
@@ -14,12 +16,12 @@ export default function Home() {
     },
     visible: {
       opacity: 1,
-      transition: {delay: 0.1, duration: 0.1}
+      transition: { delay: 0.1, duration: 0.1 },
     },
     exit: {
       opacity: 0,
     },
-  }
+  };
 
   /*
   Here (in the future) we should show data from calendar/tracker and whatever we want to display in welcome component.
@@ -33,14 +35,19 @@ export default function Home() {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={containerVariants}>
-      <div id="main-section" className="w-4/6 h-full bg-primary-bg flex flex-col justify-start">
-        <Welcome/>
-        <Tracker/>
+      variants={containerVariants}
+    >
+      <div
+        id="main-section"
+        className="w-4/6 h-full bg-primary-bg flex flex-col justify-start"
+      >
+        <Welcome />
+        <Tracker />
       </div>
       <div id="right-section" className="w-2/6 h-full">
-        <CalendarComp/>
+        <CalendarComp />
       </div>
+      {modal}
     </motion.div>
   );
 }

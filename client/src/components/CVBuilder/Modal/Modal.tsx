@@ -30,6 +30,7 @@ export default function Modal() {
       case 'Languages':
       case 'Skills':
       case 'Work Experience':
+      case 'InterviewForm':
         return <ItemEditor />;
       default:
         return null;

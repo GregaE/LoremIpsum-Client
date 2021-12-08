@@ -4,12 +4,13 @@ import { ActionType, ToggleModal } from '../state_interfaces/appState';
 const initialState: ModalInterface = {
   flag: false,
   identifier: '',
-  id: ''
+  id: '',
+  meta: '',
 };
 
 const toggleModal = (
   state = initialState,
-  {type, payload}: ToggleModal
+  { type, payload }: ToggleModal
 ): ModalInterface => {
   switch (type) {
     case ActionType.TOGGLE_MODAL:
@@ -17,7 +18,8 @@ const toggleModal = (
         ...state,
         flag: payload.flag,
         identifier: payload.identifier,
-        id: payload.id
+        id: payload.id,
+        meta: payload.meta,
       };
     default:
       return state;
