@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 //TODO - props type
 function NavBar({ navigate }: any) {
   return (
-    <div className="bg-primary text-light w-1/6 h-screen flex flex-col items-center gap-6">
+    <div className="bg-primary text-light w-1/8 h-screen flex flex-col items-center gap-6">
       <div className="w-4/6 h-1/6 m-5 flex justify-center">
         <Link to="/">
           <img

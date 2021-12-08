@@ -10,9 +10,9 @@ function Builder({toggle}:any) {
 
   return (
     <div className='h-full max-h-full w-full max-w-full flex flex-wrap' id='outter'>
-      <div className='w-1/4 pl-10 pt-2 overflow-hidden text-center' id='inner'>
+      <div className='w-1/4 pl-20 pt-2 overflow-hidden text-center' id='inner'>
         <PersonalData />
-        <div className='h-auto max-h-cat mt-10 overflow-y-auto'>
+        <div className='h-auto max-h-cat mt-5 overflow-y-auto'>
           <Categories toggle={toggle}/>
         </div>
       </div>

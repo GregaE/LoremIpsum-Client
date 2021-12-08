@@ -20,6 +20,8 @@ function Profile({ userDetail, lang, cert, skill, edu, exp }: any) {
   const { education } = edu;
   const { experience } = exp;
 
+  console.log(personal_details)
+
   const initialState = { ...personal_details };
   const { state, handleForm, handleSubmit } = useHandleForm(
     '/personalDetails',

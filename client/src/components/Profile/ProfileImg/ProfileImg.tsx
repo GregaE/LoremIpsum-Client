@@ -6,7 +6,7 @@ export default function ProfileImg({userPicture, handleEditing, handleForm, user
 
   const [profileImage, setProfileImage] = useState(userPicture 
     ? userPicture
-    :"https://www.turnkeytec.com/wp-content/uploads/2020/07/placeholder-image-400x300.jpg");
+    :"https://firebasestorage.googleapis.com/v0/b/loremipsum-9d572.appspot.com/o/images%2Fplaceholder-image.jpg?alt=media&token=69b84e5c-ee38-4b68-a803-44af964327ce");
     
   const [url, setUrl] = useState("");
 
@@ -46,7 +46,7 @@ export default function ProfileImg({userPicture, handleEditing, handleForm, user
   return (
     <div 
       style={{ backgroundImage: `url(${profileImage})` }} 
-      className="w-60 h-60 m-5 pt-10 rounded-full bg-cover bg-center bg-no-repeat transform hover:shadow-2xl">
+      className="w-60 h-60 m-5 pt-10 rounded-full bg-cover bg-center bg-no-repeat transform hover:shadow-fancy">
       <input
         type="file"
         accept="image/gif, image/png, image/jpeg, image/jpg"

@@ -40,7 +40,7 @@ export default function Dashboard() {
       onClick={e => closeModal(e)}
     >
       <NavBar />
-      <div className='flex flex-col w-5/6 h-full'>
+      <div className='flex flex-col w-7/8 h-full'>
         <Header />
         <AnimatePresence exitBeforeEnter>
           <Routes location={location} key={location.key}>

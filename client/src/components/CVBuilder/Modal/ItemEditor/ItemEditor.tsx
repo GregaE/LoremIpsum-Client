@@ -14,7 +14,7 @@ export default function ItemEditor() {
   return (
     <div className="w-full">
       <FormComponent
-        recordType={id === '' ? 'NEW' : 'UPDATE'}
+        recordType={!id ? 'NEW' : 'UPDATE'}
         id={id}
         date={meta}
       />

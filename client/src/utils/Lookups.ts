@@ -105,11 +105,11 @@ export const categoriesLookup: {
     dispatchAll: 'ALL_CERTIFICATES',
     dispatchUpdate: 'UPDATE_CERTIFICATES',
   },
-  {
-    name: 'InterviewForm',
-    icon: 'fas fa-award',
-    endpoint: '/interview',
-    dispatchAll: 'ALL_INTERVIEWS',
-    dispatchUpdate: 'UPDATE_INTERVIEW',
-  },
+  // {
+  //   name: 'InterviewForm',
+  //   icon: 'fas fa-award',
+  //   endpoint: '/interview',
+  //   dispatchAll: 'ALL_INTERVIEWS',
+  //   dispatchUpdate: 'UPDATE_INTERVIEW',
+  // },
 ];

@@ -29,7 +29,7 @@ function Header({ header, userDetails, navigateOptions }: any) {
         <motion.div
           key={option.name}
           onClick={() => option.action()}
-          className={`${'true'} py-2 px-4 h-20 w-52 cursor-pointer bg-primary leading-9 hover:bg-primary-x`}
+          className={`${'true'} py-2 px-4 h-15 w-52 cursor-pointer bg-primary leading-9 hover:bg-primary-x`}
           initial={{ opacity: 0, height: '0px' }}
           animate={{ opacity: 1, height: '50px' }}
           transition={{ type: 'tween' }}
@@ -43,10 +43,6 @@ function Header({ header, userDetails, navigateOptions }: any) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const toProfile = () => {
-    navigate('/profile')
-  }
 
   const handleAuth = () => {
     dispatch({

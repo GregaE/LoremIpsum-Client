@@ -20,7 +20,7 @@ export function useHandleForm(
   } = useTypedSelector(state => state.personal_details);
 
   //handles the form
-  const handleForm = (e: React.ChangeEvent) => {
+  const handleForm = async (e: React.ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     if (target.name === 'image') {
       const url = target.getAttribute('newimageurl');
