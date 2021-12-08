@@ -10,19 +10,19 @@ export default function QualityChecker() {
   const pdfItems = useTypedSelector(state => state.pdf);
   const [issues, setIssues] = React.useState<
     Array<{
-      QualityCode: number,
+      QualityCode: string,
       Message: string
     }>
   >([]);
   const [missingData, setMissingData] = React.useState<
     Array<{
-      QualityCode: number,
+      QualityCode: string,
       Message: string
     }>
   >([]);
   const [suggestions, setSuggestions] = React.useState<
     Array<{
-      QualityCode: number,
+      QualityCode: string,
       Message: string
     }>
   >([]);
@@ -46,10 +46,10 @@ export default function QualityChecker() {
       }
       else if (category.Level === 'Major Problems Found') {
         // need to add to fatal problems not replace
-        setIssues(cvQuality[index].Findings);
+        setIssues([...issues,...cvQuality[index].Findings]);
       }
       else if (category.Level === 'Data Missing') {
-        setMissingData(cvQuality[index].Findings);
+        setMissingData([...issues,...cvQuality[index].Findings]);
       }
       else if (category.Level === 'Suggested Improvements') {
         setSuggestions(cvQuality[index].Findings);
@@ -59,8 +59,8 @@ export default function QualityChecker() {
 
   return (
     <div>
-      <button onClick={fetchSuggestions} className="flex justify-center bg-primary text-light rounded-lg p-3 mx-6 mb-5">Analyze Your CV</button>
-      <div className='h-auto max-h-cat mt-14 overflow-y-auto'>
+      <button onClick={fetchSuggestions} className="flex justify-center bg-primary hover:bg-primary-x text-light rounded-lg p-3 mx-2 mb-5">Analyze Your CV</button>
+      <div className='h-auto max-h-cat overflow-y-auto'>
         <AnimatePresence exitBeforeEnter>
           <QualityCategory name={"Issues"} key={"Issues"} comments={issues}/>
           <QualityCategory name={"Missing Data"} key={"Missing Data"} comments={missingData}/>

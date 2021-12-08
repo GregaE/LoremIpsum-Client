@@ -1,4 +1,4 @@
 export interface QualityCategoryProps {
   name: string;
-  comments?: { QualityCode: number; Message: string; }[];
+  comments?: { QualityCode: string; Message: string; }[];
 }

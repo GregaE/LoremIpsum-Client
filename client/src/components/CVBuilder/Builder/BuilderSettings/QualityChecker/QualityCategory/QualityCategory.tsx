@@ -4,11 +4,13 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function QualityCategory({ name, comments }:QualityCategoryProps) {
 
   const renderCategories = function () {
-    if (comments && comments.length < 1) {
+    const blacklistedCodes = ['300', '112'];
+    const filteredList = comments?.filter(comment => !blacklistedCodes.includes(comment.QualityCode))
+    if (filteredList && filteredList.length < 1) {
       return <div className="text-sm p-2">No suggestions in this area.</div>
     }
-    return comments?.map(comment =>
-      <motion.div
+    return filteredList?.map(comment =>
+      <motion.li
         className="text-sm p-2"
         key={comment.QualityCode}
         initial={{ opacity: 0, transform:'translateX(300px)' }}
@@ -16,13 +18,13 @@ export default function QualityCategory({ name, comments }:QualityCategoryProps)
         transition={{ type: 'tween' }}
         exit={{ opacity: 0, transform:'translateX(300px)' }}
       >
-        {comment.Message}
-      </motion.div>
+        - {comment.Message}
+      </motion.li>
     )
   }
 
   return (
-    <motion.div
+    <motion.ul
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ type: 'tween' }}
@@ -32,6 +34,6 @@ export default function QualityCategory({ name, comments }:QualityCategoryProps)
       <AnimatePresence exitBeforeEnter>
         {renderCategories()}
       </AnimatePresence>
-    </motion.div>
+    </motion.ul>
   );
 }
