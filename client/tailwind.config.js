@@ -71,7 +71,7 @@ module.exports = {
         inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",
         none: "none",
         purple: "0 0 15px #3536c4",
-        darken: "inset 3000px 0 0 0 rgba(98, 99, 213, 0.7)"
+        darken: "inset 3000px 0 0 0 rgba(98, 99, 213, 0.8)"
       },
       backgroundImage: {
         'hero': "url('https://images.pexels.com/photos/4560175/pexels-photo-4560175.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260')",
