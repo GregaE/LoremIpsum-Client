@@ -11,17 +11,13 @@ export default function CalendarComp() {
   const dispatch = useDispatch();
   const interviews = useTypedSelector(state => state.interviews);
 
+  console.log(interviews);
+
   function calculateDate(date: Date) {
     return new Date(
       Date.parse(date.toUTCString()) - date.getTimezoneOffset() * 60000
     );
   }
-
-  const mark = [
-    '17-12-2021',
-    '21-12-2021',
-    '29-12-2021'
-]
 
   return (
     <div id="" className="w-full h-1/2 p-4 flex justify-center content-center">
@@ -29,7 +25,7 @@ export default function CalendarComp() {
       <Calendar
         className="rounded-3xl p-4"
         tileClassName={({ date, view }) => {
-          if(mark.find(x=>x===moment(date).format("DD-MM-YYYY"))){
+          if(interviews.find(x=>moment(x.date).format("DD-MM-YYYY")===moment(date).format("DD-MM-YYYY"))){
            return 'bg-accent';
           }
           return null;
