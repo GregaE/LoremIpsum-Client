@@ -23,7 +23,7 @@ function CVSelector({ curriculum }: any) {
   }
 
   return (
-    <div className="h-full flex flex-wrap items-center gap-10 p-5 overflow-scroll">
+    <div className="h-full flex flex-wrap items-center gap-10 p-5 overflow-x-auto">
       {renderCVs('modal')}
     </div>
   );

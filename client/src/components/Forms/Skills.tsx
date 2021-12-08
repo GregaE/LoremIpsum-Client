@@ -34,7 +34,7 @@ export default function Skills({ recordType, id }: { recordType: string, id: str
   const skill: Skill = { ...state };
   return (
     <div className="justify-center object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
-      <h3>Add new Skill</h3>
+      <h3 className="underline">Add new Skill</h3>
       <form>
         <TextInput
           type="text"

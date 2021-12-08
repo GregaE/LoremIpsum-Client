@@ -56,7 +56,7 @@ export default function EducationForm({ recordType, id }: { recordType: string, 
 
   return (
     <div className="m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
-      <h3>Add Education</h3>
+      <h3 className="underline">Add Education</h3>
       <form>
         <TextInput
           callback={handleForm}

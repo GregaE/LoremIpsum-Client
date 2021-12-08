@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { View, Text, Svg } from '@react-pdf/renderer';
+import { View, Text, Image } from '@react-pdf/renderer';
 import { style } from './PDFStyles';
 import { PersonalDetails } from '../../../interfaces/CategoriesInterface';
+import { useTypedSelector } from '../../../utils/useTypeSelector';
+
 export function PDFProfile({
-  personalDetails,
+  personalDetails
 }: {
   personalDetails: PersonalDetails;
-}) {
+}) { 
   return (
     <View style={style.sectionCtn} wrap={false}>
       <Text style={style.profileHeader}>

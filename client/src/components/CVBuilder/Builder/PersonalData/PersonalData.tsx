@@ -8,11 +8,13 @@ function PersonalData({userDetail}:any) {
   const {id, email, phone_number, image, first_name, last_name, street, city, country, headline} = personal_details
 
   return (
-    <div className="bg-light rounded-container p-4">
+    <div className="h-1/4 bg-light rounded-container max-h-175px p-4">
       <div className="flex flex-row items-center">
-      <img
-            className='w-20 h-20 rounded-full mx-8'
-            src={image} alt=''/>
+        <div className="flex items-center justify-center">
+          <img
+                className='w-20 h-20 rounded-full mx-5'
+                src={image} alt=''/>
+        </div>
         <div className="flex flex-col items-start">
           <p className="font-bold underline">Personal Details</p>
           <p>{first_name} {last_name}</p>

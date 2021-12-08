@@ -7,7 +7,10 @@ export default function SelectInput(props: SelectInputProps) {
   ));
 
   return (
-    <div>
+    <div className="w-full flex flex-col mt-8">
+      {props.label && <label className="font-medium leading-none text-left text-light">
+        {props.label}
+      </label>}
       <select
         onChange={e => props.callback && props.callback(e)}
         {...props}

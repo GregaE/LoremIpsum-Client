@@ -30,7 +30,7 @@ export function PDFBLockLarge({
               {data.country}, {data.city}
             </Text>
           </View>
-          <View>
+          <View style={style.sub}>
             <Text style={style.subHeader}>
               {category === 'Education' ? data.degree : data.job_title},{' '}
               {category === 'Education' ? data.school : data.company}

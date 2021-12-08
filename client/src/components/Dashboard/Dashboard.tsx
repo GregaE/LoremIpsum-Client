@@ -13,7 +13,8 @@ import Profile from '../Profile/Profile';
 import { AnimatePresence } from 'framer-motion';
 import { toggleModal } from '../../store/actions/toggleModal';
 import { useTypedSelector } from '../../utils/useTypeSelector';
-import { useEffect } from 'react';
+
+import AuthLogin from '../Auth/AuthLogin'
 
 //TODO props type
 export default function Dashboard() {
@@ -35,7 +36,7 @@ export default function Dashboard() {
 
   return (
     <div
-      className='flex w-full h-full bg-primary-bg'
+      className='flex w-full h-full bg-primary'
       onClick={e => closeModal(e)}
     >
       <NavBar />
@@ -47,6 +48,7 @@ export default function Dashboard() {
             <Route path='/cvbuilder' element={<CVBuilder />} />
             <Route path='/mycvs' element={<MyCVs />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/test' element={<AuthLogin />} />
           </Routes>
         </AnimatePresence>
       </div>

@@ -31,6 +31,10 @@ export const style = StyleSheet.create({
     fontSize: '11px',
     fontWeight: 'medium',
   },
+  sub: {
+    marginTop: '5px',
+    width: '65%',
+  },
   text: {
     fontSize: '11px',
     fontWeight: 'light',
@@ -43,7 +47,8 @@ export const style = StyleSheet.create({
   sectionCtn: {
     marginBottom: '5px',
   },
-  largeCtn: { width: '25%', marginRight: '10px' },
+  largeCtn: { width: '25%', marginRight: '10px', marginTop: '5px' },
+  img: {width: '5%', height: '5%'}
 });
 
 export const pageStyle = StyleSheet.create({

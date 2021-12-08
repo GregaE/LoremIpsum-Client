@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState } from 'react';
 import { connect } from 'react-redux'
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { PencilIcon, CheckIcon } from '@heroicons/react/solid';
 
@@ -11,6 +11,7 @@ import { useHandleForm } from '../../utils/CustomHooks';
 import TextAreaInput from '../Forms/Elements/Inputs/TextAreaInput';
 import TextInput from '../Forms/Elements/Inputs/TextInput';
 import { PersonalDetails } from '../../interfaces/CategoriesInterface';
+import { ProfileForm } from './ProfileForm/ProfileForm';
 
 
 function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
@@ -22,8 +23,8 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
   const { skills } = skill;
   const { education } = edu;
   const { experience } = exp;
-  // console.log(languages,certificates,skills,education,experience)
 
+  console.log(personal_details)
   const initialState = {...personal_details}
   const { state, handleForm, handleSubmit } = useHandleForm(
     '/personalDetails',
@@ -62,8 +63,6 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
     });
   }
 
-
-
   const containerVariants = {
     hidden: {
       opacity: 0,
@@ -79,14 +78,15 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
 
   return (
     <motion.div
-      className="p-2 h-full flex flex-col justify-start overflow-x-hidden"
+      className="p-2 h-full flex flex-col justify-start overflow-x-hidden bg-primary-bg rounded-tl-corner"
       initial="hidden"
       animate="visible"
       exit="hidden"
       variants={containerVariants}
     >
-      <h2 className="underline text-3xl p-2 pb-10">Your personal data</h2>
-      <div className="flex flex-row justify-center items-center ml-5 h-64  pb-10">
+      <h2 className="text-3xl px-10 py-5">Your personal data</h2>
+      <hr className="w-6/7 mx-5 text-primary-x" />
+      <div className="flex flex-row justify-center ml-5 h-auto pb-10">
         <ProfileImg 
           userPicture={user_details.image} 
           handleEditing={handleEditing} 
@@ -94,115 +94,51 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
           user_details={user_details}/>
 
         <div className="w-2/3 h-full flex flex-col w-auto p-4 h-1/6 m-5 justify-center bg-primary rounded-lg">
-          <div className="h-10 w-full p-2 underline text-2xl flex justify-around">
-            <p className="h-full w-full">{user_details.first_name} {user_details.last_name}</p>
+          <div className="h-10 w-full px-4 py-2 text-2xl flex justify-around">
+            <p className="h-full w-full text-light">{user_details.first_name} {user_details.last_name}</p>
             {editFlag
               ? <CheckIcon
-                  className="cursor-pointer"
+                  className="cursor-pointer text-light hover:text-green"
                   onClick={() => handleEditing(false)}/>
               : <PencilIcon
-                  className="cursor-pointer"
+                  className="cursor-pointer text-light hover:text-accent"
                   onClick={() => handleEditing(true)}/>}
           </div> 
-          <div className="pl-4 pt-2 mt-2 h-32 overflow-x-auto">
-            {editFlag
-              ? <form className="pr-8">
-                  <div className="flex gap-1">
-                    <TextInput
-                      type="text"
-                      name="first_name"
-                      value={user_details.first_name ? user_details.first_name : ''}
-                      placeholder="First Name"
-                      label="First Name"
-                      callback={handleForm}
-                    />
-                    <TextInput
-                      type="text"
-                      name="last_name"
-                      value={user_details.last_name ? user_details.last_name : ''}
-                      placeholder="Last Name"
-                      label="Last Name"
-                      callback={handleForm}
-                    />
-                  </div>
-                  <TextInput
-                    type="text"
-                    name="phone_number"
-                    value={user_details.phone_number ? user_details.phone_number : ''}
-                    placeholder="Phone Number"
-                    label="Phone Number"
-                    callback={handleForm}
+          <div className="pl-4 pt-2 mt-2 overflow-x-auto text-light">
+            <AnimatePresence exitBeforeEnter>
+              {
+              editFlag
+                && <ProfileForm
+                    user_details={user_details}
+                    handleForm={handleForm}
                   />
-                  <TextInput
-                    type="text"
-                    name="email"
-                    value={user_details.email ? user_details.email : ''}
-                    placeholder="Email"
-                    label="Email"
-                    callback={handleForm}
-                  />
-                  <div className="flex gap-1">
-                    <TextInput
-                      type="text"
-                      name="street"
-                      value={user_details.street ? user_details.street : ''}
-                      placeholder="Street"
-                      label="Street"
-                      callback={handleForm}
-                    />
-                    <TextInput
-                      type="text"
-                      name="postcode"
-                      value={user_details.postcode ? user_details.postcode : ''}
-                      placeholder="PostCode"
-                      label="PostCode"
-                      callback={handleForm}
-                    />
-                  </div>
-                  <div className="flex gap-1">
-                    <TextInput
-                      type="text"
-                      name="city"
-                      value={user_details.city ? user_details.city : ''}
-                      placeholder="City"
-                      label="City"
-                      callback={handleForm}
-                    />
-                    <TextInput
-                      type="text"
-                      name="country"
-                      value={user_details.country ? user_details.country : ''}
-                      placeholder="Country"
-                      label="Country"
-                      callback={handleForm}
-                    />
-                  </div>
-                  <TextAreaInput
-                    type="text"
-                    name="headline"
-                    value={user_details.headline ? user_details.headline : ''}
-                    placeholder="Headline"
-                    label="Headline"
-                    callback={handleForm}
-                  />
-                </form>
-              : <div className="select-none">
+              }
+            </AnimatePresence>
+            <AnimatePresence exitBeforeEnter>
+              {
+              !editFlag &&
+                <motion.div 
+                  initial={{ opacity:0 }}
+                  animate={{ opacity:1 }}
+                  transition={{ delay: 0.2, type: 'tween' }}
+                  exit={{ opacity:0 }}
+                  className="select-none">
                   <p>Name: {user_details.first_name} {user_details.last_name}</p>
                   <p>E-mail: {user_details.email}</p>
                   <p>Phone: {user_details.phone_number}</p>
                   <p>Address: {user_details.street}, {user_details.city}, {user_details.postcode} {user_details.country}</p>
                   <br/>
                   <p>Description: {user_details.headline}</p>
-                </div>
-            }
+                </motion.div>
+              }
+            </AnimatePresence>
           </div>
+
         </div>
-
-
-
       </div>
       <div className="p-2 flex flex-col gap-4 h-full overflow-y-hidden overflow-x-auto">
-        <h2 className="underline text-3xl">Your categories</h2>
+        <h2 className="text-3xl px-10 py-5">Your categories</h2>
+        <hr className="w-6/7 pb-10 text-primary-x" />
         <div className="flex flex-col h-30 gap-3 overflow-x-auto  overflow-y-hidden overflow-x-auto">
           {renderCategories()}
         </div>

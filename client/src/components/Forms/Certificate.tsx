@@ -33,7 +33,7 @@ export default function Certificate({ recordType, id }: { recordType: string, id
 
   return (
     <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
-      <h3>Add Certificate</h3>
+      <h3 className="underline">Add Certificate</h3>
       <form>
         <TextInput
           callback={handleForm}

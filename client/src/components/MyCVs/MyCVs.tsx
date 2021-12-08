@@ -54,7 +54,7 @@ export default function MyCVs() {
 
   return (
     <motion.div
-      className="h-full flex flex-wrap items-center gap-10 p-5 overflow-scroll"
+      className="h-full flex flex-wrap items-center gap-10 p-10 bg-primary-bg rounded-tl-corner overflow-y-auto"
       initial="hidden"
       animate="visible"
       exit="hidden"

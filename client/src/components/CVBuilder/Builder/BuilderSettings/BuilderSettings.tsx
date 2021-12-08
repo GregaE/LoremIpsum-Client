@@ -27,7 +27,7 @@ function BuilderSettings({postCV,resetPdf,userDetail, user} :any) {
   return (
     <div className='h-full w-full flex flex-col align-center p-2'>
       <button
-        className='flex justify-center bg-accent hover:bg-danger rounded-lg p-3 mb-5 mx-2 cursor-pointer'
+        className='flex w-1/2 justify-center font-bold bg-accent hover:text-light hover:bg-primary-x rounded-lg p-3 mb-5 mx-auto cursor-pointer'
         onClick={saveCV}
       >
         Save CV
@@ -37,7 +37,7 @@ function BuilderSettings({postCV,resetPdf,userDetail, user} :any) {
         fileName={`CV-${new Date().toISOString()}.pdf`}
       >
         {({ blob, url, loading, error }) => (
-          <button className='flex justify-center bg-primary hover:bg-primary-x text-light rounded-lg p-3 mx-2 mb-5'>
+          <button className='flex w-1/2 justify-center bg-accent font-bold hover:bg-primary-x hover:text-light rounded-lg p-3 mx-auto mb-5'>
             {loading ? 'Loading document...' : 'Download'}
           </button>
         )}

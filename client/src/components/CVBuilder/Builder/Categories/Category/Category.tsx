@@ -16,6 +16,7 @@ export default function Category({
   const dispatch = useDispatch();
 
   function openCategories() {
+    console.log(items);
     return items.map(item => {
       return <CategoryItem key={item.id} item={item} categoryName={name} />;
     });
@@ -26,7 +27,7 @@ export default function Category({
       <div className="flex flex-wrap p-4 gap-10 justify-between items-center">
         <i
           onClick={() => dispatch(toggleModal(true, name))}
-          className="text-accent fa-lg fas fa-plus-circle cursor-pointer"
+          className="text-accent opacity-50 fa-lg fas fa-plus-circle cursor-pointer hover:opacity-100"
         ></i>
         <h2 className="font-medium text-lg">{name}</h2>
         <i

@@ -53,7 +53,10 @@ export default function Categories({toggle}: any) {
     <div className='h-auto max-h-full flex flex-nowrap flex-col items-center gap-10 p-5'>
       {renderCategories()}
         <AnimatePresence exitBeforeEnter>
-          <i className='fas fa-plus-circle fa-3x' onClick={toggle} />
+          <i 
+            className='fas fa-plus-circle fa-3x transition transform hover:scale-105 cursor-pointer' 
+            onClick={toggle} 
+          />
         </AnimatePresence>
     </div>
   );

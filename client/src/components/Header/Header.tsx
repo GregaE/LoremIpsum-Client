@@ -63,13 +63,15 @@ function Header({ header, userDetails, navigateOptions }: any) {
   };
 
   return (
-    <div className='w-full max-w-full h-header py-4 bg-primary-bg flex flex-row justify-between items-center px-8 z-10'>
-      <h2>{header.headerName}</h2>
-      <div>
+    <div className='w-full max-w-full h-header bg-primary-bg flex items-center'>
+      <div className='bg-primary text-3xl text-light text-primary w-1/8 h-full rounded-br-full flex flex-wrap justify-around items-center capitalize p-4 mr-10'>
+        <h2>{header.headerName}</h2>
+      </div>
+      <div className='py-4 px-8 z-10 w-7/8 flex items-center justify-end'>
         <div
           onClick={() => toggleExpand(!expander)}
           id='profile'
-          className='bg-primary text-light rounded-full flex flex-wrap justify-around items-center capitalize cursor-pointer hover:bg-primary-x'
+          className='w-auto bg-primary text-light rounded-full flex flex-wrap justify-around items-center capitalize cursor-pointer hover:bg-primary-x'
         >
           <div className='flex gap-5 justify-center items-center py-2 px-4'>
             <img

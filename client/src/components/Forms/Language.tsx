@@ -36,7 +36,7 @@ export default function Language({ recordType, id }: { recordType: string, id: s
 
   return (
     <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
-      <h3>Add Language</h3>
+      <h3 className="underline">Add Language</h3>
       <form>
         <div>
           <TextInput

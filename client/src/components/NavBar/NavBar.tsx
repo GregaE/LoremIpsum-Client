@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import { connect, useDispatch } from 'react-redux';
-import Logout from '../Auth/Logout/Logout';
+import { connect } from 'react-redux';
 
 //TODO - props type
 function NavBar({ navigate }: any) {

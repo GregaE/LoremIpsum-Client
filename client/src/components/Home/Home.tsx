@@ -29,12 +29,12 @@ export default function Home() {
   return (
     <motion.div
       id="home-container"
-      className="w-full h-9/10 bg-primary-bg flex flex-row overflow-scroll"
+      className="w-full h-9/10 bg-primary-bg flex flex-row overflow-y-auto rounded-tl-corner"
       initial="hidden"
       animate="visible"
       exit="hidden"
       variants={containerVariants}>
-      <div id="main-section" className="w-4/6 h-full bg-primary-bg flex flex-col justify-start">
+      <div id="main-section" className="w-4/6 h-full flex flex-col justify-start">
         <Welcome/>
         <Tracker/>
       </div>

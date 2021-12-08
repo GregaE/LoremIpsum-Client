@@ -62,7 +62,7 @@ export default function WorkExperienceForm({
 
   return (
     <div className="m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
-      <h3>Add Work Experience</h3>
+      <h3 className="underline">Add Work Experience</h3>
       <form>
         <TextInput
           type="text"

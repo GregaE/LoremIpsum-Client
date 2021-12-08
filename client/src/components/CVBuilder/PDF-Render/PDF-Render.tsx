@@ -38,7 +38,7 @@ export default function PDFRender({ pdf,personal_details }: { pdf: PDF[], person
     <Document>
       <Page size="A4" style={pageStyle.page}>
         <View style={pageStyle.section}>
-          <PDFProfile personalDetails={data} />
+          <PDFProfile personalDetails={data}/>
           {renderPdf}
         </View>
       </Page>

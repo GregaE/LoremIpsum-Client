@@ -48,8 +48,9 @@ const initialState = {
         <div className="max-w-md w-full space-y-8 bg-light rounded-container p-10">
           <div>
             <img
-              className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+              className="mx-auto h-24 w-auto"
+              src='https://www.linkpicture.com/q/Lorem2-removebg-preview-black.png'
+              style={{ filter: 'invert(13%) sepia(85%) saturate(3572%) hue-rotate(239deg) brightness(106%) contrast(90%)'}}
               alt="Workflow"
             />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
