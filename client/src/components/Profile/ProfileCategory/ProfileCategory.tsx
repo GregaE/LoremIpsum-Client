@@ -15,7 +15,7 @@ function ProfileCategory({ name, items, toggle }: any) {
   }
 
   return (
-    <div className="category-container w-full overflow-x-hidden">
+    <div className="category-container w-full">
       <div className="flex flex-wrap px-10 py-3 gap-10 justify-between items-center">
         <i onClick={() => toggle(`${name}`)} className="fas fa-plus-circle text-2xl"></i>
         <h2>{name}</h2>

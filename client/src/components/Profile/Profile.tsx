@@ -85,7 +85,7 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
       variants={containerVariants}
     >
       <h2 className="text-3xl px-10 py-5">Your personal data</h2>
-      <hr className="w-6/7 mx-5 text-primary-x" />
+      <hr className="w-6/7 mx-5 text-primary-x pb-8" />
       <div className="flex flex-row justify-center ml-5 h-auto pb-10">
         <ProfileImg 
           userPicture={user_details.image} 
@@ -138,7 +138,7 @@ function Profile({userDetail, lang, cert, skill, edu, exp}:any) {
       </div>
       <div className="p-2 flex flex-col gap-4 h-full overflow-y-hidden overflow-x-auto">
         <h2 className="text-3xl px-10 py-5">Your categories</h2>
-        <hr className="w-6/7 pb-10 text-primary-x" />
+        <hr className="w-6/7 mx-5 text-primary-x pb-8" />
         <div className="flex flex-col h-30 gap-3 overflow-x-auto  overflow-y-hidden overflow-x-auto">
           {renderCategories()}
         </div>

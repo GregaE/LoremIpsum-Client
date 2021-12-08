@@ -19,8 +19,8 @@ export default function ItemEditor() {
   };
   const FormComponent = selectForm(identifier);
   return (
-    <div className="w-full">
+    <>
       <FormComponent recordType={id === undefined ? 'NEW' : 'UPDATE'} id={id} />
-    </div>
+    </>
   );
 }

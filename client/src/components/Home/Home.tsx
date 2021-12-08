@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <motion.div
       id="home-container"
-      className="w-full h-9/10 bg-primary-bg flex flex-row overflow-y-auto rounded-tl-corner"
+      className="w-full h-main bg-primary-bg flex flex-row overflow-y-auto rounded-tl-corner"
       initial="hidden"
       animate="visible"
       exit="hidden"

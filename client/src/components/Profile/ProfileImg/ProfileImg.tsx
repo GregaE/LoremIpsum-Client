@@ -44,7 +44,9 @@ export default function ProfileImg({userPicture, handleEditing, handleForm, user
   }
 
   return (
-    <div style={{ backgroundImage: `url(${profileImage})` }} className="w-60 h-60 m-5 pt-10 rounded-full bg-cover bg-center bg-no-repeat hover:scale-100">
+    <div 
+      style={{ backgroundImage: `url(${profileImage})` }} 
+      className="w-60 h-60 m-5 pt-10 rounded-full bg-cover bg-center bg-no-repeat transform hover:shadow-2xl">
       <input
         type="file"
         accept="image/gif, image/png, image/jpeg, image/jpg"

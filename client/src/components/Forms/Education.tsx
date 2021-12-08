@@ -55,7 +55,7 @@ export default function EducationForm({ recordType, id }: { recordType: string, 
   const years = Array.from({ length: 20 }, (v, i) => i + 2000); //Generate and array with values from 2000 to 2020
 
   return (
-    <div className="m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+    <div className="m-auto text-center w-2/3 h-auto bg-primary rounded-lg">
       <h3 className="underline">Add Education</h3>
       <form>
         <TextInput
@@ -74,28 +74,23 @@ export default function EducationForm({ recordType, id }: { recordType: string, 
           placeholder="School/University"
           label="School/University"
         />
-        <div
-          id="education_form_location"
-          className="md:flex gap-5 items-center"
-        >
-          <TextInput
-            callback={handleForm}
-            type="text"
-            name="city"
-            value={educ.city ? educ.city : ''}
-            placeholder="City"
-            label="City"
-          />
-          <TextInput
-            callback={handleForm}
-            type="text"
-            name="country"
-            value={educ.country ? educ.country : ''}
-            placeholder="Country"
-            label="Country"
-          />
-        </div>
-        <div id="education_form_dates" className="flex flex-row gap-2 my-5">
+        <TextInput
+          callback={handleForm}
+          type="text"
+          name="city"
+          value={educ.city ? educ.city : ''}
+          placeholder="City"
+          label="City"
+        />
+        <TextInput
+          callback={handleForm}
+          type="text"
+          name="country"
+          value={educ.country ? educ.country : ''}
+          placeholder="Country"
+          label="Country"
+        />
+        <div id="education_form_dates" className="flex flex-row gap-2 w-full">
           <SelectInput
             callback={handleForm}
             value={educ.beginMonth}
