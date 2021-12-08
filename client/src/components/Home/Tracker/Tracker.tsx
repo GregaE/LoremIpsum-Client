@@ -2,26 +2,30 @@ import { useTypedSelector } from '../../../utils/useTypeSelector';
 import { useDispatch } from 'react-redux';
 export default function Tracker() {
   const interviews = useTypedSelector(state => state.interviews);
-  const {
-    personal_details: { userId },
-  } = useTypedSelector(state => state.personal_details);
 
-  const dispatch = useDispatch();
-
-  const upcomingInterviews = interviews.map(interview => {
-    if (interviews.length > 0) {
-      return (
-        <p
-          key={interview.id}
-          className="w-5/6 bg-primary-bg rounded-full my-2 py-3"
-        >
-          {`Your next interview is with ${interview.company} for the position ${
-            interview.position
-          } on ${new Date(interview.date).toDateString()}. Good luck!`}
-        </p>
-      );
-    }
-  });
+  const upcomingInterviews = interviews
+    .filter(int => new Date(int.date) > new Date())
+    .sort(
+      (a, b) =>
+        Date.parse(new Date(a.date).toDateString()) -
+        Date.parse(new Date(b.date).toDateString())
+    )
+    .map(interview => {
+      if (interviews.length > 0) {
+        return (
+          <p
+            key={interview.id}
+            className="w-5/6 bg-primary-bg rounded-full my-2 py-3"
+          >
+            {`Your next interview is with ${
+              interview.company
+            } for the position ${interview.position} on ${new Date(
+              interview.date
+            ).toDateString()}. Good luck!`}
+          </p>
+        );
+      }
+    });
 
   return (
     <div
