@@ -1,5 +1,4 @@
 import { useTypedSelector } from '../../../utils/useTypeSelector';
-import { useDispatch } from 'react-redux';
 export default function Tracker() {
   const interviews = useTypedSelector(state => state.interviews);
 
@@ -13,16 +12,15 @@ export default function Tracker() {
     .map(interview => {
       if (interviews.length > 0) {
         return (
-          <p
+          <div
             key={interview.id}
-            className="w-5/6 bg-primary-bg rounded-full my-2 py-3"
+            className="w-5/6 bg-primary-bg rounded my-2 py-3 transform hover:scale-105 transition"
           >
-            {`Your next interview is with ${
-              interview.company
-            } for the position ${interview.position} on ${new Date(
-              interview.date
-            ).toDateString()}. Good luck!`}
-          </p>
+            Your next interview is with <strong>{interview.company}</strong> for the position
+            <strong> {interview.position}</strong> on
+            <strong> {new Date(interview.date).toDateString()}</strong>.
+            Good luck!
+          </div>
         );
       }
     });
@@ -30,11 +28,11 @@ export default function Tracker() {
   return (
     <div
       id=""
-      className="w-5/6 h-1/2 flex flex-col bg-primary rounded-lg self-center items-center mb-16 overflow-auto gap-4 text-center"
+      className="w-5/6 h-1/2 flex flex-col bg-primary rounded-lg self-center items-center my-5 overflow-auto gap-4 text-center"
     >
       {' '}
       {/* I can change h to h-1/2 */}
-      <h1>Recruitment Progress</h1>
+      <h3 className="mb-3">Recruitment Progress</h3>
       {upcomingInterviews ? (
         upcomingInterviews
       ) : (

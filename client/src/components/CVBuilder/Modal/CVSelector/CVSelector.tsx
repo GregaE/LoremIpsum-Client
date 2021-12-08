@@ -19,7 +19,7 @@ function CVSelector({ curriculum }: any) {
         );
       });
     }
-    return <p>You dont have any CV yet</p>;
+    return <p className="text-light text-lg">You don't have any CVs yet</p>;
   }
 
   return (

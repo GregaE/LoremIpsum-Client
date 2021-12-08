@@ -8,8 +8,7 @@ function NavBar({ navigate }: any) {
   const white = 'invert(100%) sepia(94%) saturate(0%) hue-rotate(193deg) brightness(105%) contrast(108%)';
   const orange = 'invert(73%) sepia(22%) saturate(6069%) hue-rotate(355deg) brightness(94%) contrast(97%)'
 
-  const [logoColor, setColor] = useState("initialState")
-
+  const [logoColor, setColor] = useState(white)
 
   return (
     <div className="bg-primary text-light w-1/8 h-screen flex flex-col items-center gap-6">

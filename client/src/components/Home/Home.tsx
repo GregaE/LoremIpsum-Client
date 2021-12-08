@@ -37,8 +37,8 @@ export default function Home() {
       exit="hidden"
       variants={containerVariants}>
       <div id="main-section" className="w-4/6 h-full flex flex-col justify-start">
-        <Welcome/>
         <Tracker/>
+        <Welcome/>
       </div>
       <div id="right-section" className="w-2/6 h-full">
         <CalendarComp />

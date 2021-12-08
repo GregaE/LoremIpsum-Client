@@ -49,7 +49,7 @@ export default function MyCVs() {
         );
       });
     }
-    return <p className="mx-auto">You dont have any CV</p>;
+    return <p className="mx-auto text-2xl">You don't have any CVs</p>;
   }
 
   return (
