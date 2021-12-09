@@ -23,7 +23,7 @@ function CVSelector({ curriculum }: any) {
   }
 
   return (
-    <div className="h-full flex flex-wrap items-center gap-10 p-5 overflow-x-auto">
+    <div className="h-auto max-h-full w-auto max-w-full flex flex-wrap items-center justify-center overflow-y-auto">
       {renderCVs('modal')}
     </div>
   );
@@ -35,8 +35,4 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(CVSelector);
+export default connect(mapStateToProps)(CVSelector);

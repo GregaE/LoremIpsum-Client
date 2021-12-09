@@ -33,17 +33,17 @@ export default function CategorySelector() {
   }
 
   const categoryList = categoriesLookup.map(category => (
-    <div
-      key={category.name}
-      onClick={() =>
-        applyCategory(category.name, category.endpoint, category.dispatchAll)
-      }
-      className="w-56 h-40 bg-light rounded m-3 py-3 text-center flex flex-col justify-center gap-5 transform transition cursor-pointer hover:scale-105"
-    >
-      <i className={category.icon + ' text-4xl'}></i>
-      <div className="text-2xl">{category.name}</div>
-    </div>
+      <div
+        key={category.name}
+        onClick={() =>
+          applyCategory(category.name, category.endpoint, category.dispatchAll)
+        }
+        className="w-56 h-40 bg-light rounded m-3 py-3 text-center flex flex-col justify-center gap-5 transform transition cursor-pointer hover:scale-105"
+      >
+        <i className={category.icon + ' text-4xl'}></i>
+        <div className="text-2xl">{category.name}</div>
+      </div>
   ));
 
-  return <div className="w-5/6 my-10 flex flex-wrap gap-5">{categoryList}</div>;
+  return <div className="flex flex-wrap items-center justify-center gap-5">{categoryList}</div>;
 }
