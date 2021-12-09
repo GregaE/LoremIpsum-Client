@@ -8,10 +8,10 @@ import { useTypedSelector } from '../../utils/useTypeSelector';
 
 export default function WorkExperienceForm({
   recordType,
-  id
+  id,
 }: {
-  recordType: string,
-  id: string
+  recordType: string;
+  id: string;
 }) {
   const months = [
     'Jan',
@@ -30,14 +30,13 @@ export default function WorkExperienceForm({
   const years = Array.from({ length: 20 }, (v, i) => i + 2000); //Generate and array with values from 2000 to 2020
 
   const {
-    experience: { experience }
+    experience: { experience },
   } = useTypedSelector(state => state);
 
-
-  const setInitialState = ():WorkExperience => {
-    const experienceFiltered = experience.find(experience => 
-      experience.id === id
-    )
+  const setInitialState = (): WorkExperience => {
+    const experienceFiltered = experience.find(
+      experience => experience.id === id
+    );
     const emptyExperience = {
       id: '',
       job_title: '',
@@ -49,9 +48,9 @@ export default function WorkExperienceForm({
       beginYear: '',
       endMonth: '',
       endYear: '',
-    }
-    return experienceFiltered ? experienceFiltered : emptyExperience
-  }
+    };
+    return experienceFiltered ? experienceFiltered : emptyExperience;
+  };
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/workExperience',
     setInitialState(),
@@ -61,7 +60,7 @@ export default function WorkExperienceForm({
   const workExp: WorkExperience = { ...(state as WorkExperience) };
 
   return (
-    <div className="m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+    <div className="m-auto text-center w-auto h-auto bg-primary rounded-lg">
       <h3 className="underline">Add Work Experience</h3>
       <form>
         <TextInput

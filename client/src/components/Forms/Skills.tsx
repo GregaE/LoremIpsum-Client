@@ -5,24 +5,27 @@ import Button from './Elements/Buttons/Button';
 import { useHandleForm } from '../../utils/CustomHooks';
 import { useTypedSelector } from '../../utils/useTypeSelector';
 
-export default function Skills({ recordType, id }: { recordType: string, id: string }) {
-
+export default function Skills({
+  recordType,
+  id,
+}: {
+  recordType: string;
+  id: string;
+}) {
   const {
-    skills: { skills }
+    skills: { skills },
   } = useTypedSelector(state => state);
 
-  const setInitialState = ():Skill => {
-    const skill = skills.find(skill => 
-      skill.id === id
-    )
+  const setInitialState = (): Skill => {
+    const skill = skills.find(skill => skill.id === id);
     const emptySkill = {
       id: '',
       name: '',
       description: '',
       userId: '',
-    }
-    return skill ? skill : emptySkill
-  }
+    };
+    return skill ? skill : emptySkill;
+  };
 
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/skills',
@@ -33,7 +36,7 @@ export default function Skills({ recordType, id }: { recordType: string, id: str
   //@ts-ignore => this is annoying how can I define one of the types if its or?
   const skill: Skill = { ...state };
   return (
-    <div className="justify-center object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
+    <div className="justify-center object-center m-auto text-center w-auto h-auto bg-primary rounded-lg">
       <h3 className="underline">Add new Skill</h3>
       <form>
         <TextInput

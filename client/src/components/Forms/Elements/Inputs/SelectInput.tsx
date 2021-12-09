@@ -8,13 +8,15 @@ export default function SelectInput(props: SelectInputProps) {
 
   return (
     <div className="w-auto flex flex-col mt-8">
-      {props.label && <label className="font-medium leading-none text-left text-light">
-        {props.label}
-      </label>}
+      {props.label && (
+        <label className="font-medium leading-none text-left text-light">
+          {props.label}
+        </label>
+      )}
       <select
         onChange={e => props.callback && props.callback(e)}
         {...props}
-        className="leading-none text-dark p-3 mt-4 bg-primary-bg border-primary-bg rounded focus:outline-none focus:border focus:ring-2 focus:ring-primary min-w-0"
+        className="leading-none text-dark p-3 bg-primary-bg border-primary-bg rounded focus:outline-none focus:border focus:ring-2 focus:ring-primary min-w-0"
       >
         <option value="" disabled>
           {props.default}

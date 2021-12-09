@@ -2,6 +2,7 @@ import Welcome from './Welcome/Welcome';
 import CalendarComp from './Calendar/Calendar';
 import Tracker from './Tracker/Tracker';
 import Modal from '../CVBuilder/Modal/Modal';
+import AnswerGenerator from './Q&A/Q&A';
 import { motion } from 'framer-motion';
 import { useTypedSelector } from '../../utils/useTypeSelector';
 
@@ -35,10 +36,14 @@ export default function Home() {
       initial="hidden"
       animate="visible"
       exit="hidden"
-      variants={containerVariants}>
-      <div id="main-section" className="w-4/6 h-full flex flex-col justify-start">
-        <Tracker/>
-        <Welcome/>
+      variants={containerVariants}
+    >
+      <div
+        id="main-section"
+        className="w-4/6 h-full flex flex-col justify-start"
+      >
+        <Tracker />
+        <AnswerGenerator />
       </div>
       <div id="right-section" className="w-2/6 h-full">
         <CalendarComp />

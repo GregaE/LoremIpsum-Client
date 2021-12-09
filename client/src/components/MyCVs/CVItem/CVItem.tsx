@@ -1,5 +1,4 @@
 import { useDispatch, connect } from 'react-redux';
-import { Categories } from '../../../interfaces/CategoriesInterface';
 import { PDF } from '../../../interfaces/PdfInterface';
 import { setTemplate } from '../../../store/actions/pdfActions';
 import { toggleModal } from '../../../store/actions/toggleModal';
@@ -7,17 +6,31 @@ import { FetchCategory } from '../../../utils/ApiService';
 import { categoriesLookup } from '../../../utils/Lookups';
 import { useTypedSelector } from '../../../utils/useTypeSelector';
 import { TrashIcon, DocumentDownloadIcon } from '@heroicons/react/solid';
+import PDFRender from '../../CVBuilder/PDF-Render/PDF-Render';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import moment from 'moment';
 
 function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
+  console.log('magi date_created: ', date_created);
+  console.log(
+    'magi date_created formated: ',
+    moment(date_created).format('DD-MM-YYYY')
+  );
+
   const {
     personal_details: { userId },
   } = useTypedSelector(state => state.personal_details);
+
+  const { personal_details } = useTypedSelector(
+    state => state.personal_details
+  );
 
   const pdf = useTypedSelector(state => state.pdf);
   /*
   Every CV could recive the whole data of cvs as props or just send an identifier as prop from parent
   And get the data from cvs state and just Array.find(CV Identifier)
   */
+
   const dispatch = useDispatch();
 
   //TODO: This function is super ugly refactor, outsource and possibly handle data differently
@@ -51,62 +64,72 @@ function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
       dispatch({ type: 'SHOW_CVBUILDER', payload: true });
       dispatch(toggleModal(false, ''));
     }
-    if (type === 'mycv') {
-      console.log('Ola I am not done yet :D');
-    }
   }
 
-  function removeSavedCv(e:any, cvId:string) {
+  function removeSavedCv(e: any, cvId: string) {
     e.stopPropagation();
-    deleteCV(cvId)
+    deleteCV(cvId);
   }
-
-  
 
   return (
     <div
-      className="m-5 w-a4md h-a4md flex flex-col flex-shrink-0 justify-center items-center shadow-lg bg-contain bg-center cursor-pointer
+      className="m-5 w-a4md h-a4md flex flex-col flex-shrink-0 justify-center items-center shadow-lg bg-contain bg-center
       relative transition transform hover:scale-105 "
       style={{
         backgroundImage: `url(https://www.myesr.org/sites/default/files/media-icons/generic/application-pdf.png)`,
       }}
-      onClick={() => {
-        loadSavedCV(page, JSON.parse(data));
-      }}
+      onClick={() => loadSavedCV(page, data)}
     >
-      <p className="p-10">CV Item</p>
-      <p>ID {cvId}</p>
-      <p>date_created {date_created}</p>
-      <div className="absolute right-2 bottom-2 h-12 w-12 p-2 rounded-full bg-primary-bg
-        opacity-50 hover:opacity-100"
-        onClick={(e) => removeSavedCv(e,cvId)}>
-        <TrashIcon/>
+      <div className="absolute top-2 h-auto w-auto py-2 px-4 rounded-full bg-primary-bg">
+        <p>{moment(date_created).format('DD-MM-YYYY')}</p>
       </div>
-      <div className="absolute left-2 bottom-2 h-12 w-12 p-2 rounded-full bg-primary-bg
+      <div
+        className="absolute right-2 bottom-2 h-12 w-12 p-2 rounded-full bg-primary-bg
         opacity-50 hover:opacity-100"
-        onClick={() => console.log('This should download')}>
-        <DocumentDownloadIcon/>
+        onClick={e => removeSavedCv(e, cvId)}
+      >
+        <TrashIcon />
       </div>
+      <PDFDownloadLink
+        document={
+          <PDFRender
+            pdf={JSON.parse(data)}
+            personal_details={personal_details}
+          />
+        }
+        fileName={`CV-${date_created}.pdf`}
+      >
+        {({ blob, url, loading, error }) =>
+          loading && page !== 'moda' ? null : (
+            <div
+              className="absolute left-2 bottom-2 h-12 w-12 p-2 rounded-full bg-primary-bg
+        opacity-50 hover:opacity-100"
+            >
+              <DocumentDownloadIcon />
+            </div>
+          )
+        }
+      </PDFDownloadLink>
     </div>
   );
 }
 
 //TODO - deal with dispatch typing
 const mapStateToProps = (state: any) => {
-  return {
-  }
-}
+  return {};
+};
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    deleteCV: (cvId: string) => dispatch({
-      type: 'FETCH_DATA',
-      endpoint: '/savedCV',
-      method: 'DELETE',
-      id: cvId,
-      dispatch: 'DELETE_CV'
-    })
-  }
-}
+    deleteCV: (cvId: string) =>
+      dispatch({
+        type: 'FETCH_DATA',
+        endpoint: '/savedCV',
+        method: 'DELETE',
+        id: cvId,
+        dispatch: 'DELETE_CV',
+      }),
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CVItem);
