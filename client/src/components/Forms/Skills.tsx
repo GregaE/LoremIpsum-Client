@@ -36,8 +36,8 @@ export default function Skills({
   //@ts-ignore => this is annoying how can I define one of the types if its or?
   const skill: Skill = { ...state };
   return (
-    <div className="justify-center object-center m-auto text-center w-auto h-auto bg-primary rounded-lg">
-      <h3 className="underline">Add new Skill</h3>
+    <div className="object-center m-auto text-center w-auto h-auto bg-primary rounded-lg">
+      <h3>Add new Skill</h3>
       <form>
         <TextInput
           type="text"
@@ -50,9 +50,9 @@ export default function Skills({
         <TextAreaInput
           type="text"
           value={skill.description ? skill.description : ''}
-          length={300}
-          cols={100}
-          rows={4}
+          // length={300}
+          // cols={100}
+          // rows={4}
           placeholder="Description of your skill"
           name="description"
           callback={handleForm}

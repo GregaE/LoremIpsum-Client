@@ -39,16 +39,17 @@ export default function Modal() {
 
   return (
     <motion.div
-      className="h-full w-full flex flex-col justify-center items-center absolute left-0 top-0"
+      className="h-full w-full flex flex-col justify-center items-center absolute left-0 top-0 blur-md"
       initial={{ transform: 'scale(0)' }}
       animate={{ transform: 'scale(1)' }}
       exit={{ transform: 'scale(0)' }}
     >
       <div
         id="modal-content"
-        className= {identifier==='InterviewForm' 
-          ? "h-auto max-h-7/8 w-auto min-h-2/8 min-w-2/8 max-w-7/8 p-10 bg-primary rounded-xl text-center"
-          : "h-auto max-h-7/8 w-auto min-h-2/8 min-w-2/8 max-w-7/8 p-10 bg-primary rounded-xl text-center"
+        className={
+          identifier === 'InterviewForm'
+            ? 'h-auto max-h-7/8 w-auto min-h-2/8 min-w-2/8 max-w-7/8 p-10 bg-primary rounded-xl text-center'
+            : 'h-auto max-h-7/8 w-auto min-h-2/8 min-w-2/8 max-w-7/8 p-10 bg-primary rounded-xl text-center'
         }
       >
         {modalInstance()}

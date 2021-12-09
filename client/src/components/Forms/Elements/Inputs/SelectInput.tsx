@@ -7,7 +7,7 @@ export default function SelectInput(props: SelectInputProps) {
   ));
 
   return (
-    <div className="w-auto flex flex-col mt-8">
+    <div className="w-auto flex flex-col my-auto">
       {props.label && (
         <label className="font-medium leading-none text-left text-light">
           {props.label}

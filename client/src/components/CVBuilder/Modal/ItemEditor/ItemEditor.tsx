@@ -13,11 +13,7 @@ export default function ItemEditor() {
   const FormComponent = selectForm(identifier);
   return (
     <div className="w-full">
-      <FormComponent
-        recordType={!id ? 'NEW' : 'UPDATE'}
-        id={id}
-        date={meta}
-      />
+      <FormComponent recordType={!id ? 'NEW' : 'UPDATE'} id={id} date={meta} />
     </div>
   );
 }

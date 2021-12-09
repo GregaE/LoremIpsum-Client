@@ -61,7 +61,7 @@ export default function WorkExperienceForm({
 
   return (
     <div className="m-auto text-center w-auto h-auto bg-primary rounded-lg">
-      <h3 className="underline">Add Work Experience</h3>
+      <h3>Add Work Experience</h3>
       <form>
         <TextInput
           type="text"
@@ -97,35 +97,44 @@ export default function WorkExperienceForm({
             callback={handleForm}
           />
         </div>
-        <div id="work_form_dates" className="flex flex-row gap-2 my-5">
-          <SelectInput
-            options={months}
-            callback={handleForm}
-            name="beginMonth"
-            value={workExp.beginMonth ? workExp.beginMonth : ''}
-            default={'Month'}
-          />
-          <SelectInput
-            options={years}
-            callback={handleForm}
-            name="beginYear"
-            value={workExp.beginYear ? workExp.beginYear : ''}
-            default={'Year'}
-          />
-          <SelectInput
-            options={months}
-            callback={handleForm}
-            name="endMonth"
-            value={workExp.endMonth ? workExp.endMonth : ''}
-            default={'Month'}
-          />
-          <SelectInput
-            options={years}
-            callback={handleForm}
-            name="endYear"
-            value={workExp.endYear ? workExp.endYear : ''}
-            default={'Year'}
-          />
+        <div
+          id="work_form_dates"
+          className="flex flex-row gap-2 w-full justify-around mt-8"
+        >
+          <div className="flex flex-row gap-2 w-full justify-around items-center">
+            <p className="text-primary-bg font-bold	">From: </p>
+            <SelectInput
+              options={months}
+              callback={handleForm}
+              name="beginMonth"
+              value={workExp.beginMonth ? workExp.beginMonth : ''}
+              default={'Month'}
+            />
+            <SelectInput
+              options={years}
+              callback={handleForm}
+              name="beginYear"
+              value={workExp.beginYear ? workExp.beginYear : ''}
+              default={'Year'}
+            />
+          </div>
+          <div className="flex flex-row gap-2 w-full justify-around items-center">
+            <p className="text-primary-bg font-bold	">To: </p>
+            <SelectInput
+              options={months}
+              callback={handleForm}
+              name="endMonth"
+              value={workExp.endMonth ? workExp.endMonth : ''}
+              default={'Month'}
+            />
+            <SelectInput
+              options={years}
+              callback={handleForm}
+              name="endYear"
+              value={workExp.endYear ? workExp.endYear : ''}
+              default={'Year'}
+            />
+          </div>
         </div>
         <TextAreaInput
           type="text"

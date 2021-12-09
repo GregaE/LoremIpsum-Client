@@ -5,23 +5,26 @@ import { Certificates } from '../../interfaces/CategoriesInterface';
 import { useHandleForm } from '../../utils/CustomHooks';
 import { useTypedSelector } from '../../utils/useTypeSelector';
 
-export default function Certificate({ recordType, id }: { recordType: string, id: string }) {
-
+export default function Certificate({
+  recordType,
+  id,
+}: {
+  recordType: string;
+  id: string;
+}) {
   const {
-    certificates: { certificates }
+    certificates: { certificates },
   } = useTypedSelector(state => state);
 
-  const setInitialState = ():Certificates => {
-      const certificate = certificates.find(certificate => 
-        certificate.id === id
-      )
-      const emptyCertificate = {
-        name: '',
-        description: '',
-        userId: '',
-      }
-      return certificate ? certificate : emptyCertificate
-  }
+  const setInitialState = (): Certificates => {
+    const certificate = certificates.find(certificate => certificate.id === id);
+    const emptyCertificate = {
+      name: '',
+      description: '',
+      userId: '',
+    };
+    return certificate ? certificate : emptyCertificate;
+  };
 
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/certificates',
@@ -32,8 +35,8 @@ export default function Certificate({ recordType, id }: { recordType: string, id
   const certificate: Certificates = { ...(state as Certificates) };
 
   return (
-    <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
-      <h3 className="underline">Add Certificate</h3>
+    <div className="object-center m-auto text-center w-auto h-auto bg-primary rounded-lg">
+      <h3>Add Certificate</h3>
       <form>
         <TextInput
           callback={handleForm}
@@ -48,9 +51,9 @@ export default function Certificate({ recordType, id }: { recordType: string, id
           type="text"
           name="description"
           value={certificate.description ? certificate.description : ''}
-          length={300}
-          cols={100}
-          rows={4}
+          // length={300}
+          // cols={100}
+          // rows={4}
           placeholder="Details of your certificate"
           label="Description"
         />

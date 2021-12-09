@@ -11,12 +11,6 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import moment from 'moment';
 
 function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
-  console.log('magi date_created: ', date_created);
-  console.log(
-    'magi date_created formated: ',
-    moment(date_created).format('DD-MM-YYYY')
-  );
-
   const {
     personal_details: { userId },
   } = useTypedSelector(state => state.personal_details);

@@ -59,7 +59,7 @@ export default function EducationForm({
 
   return (
     <div className="m-auto text-center w-auto h-auto bg-primary rounded-lg">
-      <h3 className="underline">Add Education</h3>
+      <h3>Add Education</h3>
       <form>
         <TextInput
           callback={handleForm}
@@ -77,7 +77,10 @@ export default function EducationForm({
           placeholder="School/University"
           label="School/University"
         />
-        <div id="work_form_location" className="md:flex gap-5 items-center">
+        <div
+          id="education_form_location"
+          className="md:flex gap-5 items-center"
+        >
           <TextInput
             callback={handleForm}
             type="text"
@@ -97,7 +100,7 @@ export default function EducationForm({
         </div>
         <div
           id="education_form_dates"
-          className="flex flex-row gap-2 w-full justify-around"
+          className="flex flex-row gap-2 w-full justify-around mt-8"
         >
           <div className="flex flex-row gap-2 w-full justify-around items-center">
             <p className="text-primary-bg font-bold	">From: </p>

@@ -5,25 +5,29 @@ import Button from './Elements/Buttons/Button';
 import { useHandleForm } from '../../utils/CustomHooks';
 import { useTypedSelector } from '../../utils/useTypeSelector';
 
-export default function Language({ recordType, id }: { recordType: string, id: string }) {
+export default function Language({
+  recordType,
+  id,
+}: {
+  recordType: string;
+  id: string;
+}) {
   const levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 
   const {
-    languages: { languages }
+    languages: { languages },
   } = useTypedSelector(state => state);
 
-  const setInitialState = ():Languages => {
-    const language = languages.find(language => 
-      language.id === id
-    )
+  const setInitialState = (): Languages => {
+    const language = languages.find(language => language.id === id);
     const emptyLanguage = {
       id: '',
       language_name: '',
       level: '',
       userId: '',
-    }
-    return language ? language : emptyLanguage
-  }
+    };
+    return language ? language : emptyLanguage;
+  };
 
   const { state, handleForm, handleSubmit, toggle } = useHandleForm(
     '/languages',
@@ -35,20 +39,20 @@ export default function Language({ recordType, id }: { recordType: string, id: s
   const language = { ...(state as Languages) };
 
   return (
-    <div className="object-center m-auto text-center w-1/2 h-auto bg-primary rounded-lg">
-      <h3 className="underline">Add Language</h3>
+    <div className="object-center m-auto text-center w-auto h-auto bg-primary rounded-lg">
+      <h3>Add Language</h3>
       <form>
         <div>
           <TextInput
             callback={handleForm}
-            label="Language"
+            // label="Language"
             type="text"
             name="language_name"
             value={language.language_name}
             placeholder="Enter language"
           />
         </div>
-        <div className="flex justify-start">
+        <div className="flex justify-start mt-6">
           <SelectInput
             options={levels}
             callback={handleForm}
