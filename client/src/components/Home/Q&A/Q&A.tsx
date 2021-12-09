@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Button from '../../Forms/Elements/Buttons/Button';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function AnswerGenerator() {
   const [interview, setInterview] = useState('');
-  const [questions, setQuestions] = useState([]);
-  const [answer, setAnswer] = useState({} as any);
+  const [questions, setQuestions] = useState([] as []);
+  const [answer, setAnswer] = useState('');
+  const [expander, toggleExpand] = useState(false);
 
   const generateQuestions = (prompt: string) => {
     fetch(process.env.REACT_APP_OPENAI_Q_URL || '', {
@@ -19,7 +21,7 @@ function AnswerGenerator() {
         stop: ['\n\n'],
       }),
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+        Authorization: `Bearer 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`,
         'Content-Type': 'application/json',
       },
       method: 'POST',
@@ -30,11 +32,22 @@ function AnswerGenerator() {
           'Error: ' + response.status + ' ' + response.statusText
         );
       })
-      .then(questions => setQuestions(questions.choices))
+      .then(questions => {
+        questions = questions.choices[0].text.split('\n');
+        questions.map((question: string) => {
+          console.log('Before: ', question);
+          question = question.replace(/[^A-Za-z!?]/g, '');
+          return question + '?';
+        });
+        setQuestions(questions);
+        const answer = generateAnswer(questions[0]);
+        console.log('Answer', answer);
+      })
       .catch(error => console.error(error));
   };
 
   const generateAnswer = (question: string) => {
+    toggleExpand(false);
     fetch(process.env.REACT_APP_OPENAI_A_URL || '', {
       body: JSON.stringify({
         prompt: `Q: ${question.trim()}?\nA: `,
@@ -46,7 +59,7 @@ function AnswerGenerator() {
         stop: ['\n'],
       }),
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+        Authorization: `Bearer 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`,
         'Content-Type': 'application/json',
       },
       method: 'POST',
@@ -57,36 +70,42 @@ function AnswerGenerator() {
           'Error: ' + response.status + ' ' + response.statusText
         );
       })
-      .then(answer => console.log(answer))
+      .then(answers => {
+        console.log(answers);
+        setAnswer(answers.choices[0].text);
+        console.log(answer);
+      })
       .catch(error => console.error(error));
   };
 
-  function renderQuestions() {
-    console.log(questions);
-    return (
-      questions.length !== 0 &&
-      questions.map((question: any) => (
-        <div
-          key="question"
-          data-tooltip-target="tooltip-default"
-          className="w-5/6 my-2 py-3 px-1 text-light transition"
+  function renderAnswer() {
+    if (expander) {
+      return (
+        <motion.div
+          className={`w-5/6 px-1 text-light`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ type: 'tween' }}
+          exit={{ opacity: 0 }}
         >
-          {question.text}
-        </div>
-      ))
-    );
+          {answer}
+        </motion.div>
+      );
+    }
   }
 
-  function renderAnswers() {
-    const answersArray = ['one', 'two'];
-
-    return answersArray.map(answer => (
-      <div
-        key="answer"
-        data-tooltip-target="tooltip-default"
-        className="w-5/6 bg-primary-bg rounded my-2 py-3 px-1 transform hover:scale-105 transition"
-      >
-        {answer}
+  function renderQuestions(array: []) {
+    return array.map((question, index) => (
+      <div className="flex flex-col bg-primary rounded-lg self-center items-center my-5 overflow-auto gap-4 text-center">
+        <div
+          key="question"
+          onClick={() => toggleExpand(true)}
+          data-tooltip-target="tooltip-default"
+          className="w-5/6 bg-primary-bg rounded my-2 py-3 px-1 transform hover:scale-105 transition cursor-pointer"
+        >
+          {question}
+        </div>
+        {renderAnswer()}
       </div>
     ));
   }
@@ -112,11 +131,8 @@ function AnswerGenerator() {
             </button>
           </div>
         </div>
-        <div className="flex flex-col bg-primary rounded-lg self-center items-center my-5 overflow-auto gap-4 text-center">
-          {renderQuestions()}
-        </div>
-        <div className="flex flex-col bg-primary rounded-lg self-center items-center my-5 overflow-auto gap-4 text-center">
-          {renderAnswers()}
+        <div className="h-full w-auto mx-auto">
+          {renderQuestions(questions)}
         </div>
       </div>
     </div>
