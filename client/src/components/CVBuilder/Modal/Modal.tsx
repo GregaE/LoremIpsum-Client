@@ -46,7 +46,7 @@ export default function Modal() {
     >
       <div
         id="modal-content"
-        className="flex h-auto max-h-full w-auto min-w-2/4 max-w-full p-10 bg-primary rounded-xl"
+        className="h-auto max-h-7/8 w-auto min-h-2/8 min-w-2/8 max-w-7/8 p-10 bg-primary rounded-xl text-center"
       >
         {modalInstance()}
       </div>

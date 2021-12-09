@@ -63,8 +63,8 @@ function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
 
   return (
     <div
-      className="bg-light w-80 h-96 flex flex-col justify-center items-center shadow-lg bg-contain bg-center cursor-pointer
-      relative transition transform hover:scale-105"
+      className="m-5 w-a4md h-a4md flex flex-col flex-shrink-0 justify-center items-center shadow-lg bg-contain bg-center cursor-pointer
+      relative transition transform hover:scale-105 "
       style={{
         backgroundImage: `url(https://www.myesr.org/sites/default/files/media-icons/generic/application-pdf.png)`,
       }}
