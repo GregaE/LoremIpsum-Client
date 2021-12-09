@@ -46,7 +46,10 @@ export default function Modal() {
     >
       <div
         id="modal-content"
-        className="h-auto max-h-7/8 w-auto min-h-2/8 min-w-2/8 max-w-7/8 p-10 bg-primary rounded-xl text-center"
+        className= {identifier==='InterviewForm' 
+          ? "h-auto max-h-7/8 w-auto min-h-2/8 min-w-2/8 max-w-7/8 p-10 bg-primary rounded-xl text-center"
+          : "h-auto max-h-7/8 w-auto min-h-2/8 min-w-2/8 max-w-7/8 p-10 bg-primary rounded-xl text-center"
+        }
       >
         {modalInstance()}
       </div>

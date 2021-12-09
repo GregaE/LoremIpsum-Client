@@ -6,7 +6,7 @@ import { toggleModal } from '../../../store/actions/toggleModal';
 import { FetchCategory } from '../../../utils/ApiService';
 import { categoriesLookup } from '../../../utils/Lookups';
 import { useTypedSelector } from '../../../utils/useTypeSelector';
-import { TrashIcon } from '@heroicons/react/solid';
+import { TrashIcon, DocumentDownloadIcon } from '@heroicons/react/solid';
 
 function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
   const {
@@ -56,10 +56,12 @@ function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
     }
   }
 
-  function testfunction(e:any, cvId:string) {
+  function removeSavedCv(e:any, cvId:string) {
     e.stopPropagation();
     deleteCV(cvId)
   }
+
+  
 
   return (
     <div
@@ -77,8 +79,13 @@ function CVItem({ cvId, date_created, data, page, deleteCV }: any) {
       <p>date_created {date_created}</p>
       <div className="absolute right-2 bottom-2 h-12 w-12 p-2 rounded-full bg-primary-bg
         opacity-50 hover:opacity-100"
-        onClick={(e) => testfunction(e,cvId)}>
+        onClick={(e) => removeSavedCv(e,cvId)}>
         <TrashIcon/>
+      </div>
+      <div className="absolute left-2 bottom-2 h-12 w-12 p-2 rounded-full bg-primary-bg
+        opacity-50 hover:opacity-100"
+        onClick={() => console.log('This should download')}>
+        <DocumentDownloadIcon/>
       </div>
     </div>
   );
