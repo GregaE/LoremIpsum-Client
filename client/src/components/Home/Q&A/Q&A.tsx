@@ -21,7 +21,7 @@ function AnswerGenerator() {
         stop: ['\n\n'],
       }),
       headers: {
-        Authorization: `Bearer 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`,
+        Authorization: `Bearer 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`,
         'Content-Type': 'application/json',
       },
       method: 'POST',
@@ -59,7 +59,7 @@ function AnswerGenerator() {
         stop: ['\n'],
       }),
       headers: {
-        Authorization: `Bearer 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`,
+        Authorization: `Bearer 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`,
         'Content-Type': 'application/json',
       },
       method: 'POST',
