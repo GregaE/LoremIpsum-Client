@@ -1,11 +1,51 @@
-# LoremIpsum
+<p align="center">
+    <img src="https://www.linkpicture.com/q/Lorem2-removebg-preview-black.png"
+        height="130">
+</p>
+<p align="center">
+    <a href="" alt="Contributors">
+        <img src="https://img.shields.io/badge/Contributors-5-green" /></a>
+    <a href="" alt="Contributors">
+        <img src="https://img.shields.io/badge/Build-passing-green" /></a>
+</p>
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus tempus quam et augue rhoncus, non tempus est hendrerit. Nunc fermentum malesuada tortor id tincidunt. Morbi placerat sed nunc non hendrerit. Vivamus turpis nisl, consectetur non tincidunt tristique, cursus vel lacus. Ut rhoncus diam magna, non efficitur libero finibus a. Vivamus sit amet eros eu enim congue pharetra in id ipsum. Sed fermentum sit amet nibh eget tincidunt. Nam tristique elementum quam, vel gravida magna eleifend sit amet. Donec in orci vitae ligula sodales faucibus eget a velit. Nullam ornare turpis id nunc vulputate vulputate. Curabitur a lectus feugiat, pulvinar orci at, euismod purus. Mauris egestas felis eros, non lobortis massa elementum sed. Maecenas id dignissim sapien. Suspendisse volutpat lorem dui, ac ullamcorper lorem blandit in. Nam lobortis metus quis tortor dictum fringilla. Nullam dictum purus non suscipit semper.
+### Description
+This is the client repo of **Lorem Ipsum** app.
+A CV builder that helps you to create your own CVs just with a few clicks and also store them for future updates or downloads, saving and incredible amount of time and also being sure that your CV will pass most of the Applicant Tracking Systems that could reject your CV even before it reaches a recruiter.
 
-Cras ut risus at velit porta dignissim. Nullam sagittis, turpis eu varius viverra, mauris ex viverra odio, vitae eleifend nibh turpis a arcu. Duis tellus enim, hendrerit non ligula in, blandit venenatis leo. Curabitur maximus metus a urna sagittis venenatis. Maecenas at sodales lectus, egestas mattis eros. Quisque viverra arcu eu est tristique, quis malesuada est iaculis. Vestibulum congue lorem at dui viverra imperdiet. Donec ut est dui. Phasellus hendrerit odio sit amet tincidunt congue.
+You can find the server repo on the [Lorem Ipsum Server](https://github.com/NeoCephei/LoremIpsum-Server)
 
-Praesent turpis leo, ullamcorper id cursus in, dapibus sed dolor. Ut interdum nunc leo, sed gravida nulla dignissim ut. Duis consectetur nisl a ultrices dignissim. In volutpat elit ex, in mattis tortor eleifend id. Sed convallis egestas pharetra. Nunc nibh erat, porta nec tristique ut, dictum quis neque. Duis at nisl vel enim condimentum maximus. Mauris a ligula enim. Praesent vel augue vitae libero convallis dignissim. Praesent rhoncus nunc tortor, ac imperdiet libero porttitor ac. Proin egestas justo at tortor fermentum, sit amet venenatis erat auctor. Ut ut semper nibh. Quisque tempor purus et dignissim malesuada. Fusce sem lacus, hendrerit sed tempor sit amet, venenatis sit amet elit. Aenean dictum ex ante, ut sollicitudin dui lacinia vel.
+[Presentation Video](https://www.youtube.com/watch?v=oDUdlnxxFIA)
 
-Quisque nisl leo, tempor nec dictum ac, tristique at diam. Donec condimentum mollis ligula, gravida varius augue maximus et. Curabitur ac nulla lobortis, tristique enim non, venenatis ex. Sed id diam vel turpis posuere rhoncus. Aenean at luctus magna, vel gravida mauris. Suspendisse venenatis quis odio quis pulvinar. Donec dui leo, pulvinar a porttitor eu, imperdiet non ligula. Aliquam bibendum efficitur velit et dignissim. Aenean consectetur suscipit tortor sit amet auctor.
+<details>
+ <summary><b>⚡ Tech Stack</b></summary>
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Redux](https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-black?style=flat-square&logo=firebase)
 
-Pellentesque mattis est velit, quis facilisis mauris ullamcorper non. Sed mattis mi eget nisi posuere dictum non id velit. Sed eget pharetra tellus, vel accumsan dui. Pellentesque fringilla pulvinar orci, at bibendum erat fringilla eu. Nam rutrum ante non venenatis tempus. Nullam ligula urna, laoreet nec nisl sit amet, euismod luctus velit. Vivamus pulvinar gravida rutrum. Praesent volutpat, neque ac pretium pretium, urna odio tincidunt elit, at mollis lectus nunc nec odio. Ut cursus nisi nisl, a volutpat metus rhoncus vitae. Sed egestas commodo volutpat. Maecenas sed aliquam libero. Ut ultricies in tellus ac lobortis.
+</details>
+
+### Quickstart
+
+1. Clone this repository.
+2. Go to client folder using `cd client`.
+3. Fill your `.env` file with your credentials following the `.env.example` provided.
+4. Run `yarn` or `npm i` to install the dependencies. (We recommend to use yarn)
+5. Run `yarn start` or `npm start` to start the client.
+6. Open `http://localhost:3000` to view the frontend.
+
+### Contribute
+If you want to contribute to this project, feel free to fork it and create a pull request with your changes
+
+### Project leaders
+
+Maintainers:
+
+- [gregae](https://github.com/GregaE) (core team)
+- [tomazzobr](https://github.com/TomazzoBr) (core team)
+- [proyev](https://github.com/proyev) (core team)
+- [zenicek](https://github.com/zenicek) (core team)
+- [neocephei](https://github.com/NeoCephei) (core team)
+
