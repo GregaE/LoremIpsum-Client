@@ -9,7 +9,7 @@
         <img src="https://img.shields.io/badge/Build-passing-green" /></a>
 </p>
 
-### Description
+## Description
 This is the client repo of **Lorem Ipsum** app.
 A CV builder that helps you to create your own CVs just with a few clicks and also store them for future updates or downloads, saving and incredible amount of time and also being sure that your CV will pass most of the Applicant Tracking Systems that could reject your CV even before it reaches a recruiter.
 
@@ -28,7 +28,7 @@ You can find the server repo on the [Lorem Ipsum Server](https://github.com/NeoC
 
 </details>
 
-### Quickstart
+## Quickstart
 
 1. Clone this repository.
 2. Go to client folder using `cd client`.
@@ -37,11 +37,10 @@ You can find the server repo on the [Lorem Ipsum Server](https://github.com/NeoC
 5. Run `yarn start` or `npm start` to start the client.
 6. Open `http://localhost:3000` to view the frontend.
 
-### Contribute
+## Contribute
 If you want to contribute to this project, feel free to fork it and create a pull request with your changes
 
-### Project leaders
-
+## Project leaders
 Maintainers:
 
 - [gregae](https://github.com/GregaE) (core team)
