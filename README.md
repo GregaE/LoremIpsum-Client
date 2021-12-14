@@ -1,4 +1,4 @@
-
+<p>
     <img src="https://www.linkpicture.com/q/Lorem2-removebg-preview-black.png"
         height="130">
 </p>
