@@ -33,8 +33,8 @@ You can find the server repo on the [Lorem Ipsum Server](https://github.com/NeoC
 1. Clone this repository.
 2. Go to client folder using `cd client`.
 3. Fill your `.env` file with your credentials following the `.env.example` provided.
-4. Run `yarn` or `npm i` to install the dependencies. (We recommend to use yarn)
-5. Run `yarn start` or `npm start` to start the client.
+4. Run `yarn`.
+5. Run `yarn start`.
 6. Open `http://localhost:3000` to view the frontend.
 
 ## Contribute
